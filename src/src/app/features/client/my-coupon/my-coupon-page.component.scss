@@ -1,0 +1,157 @@
+@use '../../../../assets/styles/variables' as *;
+
+:host {
+  display: block;
+}
+
+.my-coupon-page {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+// Header
+.my-coupon-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.my-coupon-header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #059669, #10b981);
+  color: white;
+  flex-shrink: 0;
+
+  i {
+    font-size: 1.1rem;
+  }
+}
+
+.my-coupon-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0;
+}
+
+.my-coupon-subtitle {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  margin: 0.25rem 0 0;
+  line-height: 1.5;
+}
+
+// Card container
+.my-coupon-card {
+  background: white;
+  border: 1px solid $color-border;
+  border-radius: 16px;
+  padding: 1.5rem;
+
+  @media (min-width: 640px) {
+    padding: 2rem;
+  }
+}
+
+// How it works section
+.my-coupon-info {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 14px;
+  padding: 1.25rem;
+}
+
+.my-coupon-info-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0 0 1rem;
+
+  i {
+    color: #d97706;
+  }
+}
+
+.my-coupon-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.my-coupon-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+
+  p {
+    font-size: 0.8rem;
+    color: $color-text-secondary;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+.my-coupon-step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fbbf24;
+  color: #78350f;
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+// ========================================
+// Dark Mode
+// ========================================
+:host-context(.dark-mode) {
+  .my-coupon-title {
+    color: #f1f5f9;
+  }
+
+  .my-coupon-subtitle {
+    color: #94a3b8;
+  }
+
+  .my-coupon-card {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .my-coupon-info {
+    background: #422006;
+    border-color: #92400e;
+  }
+
+  .my-coupon-info-title {
+    color: #fbbf24;
+
+    i {
+      color: #fbbf24;
+    }
+  }
+
+  .my-coupon-step p {
+    color: #d6d3d1;
+  }
+
+  .my-coupon-step-number {
+    background: #b45309;
+    color: #fef3c7;
+  }
+}

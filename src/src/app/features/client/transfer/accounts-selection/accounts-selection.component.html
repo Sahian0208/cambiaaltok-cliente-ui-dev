@@ -1,0 +1,241 @@
+<div class="form-section">
+  <div class="form-section-header">
+    <span class="form-section-number">2</span>
+    <div>
+      <h4 class="form-section-title">Selecciona tus cuentas</h4>
+      <p class="form-section-hint">Elige desde dónde envías y dónde quieres recibir</p>
+    </div>
+  </div>
+
+  <div class="form-fields-row" [formGroup]="transferForm">
+    <!-- Source Account -->
+    <div class="field field--grow">
+      <label for="sourceAccountId" class="field-label">
+        <i class="pi pi-arrow-up-right field-label-icon"></i> Cuenta de origen
+      </label>
+      <p-select
+        id="sourceAccountId"
+        formControlName="sourceAccountId"
+        [options]="sourceAccounts"
+        optionLabel="accountNumber"
+        optionValue="id"
+        placeholder="Seleccione cuenta origen">
+        <ng-template #selectedItem let-account>
+          <span>{{ getAccountLabel(account) }}</span>
+        </ng-template>
+        <ng-template #item let-account>
+          <span>{{ getAccountLabel(account) }}</span>
+        </ng-template>
+      </p-select>
+      <button type="button" class="add-account-btn" (click)="addAccount.emit('origen')">
+        <i class="pi pi-plus-circle"></i> Agregar cuenta de origen
+      </button>
+      @if (transferForm.get('sourceAccountId')?.invalid && transferForm.get('sourceAccountId')?.touched) {
+        <small class="field-error">
+          <i class="pi pi-info-circle"></i> Seleccione una cuenta de origen
+        </small>
+      }
+    </div>
+
+    <!-- Destination Account -->
+    <div class="field field--grow">
+      <label for="destinationAccountId" class="field-label">
+        <i class="pi pi-arrow-down-left field-label-icon"></i> Cuenta de destino
+      </label>
+      <p-select
+        id="destinationAccountId"
+        formControlName="destinationAccountId"
+        [options]="destinationAccounts"
+        optionLabel="accountNumber"
+        optionValue="id"
+        placeholder="Seleccione cuenta destino">
+        <ng-template #selectedItem let-account>
+          <span>{{ getAccountLabel(account) }}</span>
+        </ng-template>
+        <ng-template #item let-account>
+          <span>{{ getAccountLabel(account) }}</span>
+        </ng-template>
+      </p-select>
+      <button type="button" class="add-account-btn" (click)="addAccount.emit('destino')">
+        <i class="pi pi-plus-circle"></i> Agregar cuenta de destino
+      </button>
+      @if (transferForm.get('destinationAccountId')?.invalid && transferForm.get('destinationAccountId')?.touched) {
+        <small class="field-error">
+          <i class="pi pi-info-circle"></i> Seleccione una cuenta de destino
+        </small>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Destination Bank Info Section -->
+@if (getSelectedDestinationAccount(); as destAccount) {
+  <div class="destination-info-card">
+
+    <div class="destination-info-header">
+      Informacion de la cuenta destino  
+</div>
+
+    <div class="destination-info-body">
+      <div class="holder-info">
+        <span class="holder-label">Titular de la cuenta</span>
+        <span class="holder-name">{{ destAccount.holderName }}</span>
+      </div>
+      <div class="holder-info">
+        <span class="holder-label">                        
+            Entidad Financiera
+        </span>
+        <span class="holder-name">
+           @if (destAccount.country === 'Bolivia') {
+            <svg
+              viewBox="0 0 3 2"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="3" height="2" fill="#007a33" />
+              <rect width="3" height="1.33" fill="#fcd116" />
+              <rect width="3" height="0.67" fill="#d52b1e" />
+            </svg>
+
+            } @else {
+              <svg
+              viewBox="0 0 3 2"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="3" height="2" fill="#d52b1e" />
+              <rect x="1" width="1" height="2" fill="#ffffff" />
+            </svg>
+            }
+          {{ destAccount.bankName }}
+        </span>
+      </div>
+
+      <!-- Payment method display based on account type -->
+      <div class="payment-method">
+        @if (destAccount.isQR && !destAccount.isYape) {
+          <!-- QR Code deposit -->
+          <div class="payment-method-standard">
+            <div class="standard-display">
+              <button type="button" class="qr-btn" title="Ver QR" (click)="openQrModal()">
+                <i class="pi pi-qrcode"></i> Click para ver QR
+              </button>
+              <button
+                type="button"
+                class="qr-edit-btn"
+                [disabled]="updatingQrAccountId === destAccount.id"
+                (click)="triggerQrEdit(qrEditInput)">
+                <i class="pi pi-refresh"></i>
+                <span>{{ updatingQrAccountId === destAccount.id ? 'Actualizando...' : 'Actualizar QR' }}</span>
+              </button>
+              <input
+                #qrEditInput
+                type="file"
+                accept="image/png,image/jpeg,image/jpg"
+                class="qr-edit-hidden-input"
+                (change)="onQrFileChange($event, destAccount)" />
+            </div>
+            <p class="payment-method-message">
+              <i class="pi pi-info-circle"></i>
+              CambiaAltok realizará el depósito usando este QR, si deseas cambiarlo, haz click en "Actualizar QR" y selecciona un nuevo archivo de imagen.
+            </p>
+
+            
+
+          </div>
+        } @else if (destAccount.isYape && !destAccount.isQR) {
+          <!-- Yape deposit -->
+          <div class="payment-method-standard">
+            <div class="standard-display">
+              <img src="/img/banks/pe/yape-logo.svg" alt="Yape" class="yape-logo" width="35px"/>
+              <span class="yape-value">{{ destAccount.otherAccountValue }}</span>
+            </div>
+            <p class="payment-method-message">
+              <i class="pi pi-info-circle"></i>
+              CambiaAltok realizará el depósito en esta cuenta Yape
+            </p>
+          </div>
+        } @else {
+          <!-- Standard bank account deposit -->
+          <div class="payment-method-standard">
+            <div class="standard-display">
+              <i class="pi pi-building-columns account-icon"></i>
+              <span class="account-number">{{ destAccount.accountNumber }}</span>
+            </div>
+            <p class="payment-method-message">
+              <i class="pi pi-info-circle"></i>
+              El depósito se realizará a este número de cuenta
+            </p>
+
+            @if (destAccount.country === 'Bolivia' && !destAccount.isYape) {
+              <div class="qr-add-section">
+                <button
+                  type="button"
+                  class="qr-edit-btn"
+                  [disabled]="updatingQrAccountId === destAccount.id"
+                  (click)="triggerQrEdit(qrAddInput)">
+                  <i class="pi pi-qrcode"></i>
+                  <span>{{ updatingQrAccountId === destAccount.id ? 'Guardando QR...' : 'Agregar QR a esta cuenta' }}</span>
+                </button>
+                <input
+                  #qrAddInput
+                  type="file"
+                  accept="image/png,image/jpeg,image/jpg"
+                  class="qr-edit-hidden-input"
+                  (change)="onQrFileChange($event, destAccount)" />
+                <small class="qr-add-hint">
+                  Sube el QR de esta cuenta boliviana para que CambiaAltok pueda depositar directamente con él.
+                </small>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}
+
+
+
+ <!-- QR Modal Dialog -->
+  <p-dialog
+    header="Código QR de la cuenta destino"
+    [(visible)]="showQrModal"
+    [modal]="true"
+    [dismissableMask]="true"
+    [closable]="true"
+    [maximizable]="true"
+    [style]="{ width: '95vw', maxWidth: '500px' }"
+    [breakpoints]="{ '480px': '100vw' }">
+
+    <div class="qr-modal-content">
+      @if (getSelectedDestinationAccount(); as destinationBankAccount) {
+        <div class="qr-modal-info">
+          <div class="qr-modal-field">
+            <span class="qr-modal-label">Banco</span>
+            <span class="qr-modal-value">{{ destinationBankAccount.bankName }}</span>
+          </div>
+          <div class="qr-modal-field">
+            <span class="qr-modal-label">Titular</span>
+            <span class="qr-modal-value">{{ destinationBankAccount.holderName }}</span>
+          </div>
+          <div class="qr-modal-field">
+            <span class="qr-modal-label">N° de cuenta</span>
+            <span class="qr-modal-value qr-modal-value--mono">{{ destinationBankAccount.accountNumber }}</span>
+          </div>
+        </div>
+
+        @if (destinationBankAccount.otherAccountValue) {
+          <div class="qr-modal-qr-box">           
+            <bc-qr-code [text]="destinationBankAccount.otherAccountValue" [width]="350" [height]="350"></bc-qr-code>
+          </div>
+        }       
+      }
+    </div>
+
+    <ng-template #footer>
+      <div class="qr-modal-actions">
+        <button type="button" class="btn-secondary btn-secondary--sm" (click)="closeQrModal()">
+          Cerrar
+        </button>
+      </div>
+    </ng-template>
+  </p-dialog>

@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.drop-zone {
+  &:hover {
+    border-color: var(--p-primary-color, #1E3A5F);
+    background-color: rgba(30, 58, 95, 0.03);
+  }
+}
+
+.preview-container {
+  img {
+    max-height: 12rem;
+  }
+}

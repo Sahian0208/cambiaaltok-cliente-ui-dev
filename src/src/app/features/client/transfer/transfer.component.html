@@ -1,0 +1,796 @@
+<div class="transfer-wrapper">
+  <!-- Page Header -->
+  <div class="transfer-header">
+    <button class="back-btn" (click)="goToDashboard()">
+      <i class="pi pi-arrow-left"></i>
+    </button>
+    <div>
+      <h2 class="transfer-title">
+        @if (!isExistingTransaction) {
+          Nueva Transferencia
+        } @else {
+          Detalle de Transferencia
+        }
+      </h2>
+      <p class="transfer-subtitle">
+        @if (!isExistingTransaction) {
+          Envía y convierte dinero entre Bolivia y Perú de forma segura
+        } @else {
+          Seguimiento de tu operación
+        }
+      </p>
+    </div>
+  </div>
+
+  <!-- Stepper visual -->
+  <div class="stepper-wrapper">
+    <app-stepper [currentStep]="currentStep"></app-stepper>
+  </div>
+
+  <!-- Loading spinner -->
+  @if (loading) {
+    <div class="loading-state">
+      <p-progressSpinner strokeWidth="4" animationDuration="1s"></p-progressSpinner>
+      <p class="loading-text">Procesando tu solicitud...</p>
+    </div>
+  }
+
+  <!-- Step 1: Transfer Form -->
+  @if (!loading && currentStep === 1 && !isExistingTransaction) {
+    <div class="step-content">
+      <!-- Step info card -->
+      <div class="step-info-card">
+        <div class="step-info-icon">
+          <i class="pi pi-file-edit"></i>
+        </div>
+        <div class="step-info-content">
+          <h3 class="step-info-title">Paso 1: Registro de Operación</h3>
+          <p class="step-info-desc">Completa los datos de tu transferencia. Selecciona el monto, las cuentas y sube el QR de tu cuenta destino.</p>
+        </div>
+      </div>
+
+      <!-- No accounts warning -->
+      @if (hasNoAccounts) {
+        <div class="alert-card alert-card--warning">
+          <i class="pi pi-exclamation-triangle alert-icon"></i>
+          <div class="alert-content">
+            <p class="alert-title">Cuentas bancarias requeridas</p>
+            <p class="alert-text">
+              Para realizar una transferencia necesitas al menos una cuenta de origen y una de destino.
+            </p>
+            <button class="alert-action" (click)="goToAccounts()">
+              <i class="pi pi-wallet"></i> Registrar cuentas
+            </button>
+          </div>
+        </div>
+      }
+
+      @if (!hasNoAccounts) {
+        <form [formGroup]="transferForm" (ngSubmit)="submitTransfer()" class="transfer-form">
+          <!-- Amount Section -->
+          <div class="form-section">
+            <div class="form-section-header">
+              <span class="form-section-number">1</span>
+              <div>
+                <h4 class="form-section-title">¿Cuánto deseas enviar?</h4>
+                <p class="form-section-hint">
+                  @if (isFromCalculator) {
+                    Datos ingresados desde la calculadora
+                  } @else {
+                    Ingresa el monto y selecciona la moneda de origen
+                  }
+                </p>
+              </div>
+            </div>
+
+            @if (isFromCalculator && calculatorData) {
+              <!-- Read-only view: data from home calculator -->
+              <div class="calculator-readonly">
+                <div class="calculator-readonly-row">
+                  <div class="calculator-readonly-item">
+                    <span class="calculator-readonly-label">
+                      <i class="pi pi-send"></i> Envías
+                    </span>
+                    <span class="calculator-readonly-value">
+                      {{ calculatorData.sourceAmount | number:'1.2-2' }}
+                      <span class="calculator-readonly-currency">{{ calculatorData.sourceCurrency }}</span>
+                    </span>
+                    <span class="calculator-readonly-country">{{ calculatorData.sourceCountry }}</span>
+                  </div>
+                  <div class="calculator-readonly-arrow">
+                    <i class="pi pi-arrow-right"></i>
+                  </div>
+                  <div class="calculator-readonly-item">
+                    <span class="calculator-readonly-label">
+                      <i class="pi pi-download"></i> Recibes
+                    </span>
+                    <span class="calculator-readonly-value calculator-readonly-value--highlight">
+                      {{ calculatorData.destinationAmount | number:'1.2-2' }}
+                      <span class="calculator-readonly-currency">{{ calculatorData.destinationCurrency }}</span>
+                    </span>
+                    <span class="calculator-readonly-country">{{ calculatorData.destinationCountry }}</span>
+                  </div>
+                </div>
+
+                <div class="calculator-readonly-rate">
+                  <i class="pi pi-chart-line"></i>
+                  Tasa aplicada: 1 {{ calculatorData.sourceCurrency }} = {{ calculatorData.appliedRate | number:'1.4-4' }} {{ calculatorData.destinationCurrency }}
+                </div>
+
+                @if (calculatorData.coupon) {
+                  <div class="calculator-readonly-coupon">
+                    <i class="pi pi-gift"></i>
+                    <span>
+                      Cupón <strong>{{ calculatorData.coupon.code }}</strong> aplicado
+                      — +{{ calculatorData.coupon.bonusAmount | number:'1.2-2' }} {{ calculatorData.coupon.bonusCurrency }}
+                      ({{ calculatorData.coupon.reason }})
+                    </span>
+                  </div>
+                }
+              </div>
+            } @else {
+              <!-- Editable view: normal form -->
+              <div class="form-fields-row">
+                <div class="field field--grow">
+                  <label for="sourceAmount" class="field-label">Monto a enviar</label>
+                  <p-inputNumber
+                    id="sourceAmount"
+                    formControlName="sourceAmount"
+                    mode="decimal"
+                    [minFractionDigits]="2"
+                    [maxFractionDigits]="2"
+                    [min]="1"
+                    placeholder="0.00"
+                    inputStyleClass="w-full">
+                  </p-inputNumber>
+                  @if (transferForm.get('sourceAmount')?.invalid && transferForm.get('sourceAmount')?.touched) {
+                    <small class="field-error">
+                      <i class="pi pi-info-circle"></i> Ingrese un monto válido mayor a 0
+                    </small>
+                  }
+                </div>
+
+                <div class="field field--currency">
+                  <label for="sourceCurrency" class="field-label">Moneda</label>
+                  <p-select
+                    id="sourceCurrency"
+                    formControlName="sourceCurrency"
+                    [options]="currencyOptions"
+                    optionLabel="label"
+                    optionValue="value"
+                    placeholder="Moneda">
+                  </p-select>
+                </div>
+              </div>
+
+              <!-- Conversion display -->
+              @if (convertedAmount > 0) {
+                <div class="conversion-card">
+                  <div class="conversion-row">
+                    <div class="conversion-from">
+                      <span class="conversion-label">Envías</span>
+                      <span class="conversion-value">{{ transferForm.get('sourceAmount')?.value | number:'1.2-2' }}</span>
+                      <span class="conversion-currency">{{ transferForm.get('sourceCurrency')?.value }}</span>
+                    </div>
+                    <div class="conversion-arrow">
+                      <i class="pi pi-arrow-right"></i>
+                    </div>
+                    <div class="conversion-to">
+                      <span class="conversion-label">Recibes</span>
+                      <span class="conversion-value conversion-value--highlight">{{ totalToReceive | number:'1.2-2' }}</span>
+                      <span class="conversion-currency">{{ destinationCurrency }}</span>
+                    </div>
+                  </div>
+
+                  <!-- Breakdown with coupon -->
+                  @if (couponBonusApplicable) {
+                    <div class="conversion-breakdown">
+                      <div class="breakdown-item">
+                        <span>Por tasa de cambio</span>
+                        <span>{{ convertedAmount | number:'1.2-2' }} {{ destinationCurrency }}</span>
+                      </div>
+                      <div class="breakdown-item breakdown-item--bonus">
+                        <span><i class="pi pi-gift"></i> Cupón ({{ appliedCoupon!.reason }})</span>
+                        <span>+{{ appliedCoupon!.bonusAmount | number:'1.2-2' }} {{ appliedCoupon!.bonusCurrency }}</span>
+                      </div>
+                      <div class="breakdown-item breakdown-item--total">
+                        <span>Total a recibir</span>
+                        <span>{{ totalToReceive | number:'1.2-2' }} {{ destinationCurrency }}</span>
+                      </div>
+                    </div>
+                  }
+
+                  <div class="conversion-rate">
+                    <i class="pi pi-chart-line"></i>
+                    Tasa: 1 {{ transferForm.get('sourceCurrency')?.value }} = {{ appliedRate | number:'1.4-4' }} {{ destinationCurrency }}
+                  </div>
+                </div>
+              }
+
+              <!-- Coupon section -->
+              <div class="coupon-section">
+                @if (!appliedCoupon) {
+                  @if (!showCouponInput) {
+                    <button type="button" class="coupon-toggle" (click)="toggleCouponInput()">
+                      <i class="pi pi-gift"></i>
+                      <span>Tengo un cupón</span>
+                    </button>
+                  } @else {
+                    <div class="coupon-input-group">
+                      <div class="coupon-input-row">
+                        <input
+                          type="text"
+                          class="coupon-input"
+                          [(ngModel)]="couponCode"
+                          [ngModelOptions]="{standalone: true}"
+                          placeholder="Ingresa tu código aquí"
+                          (keyup.enter)="validateCoupon()" />
+                        <button
+                          type="button"
+                          class="coupon-validate-btn"
+                          (click)="validateCoupon()"
+                          [disabled]="couponLoading">
+                          @if (couponLoading) {
+                            <i class="pi pi-spin pi-spinner"></i>
+                          } @else {
+                            <i class="pi pi-check"></i>
+                          }
+                          <span>Validar</span>
+                        </button>
+                      </div>
+                      @if (couponError) {
+                        <p class="coupon-error">
+                          <i class="pi pi-info-circle"></i> {{ couponError }}
+                        </p>
+                      }
+                      <button type="button" class="coupon-cancel" (click)="toggleCouponInput()">
+                        Cancelar
+                      </button>
+                    </div>
+                  }
+                } @else {
+                  <!-- Applied coupon display -->
+                  <div class="coupon-applied">
+                    <div class="coupon-applied-info">
+                      <i class="pi pi-gift"></i>
+                      <div>
+                        <span class="coupon-applied-label">Cupón aplicado: {{ appliedCoupon.code }}</span>
+                        <span class="coupon-applied-bonus">+{{ appliedCoupon.bonusAmount }} {{ appliedCoupon.bonusCurrency }} — {{ appliedCoupon.reason }}</span>
+                      </div>
+                    </div>
+                    <button type="button" class="coupon-remove" (click)="removeCoupon()">
+                      <i class="pi pi-times"></i>
+                    </button>
+                  </div>
+                }
+              </div>
+            }
+          </div>
+
+          <!-- Accounts Selection -->
+          <app-accounts-selection
+            [sourceAccounts]="sourceAccounts"
+            [destinationAccounts]="destinationAccounts"
+            [availableBanks]="availableBanks"
+            [transferForm]="transferForm"
+            [updatingQrAccountId]="updatingQrAccountId"
+            (addAccount)="openAccountDialog($event)"
+            (qrFileSelected)="onDestinationQrFileSelected($event)">
+          </app-accounts-selection>
+
+          <!-- Submit button -->
+          <div class="form-submit">
+            <p-button
+              type="submit"
+              label="Registrar Operación"
+              icon="pi pi-send"
+              [disabled]="transferForm.invalid"
+              severity="primary"
+              styleClass="submit-btn">
+            </p-button>
+            <p class="form-submit-hint">
+              <i class="pi pi-shield"></i> Tu información está protegida
+            </p>
+          </div>
+        </form>
+      }
+    </div>
+  }
+
+  <!-- Step 2: Show intermediary QR + upload receipt -->
+  @if (!loading && currentStep === 2) {
+    <div class="step-content">
+      <div class="step-info-card step-info-card--action">
+        <div class="step-info-icon step-info-icon--action">
+          <i class="pi pi-qrcode"></i>
+        </div>
+        <div class="step-info-content">
+          <h3 class="step-info-title">Paso 2: Realiza tu depósito</h3>
+          <p class="step-info-desc">Escanea el QR del intermediario con tu app bancaria, realiza el depósito y luego sube el comprobante aquí.</p>
+        </div>
+      </div>
+
+      <!-- QR and Upload sections -->
+      <div class="step2-grid">
+        <!-- Intermediary account info (where to deposit) -->
+        <div class="content-card">
+          <div class="content-card-header">
+            <i class="pi pi-building"></i>
+            <h4>Cuenta de depósito CambiaAltok</h4>
+          </div>
+          <p class="content-card-desc">Realiza tu depósito a esta cuenta. Si tiene QR, puedes escanearlo con tu app bancaria.</p>
+          @if (intermediaryAccount) {
+            <app-bank-account-info [account]="intermediaryAccount"></app-bank-account-info>
+          } @else {
+            <div class="qr-placeholder">
+              <i class="pi pi-spin pi-spinner"></i>
+              <p>Cargando datos de la cuenta...</p>
+            </div>
+          }
+        </div>
+
+        <!-- Upload receipt -->
+        <div class="content-card">
+          <div class="content-card-header">
+            <i class="pi pi-upload"></i>
+            <h4>Comprobante de Depósito</h4>
+          </div>
+          <p class="content-card-desc">Una vez realizado el depósito, sube aquí la captura o foto del comprobante:</p>
+          <app-file-upload
+            label="Subir comprobante de depósito"
+            (fileSelected)="onComprobanteSelected($event)">
+          </app-file-upload>
+
+          <div class="content-card-action">
+            <p-button
+              label="Enviar Comprobante"
+              icon="pi pi-check"
+              [disabled]="!comprobanteFile"
+              (onClick)="submitReceipt()"
+              severity="primary"
+              styleClass="w-full">
+            </p-button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transaction summary -->
+      @if (transaction) {
+        <div class="summary-card">
+          <div class="summary-header">
+            <i class="pi pi-info-circle"></i>
+            <h4>Resumen de tu operación</h4>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item">
+              <span class="summary-label">Envías</span>
+              <span class="summary-value">{{ transaction.sourceAmount | number:'1.2-2' }} {{ transaction.sourceCurrency }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Recibes</span>
+              <span class="summary-value summary-value--success">{{ transaction.destinationAmount | number:'1.2-2' }} {{ transaction.destinationCurrency }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Tasa</span>
+              <span class="summary-value">{{ transaction.appliedRate | number:'1.4-4' }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Estado</span>
+              <span class="summary-value summary-value--pending">Pendiente de depósito</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+
+  <!-- Step 3: Waiting for verification -->
+  @if (!loading && currentStep === 3) {
+    <div class="step-content">
+      <div class="step-info-card step-info-card--wait">
+        <div class="step-info-icon step-info-icon--wait">
+          <i class="pi pi-clock"></i>
+        </div>
+        <div class="step-info-content">
+          <h3 class="step-info-title">Paso 3: Esperando verificación</h3>
+          <p class="step-info-desc">Tu comprobante fue enviado. El intermediario está revisando tu depósito. Te notificaremos cuando lo confirme.</p>
+        </div>
+      </div>
+
+      <div class="waiting-state">
+        <div class="waiting-animation">
+          <i class="pi pi-clock"></i>
+        </div>
+        <h4 class="waiting-title">Verificación en proceso</h4>
+        <p class="waiting-text">
+          El intermediario revisará tu comprobante y confirmará que el depósito fue recibido correctamente. 
+          Este proceso normalmente tarda pocos minutos.
+        </p>
+        <div class="waiting-tips">
+          <div class="tip-item">
+            <i class="pi pi-bell"></i>
+            <span>Recibirás una notificación cuando haya novedades</span>
+          </div>
+          <div class="tip-item">
+            <i class="pi pi-refresh"></i>
+            <span>Puedes volver a esta página para ver el estado actualizado</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transaction summary -->
+      @if (transaction) {
+        <div class="summary-card">
+          <div class="summary-header">
+            <i class="pi pi-info-circle"></i>
+            <h4>Resumen de tu operación</h4>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item">
+              <span class="summary-label">Envías</span>
+              <span class="summary-value">{{ transaction.sourceAmount | number:'1.2-2' }} {{ transaction.sourceCurrency }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Recibes</span>
+              <span class="summary-value summary-value--success">{{ transaction.destinationAmount | number:'1.2-2' }} {{ transaction.destinationCurrency }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Tasa</span>
+              <span class="summary-value">{{ transaction.appliedRate | number:'1.4-4' }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Estado</span>
+              <span class="summary-value summary-value--warning">Pendiente de verificación</span>
+            </div>
+          </div>
+        </div>
+      }
+
+      <div class="step-actions">
+        <p-button
+          label="Volver al Dashboard"
+          icon="pi pi-arrow-left"
+          (onClick)="goToDashboard()"
+          severity="secondary"
+          [outlined]="true">
+        </p-button>
+      </div>
+    </div>
+  }
+
+  <!-- Step 4: Waiting for transfer -->
+  @if (!loading && currentStep === 4) {
+    <div class="step-content">
+      <div class="step-info-card step-info-card--progress">
+        <div class="step-info-icon step-info-icon--progress">
+          <i class="pi pi-send"></i>
+        </div>
+        <div class="step-info-content">
+          <h3 class="step-info-title">Paso 4: Transferencia en proceso</h3>
+          <p class="step-info-desc">¡Tu depósito fue verificado! El intermediario está realizando la transferencia a tu cuenta destino.</p>
+        </div>
+      </div>
+
+      <div class="waiting-state">
+        <div class="waiting-animation waiting-animation--progress">
+          <i class="pi pi-spin pi-spinner"></i>
+        </div>
+        <h4 class="waiting-title">Enviando a tu cuenta</h4>
+        <p class="waiting-text">
+          El intermediario ya confirmó tu depósito y está transfiriendo el dinero a tu cuenta destino. 
+          Recibirás una notificación cuando se complete.
+        </p>
+      </div>
+
+      @if (transaction) {
+        <div class="summary-card">
+          <div class="summary-header">
+            <i class="pi pi-info-circle"></i>
+            <h4>Resumen de tu operación</h4>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item">
+              <span class="summary-label">Envías</span>
+              <span class="summary-value">{{ transaction.sourceAmount | number:'1.2-2' }} {{ transaction.sourceCurrency }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Recibes</span>
+              <span class="summary-value summary-value--success">{{ transaction.destinationAmount | number:'1.2-2' }} {{ transaction.destinationCurrency }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Tasa</span>
+              <span class="summary-value">{{ transaction.appliedRate | number:'1.4-4' }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Estado</span>
+              <span class="summary-value summary-value--info">Transferencia en proceso</span>
+            </div>
+          </div>
+        </div>
+      }
+
+      <div class="step-actions">
+        <p-button
+          label="Volver al Dashboard"
+          icon="pi pi-arrow-left"
+          (onClick)="goToDashboard()"
+          severity="secondary"
+          [outlined]="true">
+        </p-button>
+      </div>
+    </div>
+  }
+
+  <!-- Step 5: Completion -->
+  @if (!loading && currentStep === 5) {
+    <div class="step-content">
+      <div class="step-info-card step-info-card--success">
+        <div class="step-info-icon step-info-icon--success">
+          <i class="pi pi-check-circle"></i>
+        </div>
+        <div class="step-info-content">
+          <h3 class="step-info-title">¡Transferencia completada!</h3>
+          <p class="step-info-desc">Tu dinero ya fue enviado exitosamente. Puedes descargar el comprobante como respaldo.</p>
+        </div>
+      </div>
+
+      <div class="success-state">
+        <div class="success-animation">
+          <i class="pi pi-check-circle"></i>
+        </div>
+        <h4 class="success-title">¡Operación exitosa!</h4>
+        <p class="success-text">La transferencia ha sido completada satisfactoriamente.</p>
+      </div>
+
+      <!-- Comprobante del intermediario -->
+      @if (transaction?.intermediaryReceiptUrl) {
+        <div class="content-card">
+          <div class="content-card-header">
+            <i class="pi pi-file"></i>
+            <h4>Comprobante de Transferencia</h4>
+          </div>
+          <div class="receipt-display">
+            <img
+              [src]="this.buildAttachUrl(transaction!.intermediaryReceiptUrl)"
+              alt="Comprobante de transferencia"
+              class="receipt-image" />
+          </div>
+          <div class="content-card-action">
+            <p-button
+              label="Descargar Comprobante"
+              icon="pi pi-download"
+              (onClick)="downloadReceipt()"
+              severity="success"
+              styleClass="w-full">
+            </p-button>
+          </div>
+        </div>
+      }
+
+      @if (transaction) {
+        <div class="summary-card summary-card--success">
+          <div class="summary-header">
+            <i class="pi pi-check-circle"></i>
+            <h4>Resumen final</h4>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item">
+              <span class="summary-label">Enviaste</span>
+              <span class="summary-value">{{ transaction.sourceAmount | number:'1.2-2' }} {{ transaction.sourceCurrency }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Recibiste</span>
+              <span class="summary-value summary-value--success">{{ transaction.destinationAmount | number:'1.2-2' }} {{ transaction.destinationCurrency }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Tasa aplicada</span>
+              <span class="summary-value">{{ transaction.appliedRate | number:'1.4-4' }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Estado</span>
+              <span class="summary-value summary-value--success">Finalizado ✓</span>
+            </div>
+          </div>
+        </div>
+      }
+
+      <div class="step-actions">
+        <p-button
+          label="Volver al Dashboard"
+          icon="pi pi-arrow-left"
+          (onClick)="goToDashboard()"
+          severity="secondary"
+          [outlined]="true">
+        </p-button>
+      </div>
+    </div>
+  }
+
+  <!-- Denied state -->
+  @if (!loading && currentStep === -1) {
+    <div class="step-content">
+      <div class="step-info-card step-info-card--error">
+        <div class="step-info-icon step-info-icon--error">
+          <i class="pi pi-times-circle"></i>
+        </div>
+        <div class="step-info-content">
+          <h3 class="step-info-title">Operación denegada</h3>
+          <p class="step-info-desc">
+            El intermediario ha rechazado esta operación. Puedes iniciar una nueva transferencia.
+          </p>
+        </div>
+      </div>
+
+      <div class="denied-state">
+        <div class="denied-animation">
+          <i class="pi pi-times-circle"></i>
+        </div>
+        <h4 class="denied-title">Operación rechazada</h4>
+        @if (transaction?.denialReason) {
+          <div class="denied-reason">
+            <span class="denied-reason-label">Motivo:</span>
+            <p class="denied-reason-text">{{ transaction!.denialReason }}</p>
+          </div>
+        }
+      </div>
+
+      <div class="step-actions step-actions--center">
+        <p-button
+          label="Volver al Dashboard"
+          icon="pi pi-arrow-left"
+          (onClick)="goToDashboard()"
+          severity="secondary"
+          [outlined]="true">
+        </p-button>
+        <p-button
+          label="Nueva Transferencia"
+          icon="pi pi-plus"
+          [routerLink]="['/cliente/transferencia']"
+          severity="primary">
+        </p-button>
+      </div>
+    </div>
+  }
+
+  <!-- Inline Account Creation Dialog -->
+  <p-dialog
+    [(visible)]="showAccountDialog"
+    [header]="accountDialogType === 'origen' ? 'Nueva Cuenta de Origen' : 'Nueva Cuenta de Destino'"
+    [modal]="true"
+    [dismissableMask]="true"
+    [closable]="true"
+    [style]="{ width: '95vw', maxWidth: '480px' }"
+    [breakpoints]="{ '480px': '100vw' }"
+    (onHide)="closeAccountDialog()">
+
+    <div class="dialog-content">
+      <p class="dialog-desc">
+        @if (accountDialogType === 'origen') {
+          Registra la cuenta desde donde realizarás el depósito al intermediario.
+        } @else {
+          Registra la cuenta donde deseas recibir el dinero de tu transferencia.
+        }
+      </p>
+
+      <form [formGroup]="newAccountForm" class="dialog-form">
+        <!-- Country (bloqueado según la moneda de origen seleccionada) -->
+        <div class="field">
+          <label class="field-label">País</label>
+          <p-select
+            formControlName="country"
+            [options]="countryOptions"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Seleccione país">
+          </p-select>
+          <small class="dialog-hint">
+            {{ accountDialogType === 'origen' ? 'La cuenta de origen debe ser del país de la moneda que envías.' : 'La cuenta de destino debe ser del país de la moneda que recibes.' }}
+          </small>
+        </div>
+
+        <!-- Yape toggle (only for Peru + destino) -->
+        @if (newAccountForm.get('country')?.value === 'Peru' && accountDialogType === 'destino') {
+          <div class="yape-toggle">
+            <p-toggleSwitch formControlName="isYape" inputId="isYape"></p-toggleSwitch>
+            <label for="isYape" class="yape-label">
+              <i class="pi pi-mobile"></i>
+              <span>Cuenta Yape</span>
+            </label>
+          </div>
+        }
+        @if (canShowQRToggle()) {
+          <div class="qr-toggle">
+            <p-toggleSwitch formControlName="isQR" inputId="isQR"></p-toggleSwitch>
+            <label for="isQR" class="qr-label">
+              <i class="pi pi-qrcode"></i>
+              <span>Cuenta QR</span>
+            </label>
+            <button
+              type="button"
+              class="qr-info-btn"
+              [disabled]="isQrImporting()"
+              (click)="triggerQRImport(qrFileInput)">
+              <i class="pi pi-info-circle"></i>
+              <span>{{ isQrImporting() ? 'Validando QR...' : 'Importar QR' }}</span>
+            </button>
+            <input
+              #qrFileInput
+              type="file"
+              accept="image/png,image/jpeg,image/jpg"
+              class="qr-hidden-input"
+              (change)="onQRFileSelected($event)" />
+          </div>
+          @if (qrImportMessage()) {
+            <small class="dialog-hint qr-import-message">{{ qrImportMessage() }}</small>
+          }
+        }
+
+        <!-- Bank selection (hidden if Yape) -->
+        @if (!newAccountForm.get('isYape')?.value) {
+          <div class="field">
+            <label class="field-label">Banco</label>
+            <p-select
+              formControlName="bankId"
+              [options]="banksForSelectedCountry"
+              optionLabel="name"
+              optionValue="externalId"
+              placeholder="Seleccione banco">
+            </p-select>
+            @if (newAccountForm.get('bankId')?.invalid && newAccountForm.get('bankId')?.touched) {
+              <small class="field-error"><i class="pi pi-info-circle"></i> Seleccione un banco</small>
+            }
+          </div>
+        }
+
+        <!-- Account number -->
+        <div class="field">
+          <label class="field-label">
+            {{ newAccountForm.get('isYape')?.value ? 'Número de teléfono' : 'Número de cuenta' }}
+          </label>
+          <input
+            pInputText
+            formControlName="accountNumber"
+            [placeholder]="newAccountForm.get('isYape')?.value ? 'Ej: 987654321' : 'Ej: 1234567890'" />
+          @if (newAccountForm.get('accountNumber')?.invalid && newAccountForm.get('accountNumber')?.touched) {
+            <small class="field-error"><i class="pi pi-info-circle"></i> Campo requerido</small>
+          }
+        </div>
+
+        <!-- Account holder name -->
+        <div class="field">
+          <label class="field-label">Nombre del titular</label>
+          <input
+            pInputText
+            formControlName="holderName"
+            placeholder="Ej: Juan Pérez" />
+          @if (newAccountForm.get('holderName')?.invalid && newAccountForm.get('holderName')?.touched) {
+            <small class="field-error"><i class="pi pi-info-circle"></i> Campo requerido</small>
+          }
+        </div>
+      </form>
+    </div>
+
+    <ng-template #footer>
+      <div class="dialog-footer">
+        <p-button
+          label="Cancelar"
+          icon="pi pi-times"
+          (onClick)="closeAccountDialog()"
+          severity="secondary"
+          [outlined]="true"
+          size="small">
+        </p-button>
+        <p-button
+          label="Guardar y Seleccionar"
+          icon="pi pi-check"
+          (onClick)="saveNewAccount()"
+          [loading]="savingAccount"
+          severity="primary"
+          size="small">
+        </p-button>
+      </div>
+    </ng-template>
+  </p-dialog>
+
+  <p-confirmDialog></p-confirmDialog>
+</div>

@@ -1,0 +1,1403 @@
+@use '../../../../assets/styles/variables' as *;
+
+:host {
+  display: block;
+}
+
+// ========================================
+// Wrapper
+// ========================================
+.transfer-wrapper {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  overflow-x: hidden;
+}
+
+// ========================================
+// Header
+// ========================================
+.transfer-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+  background: white;
+  color: $color-text-secondary;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+
+  &:hover {
+    background: #f1f5f9;
+    color: $color-primary;
+    border-color: $color-primary;
+  }
+}
+
+.transfer-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: $color-primary;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.transfer-subtitle {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  margin: 0.125rem 0 0;
+}
+
+// ========================================
+// Stepper wrapper
+// ========================================
+.stepper-wrapper {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+  padding: 0.75rem 1rem;
+}
+
+// ========================================
+// Loading
+// ========================================
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  gap: 1rem;
+}
+
+.loading-text {
+  font-size: 0.85rem;
+  color: $color-text-secondary;
+}
+
+// ========================================
+// Step Content
+// ========================================
+.step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ========================================
+// Step Info Card
+// ========================================
+.step-info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+
+  &--action {
+    background: #fef3c7;
+    border-color: #fde68a;
+  }
+
+  &--wait {
+    background: #fef9c3;
+    border-color: #fde047;
+  }
+
+  &--progress {
+    background: #eff6ff;
+    border-color: #93c5fd;
+  }
+
+  &--success {
+    background: #ecfdf5;
+    border-color: #6ee7b7;
+  }
+
+  &--error {
+    background: #fef2f2;
+    border-color: #fecaca;
+  }
+}
+
+.step-info-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #3b82f6;
+  color: white;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+
+  &--action {
+    background: #f59e0b;
+  }
+
+  &--wait {
+    background: #eab308;
+  }
+
+  &--progress {
+    background: #3b82f6;
+  }
+
+  &--success {
+    background: #10b981;
+  }
+
+  &--error {
+    background: #ef4444;
+  }
+}
+
+.step-info-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0;
+}
+
+.step-info-desc {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  margin: 0.25rem 0 0;
+  line-height: 1.4;
+}
+
+// ========================================
+// Alert Card
+// ========================================
+.alert-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 12px;
+
+  &--warning {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+  }
+}
+
+.alert-icon {
+  font-size: 1.25rem;
+  color: #f59e0b;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.alert-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $color-text;
+  margin: 0;
+}
+
+.alert-text {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  margin: 0.25rem 0 0;
+}
+
+.alert-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: $color-primary;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $color-primary-light;
+  }
+}
+
+// ========================================
+// Transfer Form
+// ========================================
+.transfer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+// ========================================
+// Form Section
+// ========================================
+.form-section {
+  background: white;
+  border: 1px solid $color-border;
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.form-section-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: $color-primary;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.form-section-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0;
+}
+
+.form-section-hint {
+  font-size: 0.75rem;
+  color: $color-text-secondary;
+  margin: 0.125rem 0 0;
+}
+
+// ========================================
+// Form Fields
+// ========================================
+.form-fields-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-width: 0;
+
+  &--grow {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  &--currency {
+    width: 140px;
+    flex-shrink: 0;
+  }
+}
+
+.field-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $color-text-secondary;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+
+.field-error {
+  font-size: 0.7rem;
+  color: $color-error;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  i {
+    font-size: 0.65rem;
+  }
+}
+
+// ========================================
+// Conversion Card
+// ========================================
+.conversion-card {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.conversion-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.conversion-from,
+.conversion-to {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.conversion-label {
+  font-size: 0.65rem;
+  color: $color-text-secondary;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.conversion-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $color-text;
+  white-space: nowrap;
+
+  &--highlight {
+    color: $color-success;
+  }
+}
+
+.conversion-currency {
+  font-size: 0.7rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+}
+
+.conversion-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: white;
+  color: #3b82f6;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  border: 1px solid #bae6fd;
+}
+
+.conversion-rate {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #bae6fd;
+  font-size: 0.7rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+
+  i {
+    color: #3b82f6;
+    font-size: 0.75rem;
+  }
+}
+
+// ========================================
+// Form Submit
+// ========================================
+.form-submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+.form-submit-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.7rem;
+  color: $color-text-secondary;
+
+  i {
+    color: $color-success;
+  }
+}
+
+// ========================================
+// Content Card (Step 2, 5)
+// ========================================
+.content-card {
+  background: white;
+  border: 1px solid $color-border;
+  border-radius: 14px;
+  padding: 1.25rem;
+}
+
+.content-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  i {
+    color: $color-primary;
+    font-size: 1rem;
+  }
+
+  h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $color-text;
+    margin: 0;
+  }
+}
+
+.content-card-desc {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  margin: 0 0 1rem;
+  line-height: 1.4;
+}
+
+.content-card-action {
+  margin-top: 1rem;
+}
+
+// Step 2 grid
+.step2-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (min-width: 640px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+.qr-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px dashed $color-border;
+  color: $color-text-secondary;
+  gap: 0.5rem;
+
+  i {
+    font-size: 2rem;
+    color: #cbd5e1;
+  }
+
+  p {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+}
+
+// Receipt Display (Step 5)
+.receipt-display {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+  margin-bottom: 0.5rem;
+}
+
+.receipt-image {
+  max-width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+// ========================================
+// Summary Card
+// ========================================
+.summary-card {
+  background: #f8fafc;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  padding: 1rem;
+
+  &--success {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+  }
+}
+
+.summary-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+
+  i {
+    color: $color-primary;
+    font-size: 0.9rem;
+  }
+
+  h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: $color-text;
+    margin: 0;
+  }
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+
+  @media (min-width: 480px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.summary-label {
+  font-size: 0.65rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.summary-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $color-text;
+
+  &--success {
+    color: $color-success;
+  }
+
+  &--warning {
+    color: $color-warning;
+  }
+
+  &--info {
+    color: #3b82f6;
+  }
+
+  &--pending {
+    color: $color-text-secondary;
+  }
+}
+
+// ========================================
+// Waiting State (Steps 3, 4)
+// ========================================
+.waiting-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.waiting-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fef9c3;
+  margin-bottom: 1rem;
+
+  i {
+    font-size: 1.75rem;
+    color: #eab308;
+  }
+
+  &--progress {
+    background: #eff6ff;
+
+    i {
+      color: #3b82f6;
+    }
+  }
+}
+
+.waiting-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0 0 0.5rem;
+}
+
+.waiting-text {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  max-width: 360px;
+  line-height: 1.5;
+  margin: 0 0 1.25rem;
+}
+
+.waiting-tips {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.tip-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid $color-border;
+
+  i {
+    font-size: 0.8rem;
+    color: $color-primary;
+    flex-shrink: 0;
+  }
+
+  span {
+    font-size: 0.75rem;
+    color: $color-text-secondary;
+    text-align: left;
+  }
+}
+
+// ========================================
+// Success State (Step 5)
+// ========================================
+.success-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.success-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  margin-bottom: 1rem;
+
+  i {
+    font-size: 2.25rem;
+    color: #10b981;
+  }
+}
+
+.success-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0 0 0.375rem;
+}
+
+.success-text {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  margin: 0;
+}
+
+// ========================================
+// Denied State
+// ========================================
+.denied-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.denied-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fef2f2;
+  margin-bottom: 1rem;
+
+  i {
+    font-size: 2rem;
+    color: #ef4444;
+  }
+}
+
+.denied-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0 0 0.75rem;
+}
+
+.denied-reason {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  max-width: 360px;
+  width: 100%;
+}
+
+.denied-reason-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #ef4444;
+  text-transform: uppercase;
+}
+
+.denied-reason-text {
+  font-size: 0.85rem;
+  color: $color-text;
+  margin: 0.25rem 0 0;
+}
+
+// ========================================
+// Step Actions
+// ========================================
+.step-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+
+  &--center {
+    justify-content: center;
+  }
+}
+
+// ========================================
+// Coupon Section
+// ========================================
+.coupon-section {
+  margin-top: 0.25rem;
+}
+
+.coupon-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #fef9c3;
+  border: 1px dashed #fbbf24;
+  border-radius: 8px;
+  color: #92400e;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  i {
+    font-size: 0.9rem;
+  }
+
+  &:hover {
+    background: #fef08a;
+    border-color: #f59e0b;
+  }
+}
+
+.coupon-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.coupon-input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.coupon-input {
+  flex: 1;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: $color-text;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  outline: none;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.08);
+  }
+
+  &::placeholder {
+    text-transform: none;
+    letter-spacing: normal;
+    color: #94a3b8;
+  }
+}
+
+.coupon-validate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.625rem 1rem;
+  background: $color-primary;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background: $color-primary-light;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.coupon-error {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: $color-error;
+  margin: 0;
+
+  i {
+    font-size: 0.7rem;
+  }
+}
+
+.coupon-cancel {
+  background: none;
+  border: none;
+  color: $color-text-secondary;
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0;
+  align-self: flex-start;
+
+  &:hover {
+    color: $color-text;
+    text-decoration: underline;
+  }
+}
+
+.coupon-applied {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 10px;
+}
+
+.coupon-applied-info {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+
+  > i {
+    font-size: 1.1rem;
+    color: #059669;
+  }
+}
+
+.coupon-applied-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #065f46;
+}
+
+.coupon-applied-bonus {
+  display: block;
+  font-size: 0.7rem;
+  color: #059669;
+  font-weight: 500;
+}
+
+.coupon-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+
+  &:hover {
+    background: #fef2f2;
+    color: #ef4444;
+  }
+
+  i {
+    font-size: 0.7rem;
+  }
+}
+
+// ========================================
+// Conversion Breakdown (with coupon)
+// ========================================
+.conversion-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #bae6fd;
+}
+
+.breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: $color-text-secondary;
+
+  &--bonus {
+    color: #059669;
+    font-weight: 600;
+
+    i {
+      font-size: 0.7rem;
+      margin-right: 0.25rem;
+    }
+  }
+
+  &--total {
+    font-weight: 700;
+    color: $color-text;
+    font-size: 0.85rem;
+    padding-top: 0.375rem;
+    border-top: 1px dashed #bae6fd;
+    margin-top: 0.25rem;
+  }
+}
+
+// ========================================
+// PrimeNG Overrides
+// ========================================
+:host ::ng-deep {
+  .p-inputnumber,
+  .p-select {
+    width: 100%;
+  }
+
+  .submit-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .p-dialog-content {
+    padding: 0 !important;
+  }
+}
+
+// ========================================
+
+// ========================================
+// Dialog Styles
+// ========================================
+.dialog-content {
+  padding: 1.25rem;
+}
+
+.dialog-desc {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  margin: 0 0 1.25rem;
+  line-height: 1.4;
+}
+
+.dialog-hint {
+  font-size: 0.7rem;
+  color: $color-text-secondary;
+  line-height: 1.4;
+}
+
+.yape-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 10px;
+}
+
+.yape-label {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #059669;
+  cursor: pointer;
+
+  i {
+    font-size: 1rem;
+  }
+}
+
+.qr-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+}
+
+.qr-label {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #b45309;
+  cursor: pointer;
+
+  i {
+    font-size: 1rem;
+  }
+}
+
+.qr-info-btn {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid #f59e0b;
+  background: #fff7ed;
+  color: #b45309;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+
+.qr-info-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.qr-hidden-input {
+  display: none;
+}
+
+.qr-import-message {
+  display: block;
+  margin-top: 0.25rem;
+  color: #92400e;
+}
+
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .field--row {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .field-label--inline {
+    margin: 0;
+    cursor: pointer;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid $color-border;
+}
+
+// ========================================
+// Responsive: Mobile-first adjustments
+// ========================================
+@media (max-width: 480px) {
+  .transfer-wrapper {
+    gap: 1rem;
+  }
+
+  .transfer-title {
+    font-size: 1.2rem;
+  }
+
+  .form-section {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .form-fields-row {
+    flex-direction: column;
+  }
+
+  .field--currency {
+    width: 100%;
+  }
+
+  .field--grow {
+    min-width: unset;
+  }
+
+  .conversion-value {
+    font-size: 1.1rem;
+  }
+
+  .step-info-card {
+    padding: 0.875rem;
+  }
+
+  .step-info-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .content-card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .step-actions {
+    flex-direction: column;
+
+    :host ::ng-deep .p-button {
+      width: 100%;
+    }
+  }
+}
+
+// ========================================
+// Calculator Read-Only View (from home)
+// ========================================
+.calculator-readonly {
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%);
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.calculator-readonly-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+.calculator-readonly-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  min-width: 0;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+}
+
+.calculator-readonly-label {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+
+  i {
+    font-size: 0.75rem;
+    color: #2F8A63;
+  }
+}
+
+.calculator-readonly-value {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #1e293b;
+  display: flex;
+  align-items: baseline;
+  gap: 0.375rem;
+
+  @media (max-width: 480px) {
+    font-size: 1.125rem;
+  }
+}
+
+.calculator-readonly-value--highlight {
+  color: #059669;
+}
+
+.calculator-readonly-currency {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.calculator-readonly-country {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.calculator-readonly-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #2F8A63;
+  color: white;
+  flex-shrink: 0;
+
+  i {
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 480px) {
+    transform: rotate(90deg);
+  }
+}
+
+.calculator-readonly-rate {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #475569;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+
+  i {
+    color: #2F8A63;
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+    flex-wrap: wrap;
+  }
+}
+
+.calculator-readonly-coupon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  color: #065f46;
+  background: #d1fae5;
+  border: 1px solid #a7f3d0;
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+
+  i {
+    color: #059669;
+    font-size: 0.875rem;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
+    flex-wrap: wrap;
+  }
+}

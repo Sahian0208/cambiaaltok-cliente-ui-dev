@@ -1,0 +1,97 @@
+<div class="dashboard-layout" [class.sidebar-collapsed]="sidebarCollapsed">
+  <!-- Mobile Overlay -->
+  @if (mobileSidebarOpen) {
+    <div class="mobile-overlay" (click)="closeMobileSidebar()"></div>
+  }
+
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.mobile-open]="mobileSidebarOpen">
+    <!-- Sidebar Header -->
+    <div class="sidebar-header">
+      @if (!sidebarCollapsed) {
+        <span class="sidebar-logo">CambiaAltok</span>
+      } @else {
+        <span class="sidebar-logo-short">CA</span>
+      }
+      <button class="sidebar-toggle desktop-only" (click)="toggleSidebar()">
+        <i [class]="sidebarCollapsed ? 'pi pi-angle-right' : 'pi pi-angle-left'"></i>
+      </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
+      @for (item of sidebarItems(); track item.routerLink) {
+        <a
+          class="sidebar-item"
+          [routerLink]="item.routerLink"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.routerLink === '/cliente' || item.routerLink === '/intermediario' || item.routerLink === '/admin' }"
+          (click)="closeMobileSidebar()"
+        >
+          <i [class]="item.icon"></i>
+          <span class="sidebar-item-label">{{ item.label }}</span>
+        </a>
+      }
+    </nav>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+      <button class="sidebar-item logout-btn" (click)="logout()">
+        <i class="pi pi-sign-out"></i>
+        <span class="sidebar-item-label">Cerrar Sesión</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <div class="main-area">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <!-- Mobile menu button -->
+      <button class="mobile-menu-btn" (click)="toggleMobileSidebar()">
+        <i class="pi pi-bars"></i>
+      </button>
+
+      <!-- Rate display -->
+      <div class="header-rate">
+        @if (rateDisplay()) {
+          <div class="rate-info">
+            <span class="rate-label">PEN/BOB C/V:</span>
+            <span class="rate-value">{{ rateDisplay()!.buy | number:'1.4-4' }} / {{ rateDisplay()!.sell | number:'1.4-4' }}</span>
+            <span class="rate-source" [class.manual]="rateDisplay()!.source === 'manual'">
+              ({{ rateDisplay()!.source === 'manual' ? 'Manual' : 'API' }})
+            </span>
+          </div>
+          <span class="rate-update">Actualizado: {{ rateDisplay()!.lastUpdate }}</span>
+        } @else {
+          <span class="rate-loading">Cargando tasa...</span>
+        }
+      </div>
+
+      <!-- User info -->
+      <div class="header-user">
+        <button class="theme-toggle" (click)="themeService.toggleDarkMode()" [title]="themeService.isDarkMode() ? 'Modo claro' : 'Modo oscuro'">
+          <i [class]="themeService.isDarkMode() ? 'pi pi-sun' : 'pi pi-moon'"></i>
+        </button>
+        <span class="user-name">
+          <i class="pi pi-user"></i>
+          {{ userName() }}
+        </span>
+        <p-button
+          icon="pi pi-sign-out"
+          label="Salir"
+          severity="secondary"
+          [text]="true"
+          size="small"
+          (onClick)="logout()"
+          class="logout-header-btn"
+        ></p-button>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="dashboard-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

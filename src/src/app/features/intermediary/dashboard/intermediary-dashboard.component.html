@@ -1,0 +1,209 @@
+<div class="intermediary-wrapper">
+  <!-- Header -->
+  <div class="int-header">
+    <div>
+      <h2 class="int-title">Panel del Intermediario</h2>
+      <p class="int-subtitle">
+        Revisa y gestiona las transferencias de los clientes
+      </p>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <div
+      class="stat-card stat-card--pending"
+      (click)="setFilter('pendiente_verificacion')"
+    >
+      <div class="stat-card-icon">
+        <i class="pi pi-clock"></i>
+      </div>
+      <div class="stat-card-content">
+        <span class="stat-card-value">{{
+          getCountByStatus("pendiente_verificacion")
+        }}</span>
+        <span class="stat-card-label">Por verificar</span>
+      </div>
+    </div>
+    <div
+      class="stat-card stat-card--verified"
+      (click)="setFilter('verificado')"
+    >
+      <div class="stat-card-icon">
+        <i class="pi pi-send"></i>
+      </div>
+      <div class="stat-card-content">
+        <span class="stat-card-value">{{
+          getCountByStatus("verificado")
+        }}</span>
+        <span class="stat-card-label">Por transferir</span>
+      </div>
+    </div>
+    <div class="stat-card stat-card--total" (click)="setFilter('all')">
+      <div class="stat-card-icon">
+        <i class="pi pi-list"></i>
+      </div>
+      <div class="stat-card-content">
+        <span class="stat-card-value">{{ transactions.length }}</span>
+        <span class="stat-card-label">Total</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search and Filters -->
+  <div class="filters-section">
+    <div class="search-box">
+      <i class="pi pi-search"></i>
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="applyFilter()"
+        placeholder="Buscar por nombre del cliente..."
+        class="search-input"
+      />
+      @if (searchQuery) {
+        <button class="search-clear" (click)="clearSearch()">
+          <i class="pi pi-times"></i>
+        </button>
+      }
+    </div>
+    <div class="filter-pills">
+      @for (opt of filterOptions; track opt.value) {
+        <button
+          class="filter-pill"
+          [class.filter-pill--active]="selectedFilter === opt.value"
+          (click)="setFilter(opt.value)"
+        >
+          @if (opt.value === "pendiente_verificacion") {
+            <i class="pi pi-clock"></i>
+          } @else if (opt.value === "verificado") {
+            <i class="pi pi-check-circle"></i>
+          } @else {
+            <i class="pi pi-list"></i>
+          }
+          <span>{{ opt.label }}</span>
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Transactions List -->
+  <div class="transactions-section">
+    <div class="section-header">
+      <h3 class="section-title">
+        @if (selectedFilter === "all") {
+          Todas las transacciones
+        } @else if (selectedFilter === "pendiente_verificacion") {
+          Pendientes de verificación
+        } @else {
+          Pendientes de transferencia
+        }
+      </h3>
+      <span class="section-count"
+        >{{ filteredTransactions.length }} resultado(s)</span
+      >
+    </div>
+
+    <!-- Empty state -->
+    @if (filteredTransactions.length === 0) {
+      <div class="empty-state">
+        <div class="empty-icon">
+          <i class="pi pi-inbox"></i>
+        </div>
+        <h4 class="empty-title">
+          @if (searchQuery) {
+            Sin resultados para "{{ searchQuery }}"
+          } @else {
+            No hay transacciones pendientes
+          }
+        </h4>
+        <p class="empty-text">
+          @if (searchQuery) {
+            Intenta con otro nombre o limpia el filtro de búsqueda.
+          } @else {
+            Cuando un cliente registre una nueva transferencia, aparecerá aquí
+            automáticamente.
+          }
+        </p>
+        @if (searchQuery) {
+          <button class="empty-action" (click)="clearSearch()">
+            <i class="pi pi-filter-slash"></i> Limpiar búsqueda
+          </button>
+        }
+      </div>
+    }
+
+    <!-- Transaction Cards -->
+    @if (filteredTransactions.length > 0) {
+      <div class="transaction-list">
+        @for (transaction of filteredTransactions; track transaction.id) {
+          <div
+            class="tx-card"
+            [class.tx-card--verify]="
+              transaction.status === 'pendiente_verificacion'
+            "
+            [class.tx-card--transfer]="transaction.status === 'verificado'"
+            (click)="goToVerify(transaction.id)"
+          >
+            <!-- Card Header -->
+            <div class="tx-card-header">
+              <div class="tx-client">
+                <div class="tx-avatar">
+                  <i class="pi pi-user"></i>
+                </div>
+                <div class="tx-client-info">
+                  <span class="tx-client-name">{{
+                    transaction.clientName
+                  }}</span>
+                  <span class="tx-date">{{
+                    transaction.createdAt | date: "dd/MM/yyyy · HH:mm"
+                  }}</span>
+                </div>
+              </div>
+              <p-tag
+                [value]="getStatusLabel(transaction.status)"
+                [severity]="getStatusSeverity(transaction.status)"
+                [rounded]="true"
+              />
+            </div>
+
+            <!-- Card Body: Amounts -->
+            <div class="tx-card-body">
+              <div class="tx-amount">
+                <span class="tx-amount-label">Envía</span>
+                <span class="tx-amount-value"
+                  >{{ transaction.sourceAmount | number: "1.2-2" }}
+                  {{ transaction.sourceCurrency }}</span
+                >
+              </div>
+              <div class="tx-arrow">
+                <i class="pi pi-arrow-right"></i>
+              </div>
+              <div class="tx-amount">
+                <span class="tx-amount-label">Recibe</span>
+                <span class="tx-amount-value tx-amount-value--dest"
+                  >{{ transaction.destinationAmount | number: "1.2-2" }}
+                  {{ transaction.destinationCurrency }}</span
+                >
+              </div>
+            </div>
+
+            <!-- Card Footer: Action hint -->
+            <div class="tx-card-footer">
+              @if (transaction.status === "pendiente_verificacion") {
+                <span class="tx-action-hint tx-action-hint--verify">
+                  <i class="pi pi-search"></i> Toca para verificar el depósito
+                </span>
+              } @else if (transaction.status === "verificado") {
+                <span class="tx-action-hint tx-action-hint--transfer">
+                  <i class="pi pi-send"></i> Toca para realizar la transferencia
+                </span>
+              }
+              <i class="pi pi-chevron-right tx-chevron"></i>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>

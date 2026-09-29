@@ -1,0 +1,79 @@
+<div class="public-layout">
+  <!-- Navbar -->
+  <app-navbar></app-navbar>
+
+  <!-- Main Content -->
+  <main class="public-layout-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Footer -->
+  <footer class="public-layout-footer">
+    <div class="footer-container">
+      <!-- Contact Info -->
+      <div class="footer-section">
+        <h3 class="footer-title">Contacto</h3>
+        <ul class="footer-contact-list">
+          <li>
+            <a
+              href="https://wa.me/59172237251"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-link"
+              aria-label="WhatsApp Bolivia"
+            >
+              <i class="pi pi-whatsapp"></i>
+              <span>WhatsApp Bolivia: +591 72237251</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://wa.me/51755698566"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-link"
+              aria-label="WhatsApp Perú"
+            >
+              <i class="pi pi-whatsapp"></i>
+              <span>WhatsApp Perú: +51 755698566</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="mailto:contacto@cambiaaltok.com"
+              class="footer-link"
+              aria-label="Email de contacto"
+            >
+              <i class="pi pi-envelope"></i>
+              <span>contacto&#64;cambiaaltok.com</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Links -->
+      <div class="footer-section">
+        <h3 class="footer-title">Enlaces</h3>
+        <ul class="footer-links-list">
+          <li>
+            <a routerLink="/politicas" class="footer-link">
+              <i class="pi pi-shield"></i>
+              <span>Políticas de Privacidad</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/quienes-somos" class="footer-link">
+              <i class="pi pi-users"></i>
+              <span>Quiénes Somos</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-copyright">
+      <p>&copy; {{ currentYear }} CambiaAltok. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</div>

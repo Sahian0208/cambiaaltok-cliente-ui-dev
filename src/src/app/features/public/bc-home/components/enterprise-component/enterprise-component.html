@@ -1,0 +1,101 @@
+<div class="bg-gradient-to-br from-blue/200 to-blue-700/5 backdrop-blur-xl text-white rounded-3xl border border-white/20 relative p-6 sm:p-8 shadow-2xl">
+  <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#0B63FF]/10 via-transparent to-[#12D6EB]/5 pointer-events-none"></div>
+
+  <h2 class="text-xl sm:text-2xl font-bold font-display text-white leading-snug relative z-10">
+    ¿Tienes dudas? <span class="text-[#12D6EB] font-light">Déjanos tus datos para</span> contactarte
+  </h2>
+
+  <form class="p-fluid mt-6 relative z-10 flex flex-col gap-4">
+    <div class="flex flex-col sm:flex-row gap-4">
+      <div class="space-y-2 flex-1">
+        <label class="block text-sm font-bold text-white tracking-wide">Nombre<span class="text-red-400">*</span></label>
+        <input
+          pInputText
+          type="text"
+          class="w-full bg-white/10 hover:bg-white/15 border border-white/30 focus:border-[#12D6EB] rounded-xl px-4 py-3.5 focus:outline-none transition text-white text-sm font-semibold placeholder:text-white/50"
+          placeholder="Nombre"
+          required
+        />
+      </div>
+      <div class="space-y-2 flex-1">
+        <label class="block text-sm font-bold text-white tracking-wide">Apellido</label>
+        <input
+          pInputText
+          type="text"
+          class="w-full bg-white/10 hover:bg-white/15 border border-white/30 focus:border-[#12D6EB] rounded-xl px-4 py-3.5 focus:outline-none transition text-white text-sm font-semibold placeholder:text-white/50"
+          placeholder="Apellido"
+        />
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-4">
+      <div class="space-y-2 flex-1 sm:basis-[40%]">
+        <label class="block text-sm font-bold text-white tracking-wide">Correo electrónico<span class="text-red-400">*</span></label>
+        <input
+          pInputText
+          type="email"
+          class="w-full bg-white/10 hover:bg-white/15 border border-white/30 focus:border-[#12D6EB] rounded-xl px-4 py-3.5 focus:outline-none transition text-white text-sm font-semibold placeholder:text-white/50"
+          placeholder="ejemplo@correo.com"
+          required
+        />
+      </div>
+      <div class="space-y-2 flex-1 sm:basis-[60%]">
+        <label class="block text-sm font-bold text-white tracking-wide">Número de teléfono<span class="text-red-400">*</span></label>
+        <div class="phone-input-wrapper flex bg-white/10 border border-white/30 rounded-xl overflow-hidden focus-within:border-[#12D6EB] transition">
+          <button
+            type="button"
+            (click)="toggleEnterprisePhoneCountry()"
+            class="country-toggle-btn phone-prefix-btn flex items-center bg-white/10 border-r border-white/20 py-3 text-white text-xs font-bold select-none cursor-pointer"
+          >
+            <span>{{ enterprisePhoneCountry() }}</span>
+            <span>{{ enterprisePhoneDialCode() }}</span>
+          </button>
+          <input
+            pInputText
+            type="tel"
+            class="phone-number-input w-full min-w-0 bg-transparent px-3 py-3.5 outline-none border-none text-white text-sm font-semibold focus:ring-0 placeholder:text-white/50"
+            placeholder="987 654 321"
+            required
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-2">
+      <label class="block text-sm font-bold text-white tracking-wide">¿Por qué medio deseas ser contactado?</label>
+      <div class="relative">
+        <select
+          class="w-full bg-white/10 border border-white/30 rounded-xl px-4 py-3.5 appearance-none focus:outline-none focus:border-[#12D6EB] transition text-white text-sm font-semibold pr-10"
+        >
+          <option class="bg-[#04142E] text-white" value="correo">Correo</option>
+          <option class="bg-[#04142E] text-white" value="telefono">Llamada Telefónica</option>
+          <option class="bg-[#04142E] text-white" value="whatsapp">WhatsApp</option>
+        </select>
+        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none text-white/70">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-2">
+      <label class="block text-sm font-bold text-white tracking-wide">Deja aquí tu duda o comentario</label>
+      <textarea
+        rows="3"
+        class="w-full bg-white/10 hover:bg-white/15 border border-white/30 rounded-xl px-4 py-3.5 focus:outline-none focus:border-[#12D6EB] transition text-white text-sm font-semibold resize-none placeholder:text-white/50"
+        placeholder="Escribe tu mensaje..."
+      ></textarea>
+    </div>
+
+    <div class="pt-2 text-center">
+      <button
+        pButton
+        type="submit"
+        label="Enviar"
+        class="bg-gradient-to-r from-altok-brand to-altok-cyan hover:from-altok-light hover:to-altok-brand text-white font-bold py-3.5 px-12 rounded-2xl text-sm uppercase tracking-wider transition-all duration-300 shadow-md font-display inline-block active:scale-95 border-none cursor-pointer"
+      >
+      </button>
+    </div>
+  </form>
+</div>

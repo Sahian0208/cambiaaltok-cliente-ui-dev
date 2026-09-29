@@ -1,0 +1,395 @@
+<div class="profile-wrapper">
+  <div class="profile-header">
+    <h2 class="profile-title">{{ isEmpresa ? 'Datos de la Empresa' : 'Mis Datos Personales' }}</h2>
+    <p class="profile-subtitle">Actualiza tu información{{ isEmpresa ? ' de la empresa' : ' personal' }}. El email y la contraseña se gestionan por separado.</p>
+  </div>
+
+  <!-- ======================================== -->
+  <!-- SECTION 1: Personal Data + Profile Photo -->
+  <!-- ======================================== -->
+  <div class="section-card">
+    <div class="section-card-header">
+      <i class="pi pi-user section-card-icon"></i>
+      <div>
+        <h3 class="section-card-title">{{ isEmpresa ? 'Datos de la empresa' : 'Datos personales' }}</h3>
+        <p class="section-card-desc">{{ isEmpresa ? 'Información de tu empresa y logo' : 'Tu información básica y foto de perfil' }}</p>
+      </div>
+    </div>
+
+    <div class="personal-content">
+      <!-- Profile Photo -->
+      <div class="photo-upload-area">
+        @if (profilePhotoUrl) {
+          <div class="photo-preview">
+            <img [src]="profilePhotoUrl" alt="Foto de perfil" class="photo-img photo-img--profile" />
+            <button type="button" class="photo-remove" (click)="removeProfilePhoto()">
+              <i class="pi pi-times"></i>
+            </button>
+          </div>
+        } @else {
+          <div class="photo-placeholder photo-placeholder--profile">
+            <i class="pi pi-user"></i>
+          </div>
+        }
+        <div class="photo-actions">
+          <button type="button" class="photo-btn" (click)="profileFileInput.click()">
+            <i class="pi pi-upload"></i> Subir imagen
+          </button>
+          <button type="button" class="photo-btn photo-btn--camera" (click)="openCamera('profile')">
+            <i class="pi pi-camera"></i> Tomar foto
+          </button>
+          @if (profilePhotoUrl) {
+            <button type="button" class="photo-btn photo-btn--save" (click)="saveProfilePhoto()" [disabled]="!profilePhotoFile">
+              <i class="pi pi-check"></i> Guardar foto
+            </button>
+          }
+        </div>
+        <input
+          #profileFileInput
+          type="file"
+          accept="image/png,image/jpeg,image/jpg"
+          class="hidden-input"
+          (change)="onProfilePhotoSelected($event)" />
+      </div>
+
+      <!-- Read-only fields -->
+      <div class="readonly-card">
+        <div class="readonly-item">
+          <span class="readonly-label">Email (no editable)</span>
+          <span class="readonly-value">{{ user?.email }}</span>
+        </div>
+        <div class="readonly-item">
+          <span class="readonly-label">Rol</span>
+          <span class="readonly-value">{{ user?.role === 'cliente' ? 'Cliente' : user?.role }}</span>
+        </div>
+      </div>
+
+      <!-- Editable form: Persona Natural -->
+      @if (isPersona) {
+        <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="profile-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="firstName" class="form-label">Nombres</label>
+              <input pInputText id="firstName" formControlName="firstName" placeholder="Tus nombres" />
+              @if (profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched) {
+                <small class="form-error">Campo requerido (mínimo 2 caracteres)</small>
+              }
+            </div>
+            <div class="form-field">
+              <label for="lastName" class="form-label">Apellidos</label>
+              <input pInputText id="lastName" formControlName="lastName" placeholder="Tus apellidos" />
+              @if (profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched) {
+                <small class="form-error">Campo requerido (mínimo 2 caracteres)</small>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone" class="form-label">Teléfono</label>
+              <input pInputText id="phone" formControlName="phone" placeholder="+591 ó +51..." />
+              @if (profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched) {
+                <small class="form-error">Campo requerido</small>
+              }
+            </div>
+            <div class="form-field">
+              <label for="birthDate" class="form-label">Fecha de nacimiento</label>
+              <input pInputText id="birthDate" formControlName="birthDate" type="date" />
+              @if (profileForm.get('birthDate')?.invalid && profileForm.get('birthDate')?.touched) {
+                <small class="form-error">Campo requerido</small>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="documentType" class="form-label">Tipo de documento</label>
+              <p-select
+                id="documentType"
+                formControlName="documentType"
+                [options]="documentTypeOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Selecciona tipo">
+              </p-select>
+            </div>
+            <div class="form-field">
+              <label for="documentNumber" class="form-label">Número de documento</label>
+              <input pInputText id="documentNumber" formControlName="documentNumber" placeholder="Número de CI o DNI" />
+              @if (profileForm.get('documentNumber')?.invalid && profileForm.get('documentNumber')?.touched) {
+                <small class="form-error">Campo requerido</small>
+              }
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="documentType" class="form-label">Ocupación</label>
+              <p-select
+                id="occupation"
+                formControlName="occupation"
+                [options]="occupations"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Selecciona tipo"
+                [filter]="true"
+                filterBy="label">
+              </p-select>
+            </div>
+            <div class="form-field">
+              <label for="referralSource" class="form-label">¿Cómo nos conociste?</label>
+              <p-select
+                id="referralSource"
+                formControlName="referralSource"
+                [options]="howDidYouFindUsOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Selecciona una opción"
+                [filter]="true"
+                filterBy="label">
+              </p-select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="email" class="form-label">Email</label>
+              <input pInputText id="email" formControlName="email" placeholder="tuemail@dominio.com" />
+              @if (profileForm.get('email')?.invalid && profileForm.get('email')?.touched) {
+                <small class="form-error">Campo requerido</small>
+              }
+            </div>
+
+          </div>
+
+          <div class="form-actions">
+            <p-button
+              type="submit"
+              label="Guardar Datos Personales"
+              icon="pi pi-check"
+              [loading]="saving"
+              severity="primary">
+            </p-button>
+          </div>
+        </form>
+      }
+
+      <!-- Editable form: Persona Jurídica (Empresa) -->
+      @if (isEmpresa) {
+        <form [formGroup]="legalPersonForm" (ngSubmit)="saveProfile()" class="profile-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name" class="form-label">Razón social</label>
+              <input pInputText id="name" formControlName="name" placeholder="Nombre de la empresa" />
+              @if (legalPersonForm.get('name')?.invalid && legalPersonForm.get('name')?.touched) {
+                <small class="form-error">Campo requerido (mínimo 2 caracteres)</small>
+              }
+            </div>
+            <div class="form-field">
+              <label for="legalRepresentativeName" class="form-label">Representante legal</label>
+              <input pInputText id="legalRepresentativeName" formControlName="legalRepresentativeName" placeholder="Nombre del representante" />
+              @if (legalPersonForm.get('legalRepresentativeName')?.invalid && legalPersonForm.get('legalRepresentativeName')?.touched) {
+                <small class="form-error">Campo requerido (mínimo 2 caracteres)</small>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="documentNumber" class="form-label">NIT / Número de documento</label>
+              <input pInputText id="documentNumber" formControlName="documentNumber" placeholder="Número de documento de la empresa" />
+              @if (legalPersonForm.get('documentNumber')?.invalid && legalPersonForm.get('documentNumber')?.touched) {
+                <small class="form-error">Campo requerido</small>
+              }
+            </div>
+            <div class="form-field">
+              <label for="phoneNumber" class="form-label">Teléfono</label>
+              <input pInputText id="phoneNumber" formControlName="phoneNumber" placeholder="+591 ó +51..." />
+              @if (legalPersonForm.get('phoneNumber')?.invalid && legalPersonForm.get('phoneNumber')?.touched) {
+                <small class="form-error">Campo requerido</small>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="webUrl" class="form-label">Sitio web</label>
+              <input pInputText id="webUrl" formControlName="webUrl" placeholder="https://tuempresa.com" />
+            </div>
+            <div class="form-field">
+              <label for="email" class="form-label">Email</label>
+              <input pInputText id="email" formControlName="email" placeholder="empresa@dominio.com" />
+              @if (legalPersonForm.get('email')?.invalid && legalPersonForm.get('email')?.touched) {
+                <small class="form-error">Campo requerido</small>
+              }
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <p-button
+              type="submit"
+              label="Guardar Datos de la Empresa"
+              icon="pi pi-check"
+              [loading]="saving"
+              severity="primary">
+            </p-button>
+          </div>
+        </form>
+      }
+    </div>
+  </div>
+
+  <!-- ======================================== -->
+  <!-- SECTION 2: Document Identity Photos -->
+  <!-- ======================================== -->
+  <div class="section-card">
+    <div class="section-card-header">
+      <i class="pi pi-id-card section-card-icon"></i>
+      <div>
+        <h3 class="section-card-title">{{ isEmpresa ? 'Documento legal' : 'Documento de identidad' }}</h3>
+        <p class="section-card-desc">
+          {{ isEmpresa ? 'Sube o toma una foto del documento legal de la empresa' : 'Sube o toma una foto del anverso y reverso de tu CI o DNI' }}
+        </p>
+      </div>
+    </div>
+
+    @if (isPersona) {
+      <div class="document-grid">
+        <!-- Front -->
+        <div class="document-item">
+          <span class="document-label">Anverso (frente)</span>
+          @if (documentFrontUrl) {
+            <div class="photo-preview photo-preview--doc">
+              <img [src]="documentFrontUrl" alt="Documento anverso" class="photo-img photo-img--doc" />
+              <button type="button" class="photo-remove" (click)="removeDocumentFront()">
+                <i class="pi pi-times"></i>
+              </button>
+            </div>
+          } @else {
+            <div class="photo-placeholder photo-placeholder--doc">
+              <i class="pi pi-id-card"></i>
+              <span>Anverso</span>
+            </div>
+          }
+          <div class="photo-actions">
+            <button type="button" class="photo-btn photo-btn--sm" (click)="docFrontInput.click()">
+              <i class="pi pi-upload"></i> Subir
+            </button>
+            <button type="button" class="photo-btn photo-btn--sm photo-btn--camera" (click)="openCamera('doc-front')">
+              <i class="pi pi-camera"></i> Cámara
+            </button>
+          </div>
+          <input
+            #docFrontInput
+            type="file"
+            accept="image/png,image/jpeg,image/jpg"
+            capture="environment"
+            class="hidden-input"
+            (change)="onDocumentFrontSelected($event)" />
+        </div>
+
+        <!-- Back -->
+        <div class="document-item">
+          <span class="document-label">Reverso (dorso)</span>
+          @if (documentBackUrl) {
+            <div class="photo-preview photo-preview--doc">
+              <img [src]="documentBackUrl" alt="Documento reverso" class="photo-img photo-img--doc" />
+              <button type="button" class="photo-remove" (click)="removeDocumentBack()">
+                <i class="pi pi-times"></i>
+              </button>
+            </div>
+          } @else {
+            <div class="photo-placeholder photo-placeholder--doc">
+              <i class="pi pi-id-card"></i>
+              <span>Reverso</span>
+            </div>
+          }
+          <div class="photo-actions">
+            <button type="button" class="photo-btn photo-btn--sm" (click)="docBackInput.click()">
+              <i class="pi pi-upload"></i> Subir
+            </button>
+            <button type="button" class="photo-btn photo-btn--sm photo-btn--camera" (click)="openCamera('doc-back')">
+              <i class="pi pi-camera"></i> Cámara
+            </button>
+          </div>
+          <input
+            #docBackInput
+            type="file"
+            accept="image/png,image/jpeg,image/jpg"
+            capture="environment"
+            class="hidden-input"
+            (change)="onDocumentBackSelected($event)" />
+        </div>
+      </div>
+    } @else {
+      <div class="document-grid">
+        <!-- Legal document -->
+        <div class="document-item">
+          <span class="document-label">Documento legal</span>
+          @if (legalDocumentUrl) {
+            <div class="photo-preview photo-preview--doc">
+              <img [src]="legalDocumentUrl" alt="Documento legal" class="photo-img photo-img--doc" />
+              <button type="button" class="photo-remove" (click)="removeLegalDocument()">
+                <i class="pi pi-times"></i>
+              </button>
+            </div>
+          } @else {
+            <div class="photo-placeholder photo-placeholder--doc">
+              <i class="pi pi-id-card"></i>
+              <span>Documento legal</span>
+            </div>
+          }
+          <div class="photo-actions">
+            <button type="button" class="photo-btn photo-btn--sm" (click)="legalDocumentInput.click()">
+              <i class="pi pi-upload"></i> Subir
+            </button>
+            <button type="button" class="photo-btn photo-btn--sm photo-btn--camera" (click)="openCamera('legal-document')">
+              <i class="pi pi-camera"></i> Cámara
+            </button>
+          </div>
+          <input
+            #legalDocumentInput
+            type="file"
+            accept="image/png,image/jpeg,image/jpg"
+            capture="environment"
+            class="hidden-input"
+            (change)="onLegalDocumentSelected($event)" />
+        </div>
+      </div>
+    }
+
+    <!-- Save documents button -->
+    <div class="form-actions form-actions--docs">
+      <p-button
+        label="Guardar Documentos"
+        icon="pi pi-check"
+        [loading]="savingDocs"
+        [disabled]="isPersona ? (!documentFrontFile && !documentBackFile) : !legalDocumentFile"
+        severity="primary"
+        (onClick)="saveDocuments()">
+      </p-button>
+    </div>
+  </div>
+
+
+  <!-- Camera Dialog -->
+  @if (showCameraDialog) {
+    <div class="camera-overlay" (click)="closeCameraDialog()">
+      <div class="camera-dialog" (click)="$event.stopPropagation()">
+        <div class="camera-header">
+          <h4>Tomar fotografía</h4>
+          <button class="camera-close" (click)="closeCameraDialog()">
+            <i class="pi pi-times"></i>
+          </button>
+        </div>
+        <div class="camera-body">
+          <video #cameraVideo autoplay playsinline class="camera-video"></video>
+          <canvas #cameraCanvas class="camera-canvas"></canvas>
+        </div>
+        <div class="camera-footer">
+          <button class="photo-btn photo-btn--capture" (click)="capturePhoto()">
+            <i class="pi pi-camera"></i> Capturar
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

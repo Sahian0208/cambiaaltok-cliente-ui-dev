@@ -1,0 +1,339 @@
+<div class="accounts-wrapper">
+  <!-- Header -->
+  <div class="accounts-header">
+    <div>
+      <h2 class="accounts-title">Mis Cuentas Bancarias</h2>
+      <p class="accounts-subtitle">Gestiona tus cuentas para enviar y recibir transferencias</p>
+    </div>
+    <button class="new-account-btn" (click)="openNewDialog()">
+      <i class="pi pi-plus"></i>
+      <span>Agregar Cuenta</span>
+    </button>
+  </div>
+
+  <!-- Stats Summary -->
+  <div class="accounts-stats">
+    <div class="stat-pill stat-pill--origin">
+      <i class="pi pi-arrow-up-right"></i>
+      <span>{{ getCountByType('origen') }} Cuentas de origen (Débito)</span>
+    </div>
+    <div class="stat-pill stat-pill--dest">
+      <i class="pi pi-arrow-down-left"></i>
+      <span>{{ getCountByType('destino') }} Cuentas destino (Beneficiarios)</span>
+    </div>
+  </div>
+
+  <!-- Loading state -->
+  @if (isLoading()) {
+    <div class="loading-state">
+      <p-progressSpinner strokeWidth="4" animationDuration="1s"></p-progressSpinner>
+      <p class="loading-text">Cargando tus cuentas...</p>
+    </div>
+  }
+
+  <!-- Empty state -->
+  @if (!isLoading() && accounts().length === 0) {
+    <div class="empty-state-card">
+      <div class="empty-state">
+        <div class="empty-icon">
+          <i class="pi pi-wallet"></i>
+        </div>
+        <h3 class="empty-title">Aún no tienes cuentas registradas</h3>
+        <p class="empty-text">
+          Registra al menos una cuenta de origen (desde donde depositas) y una de destino (donde recibes)
+          para poder realizar transferencias.
+        </p>
+        <button class="empty-action" (click)="openNewDialog()">
+          <i class="pi pi-plus"></i> Registrar mi primera cuenta
+        </button>
+      </div>
+    </div>
+  }
+
+  <!-- Accounts Cards Grid -->
+  @if (!isLoading() && accounts().length > 0) {
+    <!-- Origin accounts section -->
+    @if (getAccountsByType('origen').length > 0) {
+      <section class="accounts-section">
+        <div class="section-header">
+          <div class="section-title-group">
+            <i class="pi pi-arrow-up-right section-icon section-icon--origin"></i>
+            <h3 class="section-title">Mis Cuentas de Debito / Emisoras (o Cuentas Propias)</h3>
+          </div>
+          <span class="section-badge section-badge--origin">{{ getAccountsByType('origen').length }}</span>
+        </div>
+        <p class="section-desc">Cuentas de tu propiedad desde donde saldrán los fondos</p>
+        <div class="accounts-grid">
+          @for (account of getAccountsByType('origen'); track account.id) {
+            <div class="account-card">
+              <div class="account-card-top">
+                <div class="account-bank">
+                  <div class="bank-icon" [class.bank-icon--yape]="account.isYape">
+                    <i [class]="account.isYape ? 'pi pi-mobile' : 'pi pi-building'"></i>
+                  </div>
+                  <div class="bank-info">
+                    <span class="bank-name">{{ account.isYape ? 'Yape' : (account.bankName || getBankName(account.bankId)) }}</span>
+                    <span class="bank-country">
+                      <i [class]="account.country === 'Bolivia' ? 'pi pi-flag' : 'pi pi-flag'"></i>
+                      {{ account.country === 'Peru' ? 'Perú' : account.country }}
+                    </span>
+                  </div>
+                </div>
+                <div class="account-actions">
+                  <button class="action-btn action-btn--edit" (click)="openEditDialog(account)" aria-label="Editar">
+                    <i class="pi pi-pencil"></i>
+                  </button>
+                  <button class="action-btn action-btn--delete" (click)="confirmDelete(account)" aria-label="Eliminar">
+                    <i class="pi pi-trash"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="account-card-body">
+                <div class="account-detail">
+                  <span class="detail-label">Número</span>
+                  <span class="detail-value">{{ account.accountNumber }}</span>
+                </div>
+                <div class="account-detail">
+                  <span class="detail-label">Titular</span>
+                  <span class="detail-value">{{ account.holderName }}</span>
+                </div>
+              </div>
+              <div class="account-card-footer">
+                <p-tag value="Origen" severity="info" [rounded]="true" />
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    }
+
+    <!-- Destination accounts section -->
+    @if (getAccountsByType('destino').length > 0) {
+      <section class="accounts-section">
+        <div class="section-header">
+          <div class="section-title-group">
+            <i class="pi pi-arrow-down-left section-icon section-icon--dest"></i>
+            <h3 class="section-title">Cuentas Destinatarias / Beneficiarias</h3>
+          </div>
+          <span class="section-badge section-badge--dest">{{ getAccountsByType('destino').length }}</span>
+        </div>
+        <p class="section-desc">Cuentas de terceros o de destino que recibirán el dinero</p>
+        <div class="accounts-grid">
+          @for (account of getAccountsByType('destino'); track account.id) {
+            <div class="account-card">
+              <div class="account-card-top">
+                <div class="account-bank">
+                  <div class="bank-icon" [class.bank-icon--yape]="account.isYape">
+                    <i [class]="account.isYape ? 'pi pi-mobile' : 'pi pi-building'"></i>
+                  </div>
+                  <div class="bank-info">
+                    <span class="bank-name">{{ account.isYape ? 'Yape' : (account.bankName || getBankName(account.bankId)) }}</span>
+                    <span class="bank-country">
+                      <i [class]="account.country === 'Bolivia' ? 'pi pi-flag' : 'pi pi-flag'"></i>
+                      {{ account.country === 'Peru' ? 'Perú' : account.country }}
+                    </span>
+                  </div>
+                </div>
+                <div class="account-actions">
+                  <button class="action-btn action-btn--edit" (click)="openEditDialog(account)" aria-label="Editar">
+                    <i class="pi pi-pencil"></i>
+                  </button>
+                  <button class="action-btn action-btn--delete" (click)="confirmDelete(account)" aria-label="Eliminar">
+                    <i class="pi pi-trash"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="account-card-body">
+                <div class="account-detail">
+                  <span class="detail-label">Número</span>
+                  <span class="detail-value">{{ account.accountNumber }}</span>
+                </div>
+                <div class="account-detail">
+                  <span class="detail-label">Titular</span>
+                  <span class="detail-value">{{ account.holderName }}</span>
+                </div>
+              </div>
+              <div class="account-card-footer">
+                <p-tag value="Destino" severity="success" [rounded]="true" />
+                @if (account.isYape) {
+                  <p-tag value="Yape" severity="warn" [rounded]="true" icon="pi pi-mobile" />
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    }
+  }
+
+  <!-- Create/Edit Dialog -->
+  <p-dialog
+    [header]="isEditing() ? 'Editar Cuenta' : 'Nueva Cuenta Bancaria'"
+    [(visible)]="showDialog"
+    [modal]="true"
+    [dismissableMask]="true"
+    [closable]="true"
+    [style]="{ width: '95vw', maxWidth: '480px' }"
+    [breakpoints]="{ '480px': '100vw' }">
+
+    <form [formGroup]="accountForm" (ngSubmit)="saveAccount()" class="dialog-form">
+      <!-- Help text -->
+      <p class="dialog-help">
+        @if (!isEditing()) {
+          Registra una cuenta bancaria para usar en tus transferencias. Las cuentas de <strong>origen</strong>
+          son desde donde depositas, y las de <strong>destino</strong> donde recibes.
+        } @else {
+          Modifica los datos de tu cuenta bancaria.
+        }
+      </p>
+
+      <!-- País -->
+      <div class="dialog-field">
+        <label for="country" class="dialog-label">País</label>
+        <p-select
+          id="country"
+          formControlName="country"
+          [options]="paisOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Selecciona un país">
+        </p-select>
+        @if (accountForm.get('country')!.touched && accountForm.get('country')!.hasError('required')) {
+          <small class="dialog-error">El país es obligatorio.</small>
+        }
+      </div>
+
+      <!-- Tipo -->
+      <div class="dialog-field">
+        <label for="type" class="dialog-label">¿Para qué usarás esta cuenta?</label>
+        <p-select
+          id="type"
+          formControlName="type"
+          [options]="tipoOptions"
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Selecciona el uso">
+        </p-select>
+        <small class="dialog-hint">
+          <strong>Origen:</strong> desde donde haces el depósito &nbsp;|&nbsp;
+          <strong>Destino:</strong> donde recibes el dinero
+        </small>
+        @if (accountForm.get('type')!.touched && accountForm.get('type')!.hasError('required')) {
+          <small class="dialog-error">La clasificación es obligatoria.</small>
+        }
+      </div>
+
+      <!-- Banco -->
+      <div class="dialog-field">
+        <label for="bankId" class="dialog-label">Banco</label>
+        <p-select
+          id="bankId"
+          formControlName="bankId"
+          [options]="filteredBanks()"
+          optionLabel="name"
+          optionValue="externalId"
+          [placeholder]="filteredBanks().length === 0 ? 'No hay bancos para este país' : 'Selecciona un banco'"
+          [disabled]="filteredBanks().length === 0"
+          [filter]="true"
+          filterPlaceholder="Buscar banco...">
+        </p-select>
+        @if (accountForm.get('bankId')!.touched && accountForm.get('bankId')!.hasError('required')) {
+          <small class="dialog-error">El banco es obligatorio.</small>
+        }
+      </div>
+
+      <!-- Yape toggle -->
+      @if (canBeYape()) {
+        <div class="yape-toggle">
+          <p-toggleSwitch formControlName="isYape" inputId="isYape"></p-toggleSwitch>
+          <label for="isYape" class="yape-label">
+            <i class="pi pi-mobile"></i>
+            <span>Cuenta Yape</span>
+          </label>
+        </div>
+      }
+      <!-- QR toggle -->
+      @if (canShowQRToggle()) {
+        <div class="qr-toggle">
+          <p-toggleSwitch formControlName="isQR" inputId="isQR"></p-toggleSwitch>
+          <label for="isQR" class="qr-label">
+            <i class="pi pi-qrcode"></i>
+            <span>Cuenta QR</span>
+          </label>
+          <button
+            type="button"
+            class="qr-info-btn"
+            [disabled]="isQrImporting()"
+            (click)="triggerQRImport(qrFileInput)">
+            <i class="pi pi-info-circle"></i>
+            <span>{{ isQrImporting() ? 'Validando QR...' : 'Importar QR' }}</span>
+          </button>
+          <input
+            #qrFileInput
+            type="file"
+            accept="image/png,image/jpeg,image/jpg"
+            class="qr-hidden-input"
+            (change)="onQRFileSelected($event)" />
+        </div>
+        @if (qrImportMessage()) {
+          <small class="dialog-hint qr-import-message">{{ qrImportMessage() }}</small>
+        }
+      }
+
+      <!-- Número de cuenta -->
+      <div class="dialog-field">
+        <label for="accountNumber" class="dialog-label">
+          {{ accountForm.get('isYape')?.value ? 'Número de teléfono' : 'Número de cuenta' }}
+        </label>
+        <input
+          pInputText
+          id="accountNumber"
+          formControlName="accountNumber"
+          [placeholder]="accountForm.get('isYape')?.value ? 'Ej: 987654321' : 'Ej: 1234567890'" />
+        @if (accountForm.get('accountNumber')!.touched && accountForm.get('accountNumber')!.hasError('required')) {
+          <small class="dialog-error">Este campo es obligatorio.</small>
+        }
+        @if (accountForm.get('accountNumber')!.touched && accountForm.get('accountNumber')!.hasError('minlength')) {
+          <small class="dialog-error">Debe tener al menos 5 caracteres.</small>
+        }
+      </div>
+
+      <!-- Titular -->
+      <div class="dialog-field">
+        <label for="holderName" class="dialog-label">Nombre del titular</label>
+        <input
+          pInputText
+          id="holderName"
+          formControlName="holderName"
+          placeholder="Nombre completo del titular" />
+        @if (accountForm.get('holderName')!.touched && accountForm.get('holderName')!.hasError('required')) {
+          <small class="dialog-error">El nombre del titular es obligatorio.</small>
+        }
+        @if (accountForm.get('holderName')!.touched && accountForm.get('holderName')!.hasError('minlength')) {
+          <small class="dialog-error">Debe tener al menos 3 caracteres.</small>
+        }
+      </div>
+
+      <!-- Actions -->
+      <div class="dialog-actions">
+        <p-button
+          label="Cancelar"
+          severity="secondary"
+          [outlined]="true"
+          (onClick)="showDialog.set(false)"
+          size="small">
+        </p-button>
+        <p-button
+          [label]="isEditing() ? 'Actualizar' : 'Crear Cuenta'"
+          type="submit"
+          severity="primary"
+          icon="pi pi-check"
+          size="small">
+        </p-button>
+      </div>
+    </form>
+  </p-dialog>
+
+  <!-- Confirm Delete Dialog -->
+  <p-confirmDialog></p-confirmDialog>
+</div>

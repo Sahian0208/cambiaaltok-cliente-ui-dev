@@ -1,0 +1,129 @@
+<div class="client-home">
+  <!-- Hero Section with background transitions -->
+  <section class="client-hero">
+    <!-- Background images with transition -->
+    <div
+      class="client-hero-bg client-hero-bg--bolivia"
+      [style.opacity]="tipoCambio() === 'BOB_TO_PEN' ? '0.6' : '0'"
+    ></div>
+    <div
+      class="client-hero-bg client-hero-bg--peru"
+      [style.opacity]="tipoCambio() === 'PEN_TO_BOB' ? '0.6' : '0'"
+    ></div>
+
+    <!-- Gradient overlay -->
+    <div class="client-hero-overlay"></div>
+
+    <!-- Decorative blurs -->
+    <div class="client-hero-blur client-hero-blur--top"></div>
+    <div class="client-hero-blur client-hero-blur--bottom"></div>
+
+    <!-- Content -->
+    <div class="client-hero-content">
+      <!-- Left: Welcome text -->
+      <div class="client-hero-text !hidden md:!block">
+        <h1 class="client-hero-title">        
+
+
+            <span class="block overflow-visible pb-1">
+              <span
+                shared-view-port="animate-hero-word"
+                hiddenClasses="opacity-0"                
+                class="mr-2 inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#0B63FF] to-[#12D6EB]"
+                >Transfiere fazilito
+              </span>
+
+              <span
+                shared-view-port="animate-hero-word"
+                hiddenClasses="opacity-0"                
+                class="mr-2 inline-block"
+              >
+                tus
+              </span>
+
+              <span
+                shared-view-port="animate-hero-word"
+                hiddenClasses="opacity-0"                
+                class="inline-block text-[#21F0D2]"
+              >
+                Bolivianos
+              </span>
+            </span>
+
+            <span
+              shared-view-port="animate-hero-word"
+              hiddenClasses="opacity-0"              
+              class="mr-2 inline-block"
+            >
+              y
+            </span>
+
+            <span
+              shared-view-port="animate-hero-word"
+              hiddenClasses="opacity-0"              
+              class="mr-2 inline-block text-[#12D6EB]"
+            >
+              Soles
+            </span>
+
+            <span
+              shared-view-port="animate-hero-word"
+              hiddenClasses="opacity-0"              
+              class="inline-block text-[#12D6EB]"
+            >
+              online
+            </span> 
+
+        </h1>       
+        <div class="client-hero-features">
+          <div class="client-hero-feature">
+             <a
+            href="https://wa.me/59172237251"
+            target="_blank"
+            
+            class="px-3 py-2 rounded-lg bg-emerald-600 text-white text-xs sm:text-sm font-semibold hover:bg-emerald-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors cursor-pointer"
+          >
+            <i class="pi pi-whatsapp"></i>
+            Contactar a un asesor personal
+          </a>
+           
+          
+          </div>
+        
+        </div>
+
+        <!-- Coupon summary (desktop: below text) -->
+        <div class="client-hero-coupon">
+          <app-my-coupon-summary></app-my-coupon-summary>
+        </div>
+      </div>
+
+      <!-- Right: Calculator -->
+      <div class="client-hero-calculator">
+        <app-calculator (swapped)="tipoCambio.set($event)"></app-calculator>
+      </div>
+
+       <div class="client-hero-features !block md:!hidden">
+          <div class="client-hero-feature">
+             <a
+            href="https://wa.me/59172237251"
+            target="_blank"
+            
+            class="px-3 py-2 rounded-lg bg-emerald-600 text-white text-xs sm:text-sm font-semibold hover:bg-emerald-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors cursor-pointer"
+          >
+            <i class="pi pi-whatsapp"></i>
+             Contactar a un asesor personal
+          </a>
+           
+          
+          </div>
+        
+        </div>
+
+      <!-- Coupon summary (mobile: below calculator) -->
+      <div class="client-hero-coupon-mobile">
+        <app-my-coupon-summary></app-my-coupon-summary>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,56 @@
+<div class="coupon-summary">
+  @if (loading()) {
+    <div class="coupon-summary-loading">
+      <i class="pi pi-spin pi-spinner"></i>
+      <span>Cargando tu cupón...</span>
+    </div>
+  } @else if (error()) {
+    <div class="coupon-summary-error">
+      <i class="pi pi-exclamation-circle"></i>
+      <span>No se pudo cargar tu cupón</span>
+    </div>
+  } @else if (coupon()) {
+    <div class="coupon-summary-content">
+      <!-- Coupon code - prominent display -->
+      <div class="coupon-code-display">
+        <span class="coupon-code-label">Tu código de cupón</span>
+        <span class="coupon-code-value">{{ coupon()!.couponCode }}</span>
+        <span class="coupon-code-hint">Comparte este código con otros clientes para que obtengan mejores tasas</span>
+      </div>
+
+      <!-- Description -->
+      <p class="coupon-description">{{ coupon()!.couponDescription }}</p>
+
+      <!-- Stats -->
+      <div class="coupon-stats">
+        <div class="coupon-stat">
+          <i class="pi pi-users"></i>
+          <div class="coupon-stat-info">
+            <span class="coupon-stat-value">{{ coupon()!.usedCount }}</span>
+            <span class="coupon-stat-label">Veces usado</span>
+          </div>
+        </div>
+
+        @if (coupon()!.lastUsedAt) {
+          <div class="coupon-stat">
+            <i class="pi pi-clock"></i>
+            <div class="coupon-stat-info">
+              <span class="coupon-stat-value">{{ coupon()!.lastUsedAt | date:'dd/MM/yyyy' }}</span>
+              <span class="coupon-stat-label">Último uso</span>
+            </div>
+          </div>
+        }
+
+        @if (coupon()!.lastUsedByUsername) {
+          <div class="coupon-stat">
+            <i class="pi pi-user"></i>
+            <div class="coupon-stat-info">
+              <span class="coupon-stat-value">{{ coupon()!.lastUsedByUsername }}</span>
+              <span class="coupon-stat-label">Usado por</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

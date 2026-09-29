@@ -1,0 +1,442 @@
+@use '../../../../../assets/styles/variables' as *;
+
+:host {
+  display: block;
+}
+
+// ========================================
+// Form Section (mirrors parent styles)
+// ========================================
+.form-section {
+  background: $color-surface;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-section-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: $color-primary;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.form-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $color-text;
+  margin: 0;
+}
+
+.form-section-hint {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  margin: 0.15rem 0 0;
+}
+
+// ========================================
+// Form Fields
+// ========================================
+.form-fields-row {
+  display: flex;
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  &--grow {
+    flex: 1;
+  }
+}
+
+.field-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: $color-text;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.field-label-icon {
+  font-size: 0.85rem;
+  color: $color-primary;
+}
+
+.field-error {
+  font-size: 0.75rem;
+  color: $color-error;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.add-account-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  color: $color-primary;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.35rem 0;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $color-primary-light;
+  }
+}
+
+// ========================================
+// Destination Bank Info Card
+// ========================================
+.destination-info-card {
+  background: #f0f7ff;
+  border: 1px solid #d0e3f7;
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+
+.destination-info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #d0e3f7;
+}
+
+.bank-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bank-logo {
+  width: auto;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.bank-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.bank-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: $color-text;
+}
+
+.bank-country {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+}
+
+// .destination-info-body {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 1rem;
+// }
+
+.destination-info-body {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: center;
+}
+
+.holder-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.holder-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: $color-text-secondary;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.holder-name {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: $color-text;
+  min-width: 0;
+}
+
+.holder-name svg {
+  width: 20px;
+  height: 13px;
+  min-width: 20px;
+  max-width: 20px;
+  flex: 0 0 20px;
+  display: block;
+}
+
+// ========================================
+// Payment Method Variants
+// ========================================
+.payment-method {
+  margin-top: 0.25rem;
+}
+
+.payment-method-message {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  margin: 0.5rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  i {
+    color: $color-primary;
+  }
+}
+
+// QR variant
+.payment-method-standard {
+  .standard-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: #000000;
+    background: $color-surface;
+    border: 1px dashed $color-primary;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .qr-icon {
+    font-size: 2rem;
+    color: $color-primary;
+  }
+
+  .qr-value {
+    font-size: 0.9rem;
+    color: $color-text;
+    word-break: break-all;
+  }
+}
+
+// Botón de importar/actualizar QR, reutilizado en la variante QR y en cuentas estándar bolivianas
+.qr-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid $color-primary;
+  background: $color-surface;
+  color: $color-primary;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba($color-primary, 0.08);
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+}
+
+.qr-edit-hidden-input {
+  display: none;
+}
+
+.qr-add-section {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.qr-add-hint {
+  font-size: 0.75rem;
+  color: $color-text-secondary;
+  line-height: 1.4;
+}
+
+// Yape variant
+.payment-method-yape {
+  .yape-display {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: $color-surface;
+    border: 1px solid #6b21a8;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+  }
+}
+
+
+// ========================================
+// Responsive
+// ========================================
+@media (max-width: 576px) {
+  .form-section {
+    padding: 1rem;
+  }
+
+  .destination-info-card {
+    padding: 1rem;
+  }
+
+  .bank-logo {
+    height: 32px;
+  }
+
+  .holder-name {
+    font-size: 0.95rem;
+  }
+}
+
+// ========================================
+// QR Modal
+// ========================================
+.qr-modal-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.qr-modal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+}
+
+.qr-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.qr-modal-label {
+  font-size: 0.7rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.qr-modal-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $color-text;
+
+  &--mono {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
+  }
+}
+
+.qr-modal-qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: #f0f9ff;
+  border: 2px dashed #93c5fd;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.qr-modal-qr-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid $color-border;
+
+  i {
+    font-size: 1.5rem;
+    color: $color-primary;
+  }
+}
+
+.qr-modal-qr-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $color-text;
+  word-break: break-all;
+  margin: 0;
+}
+
+.qr-modal-image-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+}
+
+.qr-modal-image {
+  max-width: 280px;
+  max-height: 280px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.qr-modal-actions {
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid $color-border;
+}
+

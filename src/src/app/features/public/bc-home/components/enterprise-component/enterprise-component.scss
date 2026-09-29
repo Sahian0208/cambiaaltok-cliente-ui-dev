@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+/* Keep CTA phone country toggle visually stable across utility style collisions. */
+.country-toggle-btn {
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.phone-prefix-btn {
+  min-width: 68px;
+  justify-content: center;
+  gap: 0.1rem;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+@media (min-width: 640px) {
+  .phone-prefix-btn {
+    min-width: 74px;
+  }
+}
+
+.phone-input-wrapper {
+  align-items: center;
+}
+
+:host ::ng-deep .phone-number-input.p-inputtext {
+  flex: 1 1 auto;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  padding-left: 0.7rem !important;
+  padding-right: 0.7rem !important;
+}

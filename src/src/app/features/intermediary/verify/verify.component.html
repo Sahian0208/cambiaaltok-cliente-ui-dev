@@ -1,0 +1,461 @@
+<div class="verify-wrapper">
+  <!-- Loading state -->
+  @if (loading) {
+    <div class="loading-state">
+      <i class="pi pi-spin pi-spinner loading-spinner"></i>
+      <p class="loading-text">Cargando la transacción...</p>
+    </div>
+  }
+
+  <!-- Error state -->
+  @if (errorMessage && !loading) {
+    <div class="error-state">
+      <div class="error-icon">
+        <i class="pi pi-exclamation-triangle"></i>
+      </div>
+      <h3 class="error-title">Algo salió mal</h3>
+      <p class="error-text">{{ errorMessage }}</p>
+      <button class="action-btn-primary" (click)="goBack()">
+        <i class="pi pi-arrow-left"></i> Volver al panel
+      </button>
+    </div>
+  }
+
+  <!-- Transaction detail -->
+  @if (transaction && !loading) {
+    <!-- Header -->
+    <div class="verify-header">
+      <button class="back-btn" (click)="goBack()">
+        <i class="pi pi-arrow-left"></i>
+      </button>
+      <div class="verify-header-text">
+        <h2 class="verify-title">
+          @if (transaction.status === 'pendiente_verificacion') {
+            Verificar Depósito
+          } @else if (transaction.status === 'verificado') {
+            Realizar Transferencia
+          } @else if (transaction.status === 'transferido' || transaction.status === 'finalizado') {
+            Operación Completada
+          } @else if (transaction.status === 'denegado') {
+            Operación Denegada
+          }
+        </h2>
+        <p class="verify-subtitle">
+          @if (transaction.status === 'pendiente_verificacion') {
+            Revisa el comprobante y confirma o deniega el depósito
+          } @else if (transaction.status === 'verificado') {
+            Envía el dinero a la cuenta destino y sube el comprobante
+          } @else {
+            Detalle de la operación
+          }
+        </p>
+      </div>
+    </div>
+
+    <!-- Status badge -->
+    <div class="status-banner" [class]="'status-banner--' + transaction.status">
+      @if (transaction.status === 'pendiente_verificacion') {
+        <i class="pi pi-clock"></i>
+        <span>Pendiente de tu verificación</span>
+      } @else if (transaction.status === 'verificado') {
+        <i class="pi pi-check-circle"></i>
+        <span>Verificado — Esperando tu transferencia</span>
+      } @else if (transaction.status === 'transferido') {
+        <i class="pi pi-send"></i>
+        <span>Transferencia realizada</span>
+      } @else if (transaction.status === 'finalizado') {
+        <i class="pi pi-check-circle"></i>
+        <span>Operación finalizada exitosamente</span>
+      } @else if (transaction.status === 'denegado') {
+        <i class="pi pi-times-circle"></i>
+        <span>Operación denegada</span>
+      }
+    </div>
+
+    <!-- Transaction summary card -->
+    <div class="summary-card">
+      <h4 class="summary-title">
+        <i class="pi pi-info-circle"></i> Resumen de la operación
+      </h4>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <span class="summary-label">El cliente envía</span>
+          <span class="summary-value">{{ transaction.sourceAmount | number:'1.2-2' }} {{ transaction.sourceCurrency }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">El cliente recibe</span>
+          <span class="summary-value summary-value--success">{{ transaction.destinationAmount | number:'1.2-2' }} {{ transaction.destinationCurrency }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Tasa aplicada</span>
+          <span class="summary-value">{{ transaction.appliedRate | number:'1.4-4' }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Fecha de solicitud</span>
+          <span class="summary-value">{{ transaction.createdAt | date:'dd/MM/yyyy · HH:mm' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP: Verification (pendiente_verificacion) -->
+    @if (transaction.status === 'pendiente_verificacion') {
+      <div class="action-card">
+        <div class="action-card-header action-card-header--verify">
+          <i class="pi pi-image"></i>
+          <div>
+            <h4 class="action-card-title">Comprobante del cliente</h4>
+            <p class="action-card-desc">El cliente subió este comprobante como prueba de su depósito. Revísalo cuidadosamente.</p>
+          </div>
+        </div>
+
+        @if (transaction.clientReceiptUrl) {
+          <div class="receipt-container">
+            <img
+              [src]="this.buildAttachUrl(transaction.clientReceiptUrl)"
+              alt="Comprobante del cliente"
+              class="receipt-image" />
+          </div>
+        } @else {
+          <div class="receipt-placeholder">
+            <i class="pi pi-image"></i>
+            <p>El cliente aún no ha subido el comprobante</p>
+          </div>
+        }
+
+        <!-- Guide text -->
+        <div class="guide-box">
+          <i class="pi pi-lightbulb"></i>
+          <div>
+            <p class="guide-title">¿Qué debo hacer?</p>
+            <p class="guide-text">Verifica que el depósito se haya recibido en tu cuenta. Si el monto coincide, presiona <strong>"Confirmar"</strong>. Si no, presiona <strong>"Denegar"</strong> e indica el motivo.</p>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="action-buttons">
+          <button
+            class="btn-deny"
+            (click)="showDenyDialog = true"
+            [disabled]="processing">
+            <i class="pi pi-times"></i>
+            <span>Denegar</span>
+          </button>
+          <button
+            class="btn-confirm"
+            (click)="showConfirmDialog = true"
+            [disabled]="processing">
+            <i class="pi pi-check"></i>
+            <span>Confirmar Depósito</span>
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- STEP: Transfer (verificado) -->
+    @if (transaction.status === 'verificado') {
+      <!-- Destination info -->
+      <div class="action-card">
+        <div class="action-card-header action-card-header--transfer">
+          <i class="pi pi-wallet"></i>
+          <div>
+            <h4 class="action-card-title">Datos de la cuenta destino</h4>
+            <p class="action-card-desc">Envía el dinero a esta cuenta del cliente. Puedes escanear el QR o usar los datos bancarios.</p>
+          </div>
+        </div>
+
+        <div class="dest-info-grid">
+          <!-- Left: Amount to transfer -->
+          <div class="dest-amount-section">
+            <span class="dest-amount-label">Monto a transferir</span>
+            <span class="dest-amount-value">{{ transaction.destinationAmount | number:'1.2-2' }} {{ transaction.destinationCurrency }}</span>
+          </div>
+
+          <!-- Right: Destination bank card -->
+          @if (destinationBankAccount) {
+            <app-bank-account-info
+              [account]="destinationBankAccount"
+              [qrAttachmentUrl]="transaction.destinationQrUrl ?? null">
+            </app-bank-account-info>
+          }
+        </div>
+
+        <!-- QR Destino (fallback if no bank account loaded) -->
+        <!-- @if (!destinationBankAccount && transaction.destinationQrUrl) {
+          <div class="qr-section">
+            <p class="qr-label">QR de la cuenta destino del cliente:</p>
+            <div class="qr-display">
+              <img
+                [src]="this.buildAttachUrl(transaction.destinationQrUrl)"
+                alt="QR Destino del cliente"
+                class="qr-image" />
+            </div>
+          </div>
+        } -->
+      </div>
+
+      <!-- Financial account source selection -->
+      @if (financialAccounts.length > 0) {
+        <div class="action-card">
+          <div class="action-card-header action-card-header--source">
+            <i class="pi pi-building"></i>
+            <div>
+              <h4 class="action-card-title">Origen de fondos CambiaAltok</h4>
+              <p class="action-card-desc">Selecciona la cuenta desde la que enviarás los fondos al cliente.</p>
+            </div>
+          </div>
+
+          <div class="financial-source-section">
+            <p-select
+              [options]="financialAccounts"
+              [(ngModel)]="selectedFinancialAccountId"
+              optionValue="id"
+              placeholder="Seleccionar cuenta de origen"
+              [style]="{ width: '100%' }">
+              <ng-template #selectedItem let-item>
+                @if (item) {
+                  <span>{{ item.bankName }} - {{ item.accountNumber }} ({{ item.country }})</span>
+                }
+              </ng-template>
+              <ng-template #item let-account>
+                <div class="financial-account-option">
+                  <span class="financial-account-name">{{ account.bankName }} - {{ account.accountNumber }}</span>
+                  <span class="financial-account-country">({{ account.country }})</span>
+                  @if (account.isDefault) {
+                    <span class="financial-account-default">★</span>
+                  }
+                </div>
+              </ng-template>
+            </p-select>
+          </div>
+        </div>
+      }
+
+      <!-- Upload transfer receipt -->
+      <div class="action-card">
+        <div class="action-card-header action-card-header--upload">
+          <i class="pi pi-upload"></i>
+          <div>
+            <h4 class="action-card-title">Sube tu comprobante</h4>
+            <p class="action-card-desc">Una vez que hayas hecho la transferencia, sube aquí el comprobante como prueba.</p>
+          </div>
+        </div>
+
+        <app-file-upload
+          label="Subir comprobante de transferencia"
+          (fileSelected)="onTransferReceiptSelected($event)"
+          (fileError)="onTransferReceiptError()">
+        </app-file-upload>
+
+        <!-- Guide -->
+        <div class="guide-box">
+          <i class="pi pi-lightbulb"></i>
+          <div>
+            <p class="guide-title">¿Qué debo hacer?</p>
+            <p class="guide-text">Realiza la transferencia al cliente usando el QR o los datos de arriba. Luego sube la captura del comprobante y presiona <strong>"Completar"</strong>.</p>
+          </div>
+        </div>
+
+        <div class="action-buttons action-buttons--single">
+          <button
+            class="btn-confirm btn-confirm--full"
+            (click)="showCompleteTransferDialog = true"
+            [disabled]="!transferReceiptFile || !selectedFinancialAccountId || processing">
+            <i class="pi pi-send"></i>
+            <span>Completar Transferencia</span>
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- Already transferred or finalized -->
+    @if (transaction.status === 'transferido' || transaction.status === 'finalizado') {
+      <div class="action-card">
+        <div class="action-card-header action-card-header--success">
+          <i class="pi pi-check-circle"></i>
+          <div>
+            <h4 class="action-card-title">Comprobante de transferencia</h4>
+            <p class="action-card-desc">Este es el comprobante que subiste al completar la transferencia.</p>
+          </div>
+        </div>
+
+        @if (transaction.intermediaryReceiptUrl) {
+          <div class="receipt-container">
+            <img
+              [src]="this.buildAttachUrl(transaction.intermediaryReceiptUrl)"
+              alt="Comprobante de transferencia"
+              class="receipt-image" />
+          </div>
+        } @else {
+          <div class="receipt-placeholder">
+            <i class="pi pi-image"></i>
+            <p>No hay comprobante disponible</p>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Denied state -->
+    @if (transaction.status === 'denegado') {
+      <div class="action-card action-card--denied">
+        <div class="denied-content">
+          <div class="denied-icon">
+            <i class="pi pi-times-circle"></i>
+          </div>
+          <h4 class="denied-title">Transacción denegada</h4>
+          @if (transaction.denialReason) {
+            <div class="denied-reason">
+              <span class="denied-reason-label">Motivo:</span>
+              <p class="denied-reason-text">{{ transaction.denialReason }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Back button at bottom -->
+    <div class="bottom-action">
+      <button class="btn-secondary" (click)="goBack()">
+        <i class="pi pi-arrow-left"></i>
+        <span>Volver al panel</span>
+      </button>
+    </div>
+  }
+
+  <!-- Deny dialog -->
+  <p-dialog
+    header="Denegar esta transacción"
+    [(visible)]="showDenyDialog"
+    [modal]="true"
+    [dismissableMask]="true"
+    [closable]="true"
+    [style]="{ width: '95vw', maxWidth: '450px' }"
+    [breakpoints]="{ '480px': '100vw' }">
+
+    <div class="deny-dialog-content">
+      <div class="deny-dialog-warning">
+        <i class="pi pi-exclamation-triangle"></i>
+        <p>Al denegar esta transacción, el cliente será notificado y deberá iniciar una nueva operación.</p>
+      </div>
+
+      <div class="deny-field">
+        <label class="deny-label">¿Por qué deniegas esta transacción?</label>
+        <textarea
+          pTextarea
+          [(ngModel)]="denyReason"
+          rows="4"
+          placeholder="Escribe el motivo aquí... (Ej: El monto no coincide, No se recibió el depósito)"
+          class="deny-textarea"
+          (blur)="denyReasonTouched = true">
+        </textarea>
+        @if (denyReasonTouched && !denyReason.trim()) {
+          <small class="deny-error">
+            <i class="pi pi-info-circle"></i> Debes indicar un motivo
+          </small>
+        }
+      </div>
+    </div>
+
+    <ng-template #footer>
+      <div class="deny-dialog-actions">
+        <button class="btn-secondary btn-secondary--sm" (click)="cancelDeny()">
+          Cancelar
+        </button>
+        <button
+          class="btn-deny btn-deny--sm"
+          (click)="denyDeposit()"
+          [disabled]="!denyReason.trim() || processing">
+          @if (processing) {
+            <i class="pi pi-spin pi-spinner"></i>
+          } @else {
+            <i class="pi pi-times"></i>
+          }
+          <span>Confirmar Denegación</span>
+        </button>
+      </div>
+    </ng-template>
+  </p-dialog>
+
+  <!-- Confirm Deposit Dialog -->
+  <p-dialog
+    header="Confirmar verificación"
+    [(visible)]="showConfirmDialog"
+    [modal]="true"
+    [dismissableMask]="true"
+    [closable]="true"
+    [style]="{ width: '95vw', maxWidth: '420px' }"
+    [breakpoints]="{ '480px': '100vw' }">
+
+    <div class="confirm-dialog-content">
+      <div class="confirm-dialog-icon">
+        <i class="pi pi-check-circle"></i>
+      </div>
+      <h4 class="confirm-dialog-title">¿Estás seguro?</h4>
+      <p class="confirm-dialog-text">
+        Al confirmar, estás indicando que <strong>recibiste el depósito correctamente</strong> en tu cuenta.
+        Esta acción no se puede deshacer y la operación avanzará al siguiente paso.
+      </p>
+    </div>
+
+    <ng-template #footer>
+      <div class="confirm-dialog-actions">
+        <button class="btn-secondary btn-secondary--sm" (click)="showConfirmDialog = false">
+          Cancelar
+        </button>
+        <button
+          class="btn-confirm btn-confirm--sm"
+          (click)="confirmDeposit()"
+          [disabled]="processing">
+          @if (processing) {
+            <i class="pi pi-spin pi-spinner"></i>
+          } @else {
+            <i class="pi pi-check"></i>
+          }
+          <span>Sí, confirmar depósito</span>
+        </button>
+      </div>
+    </ng-template>
+  </p-dialog>
+
+  <!-- Confirm Complete Transfer Dialog -->
+  <p-dialog
+    header="Confirmar transferencia"
+    [(visible)]="showCompleteTransferDialog"
+    [modal]="true"
+    [dismissableMask]="true"
+    [closable]="true"
+    [style]="{ width: '95vw', maxWidth: '420px' }"
+    [breakpoints]="{ '480px': '100vw' }">
+
+    <div class="confirm-dialog-content">
+      <div class="confirm-dialog-icon confirm-dialog-icon--transfer">
+        <i class="pi pi-send"></i>
+      </div>
+      <h4 class="confirm-dialog-title">¿Completar la transferencia?</h4>
+      <p class="confirm-dialog-text">
+        Al confirmar, estás indicando que <strong>ya enviaste el dinero a la cuenta destino del cliente</strong>
+        y subiste el comprobante correspondiente. Esta acción finalizará la operación.
+      </p>
+    </div>
+
+    <ng-template #footer>
+      <div class="confirm-dialog-actions">
+        <button class="btn-secondary btn-secondary--sm" (click)="showCompleteTransferDialog = false">
+          Cancelar
+        </button>
+        <button
+          class="btn-confirm btn-confirm--sm"
+          (click)="completeTransfer()"
+          [disabled]="processing">
+          @if (processing) {
+            <i class="pi pi-spin pi-spinner"></i>
+          } @else {
+            <i class="pi pi-send"></i>
+          }
+          <span>Sí, completar</span>
+        </button>
+      </div>
+    </ng-template>
+  </p-dialog>
+
+  <!-- QR Modal is now handled by app-bank-account-info -->
+</div>

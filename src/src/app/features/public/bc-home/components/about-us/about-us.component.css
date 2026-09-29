@@ -1,0 +1,33 @@
+.mascota_left {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    flex: 1.1;
+    text-align: left;
+  }
+
+  @media (min-width: 1024px) {
+    flex: 0 1 60%;
+  }
+}
+
+.company_text {
+  width: 100%;
+
+  @media (min-width: 768px) {
+    flex: 0.95;
+    min-width: 300px;
+    max-width: 390px;
+  }
+
+  @media (min-width: 1024px) {
+    flex: 0 1 40%;
+    min-width: 0;
+    max-width: none;
+  }
+}
+

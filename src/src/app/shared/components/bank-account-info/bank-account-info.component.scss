@@ -1,0 +1,292 @@
+@use '../../../../assets/styles/variables' as *;
+
+:host {
+  display: block;
+}
+
+// ========================================
+// Bank Account Card
+// ========================================
+.bai-card {
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid;
+
+  &--bolivia {
+    background: #ecfdf5;
+    border-color: #6ee7b7;
+  }
+
+  &--peru {
+    background: #fef2f2;
+    border-color: #fecaca;
+  }
+}
+
+.bai-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.bai-country {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: $color-text;
+  text-transform: uppercase;
+}
+
+.bai-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bai-yape-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.625rem;
+  background: #7c3aed;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 20px;
+}
+
+.bai-qr-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid $color-border;
+  background: white;
+  color: $color-primary;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  i {
+    font-size: 1rem;
+  }
+
+  &:hover {
+    background: $color-primary;
+    color: white;
+    border-color: $color-primary;
+  }
+}
+
+.bai-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.bai-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+}
+
+.bai-field-label {
+  font-size: 0.65rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.bai-field-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $color-text;
+
+  &--mono {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
+  }
+}
+
+// ========================================
+// QR Modal
+// ========================================
+.bai-qr-modal-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.bai-qr-modal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+}
+
+.bai-qr-modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.bai-qr-modal-label {
+  font-size: 0.7rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.bai-qr-modal-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $color-text;
+
+  &--mono {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
+  }
+}
+
+.bai-qr-modal-qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  background: #f0f9ff;
+  border: 2px dashed #93c5fd;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.bai-qr-modal-image-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+}
+
+.bai-qr-modal-image {
+  max-width: 280px;
+  max-height: 280px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.bai-qr-modal-actions {
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid $color-border;
+}
+
+.bai-btn-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid $color-border;
+  background: white;
+  color: $color-text-secondary;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f1f5f9;
+    color: $color-text;
+    border-color: #94a3b8;
+  }
+}
+
+// ========================================
+// Dark Mode
+// ========================================
+:host-context(.dark-mode) {
+  .bai-card {
+    &--bolivia {
+      background: #064e3b;
+      border-color: #065f46;
+    }
+
+    &--peru {
+      background: #450a0a;
+      border-color: #7f1d1d;
+    }
+  }
+
+  .bai-country {
+    color: #f1f5f9;
+  }
+
+  .bai-qr-btn {
+    background: #1e293b;
+    border-color: #475569;
+    color: #60a5fa;
+
+    &:hover {
+      background: #60a5fa;
+      color: white;
+      border-color: #60a5fa;
+    }
+  }
+
+  .bai-field-label {
+    color: #94a3b8;
+  }
+
+  .bai-field-value {
+    color: #f1f5f9;
+  }
+
+  .bai-qr-modal-info {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .bai-qr-modal-label {
+    color: #94a3b8;
+  }
+
+  .bai-qr-modal-value {
+    color: #f1f5f9;
+  }
+
+  .bai-qr-modal-qr-box {
+    background: #0f172a;
+    border-color: #475569;
+  }
+
+  .bai-qr-modal-image-container {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .bai-qr-modal-actions {
+    border-color: #334155;
+  }
+
+  .bai-btn-close {
+    background: #334155;
+    border-color: #475569;
+    color: #94a3b8;
+
+    &:hover {
+      background: #475569;
+      color: #f1f5f9;
+    }
+  }
+}

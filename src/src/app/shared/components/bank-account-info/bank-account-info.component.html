@@ -1,0 +1,90 @@
+<div class="bank-account-info">
+  <!-- Bank card -->
+  <div class="bai-card" [ngClass]="{
+    'bai-card--bolivia': account.country === 'Bolivia',
+    'bai-card--peru': account.country === 'Peru'
+  }">
+    <div class="bai-card-header">
+      <span class="bai-country">
+        <app-national-flag [country]="account.country" size="w-2"></app-national-flag>        
+      </span>
+
+      <div class="bai-badges">
+        @if (account.isYape) {
+          <span class="bai-yape-badge">
+            <i class="pi pi-mobile"></i> Yape
+          </span>
+        }
+        @if (account.isQR && !account.isYape) {
+          <button class="bai-qr-btn" (click)="openQrModal()" title="Ver QR" type="button">
+            <i class="pi pi-qrcode"></i>
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="bai-card-body">
+      <div class="bai-field">
+        <span class="bai-field-label">Banco</span>
+        <span class="bai-field-value">{{ account.bankName }}</span>
+      </div>
+      <div class="bai-field">
+        <span class="bai-field-label">Titular</span>
+        <span class="bai-field-value">{{ account.holderName }}</span>
+      </div>
+      <div class="bai-field">
+        <span class="bai-field-label">N° de cuenta</span>
+        <span class="bai-field-value bai-field-value--mono">{{ account.accountNumber }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- QR Modal -->
+  <p-dialog
+    header="Código QR de la cuenta"
+    [(visible)]="showQrModal"
+    [modal]="true"
+    [dismissableMask]="true"
+    [closable]="true"
+    [maximizable]="true"
+    [style]="{ width: '95vw', maxWidth: '500px' }"
+    [breakpoints]="{ '480px': '100vw' }">
+
+    <div class="bai-qr-modal-content">
+      <div class="bai-qr-modal-info">
+        <div class="bai-qr-modal-field">
+          <span class="bai-qr-modal-label">Banco</span>
+          <span class="bai-qr-modal-value">{{ account.bankName }}</span>
+        </div>
+        <div class="bai-qr-modal-field">
+          <span class="bai-qr-modal-label">Titular</span>
+          <span class="bai-qr-modal-value">{{ account.holderName }}</span>
+        </div>
+        <div class="bai-qr-modal-field">
+          <span class="bai-qr-modal-label">N° de cuenta</span>
+          <span class="bai-qr-modal-value bai-qr-modal-value--mono">{{ account.accountNumber }}</span>
+        </div>
+      </div>
+
+      @if (account.otherAccountValue) {
+        <div class="bai-qr-modal-qr-box">
+          <bc-qr-code [text]="account.otherAccountValue" [width]="350" [height]="350"></bc-qr-code>
+        </div>
+      }
+
+      @if (qrAttachmentUrl) {
+        <div class="bai-qr-modal-image-container">
+          <img [src]="buildAttachUrl(qrAttachmentUrl)" alt="QR de la cuenta" class="bai-qr-modal-image" />
+        </div>
+      }
+    </div>
+
+    <ng-template #footer>
+      <div class="bai-qr-modal-actions">
+        <button class="bai-btn-close" (click)="closeQrModal()" type="button">
+          Cerrar
+        </button>
+      </div>
+    </ng-template>
+  </p-dialog>
+</div>

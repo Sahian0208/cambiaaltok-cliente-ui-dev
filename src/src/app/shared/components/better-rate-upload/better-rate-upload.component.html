@@ -1,0 +1,50 @@
+<div
+  class="w-full text-center flex flex-col items-center rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm px-3 py-3.5 sm:px-4 sm:py-4 shadow-lg shadow-black/10"
+>
+  <h3
+    class="text-xs sm:text-sm font-extrabold text-white font-display leading-snug text-center"
+  >
+    ¿Tienes una cotización de otra casa de cambio?
+  </h3>
+  <p
+    class="text-[#21F0D2] font-black text-sm sm:text-base mt-0.5 font-display text-center"
+  >
+    ¡Nosotros la mejoramos!
+  </p>
+  <p class="text-[10px] sm:text-[11px] text-white/70 mt-0.5 text-center">
+    Sube tu archivo y te ofrecemos una mejor tasa.
+  </p>
+
+  <a
+    [href]="getContactWhatsappMessage()"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Escribir por WhatsApp"
+    class="mt-3 cursor-pointer border border-dashed rounded-xl p-2.5 flex flex-col items-center justify-center gap-1.5 transition-all duration-300 select-none text-white h-20 w-full"
+    [ngClass]="
+      'border-white/20 bg-white/5 hover:border-[#12D6EB] hover:bg-white/10'
+    "
+  >
+    <svg
+      class="w-6 h-6 text-[#12D6EB]"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+      />
+    </svg>
+    <div class="text-center">
+      <span class="font-extrabold text-[9px] uppercase tracking-wider block"
+        >Muestranos tu cotización aquí</span
+      >
+      <span class="text-[8px] text-white/55 block mt-0.5"
+        >o haz clic para contactar a nuestro equipo</span
+      >
+    </div>
+  </a>
+</div>

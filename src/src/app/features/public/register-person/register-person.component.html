@@ -1,0 +1,500 @@
+<div class="register-wrapper">
+  @if (submitSuccess()) {
+    <div class="success-card">
+      <div class="success-icon">
+        <i class="pi pi-check-circle"></i>
+      </div>
+      <h2>¡Registro exitoso!</h2>
+      <p>Tu cuenta ha sido creada. Recibirás un correo de confirmación y un link para verificar el email, posterior a eso ya puedes iniciar sesion con tu email y contraseña.</p>
+      <p-button label="Ir al inicio" icon="pi pi-home" (onClick)="router.navigate(['/bc'])"></p-button>
+    </div>
+  } @else {
+    <div class="register-header">
+      <h2 class="register-title">Registro de Persona</h2>
+      <p class="register-subtitle">Completa los siguientes pasos para crear tu cuenta personal</p>
+    </div>
+
+    <!-- Step indicators -->
+    <div class="steps-indicator">
+      <div class="step-item" [class.active]="currentStep() >= 0" [class.completed]="currentStep() > 0">
+        <div class="step-number">1</div>
+        <span class="step-label">Datos personales</span>
+      </div>
+      <div class="step-connector" [class.active]="currentStep() > 0"></div>
+      <div class="step-item" [class.active]="currentStep() >= 1" [class.completed]="currentStep() > 1">
+        <div class="step-number">2</div>
+        <span class="step-label">Documento</span>
+      </div>
+      <div class="step-connector" [class.active]="currentStep() > 1"></div>
+      <div class="step-item" [class.active]="currentStep() >= 2">
+        <div class="step-number">3</div>
+        <span class="step-label">Video de identidad</span>
+      </div>
+    </div>
+
+    <!-- Step 1: Personal Data -->
+    @if (currentStep() === 0) {
+      <div class="section-card">
+        <div class="section-card-header">
+          <i class="pi pi-user section-card-icon"></i>
+          <div>
+            <h3 class="section-card-title">Datos personales</h3>
+            <p class="section-card-desc">Ingresa tu información básica para crear la cuenta</p>
+          </div>
+        </div>
+
+        <form [formGroup]="personForm" class="register-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="country" class="form-label">Nacionalidad *</label>
+              <p-select
+                id="country"
+                formControlName="country"
+                [options]="countryOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Selecciona nacionalidad"
+                [style]="{'width': '100%'}">
+              </p-select>
+              @if (personForm.get('country')?.invalid && personForm.get('country')?.touched) {
+                <small class="form-error">Nacionalidad es requerida</small>
+              }
+            </div>
+            <!-- <div class="form-field">
+              <label for="documentNumber" class="form-label">Número de documento *</label>
+              <input pInputText id="documentNumber" formControlName="documentNumber" placeholder="Número de CI o DNI" />
+              @if (personForm.get('documentNumber')?.invalid && personForm.get('documentNumber')?.touched) {
+                <small class="form-error">Número de documento es requerido</small>
+              }
+            </div> -->
+
+
+            <div class="form-field">
+              <label for="documentNumber" class="form-label">Número de documento *</label>
+              <div class="documentNumber-field-wrapper">
+                <input pInputText id="documentNumber" formControlName="documentNumber" placeholder="Número de CI o DNI" />
+                @if (documentNumberChecking()) {
+                  <span class="email-status email-status--checking">
+                    <i class="pi pi-spin pi-spinner"></i>
+                  </span>
+                }
+                @if (documentNumberAvailable() === true && !documentNumberChecking()) {
+                  <span class="email-status email-status--available">
+                    <i class="pi pi-check-circle"></i>
+                  </span>
+                }
+                @if (documentNumberAvailable() === false && !documentNumberChecking()) {
+                  <span class="email-status email-status--taken">
+                    <i class="pi pi-times-circle"></i>
+                  </span>
+                }
+              </div>
+              @if (personForm.get('documentNumber')?.invalid && personForm.get('documentNumber')?.touched) {
+                <small class="form-error">
+                  @if (personForm.get('documentNumber')?.errors?.['required']) {
+                    Número de documento es requerido
+                  } @else {
+                    Ingresa un numero valido
+                  }
+                </small>
+              }
+              @if (documentNumberErrorMessage()) {
+                <small class="form-error">{{ documentNumberErrorMessage() }}</small>
+              }
+              @if (documentNumberAvailable() === true && !documentNumberChecking()) {
+                <small class="form-success">Numero de documento disponible</small>
+              }
+            </div>
+
+
+
+
+
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="firstName" class="form-label">Nombres *</label>
+              <input pInputText id="firstName" formControlName="firstName" placeholder="Tus nombres" />
+              @if (personForm.get('firstName')?.invalid && personForm.get('firstName')?.touched) {
+                <small class="form-error">Nombres es requerido</small>
+              }
+            </div>
+            <div class="form-field">
+              <label for="lastName" class="form-label">Apellidos *</label>
+              <input pInputText id="lastName" formControlName="lastName" placeholder="Tus apellidos" />
+              @if (personForm.get('lastName')?.invalid && personForm.get('lastName')?.touched) {
+                <small class="form-error">Apellidos es requerido</small>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone" class="form-label">Teléfono *</label>
+              <input pInputText id="phone" formControlName="phone" placeholder="Solo números" />
+              @if (personForm.get('phone')?.invalid && personForm.get('phone')?.touched) {
+                <small class="form-error">
+                  @if (personForm.get('phone')?.errors?.['required']) {
+                    Teléfono es requerido
+                  } @else {
+                    Solo se permiten números
+                  }
+                </small>
+              }
+            </div>
+            <div class="form-field">
+              <label for="email" class="form-label">Email *</label>
+              <div class="email-field-wrapper">
+                <input pInputText id="email" formControlName="email" placeholder="tu@email.com" type="email" />
+                @if (emailChecking()) {
+                  <span class="email-status email-status--checking">
+                    <i class="pi pi-spin pi-spinner"></i>
+                  </span>
+                }
+                @if (emailAvailable() === true && !emailChecking()) {
+                  <span class="email-status email-status--available">
+                    <i class="pi pi-check-circle"></i>
+                  </span>
+                }
+                @if (emailAvailable() === false && !emailChecking()) {
+                  <span class="email-status email-status--taken">
+                    <i class="pi pi-times-circle"></i>
+                  </span>
+                }
+              </div>
+              @if (personForm.get('email')?.invalid && personForm.get('email')?.touched) {
+                <small class="form-error">
+                  @if (personForm.get('email')?.errors?.['required']) {
+                    Email es requerido
+                  } @else {
+                    Ingresa un email válido
+                  }
+                </small>
+              }
+              @if (emailErrorMessage()) {
+                <small class="form-error">{{ emailErrorMessage() }}</small>
+              }
+              @if (emailAvailable() === true && !emailChecking()) {
+                <small class="form-success">Email disponible</small>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="birthDate" class="form-label">Fecha de nacimiento *</label>
+              <p-datepicker
+                id="birthDate"
+                formControlName="birthDate"
+                [showIcon]="true"
+                dateFormat="dd/mm/yy"
+                placeholder="Selecciona tu fecha"
+                [maxDate]="maxBirthDate"
+                [style]="{'width': '100%'}"
+                [inputStyle]="{'width': '100%'}">
+              </p-datepicker>
+              @if (personForm.get('birthDate')?.invalid && personForm.get('birthDate')?.touched) {
+                <small class="form-error">Fecha de nacimiento es requerida</small>
+              }
+            </div>
+            <div class="form-field">
+              <label for="referralSource" class="form-label">¿Cómo nos conociste? *</label>
+              <p-select
+                id="referralSource"
+                formControlName="referralSource"
+                [options]="howDidYouFindUsOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Selecciona una opción"
+                filter="true"
+                filterBy="label"
+                [style]="{'width': '100%'}">
+              </p-select>
+              @if (personForm.get('referralSource')?.invalid && personForm.get('referralSource')?.touched) {
+                <small class="form-error">Este campo es requerido</small>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="password" class="form-label">Contraseña *</label>
+              <p-password
+                id="password"
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="true"
+                placeholder="Mínimo 8 caracteres"
+                [style]="{'width': '100%'}"
+                [inputStyle]="{'width': '100%'}">
+              </p-password>
+              @if (personForm.get('password')?.invalid && personForm.get('password')?.touched) {
+                <small class="form-error">
+                  @if (personForm.get('password')?.errors?.['required']) {
+                    Contraseña es requerida
+                  } @else if (personForm.get('password')?.errors?.['minlength']) {
+                    Mínimo 8 caracteres
+                  } @else {
+                    Debe tener al menos 1 mayúscula, 1 minúscula y 1 número
+                  }
+                </small>
+              }
+            </div>
+            <div class="form-field">
+              <label for="confirmPassword" class="form-label">Confirmar contraseña *</label>
+              <p-password
+                id="confirmPassword"
+                formControlName="confirmPassword"
+                [toggleMask]="true"
+                [feedback]="false"
+                placeholder="Repite tu contraseña"
+                [style]="{'width': '100%'}"
+                [inputStyle]="{'width': '100%'}">
+              </p-password>
+              @if (personForm.get('confirmPassword')?.touched && personForm.errors?.['passwordMismatch']) {
+                <small class="form-error">Las contraseñas no coinciden</small>
+              }
+            </div>
+          </div>
+
+          <div class="form-field terms-field">
+            <p-checkbox
+              formControlName="termsAccepted"
+              [binary]="true"
+              inputId="termsAccepted">
+            </p-checkbox>
+            <label for="termsAccepted" class="terms-label">
+              Acepto los <a href="/bc/politicas" target="_blank">términos y condiciones</a> *
+            </label>
+          </div>
+          @if (personForm.get('termsAccepted')?.invalid && personForm.get('termsAccepted')?.touched) {
+            <small class="form-error">Debes aceptar los términos y condiciones</small>
+          }
+        </form>
+
+        <div class="form-actions">
+          <p-button
+            label="Siguiente"
+            icon="pi pi-arrow-right"
+            iconPos="right"
+            (onClick)="nextStep()"
+            severity="primary">
+          </p-button>
+        </div>
+      </div>
+    }
+
+    <!-- Step 2: Document Photos -->
+    @if (currentStep() === 1) {
+      <div class="section-card">
+        <div class="section-card-header">
+          <i class="pi pi-id-card section-card-icon"></i>
+          <div>
+            <h3 class="section-card-title">Documento de identidad</h3>
+            <p class="section-card-desc">Sube o toma una foto del anverso y reverso de tu documento</p>
+          </div>
+        </div>
+
+        <div class="document-grid">
+          <!-- Front -->
+          <div class="document-item">
+            <span class="document-label">Anverso (frente) *</span>
+            @if (documentFrontPreview()) {
+              <div class="photo-preview">
+                <img [src]="documentFrontPreview()" alt="Documento anverso" class="photo-img" />
+                <button type="button" class="photo-remove" (click)="removeDocumentFront()">
+                  <i class="pi pi-times"></i>
+                </button>
+              </div>
+            } @else {
+              <div class="photo-placeholder">
+                <i class="pi pi-id-card"></i>
+                <span>Anverso del documento</span>
+              </div>
+            }
+            <div class="photo-actions">
+              <button type="button" class="photo-btn" (click)="docFrontInput.click()">
+                <i class="pi pi-upload"></i> Subir imagen
+              </button>
+              <button type="button" class="photo-btn photo-btn--camera" (click)="openCamera('front')">
+                <i class="pi pi-camera"></i> Tomar foto
+              </button>
+            </div>
+            <input
+              #docFrontInput
+              type="file"
+              accept="image/png,image/jpeg,image/jpg"
+              class="hidden-input"
+              (change)="onDocumentFrontSelected($event)" />
+          </div>
+
+          <!-- Back -->
+          <div class="document-item">
+            <span class="document-label">Reverso (dorso) *</span>
+            @if (documentBackPreview()) {
+              <div class="photo-preview">
+                <img [src]="documentBackPreview()" alt="Documento reverso" class="photo-img" />
+                <button type="button" class="photo-remove" (click)="removeDocumentBack()">
+                  <i class="pi pi-times"></i>
+                </button>
+              </div>
+            } @else {
+              <div class="photo-placeholder">
+                <i class="pi pi-id-card"></i>
+                <span>Reverso del documento</span>
+              </div>
+            }
+            <div class="photo-actions">
+              <button type="button" class="photo-btn" (click)="docBackInput.click()">
+                <i class="pi pi-upload"></i> Subir imagen
+              </button>
+              <button type="button" class="photo-btn photo-btn--camera" (click)="openCamera('back')">
+                <i class="pi pi-camera"></i> Tomar foto
+              </button>
+            </div>
+            <input
+              #docBackInput
+              type="file"
+              accept="image/png,image/jpeg,image/jpg"
+              class="hidden-input"
+              (change)="onDocumentBackSelected($event)" />
+          </div>
+        </div>
+
+        @if (!documentFrontPhoto() || !documentBackPhoto()) {
+          <small class="form-error step-error">Ambas fotos del documento son requeridas para continuar</small>
+        }
+
+        <div class="form-actions form-actions--between">
+          <p-button
+            label="Anterior"
+            icon="pi pi-arrow-left"
+            (onClick)="prevStep()"
+            severity="secondary"
+            [outlined]="true">
+          </p-button>
+          <p-button
+            label="Siguiente"
+            icon="pi pi-arrow-right"
+            iconPos="right"
+            (onClick)="nextStep()"
+            severity="primary"
+            [disabled]="!documentFrontPhoto() || !documentBackPhoto()">
+          </p-button>
+        </div>
+      </div>
+    }
+
+    <!-- Step 3: Identity Video -->
+    @if (currentStep() === 2) {
+      <div class="section-card">
+        <div class="section-card-header">
+          <i class="pi pi-video section-card-icon"></i>
+          <div>
+            <h3 class="section-card-title">Video de identidad</h3>
+            <p class="section-card-desc">Graba un video diciendo tu nombre, apellido y número de documento</p>
+          </div>
+        </div>
+
+        <div class="video-section">
+          @if (identityVideoPreview() && !isRecording()) {
+            <div class="video-preview">
+              <video [src]="identityVideoPreview()" controls class="video-player"></video>
+              <button type="button" class="photo-remove" (click)="removeVideo()">
+                <i class="pi pi-times"></i>
+              </button>
+            </div>
+          } @else if (isRecording()) {
+            <div class="video-recording">
+              <video #videoRecordingElement autoplay playsinline muted class="video-player recording"></video>
+              <div class="recording-indicator">
+                <span class="recording-dot"></span> Grabando...
+              </div>
+            </div>
+          } @else {
+            <div class="video-placeholder">
+              <i class="pi pi-video"></i>
+              <span>Sube o graba un video</span>
+              <small>Di tu nombre completo y número de documento</small>
+            </div>
+          }
+
+          <div class="photo-actions video-actions">
+            @if (!isRecording()) {
+              <button type="button" class="photo-btn" (click)="videoInput.click()">
+                <i class="pi pi-upload"></i> Subir video
+              </button>
+              <button type="button" class="photo-btn photo-btn--camera" (click)="startRecording()">
+                <i class="pi pi-circle-fill"></i> Grabar video
+              </button>
+            } @else {
+              <button type="button" class="photo-btn photo-btn--stop" (click)="stopRecording()">
+                <i class="pi pi-stop-circle"></i> Detener grabación
+              </button>
+            }
+          </div>
+
+          <input
+            #videoInput
+            type="file"
+            accept="video/*"
+            class="hidden-input"
+            (change)="onVideoSelected($event)" />
+        </div>
+
+        @if (!identityVideo()) {
+          <small class="form-error step-error">El video de identidad es requerido para completar el registro</small>
+        }
+
+        @if (submitError()) {
+          <div class="error-banner">
+            <i class="pi pi-exclamation-triangle"></i>
+            <span>{{ submitError() }}</span>
+          </div>
+        }
+
+        <div class="form-actions form-actions--between">
+          <p-button
+            label="Anterior"
+            icon="pi pi-arrow-left"
+            (onClick)="prevStep()"
+            severity="secondary"
+            [outlined]="true">
+          </p-button>
+          <p-button
+            label="Registrarme"
+            icon="pi pi-check"
+            (onClick)="submit()"
+            severity="primary"
+            [loading]="submitting()"
+            [disabled]="!identityVideo()">
+          </p-button>
+        </div>
+      </div>
+    }
+  }
+
+  <!-- Camera Dialog -->
+  @if (showCamera()) {
+    <div class="camera-overlay" (click)="closeCamera()">
+      <div class="camera-dialog" (click)="$event.stopPropagation()">
+        <div class="camera-header">
+          <h4>Tomar fotografía</h4>
+          <button class="camera-close" (click)="closeCamera()">
+            <i class="pi pi-times"></i>
+          </button>
+        </div>
+        <div class="camera-body">
+          <video #cameraVideo autoplay playsinline class="camera-video"></video>
+          <canvas #cameraCanvas class="camera-canvas"></canvas>
+        </div>
+        <div class="camera-footer">
+          <button class="photo-btn photo-btn--capture" (click)="capturePhoto()">
+            <i class="pi pi-camera"></i> Capturar
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

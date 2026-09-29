@@ -1,0 +1,117 @@
+<section
+  id="contact"
+  class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-slate-50 py-12"
+>
+  <!-- Background Glows -->
+  <div class="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-[#2F6F7E]/10 blur-3xl"></div>
+  <div class="pointer-events-none absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-[#2F8A63]/10 blur-3xl"></div>
+
+  <!-- Contenedor principal -->
+  <div class="relative mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Encabezado -->
+    <div
+      shared-view-port="animate-soft-rise"
+      hiddenClasses="opacity-0"
+      [delay]="80"
+      class="mx-auto mb-8 max-w-2xl text-center"
+    >
+      <span class="inline-flex rounded-full border border-[#DDE4E7] bg-[#E8F3F1] px-3 py-1 text-xs font-semibold text-[#2F6F7E]">
+        Contacto
+      </span>
+
+      <h2 class="mt-3 text-2xl font-bold leading-tight tracking-tight text-[#172033] sm:text-3xl lg:text-4xl">
+        Encuéntranos
+        <span class="bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#1E40AF] bg-clip-text text-transparent">
+          fazilito
+        </span>
+      </h2>
+    </div>
+
+    <div class="relative z-10 mx-auto w-full space-y-8 py-4">
+      <!-- Canales de Atención (Display Flex: mobile columna, desktop fila) -->
+      <div class="flex flex-col md:flex-row overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg divide-y md:divide-y-0 md:divide-x divide-slate-200">
+        
+        <!-- Card: Visítanos -->
+        <div class="group flex min-h-[220px] flex-1 flex-col items-center gap-2.5 p-4 text-center transition-colors duration-300 hover:bg-slate-50 md:p-5 lg:p-6">
+          <div class="flex h-12 w-12 items-center justify-center">
+            <svg class="h-10 w-10 text-[#0B63FF] transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5-2.5-1.12 2.5-2.5 2.5z" />
+            </svg>
+          </div>
+          <h4 class="font-display text-xs font-black uppercase tracking-[0.15em] text-[#04142E]">
+            Visítanos
+          </h4>
+          <p class="text-xs font-light leading-relaxed text-slate-500">
+            Oficina en Miraflores.<br />Lunes a viernes, de 9am a 6pm.
+          </p>
+          <a
+            href="https://maps.google.com/?q=Calle+Arias+Schreiber+165+Miraflores+Lima"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-auto text-xs font-bold text-[#0B63FF] transition hover:underline focus:outline-none focus:ring-2 focus:ring-[#0B63FF]"
+          >
+            Cal. Arias Schreiber 165, Miraflores
+          </a>
+        </div>
+
+        <!-- Card: Llámanos -->
+        <div class="group flex min-h-[220px] flex-1 flex-col items-center gap-2.5 p-4 text-center transition-colors duration-300 hover:bg-slate-50 md:p-5 lg:p-6">
+          <div class="flex h-12 w-12 items-center justify-center">
+            <svg class="h-10 w-10 text-[#0B63FF] transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.01-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+            </svg>
+          </div>
+          <h4 class="font-display text-xs font-black uppercase tracking-[0.15em] text-[#04142E]">
+            Llámanos
+          </h4>
+          <p class="text-xs font-light leading-relaxed text-slate-500">
+            Atención personalizada y respuestas sin intermediarios.
+          </p>
+          <a
+            href="tel:+51994790996"
+            class="mt-auto text-xs font-bold text-[#0B63FF] transition hover:underline focus:outline-none focus:ring-2 focus:ring-[#0B63FF]"
+          >
+            +51 994 790 996
+          </a>
+        </div>
+
+        <!-- Card: Escríbenos -->
+        <div class="group flex min-h-[220px] flex-1 flex-col items-center gap-2.5 p-4 text-center transition-colors duration-300 hover:bg-slate-50 md:p-5 lg:p-6">
+          <div class="flex h-12 w-12 items-center justify-center">
+            <svg class="h-10 w-10 text-[#0B63FF] transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+            </svg>
+          </div>
+          <h4 class="font-display text-xs font-black uppercase tracking-[0.15em] text-[#04142E]">
+            Escríbenos
+          </h4>
+          <p class="text-xs font-light leading-relaxed text-slate-500">
+            Respuesta en &lt; 24 hrs para soporte y consultas.
+          </p>
+          <a
+            href="mailto:operaciones@srcambio.pe"
+            class="mt-auto text-xs font-bold text-[#0B63FF] transition hover:underline focus:outline-none focus:ring-2 focus:ring-[#0B63FF]"
+          >
+            operaciones@srcambio.pe
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Mapa de Ubicación Geográfica -->
+      <div class="h-[280px] w-full overflow-hidden rounded-2xl border border-slate-200 shadow-md md:h-[350px]">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.8!2d-77.0324!3d-12.1197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8b5d35662b1%3A0x6e8f0c87d2c5e1a0!2sCalle%20Arias%20Schreiber%20165%2C%20Miraflores%2015074%2C%20Lima!5e0!3m2!1ses!2spe!4v1718000000000!5m2!1ses!2spe"
+          width="100%"
+          height="100%"
+          class="border-0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación de Cambia Altok - Cal. Arias Schreiber 165, Miraflores, Lima"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>

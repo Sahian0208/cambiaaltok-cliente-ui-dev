@@ -1,0 +1,209 @@
+<nav
+  class="mx-auto flex h-14 w-full max-w-360 items-center justify-between px-4 sm:px-6 lg:h-14 lg:px-8"
+>
+  <!-- Logo -->
+  <button
+    (click)="navigateToPage('home')"
+    type="button"
+    class="cursor-pointer bg-transparent border-none p-0"
+  >
+    <img src="altok-logo.png" alt="Logo Altok" class="h-5 w-auto lg:h-10" />
+  </button>
+
+  <!-- Desktop Nav Links -->
+  <div class="hidden items-center gap-8 text-sm md:flex">
+    <button
+      type="button"
+      (click)="navigateToPage('about-us')"
+      class="group relative cursor-pointer bg-transparent border-none text-sm text-white transition hover:text-[#10B981]"
+    >
+      Quienes somos
+      <span
+        class="absolute -bottom-1 left-0 h-px w-0 bg-[#10B981] transition-all duration-300 group-hover:w-full"
+      ></span>
+    </button>
+    <button
+      type="button"
+      (click)="navigateToPage('how-it-works')"
+      class="group relative cursor-pointer bg-transparent border-none text-sm text-white transition hover:text-[#10B981]"
+    >
+      Cómo funciona
+      <span
+        class="absolute -bottom-1 left-0 h-px w-0 bg-[#10B981] transition-all duration-300 group-hover:w-full"
+      ></span>
+    </button>
+    <button
+      type="button"
+      (click)="navigateToPage('contact')"
+      class="group relative cursor-pointer bg-transparent border-none text-sm text-white transition hover:text-[#10B981]"
+    >
+      Contacto
+      <span
+        class="absolute -bottom-1 left-0 h-px w-0 bg-[#10B981] transition-all duration-300 group-hover:w-full"
+      ></span>
+    </button>
+  </div>
+
+  <!-- Desktop Auth Buttons -->
+  <div class="hidden items-center gap-3 md:flex">
+    @if (!authService.isAuthenticated()) {
+      <a
+        routerLink="/login"
+        class="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+      >
+        <i class="pi pi-user"></i> Login
+      </a>
+
+      <!-- Register button with submenu -->
+      <div class="register-menu-container relative">
+        <button
+          type="button"
+          (click)="toggleRegisterMenu()"
+          class="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-[#2F8A63] px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#267353] hover:shadow-md border-none"
+        >
+          <i class="pi pi-user-plus"></i> Registrarse
+          <i class="pi pi-chevron-down text-xs"></i>
+        </button>
+
+        @if (registerMenuOpen()) {
+          <div class="register-submenu absolute right-0 top-full mt-2 w-48 rounded-xl bg-white shadow-lg ring-1 ring-black/5 z-50 overflow-hidden">
+            <button
+              type="button"
+              (click)="navigateToRegister('persona')"
+              class="flex w-full items-center gap-2 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition cursor-pointer bg-transparent border-none text-left"
+            >
+              <i class="pi pi-user text-[#2F8A63]"></i> Registrar Persona
+            </button>
+            <button
+              type="button"
+              (click)="navigateToRegister('empresa')"
+              class="flex w-full items-center gap-2 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 transition cursor-pointer bg-transparent border-none text-left"
+            >
+              <i class="pi pi-building text-[#2F8A63]"></i> Registrar Empresa
+            </button>
+          </div>
+        }
+      </div>
+    } @else {
+      <a
+        routerLink="/cliente/perfil"
+        class="inline-flex cursor-pointer items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+      >
+        <i class="pi pi-verified text-[#10B981]"></i>
+        {{ userDisplayName() }}
+      </a>
+      <a
+        (click)="logout()"
+        class="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+      >
+        <i class="pi pi-sign-out"></i> Cerrar Sesión
+      </a>
+    }
+  </div>
+  <!-- Mobile Hamburger Button -->
+  <button
+    type="button"
+    class="inline-flex items-center justify-center rounded-lg p-2 text-white/80 hover:bg-white/10 hover:text-white transition md:hidden"
+    (click)="toggleMobileMenu()"
+    aria-label="Abrir menú"
+  >
+    @if (!mobileMenuOpen()) {
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+    } @else {
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    }
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+@if (mobileMenuOpen()) {
+  <div class="border-t border-white/10 px-4 pb-4 pt-3 md:hidden">
+    <div class="flex flex-col gap-2">
+      <button
+        type="button"
+        (click)="scrollToSection('about-us')"
+        class="w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-white/80 transition hover:bg-white/10 hover:text-white bg-transparent border-none"
+      >
+        Quienes somos
+      </button>
+      <button
+        type="button"
+        (click)="scrollToSection('como-funciona')"
+        class="w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-white/80 transition hover:bg-white/10 hover:text-white bg-transparent border-none"
+      >
+        Cómo funciona
+      </button>      
+      <button
+        type="button"
+        (click)="scrollToSection('contacto')"
+        class="w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-white/80 transition hover:bg-white/10 hover:text-white bg-transparent border-none"
+      >
+        Contacto
+      </button>      
+    </div>
+    <div class="mt-3 flex flex-col gap-2 border-t border-white/10 pt-3">
+      @if (!authService.isAuthenticated()) {
+        <a
+          routerLink="/login"
+          (click)="closeMobileMenu()"
+          class="flex items-center justify-center gap-2 rounded-xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
+        >
+          <i class="pi pi-user"></i> Login
+        </a>
+        <button
+          type="button"
+          (click)="navigateToRegister('persona')"
+          class="flex items-center justify-center gap-2 rounded-xl bg-[#2F8A63] px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-[#267353] border-none cursor-pointer"
+        >
+          <i class="pi pi-user-plus"></i> Registrar Persona
+        </button>
+        <button
+          type="button"
+          (click)="navigateToRegister('empresa')"
+          class="flex items-center justify-center gap-2 rounded-xl bg-[#2F8A63] px-4 py-2.5 text-sm font-medium text-white shadow-sm transition hover:bg-[#267353] border-none cursor-pointer"
+        >
+          <i class="pi pi-building"></i> Registrar Empresa
+        </button>
+      } @else {
+        <a
+          routerLink="/cliente/perfil"
+          (click)="closeMobileMenu()"
+          class="flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium text-white transition hover:bg-white/10 cursor-pointer"
+        >
+          <i class="pi pi-verified text-[#10B981]"></i>
+          {{ userDisplayName() }}
+        </a>
+        <a
+          (click)="logout(); closeMobileMenu()"
+          class="flex items-center justify-center gap-2 rounded-xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-white/10 cursor-pointer"
+        >
+          <i class="pi pi-sign-out"></i> Cerrar Sesión
+        </a>
+      }
+    </div>
+  </div>
+}

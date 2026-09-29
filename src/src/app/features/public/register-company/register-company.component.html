@@ -1,0 +1,280 @@
+<div class="register-wrapper">
+  @if (submitSuccess()) {
+    <div class="success-card">
+      <div class="success-icon">
+        <i class="pi pi-check-circle"></i>
+      </div>
+      <h2>¡Registro exitoso!</h2>
+      <p>Tu empresa ha sido registrada. Recibirás un correo de confirmación y un link para verificar el email, posterior a eso ya puedes iniciar sesion con tu email y contraseña.</p>
+      <p-button label="Ir al inicio" icon="pi pi-home" (onClick)="router.navigate(['/bc'])"></p-button>
+    </div>
+  } @else {
+    <div class="register-header">
+      <h2 class="register-title">Registro de Empresa</h2>
+      <p class="register-subtitle">Completa los siguientes pasos para registrar tu empresa</p>
+    </div>
+
+    <!-- Step indicators -->
+    <div class="steps-indicator">
+      <div class="step-item" [class.active]="currentStep() >= 0" [class.completed]="currentStep() > 0">
+        <div class="step-number">1</div>
+        <span class="step-label">Datos de la empresa</span>
+      </div>
+      <div class="step-connector" [class.active]="currentStep() > 0"></div>
+      <div class="step-item" [class.active]="currentStep() >= 1">
+        <div class="step-number">2</div>
+        <span class="step-label">Documento tributario</span>
+      </div>
+    </div>
+
+    <!-- Step 1: Company Data -->
+    @if (currentStep() === 0) {
+      <div class="section-card">
+        <div class="section-card-header">
+          <i class="pi pi-building section-card-icon"></i>
+          <div>
+            <h3 class="section-card-title">Datos de la empresa</h3>
+            <p class="section-card-desc">Ingresa la información legal de tu empresa</p>
+          </div>
+        </div>
+
+        <form [formGroup]="companyForm" class="register-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="country" class="form-label">Reside Legalmente en *</label>
+              <p-select
+                id="country"
+                formControlName="country"
+                [options]="countryOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Seleccione pais"
+                [style]="{'width': '100%'}">
+              </p-select>
+              @if (companyForm.get('country')?.invalid && companyForm.get('country')?.touched) {
+                <small class="form-error">Nacionalidad es requerida</small>
+              }
+            </div>
+            <div class="form-field">
+              <label for="legalName" class="form-label">Razón social *</label>
+              <input pInputText id="legalName" formControlName="legalName" placeholder="Nombre legal de la empresa" />
+              @if (companyForm.get('legalName')?.invalid && companyForm.get('legalName')?.touched) {
+                <small class="form-error">Razón social es requerida</small>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">            
+            <div class="form-field">
+              <label for="registrationNumber" class="form-label">NIT / RUC *</label>
+              <input pInputText id="registrationNumber" formControlName="registrationNumber" placeholder="Número de registro tributario" />
+              @if (companyForm.get('registrationNumber')?.invalid && companyForm.get('registrationNumber')?.touched) {
+                <small class="form-error">Número de registro es requerido</small>
+              }
+            </div>
+           <div class="form-field">
+              <label for="email" class="form-label">Email *</label>
+              <input pInputText id="email" formControlName="email" placeholder="tu@email.com" type="email" />
+              @if (companyForm.get('email')?.invalid && companyForm.get('email')?.touched) {
+                <small class="form-error">
+                  @if (companyForm.get('email')?.errors?.['required']) {
+                    Email es requerido
+                  } @else {
+                    Ingresa un email válido
+                  }
+                </small>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="legalRepresentativeName" class="form-label">Representante legal *</label>
+              <input pInputText id="legalRepresentativeName" formControlName="legalRepresentativeName" placeholder="Nombre completo del representante" />
+              @if (companyForm.get('legalRepresentativeName')?.invalid && companyForm.get('legalRepresentativeName')?.touched) {
+                <small class="form-error">Nombre del representante es requerido</small>
+              }
+            </div>
+            <div class="form-field">
+              <label for="businessSector" class="form-label">Rubro *</label>
+              <p-select
+                id="businessSector"
+                formControlName="businessSector"
+                [options]="businessSectorOptions"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Selecciona el rubro"
+                [style]="{'width': '100%'}">
+              </p-select>
+              @if (companyForm.get('businessSector')?.invalid && companyForm.get('businessSector')?.touched) {
+                <small class="form-error">Rubro es requerido</small>
+              }
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="password" class="form-label">Contraseña *</label>
+              <p-password
+                id="password"
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="true"
+                placeholder="Mínimo 8 caracteres"
+                [style]="{'width': '100%'}"
+                [inputStyle]="{'width': '100%'}">
+              </p-password>
+              @if (companyForm.get('password')?.invalid && companyForm.get('password')?.touched) {
+                <small class="form-error">
+                  @if (companyForm.get('password')?.errors?.['required']) {
+                    Contraseña es requerida
+                  } @else if (companyForm.get('password')?.errors?.['minlength']) {
+                    Mínimo 8 caracteres
+                  } @else {
+                    Debe tener al menos 1 mayúscula, 1 minúscula y 1 número
+                  }
+                </small>
+              }
+            </div>
+            <div class="form-field">
+              <label for="confirmPassword" class="form-label">Confirmar contraseña *</label>
+              <p-password
+                id="confirmPassword"
+                formControlName="confirmPassword"
+                [toggleMask]="true"
+                [feedback]="false"
+                placeholder="Repite tu contraseña"
+                [style]="{'width': '100%'}"
+                [inputStyle]="{'width': '100%'}">
+              </p-password>
+              @if (companyForm.get('confirmPassword')?.touched && companyForm.errors?.['passwordMismatch']) {
+                <small class="form-error">Las contraseñas no coinciden</small>
+              }
+            </div>
+          </div>
+
+          <div class="form-field terms-field">
+            <p-checkbox
+              formControlName="termsAccepted"
+              [binary]="true"
+              inputId="termsAccepted">
+            </p-checkbox>
+            <label for="termsAccepted" class="terms-label">
+              Acepto los <a href="/bc/politicas" target="_blank">términos y condiciones</a> *
+            </label>
+          </div>
+          @if (companyForm.get('termsAccepted')?.invalid && companyForm.get('termsAccepted')?.touched) {
+            <small class="form-error">Debes aceptar los términos y condiciones</small>
+          }
+        </form>
+
+        <div class="form-actions">
+          <p-button
+            label="Siguiente"
+            icon="pi pi-arrow-right"
+            iconPos="right"
+            (onClick)="nextStep()"
+            severity="primary">
+          </p-button>
+        </div>
+      </div>
+    }
+
+    <!-- Step 2: Taxpayer Registration Photo -->
+    @if (currentStep() === 1) {
+      <div class="section-card">
+        <div class="section-card-header">
+          <i class="pi pi-file section-card-icon"></i>
+          <div>
+            <h3 class="section-card-title">Documento tributario</h3>
+            <p class="section-card-desc">Sube o toma una foto de tu registro tributario (NIT/RUC)</p>
+          </div>
+        </div>
+
+        <div class="document-section">
+          @if (taxpayerRegistrationPreview()) {
+            <div class="photo-preview">
+              <img [src]="taxpayerRegistrationPreview()" alt="Registro tributario" class="photo-img" />
+              <button type="button" class="photo-remove" (click)="removeTaxpayerPhoto()">
+                <i class="pi pi-times"></i>
+              </button>
+            </div>
+          } @else {
+            <div class="photo-placeholder">
+              <i class="pi pi-file"></i>
+              <span>Foto del registro tributario</span>
+            </div>
+          }
+
+          <div class="photo-actions">
+            <button type="button" class="photo-btn" (click)="taxpayerInput.click()">
+              <i class="pi pi-upload"></i> Subir imagen
+            </button>
+            <button type="button" class="photo-btn photo-btn--camera" (click)="openCamera()">
+              <i class="pi pi-camera"></i> Tomar foto
+            </button>
+          </div>
+
+          <input
+            #taxpayerInput
+            type="file"
+            accept="image/png,image/jpeg,image/jpg"
+            class="hidden-input"
+            (change)="onTaxpayerPhotoSelected($event)" />
+        </div>
+
+        @if (!taxpayerRegistrationPhoto()) {
+          <small class="form-error step-error">La foto del registro tributario es requerida para completar el registro</small>
+        }
+
+        @if (submitError()) {
+          <div class="error-banner">
+            <i class="pi pi-exclamation-triangle"></i>
+            <span>{{ submitError() }}</span>
+          </div>
+        }
+
+        <div class="form-actions form-actions--between">
+          <p-button
+            label="Anterior"
+            icon="pi pi-arrow-left"
+            (onClick)="prevStep()"
+            severity="secondary"
+            [outlined]="true">
+          </p-button>
+          <p-button
+            label="Registrar empresa"
+            icon="pi pi-check"
+            (onClick)="submit()"
+            severity="primary"
+            [loading]="submitting()"
+            [disabled]="!taxpayerRegistrationPhoto()">
+          </p-button>
+        </div>
+      </div>
+    }
+  }
+
+  <!-- Camera Dialog -->
+  @if (showCamera()) {
+    <div class="camera-overlay" (click)="closeCamera()">
+      <div class="camera-dialog" (click)="$event.stopPropagation()">
+        <div class="camera-header">
+          <h4>Tomar fotografía</h4>
+          <button class="camera-close" (click)="closeCamera()">
+            <i class="pi pi-times"></i>
+          </button>
+        </div>
+        <div class="camera-body">
+          <video #cameraVideo autoplay playsinline class="camera-video"></video>
+          <canvas #cameraCanvas class="camera-canvas"></canvas>
+        </div>
+        <div class="camera-footer">
+          <button class="photo-btn photo-btn--capture" (click)="capturePhoto()">
+            <i class="pi pi-camera"></i> Capturar
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

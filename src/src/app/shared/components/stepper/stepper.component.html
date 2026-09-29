@@ -1,0 +1,15 @@
+<div class="stepper-container" [class.stepper-denied]="isDenied">
+  <p-steps
+    [model]="steps"
+    [activeIndex]="activeIndex"
+    [readonly]="true"
+    styleClass="cambia-stepper"
+  ></p-steps>
+
+  @if (isDenied) {
+    <div class="denied-message">
+      <i class="pi pi-exclamation-triangle"></i>
+      <span>Operación denegada</span>
+    </div>
+  }
+</div>

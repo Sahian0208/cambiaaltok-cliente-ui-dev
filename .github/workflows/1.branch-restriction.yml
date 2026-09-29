@@ -1,0 +1,50 @@
+name: Auto-Revert Direct Push
+
+on:
+  push:
+    branches:
+      - prod
+      - dev
+
+jobs:
+  verify-and-revert:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: windows-latest
+
+    permissions:
+      contents: write
+      pull-requests: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate and Revert if Direct Push
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_BRANCH: ${{ github.ref_name }}
+        shell: powershell
+        run: |
+          Write-Host "Checking commit: ${{ github.sha }} on branch: $env:TARGET_BRANCH"
+
+          $IS_MERGED = gh api repos/${{ github.repository }}/commits/${{ github.sha }}/pulls --jq ".[] | select(.merged_at != null) | `"true`""
+          if ($IS_MERGED -ne "true") {
+            Write-Host "========================================================================="
+            Write-Host "CRITICAL ERROR: Direct push detected on branch '$env:TARGET_BRANCH'. Reverting..."
+            Write-Host "========================================================================="
+
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+            git checkout $env:TARGET_BRANCH
+            git revert --no-edit ${{ github.sha }}
+            git push origin $env:TARGET_BRANCH
+
+            exit 1
+          } else {
+            Write-Host "========================================================================="
+            Write-Host "SUCCESSFUL VALIDATION: Changes came from a Pull Request."
+            Write-Host "========================================================================="
+          }

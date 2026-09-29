@@ -1,0 +1,205 @@
+<div class="dashboard-wrapper">
+  <!-- Welcome Header -->
+  <div class="welcome-section">
+    <div>
+      <h2 class="welcome-title">Mi Dashboard</h2>
+      <p class="welcome-subtitle">Resumen de tus operaciones de cambio</p>
+    </div>
+    <button
+      class="new-transfer-btn"
+      (click)="goToDetail('new')"
+    >
+      <i class="pi pi-plus"></i>
+      <span>Nueva Transferencia</span>
+    </button>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon stat-icon--active">
+        <i class="pi pi-sync"></i>
+      </div>
+      <div class="stat-content">
+        <span class="stat-value">{{ activeTransactions.length }}</span>
+        <span class="stat-label">Activas</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon stat-icon--completed">
+        <i class="pi pi-check-circle"></i>
+      </div>
+      <div class="stat-content">
+        <span class="stat-value">{{ getCompletedCount() }}</span>
+        <span class="stat-label">Completadas</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon stat-icon--total">
+        <i class="pi pi-list"></i>
+      </div>
+      <div class="stat-content">
+        <span class="stat-value">{{ transactions.length }}</span>
+        <span class="stat-label">Total</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active Transactions with Stepper -->
+  @if (activeTransactions.length > 0) {
+    <section class="section-card">
+      <div class="section-header">
+        <div class="section-title-group">
+          <i class="pi pi-bolt section-icon section-icon--active"></i>
+          <h3 class="section-title">Transacciones Activas</h3>
+        </div>
+        <span class="badge badge--info">{{ activeTransactions.length }}</span>
+      </div>
+      <div class="active-transactions-grid">
+        @for (transaction of activeTransactions; track transaction.id) {
+          <div
+            class="transaction-card"
+            (click)="goToDetail(transaction.id)"
+          >
+            <div class="transaction-card-header">
+              <div class="transaction-meta">
+                <i class="pi pi-calendar"></i>
+                <span>{{ transaction.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+              </div>
+              <p-tag
+                [value]="getStatusLabel(transaction.status)"
+                [severity]="getStatusSeverity(transaction.status)"
+                [rounded]="true"
+              />
+            </div>
+            <div class="transaction-amounts">
+              <div class="amount-block">
+                <span class="amount-label">Envías</span>
+                <span class="amount-value amount-value--origin inline-flex items-center gap-1">
+                  {{ transaction.sourceAmount | number:'1.2-2' }}
+                  <small>{{ transaction.sourceCurrency }}</small>                  
+                  <app-national-flag [country]="transaction.sourceCurrency"></app-national-flag>
+                </span>
+              </div>
+              <div class="amount-arrow">
+                <i class="pi pi-arrow-right"></i>
+              </div>
+              <div class="amount-block">
+                <span class="amount-label">Recibes</span>
+                <span class="amount-value amount-value--dest inline-flex items-center gap-1">
+                  {{ transaction.destinationAmount | number:'1.2-2' }}
+                  <small>{{ transaction.destinationCurrency }}</small>
+                  <app-national-flag [country]="transaction.destinationCurrency"></app-national-flag>
+                </span>
+              </div>
+            </div>
+            <div class="transaction-stepper">
+              <app-stepper [currentStep]="getStep(transaction.status)"></app-stepper>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+  } @else if (!loading) {
+    <section class="section-card empty-state-card">
+      <div class="empty-state">
+        <i class="pi pi-inbox empty-state-icon"></i>
+        <h4 class="empty-state-title">Sin transacciones activas</h4>
+        <p class="empty-state-text">Inicia una nueva transferencia para comenzar</p>
+      </div>
+    </section>
+  }
+
+  <!-- Transaction History Table -->
+  <section class="section-card">
+    <div class="section-header">
+      <div class="section-title-group">
+        <i class="pi pi-history section-icon section-icon--history"></i>
+        <h3 class="section-title">Historial de Transacciones</h3>
+      </div>
+      <span class="badge badge--neutral">{{ transactions.length }}</span>
+    </div>
+
+    <div class="table-container">
+      <p-table
+        [value]="transactions"
+        [paginator]="true"
+        [rows]="10"
+        [rowsPerPageOptions]="[5, 10, 20]"
+        [loading]="loading"
+        [sortField]="'createdAt'"
+        [sortOrder]="-1"
+        styleClass="p-datatable-sm p-datatable-striped"
+      >
+        <ng-template #header>
+          <tr>
+            <th pSortableColumn="createdAt">
+              Fecha <p-sortIcon field="createdAt" />
+            </th>
+            <th pSortableColumn="sourceAmount">
+              Monto Enviado <p-sortIcon field="sourceAmount" />
+            </th>
+            <th>Monto Recibido</th>
+            <th pSortableColumn="status">
+              Estado <p-sortIcon field="status" />
+            </th>
+            <th>Banco Destino</th>
+            <th>Acciones</th>
+          </tr>
+        </ng-template>
+        <ng-template #body let-transaction>
+          <tr class="table-row-clickable" (click)="goToDetail(transaction.id)">
+            <td>
+              <span class="table-date">{{ transaction.createdAt | date:'dd/MM/yyyy' }}</span>
+              <span class="table-time">{{ transaction.createdAt | date:'HH:mm' }}</span>
+            </td>
+            <td>
+              <span class="table-amount inline-flex items-center gap-1">                
+                {{ transaction.sourceAmount | currencyFormat:transaction.sourceCurrency }}
+                <app-national-flag [country]="transaction.sourceCurrency" size="w-1"></app-national-flag>                
+              </span>
+            </td>
+            <td>              
+              <span class="table-amount inline-flex items-center gap-1">
+                
+                {{ transaction.destinationAmount | currencyFormat:transaction.destinationCurrency }}
+              <app-national-flag [country]="transaction.destinationCurrency" size="w-1"></app-national-flag>                
+              </span>
+                
+            </td>
+            <td>
+              <p-tag
+                [value]="getStatusLabel(transaction.status)"
+                [severity]="getStatusSeverity(transaction.status)"
+                [rounded]="true"
+              />
+            </td>
+            <td>
+              <span class="table-bank">{{ getDestinationBankName(transaction) }}</span>
+            </td>
+            <td>
+              <p-button
+                icon="pi pi-eye"
+                [rounded]="true"
+                [text]="true"
+                size="small"
+                severity="info"
+                (onClick)="goToDetail(transaction.id); $event.stopPropagation()"
+              />
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+          <tr>
+            <td colspan="6">
+              <div class="table-empty">
+                <i class="pi pi-inbox"></i>
+                <span>No tienes transacciones registradas.</span>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </section>
+</div>

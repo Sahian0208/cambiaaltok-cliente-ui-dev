@@ -1,0 +1,278 @@
+.exchange-input {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+:host {
+  display: block;
+}
+
+input {
+  font-family: inherit;
+}
+
+.bank-carousel {
+  animation: bank-scroll 22s linear infinite;
+}
+
+.bank-carousel:hover {
+  animation-play-state: paused;
+}
+
+@keyframes bank-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes heroWordReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) rotateX(35deg);
+    filter: blur(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes cardFlipIn {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) rotateY(-18deg) translateY(24px) scale(0.96);
+    filter: blur(8px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(4deg) translateY(-4px) scale(1.01);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0) translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes quoteCardLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-42px) scale(0.96);
+    filter: blur(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes quoteCardRight {
+  0% {
+    opacity: 0;
+    transform: translateX(42px) scale(0.96);
+    filter: blur(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes softRise {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+    filter: blur(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-hero-word {
+  animation: heroWordReveal 0.25s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.animate-card-flip {
+  animation: cardFlipIn 0.95s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.animate-quote-left {
+  animation: quoteCardLeft 0.8s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.animate-quote-right {
+  animation: quoteCardRight 0.8s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.animate-soft-rise {
+  animation: softRise 0.5s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.currency-card {
+  transition:
+    background-color 500ms ease,
+    border-color 500ms ease,
+    color 500ms ease;
+}
+
+.currency-text {
+  transition: color 500ms ease;
+}
+
+.currency-bg {
+  transition: background-color 500ms ease;
+}
+
+@media (max-width: 768px) {
+  .animate-card-flip,
+  .animate-quote-left,
+  .animate-quote-right,
+  .animate-hero-word {
+    animation: mobileCleanRise 0.55s ease-out both;
+  }
+
+  @keyframes mobileCleanRise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+
+
+@media (min-width: 1024px) {
+  .bank-promo-shell {
+    max-width: 88rem;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+}
+
+
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+}
+
+.hero-text {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    flex: 1.1;
+    text-align: left;
+  }
+
+  @media (min-width: 1024px) {
+    flex: 0 1 60%;
+  }
+}
+
+/* .hero-better-rate {
+  width: 100%;
+
+  @media (min-width: 768px) {
+    flex: 0.95;
+    min-width: 280px;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    flex: 0 1 25%;
+    min-width: 0;
+  }
+} */
+
+.hero-better-rate {
+  display: none; /*Oculto por defecto en mobile (< 768px)*/
+  width: 100%;
+
+  @media (min-width: 768px) {
+    display: flex; /*Se muestra en tablets y pantallas superiores*/
+    flex: 0.95;
+    min-width: 280px;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    flex: 0 1 25%;
+    min-width: 0;
+  }
+}
+
+.hero-title {
+  font-size: 1.75rem;
+  line-height: 1.2;
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+  @media (min-width: 1024px) {
+    font-size: 2.5rem;
+  }
+}
+
+.hero-calculator {
+  width: 100%;
+
+  @media (min-width: 768px) {
+    flex: 0.95;
+    min-width: 300px;
+    max-width: 390px;
+  }
+
+  @media (min-width: 1024px) {
+    flex: 0 1 40%;
+    min-width: 0;
+    max-width: none;
+  }
+}
+
+.animate-hero-word-slow {
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Agrega esto en tu CSS global o en el componente de tu sección */
+#inicio, section {
+  /* Sustituye 80px por la altura real de tu navbar */
+  scroll-margin-top: 80px; 
+}

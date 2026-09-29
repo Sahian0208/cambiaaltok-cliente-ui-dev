@@ -1,0 +1,237 @@
+:host {
+  display: block;
+}
+
+.client-home {
+  width: 100%;
+}
+
+// ========================================
+// Hero Section
+// ========================================
+.client-hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #04142E 0%, #0a2540 50%, #0c1e3a 100%);
+
+  @media (min-width: 768px) {
+    padding: 2.5rem 2rem;
+    min-height: 460px;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 3rem 2.5rem;
+    min-height: 500px;
+  }
+}
+
+// Background images
+.client-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 0.7s ease;
+  pointer-events: none;
+  z-index: 0;
+
+  &--bolivia {
+    background-image: url('/salar-de-uyuni.jpg');
+  }
+
+  &--peru {
+    background-image: url('/machu-picchu.jpg');
+  }
+}
+
+// Gradient overlay
+.client-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #04142E, #04142E 40%, transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+// Decorative blurs
+.client-hero-blur {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+
+  &--top {
+    top: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    background: rgba(59, 130, 246, 0.1);
+    filter: blur(60px);
+  }
+
+  &--bottom {
+    bottom: -60px;
+    left: -80px;
+    width: 350px;
+    height: 250px;
+    background: rgba(59, 130, 246, 0.05);
+    filter: blur(60px);
+  }
+}
+
+// Content container
+.client-hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+// Left text section
+.client-hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+
+  @media (min-width: 768px) {
+    gap: 1.25rem;
+  }
+}
+
+.client-hero-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: white;
+  line-height: 1.2;
+  margin: 0;
+
+  @media (min-width: 768px) {
+    font-size: 2.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2.75rem;
+  }
+}
+
+.client-hero-title-accent {
+  background: linear-gradient(to right, #0B63FF, #12D6EB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.client-hero-title-highlight {
+  color: #21F0D2;
+}
+
+.client-hero-subtitle {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 420px;
+
+  @media (min-width: 768px) {
+    font-size: 0.9375rem;
+  }
+}
+
+// Features row
+.client-hero-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.client-hero-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;  
+  
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;  
+  
+
+  
+
+  @media (min-width: 768px) {
+    font-size: 0.8125rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+// Coupon summary containers
+.client-hero-coupon {
+  margin-top: 1rem;
+}
+
+.client-hero-coupon-mobile {
+  display: block;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+// Right calculator section
+.client-hero-calculator {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    width: auto;
+    flex: 0 0 380px;
+    margin: 0;
+  }
+
+  @media (min-width: 1024px) {
+    flex: 0 0 400px;
+  }
+}
+
+// ========================================
+// Dark Mode
+// ========================================
+:host-context(.dark-mode) {
+  .client-hero {
+    background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%);
+  }
+
+  .client-hero-overlay {
+    background: linear-gradient(to right, #020617, #020617 40%, transparent);
+  }
+
+  .client-hero-subtitle {
+    color: #64748b;
+  }
+
+  .client-hero-feature {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.75);
+  }
+}

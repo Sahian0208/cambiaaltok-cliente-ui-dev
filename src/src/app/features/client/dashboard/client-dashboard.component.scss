@@ -1,0 +1,688 @@
+@use '../../../../assets/styles/variables' as *;
+
+:host {
+  display: block;
+}
+
+// ========================================
+// Dashboard Wrapper
+// ========================================
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+// ========================================
+// Welcome Section
+// ========================================
+.welcome-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.welcome-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: $color-primary;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.welcome-subtitle {
+  font-size: 0.875rem;
+  color: $color-text-secondary;
+  margin: 0.25rem 0 0;
+}
+
+.new-transfer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: linear-gradient(135deg, $color-primary, $color-primary-light);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba($color-primary, 0.25);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba($color-primary, 0.35);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  i {
+    font-size: 0.8rem;
+  }
+}
+
+// ========================================
+// Stats Grid
+// ========================================
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 640px) {
+    gap: 0.5rem;
+  }
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: white;
+  border-radius: 14px;
+  border: 1px solid $color-border;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.625rem 0.25rem;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 0;
+  }
+}
+
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+
+  &--active {
+    background: #eff6ff;
+    color: #3b82f6;
+  }
+
+  &--completed {
+    background: #ecfdf5;
+    color: #10b981;
+  }
+
+  &--total {
+    background: #f5f3ff;
+    color: #8b5cf6;
+  }
+
+  @media (max-width: 640px) {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $color-text;
+  line-height: 1.2;
+
+  @media (max-width: 640px) {
+    font-size: 1.1rem;
+  }
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+
+  @media (max-width: 640px) {
+    font-size: 0.6rem;
+  }
+}
+
+// ========================================
+// Section Cards
+// ========================================
+.section-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid $color-border;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.section-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.section-icon {
+  font-size: 1.1rem;
+
+  &--active {
+    color: #f59e0b;
+  }
+
+  &--history {
+    color: #6366f1;
+  }
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+
+  &--info {
+    background: #dbeafe;
+    color: #2563eb;
+  }
+
+  &--neutral {
+    background: #f1f5f9;
+    color: #64748b;
+  }
+}
+
+// ========================================
+// Active Transactions Grid
+// ========================================
+.active-transactions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
+  gap: 1rem;
+}
+
+.transaction-card {
+  padding: 1.25rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+  }
+}
+
+.transaction-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.transaction-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+
+  i {
+    font-size: 0.75rem;
+  }
+}
+
+// Amounts
+.transaction-amounts {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 10px;
+  border: none;
+}
+
+.amount-block {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.amount-label {
+  font-size: 0.7rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.amount-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  white-space: nowrap;
+
+  small {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: $color-text-secondary;
+    margin-left: 0.25rem;
+  }
+
+  &--origin {
+    color: $color-primary;
+  }
+
+  &--dest {
+    color: $color-success;
+  }
+}
+
+.amount-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #eff6ff;
+  color: #3b82f6;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.transaction-stepper {
+  margin-top: 0.25rem;
+  overflow: hidden;
+  border-top: none;
+
+  app-stepper {
+    display: block;
+  }
+}
+
+// ========================================
+// Empty State
+// ========================================
+.empty-state-card {
+  border-style: dashed;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+  text-align: center;
+}
+
+.empty-state-icon {
+  font-size: 2.5rem;
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+.empty-state-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $color-text;
+  margin: 0 0 0.375rem;
+}
+
+.empty-state-text {
+  font-size: 0.85rem;
+  color: $color-text-secondary;
+  margin: 0;
+}
+
+// ========================================
+// Table Styles
+// ========================================
+.table-container {
+  overflow-x: auto;
+  overflow-y: visible;
+  border-radius: 10px;
+  -webkit-overflow-scrolling: touch;
+
+  :host ::ng-deep {
+    .p-datatable {
+      min-width: 0;
+
+      .p-datatable-table-container {
+        overflow: visible;
+      }
+
+      .p-datatable-header-row > th {
+        background: #f8fafc;
+        color: $color-text;
+        font-weight: 600;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        padding: 0.875rem 1rem;
+        border-bottom: 2px solid #e2e8f0;
+      }
+
+      .p-datatable-row-group-header {
+        background: #f8fafc;
+      }
+
+      .p-datatable-tbody > tr > td {
+        padding: 0.875rem 1rem;
+        border-bottom: 1px solid #f1f5f9;
+        vertical-align: middle;
+      }
+
+      .p-datatable-tbody > tr:last-child > td {
+        border-bottom: none;
+      }
+
+      .p-paginator {
+        border: none;
+        padding: 0.75rem 0;
+      }
+    }
+  }
+}
+
+.table-row-clickable {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: #f8fafc !important;
+  }
+}
+
+.table-date {
+  display: block;
+  font-weight: 500;
+  color: $color-text;
+  font-size: 0.875rem;
+}
+
+.table-time {
+  display: block;
+  font-size: 0.75rem;
+  color: $color-text-secondary;
+}
+
+.table-amount {
+  font-weight: 600;
+  color: $color-text;
+  font-size: 0.875rem;  
+}
+
+.table-bank {
+  font-size: 0.85rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+}
+
+.table-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2rem 1rem;
+  color: $color-text-secondary;
+
+  i {
+    font-size: 2rem;
+    color: #cbd5e1;
+  }
+
+  span {
+    font-size: 0.875rem;
+  }
+}
+
+// ========================================
+// Responsive Adjustments
+// ========================================
+@media (max-width: 768px) {
+  .welcome-title {
+    font-size: 1.4rem;
+  }
+
+  .section-card {
+    padding: 1.25rem;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .transaction-amounts {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .amount-arrow {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    font-size: 0.6rem;
+  }
+
+  .amount-block {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+  }
+
+  .amount-label {
+    font-size: 0.55rem;
+  }
+
+  .amount-value {
+    font-size: 0.9rem;
+
+    small {
+      font-size: 0.6rem;
+    }
+  }
+
+  .table-container {
+    margin: 0 -1.25rem;
+    padding: 0;
+    border-radius: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    :host ::ng-deep .p-datatable {
+      min-width: 600px;
+    }
+
+    :host ::ng-deep .p-datatable .p-datatable-tbody > tr > td,
+    :host ::ng-deep .p-datatable .p-datatable-header-row > th {
+      padding: 0.625rem 0.75rem;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-wrapper {
+    gap: 1rem;
+  }
+
+  .welcome-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .new-transfer-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+  }
+}
+
+// ========================================
+// Dark Mode
+// ========================================
+:host-context(.dark-mode) {
+  .stat-card {
+    background: #1e293b;
+    border-color: #334155;
+    color: #f1f5f9;
+  }
+
+  .stat-value {
+    color: #f1f5f9;
+  }
+
+  .section-card {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .section-title {
+    color: #f1f5f9;
+  }
+
+  .transaction-card {
+    background: #0f172a;
+    border-color: #334155;
+
+    &:hover {
+      background: #1e293b;
+      border-color: #475569;
+    }
+  }
+
+  .transaction-amounts {
+    background: #1e293b;
+    border-color: #334155;
+  }
+
+  .amount-value {
+    color: #f1f5f9;
+
+    &--origin {
+      color: #93c5fd;
+    }
+
+    &--dest {
+      color: #6ee7b7;
+    }
+  }
+
+  .welcome-title {
+    color: #f1f5f9;
+  }
+
+  .welcome-subtitle {
+    color: #94a3b8;
+  }
+
+  .new-transfer-btn {
+    box-shadow: 0 4px 12px rgba(30, 58, 95, 0.4);
+  }
+}
+
+// ========================================
+// Further Mobile Optimization
+// ========================================
+@media (max-width: 480px) {
+  .welcome-section {
+    gap: 0.5rem;
+  }
+
+  .welcome-title {
+    font-size: 1.25rem;
+  }
+
+  .welcome-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .section-card {
+    padding: 0.875rem;
+    border-radius: 10px;
+  }
+
+  .section-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: 0.95rem;
+  }
+
+  .transaction-card {
+    padding: 0.75rem;
+  }
+
+  .transaction-card-header {
+    margin-bottom: 0.625rem;
+  }
+
+  .transaction-stepper {
+    margin-top: 0.125rem;
+  }
+}

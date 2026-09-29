@@ -1,0 +1,106 @@
+@use '../../../assets/styles/variables' as *;
+
+.auth-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: $color-background;
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 1rem;
+}
+
+// Background decoration
+.auth-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.auth-bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.05;
+}
+
+.auth-bg-circle-1 {
+  width: 600px;
+  height: 600px;
+  background-color: $color-primary;
+  top: -200px;
+  right: -200px;
+}
+
+.auth-bg-circle-2 {
+  width: 400px;
+  height: 400px;
+  background-color: $color-bolivia;
+  bottom: -150px;
+  left: -150px;
+}
+
+// Container
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  z-index: 1;
+}
+
+// Logo
+.auth-logo {
+  margin-bottom: 2rem;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.auth-logo-text {
+  font-size: 2rem;
+  font-weight: 800;
+  color: $color-primary;
+  letter-spacing: -0.5px;
+}
+
+// Card
+.auth-card {
+  width: 100%;
+  background-color: $color-surface;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  border: 1px solid $color-border;
+
+  @media (max-width: 480px) {
+    padding: 1.5rem;
+    border-radius: 8px;
+  }
+}
+
+// Footer
+.auth-footer {
+  margin-top: 1.5rem;
+}
+
+.auth-footer-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: $color-text-secondary;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  i {
+    font-size: 0.75rem;
+  }
+}

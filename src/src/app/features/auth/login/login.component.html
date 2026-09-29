@@ -1,0 +1,70 @@
+<div class="text-center mb-6">
+  <h1 class="text-2xl font-bold text-[#1E3A5F]">Iniciar Sesión</h1>
+  <p class="text-[#6B7280] mt-2">Ingresa tus credenciales para acceder a tu cuenta</p>
+</div>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-5">
+  <!-- Generic error message -->
+  @if (loginError()) {
+    <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm" role="alert">
+      <div class="flex items-center gap-2">
+        <i class="pi pi-exclamation-circle"></i>
+        <span>{{ loginError() }}</span>
+      </div>
+    </div>
+  }
+
+  <!-- Email field -->
+  <div class="flex flex-col gap-2">
+    <label for="email" class="text-sm font-medium text-[#1F2937]">Email</label>
+    <input
+      pInputText
+      id="email"
+      type="email"
+      formControlName="email"
+      placeholder="tu@email.com"
+      [class]="loginForm.get('email')!.invalid && loginForm.get('email')!.touched ? 'ng-invalid ng-dirty' : ''"
+      aria-describedby="email-error"
+    />
+    @if (loginForm.get('email')!.touched && loginForm.get('email')!.hasError('required')) {
+      <small id="email-error" class="text-red-500 text-xs">El email es obligatorio.</small>
+    }
+    @if (loginForm.get('email')!.touched && loginForm.get('email')!.hasError('emailFormat')) {
+      <small id="email-error" class="text-red-500 text-xs">El formato del email no es válido.</small>
+    }
+  </div>
+
+  <!-- Password field -->
+  <div class="flex flex-col gap-2">
+    <label for="password" class="text-sm font-medium text-[#1F2937]">Contraseña</label>
+    <p-password
+      id="password"
+      formControlName="password"
+      [feedback]="false"
+      [toggleMask]="true"
+      placeholder="Tu contraseña"
+      styleClass="w-full"
+      [inputStyleClass]="'w-full' + (loginForm.get('password')!.invalid && loginForm.get('password')!.touched ? ' ng-invalid ng-dirty' : '')"
+      aria-describedby="password-error"
+    ></p-password>
+    @if (loginForm.get('password')!.touched && loginForm.get('password')!.hasError('required')) {
+      <small id="password-error" class="text-red-500 text-xs">La contraseña es obligatoria.</small>
+    }
+  </div>
+
+  <!-- Submit button -->
+  <p-button
+    type="submit"
+    label="Iniciar Sesión"
+    [loading]="isLoading()"
+    [disabled]="isLoading()"
+    styleClass="w-full"
+    severity="primary"
+  ></p-button>
+
+  <!-- Register link -->
+  <div class="text-center text-sm text-[#6B7280]">
+    ¿No tienes cuenta?
+    <a routerLink="/registro" class="text-[#1E3A5F] font-medium hover:underline">Regístrate aquí</a>
+  </div>
+</form>

@@ -1,0 +1,134 @@
+.stepper-container {
+  width: 100%;
+  padding: 0.5rem 0;
+  overflow: hidden;
+  border-top: none;
+}
+
+// Denied state styling
+.stepper-denied {
+  :host ::ng-deep .cambia-stepper {
+    .p-steps-item {
+      .p-steps-item-number {
+        background-color: #ef4444;
+        border-color: #ef4444;
+        color: #ffffff;
+      }
+
+      .p-steps-item-label {
+        color: #6b7280;
+      }
+    }
+  }
+}
+
+.denied-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.5rem;
+  color: #ef4444;
+  font-weight: 500;
+  font-size: 0.8rem;
+
+  i {
+    font-size: 1rem;
+  }
+}
+
+// Custom stepper styles — compact for card usage
+:host ::ng-deep .cambia-stepper {
+  border: none !important;
+
+  .p-steps-list {
+    padding: 0;
+    border: none !important;
+  }
+
+  // Remove the top separator/border line from p-steps root
+  &.p-steps,
+  &.p-component {
+    border: none !important;
+  }
+
+  .p-steps-item {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+
+    // Override PrimeNG connector line — center it with smaller circles (1.75rem)
+    &::before {
+      content: ' ' !important;
+      display: block !important;
+      position: absolute !important;
+      border-top: 2px solid #cbd5e1 !important;
+      width: 100% !important;
+      top: 50% !important;
+      left: 0 !important;
+      margin-top: calc(-0.875rem + 1px) !important;
+    }
+
+    &:first-child::before {
+      width: calc(50% + 0.875rem) !important;
+      transform: translateX(100%) !important;
+    }
+
+    &:last-child::before {
+      width: 50% !important;
+    }
+
+    .p-steps-item-link {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+      text-decoration: none;
+    }
+
+    .p-steps-item-number {
+      width: 1.75rem;
+      height: 1.75rem;
+      min-width: 1.75rem;
+      font-size: 0.7rem;
+      line-height: 1.75rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .p-steps-item-label {
+      font-size: 0.65rem;
+      margin-top: 0.25rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      display: block;
+      padding: 0 0.125rem;
+    }
+
+    &.p-steps-item-active {
+      .p-steps-item-number {
+        background-color: #1e3a5f;
+        border-color: #1e3a5f;
+        color: #ffffff;
+      }
+
+      .p-steps-item-label {
+        color: #1e3a5f;
+        font-weight: 600;
+      }
+    }
+  }
+
+  // Hide labels on very small containers
+  @media (max-width: 480px) {
+    .p-steps-item .p-steps-item-label {
+      display: none;
+    }
+  }
+}

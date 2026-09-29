@@ -1,0 +1,51 @@
+<div class="file-upload-container">
+  <!-- Drop zone (shown when no file is selected) -->
+  <div
+    *ngIf="!previewUrl"
+    class="drop-zone border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors"
+    [class.border-primary]="isDragOver"
+    [class.border-gray-300]="!isDragOver"
+    [class.bg-blue-50]="isDragOver"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+    (click)="fileInput.click()"
+  >
+    <div class="flex flex-col items-center gap-2">
+      <i class="pi pi-cloud-upload text-4xl" [class.text-primary]="isDragOver" [class.text-gray-400]="!isDragOver"></i>
+      <p class="text-sm text-gray-600 font-medium">{{ label }}</p>
+      <p class="text-xs text-gray-400">Arrastra una imagen aquí o haz clic para seleccionar</p>
+      <p class="text-xs text-gray-400">PNG, JPG, JPEG — Máximo 5 MB</p>
+    </div>
+  </div>
+
+  <!-- Preview (shown when a file is selected) -->
+  <div *ngIf="previewUrl" class="preview-container relative rounded-lg overflow-hidden border border-gray-200">
+    <img [src]="previewUrl" [alt]="fileName || 'Preview'" class="w-full h-48 object-cover" />
+    <div class="absolute bottom-0 left-0 right-0 bg-black/50 px-3 py-2 flex items-center justify-between">
+      <span class="text-white text-xs truncate">{{ fileName }}</span>
+      <button
+        type="button"
+        class="text-white hover:text-red-300 transition-colors"
+        (click)="removeFile()"
+        aria-label="Eliminar archivo"
+      >
+        <i class="pi pi-times"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Error message -->
+  <p *ngIf="errorMessage" class="text-red-500 text-xs mt-2">
+    <i class="pi pi-exclamation-circle mr-1"></i>{{ errorMessage }}
+  </p>
+
+  <!-- Hidden file input -->
+  <input
+    #fileInput
+    type="file"
+    [accept]="acceptFormats"
+    class="hidden"
+    (change)="onFileInputChange($event)"
+  />
+</div>

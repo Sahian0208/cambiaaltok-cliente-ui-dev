@@ -1,0 +1,825 @@
+@use '../../../../assets/styles/variables' as *;
+
+:host {
+  display: block;
+}
+
+.verify-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+// ========================================
+// Loading / Error
+// ========================================
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  font-size: 2.5rem;
+  color: $color-primary;
+}
+
+.loading-text {
+  font-size: 0.85rem;
+  color: $color-text-secondary;
+}
+
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.error-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fef2f2;
+  margin-bottom: 1rem;
+
+  i {
+    font-size: 1.75rem;
+    color: #ef4444;
+  }
+}
+
+.error-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0 0 0.5rem;
+}
+
+.error-text {
+  font-size: 0.85rem;
+  color: $color-text-secondary;
+  margin: 0 0 1.5rem;
+}
+
+// ========================================
+// Header
+// ========================================
+.verify-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+  background: white;
+  color: $color-text-secondary;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+
+  &:hover {
+    background: #f1f5f9;
+    color: $color-primary;
+    border-color: $color-primary;
+  }
+}
+
+.verify-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: $color-primary;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.verify-subtitle {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  margin: 0.125rem 0 0;
+}
+
+// ========================================
+// Status Banner
+// ========================================
+.status-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  i {
+    font-size: 1rem;
+  }
+
+  &--pendiente_verificacion {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+  }
+
+  &--verificado {
+    background: #dbeafe;
+    color: #1e40af;
+    border: 1px solid #93c5fd;
+  }
+
+  &--transferido {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+  }
+
+  &--finalizado {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+  }
+
+  &--denegado {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+  }
+}
+
+// ========================================
+// Summary Card
+// ========================================
+.summary-card {
+  background: white;
+  border: 1px solid $color-border;
+  border-radius: 14px;
+  padding: 1.25rem;
+}
+
+.summary-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0 0 1rem;
+
+  i {
+    color: $color-primary;
+  }
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+
+  @media (min-width: 540px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.summary-label {
+  font-size: 0.7rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+}
+
+.summary-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $color-text;
+
+  &--success {
+    color: $color-success;
+  }
+}
+
+// ========================================
+// Action Card
+// ========================================
+.action-card {
+  background: white;
+  border: 1px solid $color-border;
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  &--denied {
+    border-color: #fecaca;
+    background: #fef2f2;
+  }
+}
+
+.action-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+
+  > i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  &--verify > i {
+    background: #fef3c7;
+    color: #d97706;
+  }
+
+  &--transfer > i {
+    background: #dbeafe;
+    color: #2563eb;
+  }
+
+  &--upload > i {
+    background: #ede9fe;
+    color: #7c3aed;
+  }
+
+  &--source > i {
+    background: #fef3c7;
+    color: #b45309;
+  }
+
+  &--success > i {
+    background: #ecfdf5;
+    color: #059669;
+  }
+}
+
+.action-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0;
+}
+
+.action-card-desc {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  margin: 0.25rem 0 0;
+  line-height: 1.4;
+}
+
+// ========================================
+// Receipt Display
+// ========================================
+.receipt-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid $color-border;
+}
+
+.receipt-image {
+  max-width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.receipt-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px dashed $color-border;
+  color: $color-text-secondary;
+  gap: 0.5rem;
+
+  i {
+    font-size: 2rem;
+    color: #cbd5e1;
+  }
+
+  p {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+}
+
+// ========================================
+// Guide Box
+// ========================================
+.guide-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+
+  > i {
+    color: #d97706;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+}
+
+.guide-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0 0 0.25rem;
+}
+
+.guide-text {
+  font-size: 0.75rem;
+  color: $color-text-secondary;
+  line-height: 1.5;
+  margin: 0;
+
+  strong {
+    color: $color-text;
+  }
+}
+
+// ========================================
+// Destination Info
+// ========================================
+.dest-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @media (min-width: 640px) {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+  }
+}
+
+.dest-amount-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 1rem;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 10px;
+}
+
+.dest-amount-label {
+  font-size: 0.7rem;
+  color: $color-text-secondary;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.dest-amount-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: $color-primary;
+}
+
+
+// ========================================
+// Financial Source Section
+// ========================================
+.financial-source-section {
+  padding: 0.5rem 0;
+}
+
+.financial-account-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.financial-account-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $color-text;
+}
+
+.financial-account-country {
+  font-size: 0.75rem;
+  color: $color-text-secondary;
+}
+
+.financial-account-default {
+  font-size: 0.75rem;
+  color: #d97706;
+}
+
+
+// ========================================
+// Denied State
+// ========================================
+.denied-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.denied-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: white;
+  margin-bottom: 0.75rem;
+
+  i {
+    font-size: 1.75rem;
+    color: #ef4444;
+  }
+}
+
+.denied-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0 0 0.75rem;
+}
+
+.denied-reason {
+  background: white;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  max-width: 360px;
+  width: 100%;
+  text-align: left;
+}
+
+.denied-reason-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #ef4444;
+  text-transform: uppercase;
+}
+
+.denied-reason-text {
+  font-size: 0.85rem;
+  color: $color-text;
+  margin: 0.25rem 0 0;
+}
+
+// ========================================
+// Action Buttons
+// ========================================
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+
+  &--single {
+    justify-content: center;
+  }
+}
+
+.btn-confirm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 160px;
+  padding: 0.875rem 1.5rem;
+  background: #059669;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background: #047857;
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--full {
+    flex: unset;
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
+.btn-deny {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 120px;
+  padding: 0.875rem 1.5rem;
+  background: white;
+  color: #dc2626;
+  border: 2px solid #fecaca;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background: #fef2f2;
+    border-color: #f87171;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--sm {
+    padding: 0.625rem 1rem;
+    font-size: 0.8rem;
+    min-width: unset;
+    flex: unset;
+  }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: white;
+  color: $color-text-secondary;
+  border: 1px solid $color-border;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f8fafc;
+    color: $color-text;
+    border-color: #94a3b8;
+  }
+
+  &--sm {
+    padding: 0.625rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+.action-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: $color-primary;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $color-primary-light;
+  }
+}
+
+.bottom-action {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 0.5rem;
+}
+
+// ========================================
+// Deny Dialog
+// ========================================
+.deny-dialog-content {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.deny-dialog-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  padding: 0.75rem;
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+
+  i {
+    color: #d97706;
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+    color: $color-text;
+    line-height: 1.4;
+    margin: 0;
+  }
+}
+
+.deny-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.deny-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $color-text;
+}
+
+.deny-textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+.deny-error {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  color: $color-error;
+
+  i {
+    font-size: 0.65rem;
+  }
+}
+
+.deny-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid $color-border;
+}
+
+// ========================================
+// Confirm Dialog
+// ========================================
+.confirm-dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem 1.25rem 1rem;
+}
+
+.confirm-dialog-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  margin-bottom: 1rem;
+
+  i {
+    font-size: 1.75rem;
+    color: #059669;
+  }
+
+  &--transfer {
+    background: #dbeafe;
+
+    i {
+      color: #2563eb;
+    }
+  }
+}
+
+.confirm-dialog-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $color-text;
+  margin: 0 0 0.5rem;
+}
+
+.confirm-dialog-text {
+  font-size: 0.8rem;
+  color: $color-text-secondary;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 320px;
+}
+
+.confirm-dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid $color-border;
+}
+
+.btn-confirm--sm {
+  padding: 0.625rem 1rem;
+  font-size: 0.8rem;
+  min-width: unset;
+  flex: unset;
+}
+
+// ========================================
+// PrimeNG Overrides
+// ========================================
+:host ::ng-deep {
+  .p-dialog-content {
+    padding: 0 !important;
+  }
+
+  textarea.p-textarea {
+    width: 100%;
+  }
+}
+
+// ========================================
+// Responsive
+// ========================================
+@media (max-width: 480px) {
+  .verify-wrapper {
+    gap: 1rem;
+  }
+
+  .verify-title {
+    font-size: 1.2rem;
+  }
+
+  .action-card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .summary-card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .btn-confirm,
+  .btn-deny {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .deny-dialog-actions {
+    flex-direction: column-reverse;
+
+    .btn-secondary--sm,
+    .btn-deny--sm {
+      width: 100%;
+    }
+  }
+}

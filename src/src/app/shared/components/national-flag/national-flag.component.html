@@ -1,0 +1,43 @@
+@if (flag(); as currentFlag) {
+
+  @if (currentFlag.type === 'horizontal') {
+
+    <svg
+      [class]="size() + ' h-auto block'"
+      viewBox="0 0 3 2"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      @for (color of currentFlag.colors; track $index) {
+        <rect
+          x="0"
+          [attr.y]="($index * 2) / currentFlag.colors.length"
+          width="3"
+          [attr.height]="2 / currentFlag.colors.length"
+          [attr.fill]="color"
+        />
+      }
+    </svg>
+
+  } @else {
+
+    <svg
+      [class]="size() + ' h-auto block'"
+      viewBox="0 0 3 2"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      @for (color of currentFlag.colors; track $index) {
+        <rect
+          [attr.x]="($index * 3) / currentFlag.colors.length"
+          y="0"
+          [attr.width]="3 / currentFlag.colors.length"
+          height="2"
+          [attr.fill]="color"
+        />
+      }
+    </svg>
+
+  }
+
+}

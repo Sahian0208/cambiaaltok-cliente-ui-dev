@@ -1,0 +1,87 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - dev
+      - prod
+
+jobs:
+  build-and-deploy:
+    # Only deploy if the push came from a merged PR (validated by branch-restriction)
+    if: github.actor == 'github-actions[bot]' == false
+    runs-on: windows-latest
+
+    # Use GitHub Environments to separate dev/prod secrets
+    environment: ${{ github.ref_name == 'prod' && 'PRODUCTION' || 'DEVELOPMENT' }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: src/package-lock.json
+
+      - name: Install dependencies
+        working-directory: src
+        run: npm ci
+
+      - name: Build Angular app
+        working-directory: src
+        shell: powershell
+        run: |
+          $branch = "${{ github.ref_name }}"
+          if ($branch -eq "prod") {
+            npm run build -- --configuration production --output-path=dist
+          } else {
+            npm run build -- --configuration development --output-path=dist
+          }
+
+      - name: Normalize dist structure
+        working-directory: src
+        shell: powershell
+        run: |
+          if (Test-Path "dist/browser") {
+            Move-Item -Path "dist/browser/*" -Destination "dist" -Force
+            Remove-Item -Path "dist/browser" -Recurse -Force
+          }
+
+      - name: Deploy to PremiumASP.net
+        uses: jahbenjah/SmarterASP.NET-web-deploy@1.0.0.alpha.8
+        with:
+          website-name: ${{ vars.WD_WEBSITE_NAME }}
+          server-computer-name: ${{ vars.WD_SERVER_COMPUTER_NAME }}
+          server-username: ${{ vars.WD_SERVER_USERNAME }}
+          server-password: ${{ secrets.WD_SERVER_PASSWORD }}
+          source-path: 'src/dist'
+          target-delete: true
+
+      - name: Send deployment notification email
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ vars.SMTP_SERVER }}
+          server_port: ${{ vars.SMTP_PORT }}
+          username: ${{ vars.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: |
+            [${{ job.status == 'success' && 'OK' || 'FAILED' }}] Deploy cambiaaltok-client-ui (${{ github.ref_name }})
+          to: ${{ vars.NOTIFICATION_EMAIL }}
+          from: ${{ vars.SMTP_FROM || vars.SMTP_USERNAME }}
+          body: |
+            Deployment Report - CambiaAltok Client UI
+            ==========================================
+
+            Status: ${{ job.status }}
+            Branch: ${{ github.ref_name }}
+            Environment: ${{ github.ref_name == 'prod' && 'PRODUCTION' || 'DEVELOPMENT' }}
+            Commit: ${{ github.sha }}
+            Author: ${{ github.actor }}
+            Message: ${{ github.event.head_commit.message }}
+
+            Timestamp: ${{ github.event.head_commit.timestamp }}
+            Run: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}

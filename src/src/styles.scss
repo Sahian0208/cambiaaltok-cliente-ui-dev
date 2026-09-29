@@ -1,0 +1,455 @@
+@use 'assets/styles/variables' as *;
+@use 'primeicons/primeicons.css';
+
+/* Tailwind CSS 4 — @import is required here as Tailwind is not a Sass module */
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
+@import "tailwindcss";
+
+/* Custom theme colors (Tailwind 4 CSS-based config) */
+@theme {
+  --color-primary: #1E3A5F;
+  --color-primary-light: #2E5A8F;
+  --color-bolivia: #00A651;
+  --color-peru: #D91023;
+  --color-background: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-text: #1F2937;
+  --color-text-secondary: #6B7280;
+  --color-border: #E5E7EB;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+}
+
+/* Estilos globales */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: $color-background;
+  color: $color-text;
+}
+
+/* Dark Mode Variables */
+:root.dark-mode {
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-border: #334155;
+  --color-primary: #60a5fa;
+  --color-primary-light: #93c5fd;
+}
+
+.dark-mode {
+  background-color: #0f172a;
+  color: #f1f5f9;
+
+  /* Global card/form overrides for all components */
+  .form-section,
+  .section-card,
+  .content-card,
+  .summary-card,
+  .action-card,
+  .photo-card,
+  .profile-form,
+  .password-form,
+  .readonly-card,
+  .account-card,
+  .accounts-section,
+  .transactions-section,
+  .dialog-form,
+  .dest-info,
+  .dest-amount-section {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f1f5f9;
+  }
+
+  /* Inner cards with lighter background */
+  .transaction-card,
+  .transaction-amounts,
+  .conversion-card,
+  .photo-placeholder,
+  .receipt-container,
+  .qr-display,
+  .photo-preview,
+  .dest-bank-card,
+  .financial-source-section,
+  .guide-box,
+  .empty-state-card,
+  .stat-card,
+  .stat-pill,
+  .step-info-card,
+  .alert-card,
+  .destination-info-card,  
+  .payment-method-standard,
+  .payment-method-yape,
+  .payment-method-qr,
+
+  .coupon-applied {
+    background-color: #0f172a !important;
+    border-color: #334155 !important;
+  }
+
+  /* Text colors */
+  h1, h2, h3, h4, h5, h6,
+  .form-section-title,
+  .section-card-title,
+  .section-title,
+  .action-card-title,
+  .form-label,
+  .field-label,
+  .dialog-label,
+  .detail-value,
+  .stat-value,
+  .stat-card-value,
+  .bank-name,
+  .holder-name,
+  .amount-value,
+  .tx-client-name,
+  .tx-amount-value,
+  .welcome-title,
+  .accounts-title,
+  .profile-title,
+  .password-title,
+  .transfer-title,
+  .verify-title,
+  .int-title,
+  .register-title,
+  .readonly-value,
+  .dest-amount-value,
+  .dest-bank-field-value {
+    color: #f1f5f9 !important;
+  }
+
+  .form-section-hint,
+  .section-card-desc,
+  .action-card-desc,
+  .field-label,
+  .dialog-hint,
+  .detail-label,
+  .stat-label,
+  .stat-card-label,
+  .bank-country,
+  .amount-label,
+  .tx-amount-label,
+  .tx-date,
+  .welcome-subtitle,
+  .accounts-subtitle,
+  .profile-subtitle,
+  .password-subtitle,
+  .transfer-subtitle,
+  .verify-subtitle,
+  .int-subtitle,
+  .register-subtitle,
+  .readonly-label,
+  .dest-amount-label,
+  .dest-bank-field-label,
+  .dest-bank-country {
+    color: #94a3b8 !important;
+  }
+
+  /* Input fields */
+  input[pInputText],
+  textarea,
+  .p-inputtext,
+  .p-select,
+  .p-password input {
+    background-color: #0f172a !important;
+    border-color: #475569 !important;
+    color: #f1f5f9 !important;
+  }
+
+  /* Buttons */
+  .add-account-btn,
+  .coupon-toggle,
+  .photo-btn {
+    border-color: #475569 !important;
+    color: #94a3b8 !important;
+
+    &:hover {
+      border-color: #60a5fa !important;
+      color: #60a5fa !important;
+    }
+  }
+
+  .back-btn,
+  .theme-toggle {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #94a3b8 !important;
+  }
+
+  /* Search box */
+  .search-box {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+  }
+
+  .search-input {
+    color: #f1f5f9 !important;
+  }
+
+  /* Filter pills */
+  .filter-pill {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #94a3b8 !important;
+  }
+
+  /* Status banner */
+  .status-banner {
+    border-color: #334155 !important;
+  }
+
+  /* Stepper wrapper */
+  .stepper-wrapper {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+  }
+
+  /* Dialog */
+  .p-dialog .p-dialog-header,
+  .p-dialog .p-dialog-content,
+  .p-dialog .p-dialog-footer {
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+  }
+
+  .dialog-content,
+  .dialog-footer,
+  .deny-dialog-content,
+  .deny-dialog-actions,
+  .confirm-dialog-content,
+  .confirm-dialog-actions {
+    background-color: #1e293b !important;
+  }
+
+  /* PrimeNG components */
+  .p-datatable .p-datatable-tbody > tr,
+  .p-datatable .p-datatable-header-row > th {
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+    border-color: #334155 !important;
+  }
+
+  .p-datatable .p-datatable-tbody > tr > td {
+    color: #f1f5f9 !important;
+  }
+
+  .p-datatable .p-datatable-tbody > tr:hover {
+    background-color: #334155 !important;
+  }
+
+  .p-paginator {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: #94a3b8 !important;
+  }
+
+  /* Table text classes */
+  .table-date,
+  .table-amount,
+  .table-bank,
+  .table-time {
+    color: #f1f5f9 !important;
+  }
+
+  .table-time {
+    color: #94a3b8 !important;
+  }
+
+  /* Summary values */
+  .summary-value {
+    color: #f1f5f9 !important;
+
+    &--success {
+      color: #6ee7b7 !important;
+    }
+
+    &--warning {
+      color: #fbbf24 !important;
+    }
+
+    &--info {
+      color: #93c5fd !important;
+    }
+
+    &--pending {
+      color: #94a3b8 !important;
+    }
+  }
+
+  .summary-label {
+    color: #94a3b8 !important;
+  }
+
+  /* Calculator read-only view (from home page) */
+  .calculator-readonly {
+    background: linear-gradient(135deg, #064e3b 0%, #0c4a6e 100%) !important;
+    border-color: #065f46 !important;
+  }
+
+  .calculator-readonly-item {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+  }
+
+  .calculator-readonly-label {
+    color: #94a3b8 !important;
+
+    i {
+      color: #6ee7b7 !important;
+    }
+  }
+
+  .calculator-readonly-value {
+    color: #f1f5f9 !important;
+  }
+
+  .calculator-readonly-value--highlight {
+    color: #6ee7b7 !important;
+  }
+
+  .calculator-readonly-currency {
+    color: #cbd5e1 !important;
+  }
+
+  .calculator-readonly-country {
+    color: #64748b !important;
+  }
+
+  .calculator-readonly-arrow {
+    background: #10b981 !important;
+    color: white !important;
+  }
+
+  .calculator-readonly-rate {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #94a3b8 !important;
+
+    i {
+      color: #6ee7b7 !important;
+    }
+  }
+
+  .calculator-readonly-coupon {
+    background: #064e3b !important;
+    border-color: #065f46 !important;
+    color: #a7f3d0 !important;
+
+    i {
+      color: #6ee7b7 !important;
+    }
+  }
+
+  /* Conversion card in dark mode */
+  .conversion-card {
+    background-color: #0f172a !important;
+    border-color: #1e3a5f !important;
+  }
+
+  .conversion-value {
+    color: #f1f5f9 !important;
+
+    &--highlight {
+      color: #6ee7b7 !important;
+    }
+  }
+
+  .conversion-label {
+    color: #94a3b8 !important;
+  }
+
+  .conversion-currency {
+    color: #94a3b8 !important;
+  }
+
+  .conversion-arrow {
+    background: #334155 !important;
+    border-color: #475569 !important;
+    color: #60a5fa !important;
+  }
+
+  .conversion-rate {
+    border-color: #334155 !important;
+    color: #94a3b8 !important;
+
+    i {
+      color: #60a5fa !important;
+    }
+  }
+
+  .conversion-breakdown {
+    .breakdown-item {
+      color: #94a3b8 !important;
+
+      &--bonus {
+        color: #6ee7b7 !important;
+      }
+
+      &--total {
+        color: #f1f5f9 !important;
+      }
+    }
+  }
+
+  /* Coupon section in dark mode */
+  .coupon-toggle {
+    background: #422006 !important;
+    border-color: #92400e !important;
+    color: #fbbf24 !important;
+
+    &:hover {
+      background: #451a03 !important;
+      border-color: #b45309 !important;
+    }
+  }
+
+  .coupon-input {
+    background-color: #0f172a !important;
+    border-color: #475569 !important;
+    color: #f1f5f9 !important;
+
+    &::placeholder {
+      color: #64748b !important;
+    }
+  }
+
+  .coupon-cancel {
+    color: #64748b !important;
+
+    &:hover {
+      color: #94a3b8 !important;
+    }
+  }
+
+  .coupon-applied {
+    background-color: #064e3b !important;
+    border-color: #065f46 !important;
+  }
+
+  .coupon-applied-label {
+    color: #a7f3d0 !important;
+  }
+
+  .coupon-applied-bonus {
+    color: #6ee7b7 !important;
+  }
+
+  .coupon-applied-info > i {
+    color: #6ee7b7 !important;
+  }
+
+  .coupon-remove {
+    background: #1e293b !important;
+    color: #94a3b8 !important;
+
+    &:hover {
+      background: #7f1d1d !important;
+      color: #fca5a5 !important;
+    }
+  }
+}
