@@ -7,28 +7,67 @@
 
 /* Custom theme colors (Tailwind 4 CSS-based config) */
 @theme {
-  --color-primary: #1E3A5F;
-  --color-primary-light: #2E5A8F;
+  --color-primary: #00394b;
+  --color-primary-light: #0d4e63;
+  --color-primary-dark: #002533;
+  --color-teal: #33bb9c;
+  --color-turquoise: #18a796;
+  --color-accent: #18a796;
   --color-bolivia: #00A651;
   --color-peru: #D91023;
-  --color-background: #F8FAFC;
+  --color-background: #FFFFFF;
   --color-surface: #FFFFFF;
-  --color-text: #1F2937;
-  --color-text-secondary: #6B7280;
-  --color-border: #E5E7EB;
-  --color-success: #10B981;
+  --color-surface-subtle: #F8FAFC;
+  --color-text: #00394b;
+  --color-text-secondary: #5A6E78;
+  --color-border: #E2E8F0;
+  --color-success: #33bb9c;
   --color-warning: #F59E0B;
   --color-error: #EF4444;
+  --font-gotham: 'Gotham', 'Montserrat', 'Plus Jakarta Sans', sans-serif;
+  --font-futura: 'Futura', 'Jost', sans-serif;
+  --font-display: 'Gotham', 'Montserrat', sans-serif;
 }
 
 /* Estilos globales */
 html, body {
   height: 100%;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  background-color: $color-background;
-  color: $color-text;
+  font-family: 'Gotham', 'Montserrat', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #FFFFFF;
+  color: #00394b;
 }
+
+.font-gotham {
+  font-family: 'Gotham', 'Montserrat', 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-futura {
+  font-family: 'Futura', 'Jost', sans-serif;
+}
+
+/* Borde blanco y contorno difuminado directamente en las letras (sin recuadro) */
+.text-letter-glow-title {
+  paint-order: stroke fill;
+  -webkit-text-stroke: 4px #ffffff;
+  filter: drop-shadow(0 0 6px #ffffff) drop-shadow(0 0 14px rgba(255, 255, 255, 0.95));
+}
+
+.text-letter-glow-body {
+  paint-order: stroke fill;
+  -webkit-text-stroke: 2px #ffffff;
+  filter: drop-shadow(0 0 4px #ffffff) drop-shadow(0 0 8px rgba(255, 255, 255, 0.9));
+}
+
+.text-letter-glow-sm {
+  paint-order: stroke fill;
+  -webkit-text-stroke: 1.5px #ffffff;
+  filter: drop-shadow(0 0 3px #ffffff) drop-shadow(0 0 6px rgba(255, 255, 255, 0.85));
+}
+
+
+
+
 
 /* Dark Mode Variables */
 :root.dark-mode {

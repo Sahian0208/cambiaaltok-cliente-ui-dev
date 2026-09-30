@@ -1,248 +1,212 @@
-<main class="flex min-h-full w-full flex-col">
+<main class="flex min-h-full w-full flex-col font-gotham bg-white">
+  <!-- Hero Section Portada Fazilito -->
   <section
     id="home"
-    class="relative bg-gradient-to-b from-[#04142E] via-altok-night to-altok-deep text-white overflow-hidden pb-20 sm:pb-28 lg:pb-32 pt-2 sm:pt-10 lg:pt-12 px-4 sm:px-6 lg:px-8"
+    class="relative w-full overflow-hidden bg-white py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-b border-slate-100 min-h-[620px] lg:min-h-[680px] flex items-center"
   >
+    <!-- Background Image Layer (Anchored to top-left to eliminate any jump/shift) -->
     <div
-      [style.opacity]="tipoCambio() === 'BOB_TO_PEN' ? '0.75' : '0'"
-      class="absolute inset-0 bg-[url('/salar-de-uyuni.jpg')] bg-cover bg-center transition-opacity duration-700 pointer-events-none z-0"
+      class="absolute inset-0 bg-[url('/hero-background.png')] bg-cover bg-[position:left_top] lg:bg-[position:center_top] bg-no-repeat pointer-events-none z-0"
     ></div>
 
+    <!-- Mini capa blanca en degradé suave de izquierda al medio -->
     <div
-      [style.opacity]="tipoCambio() === 'PEN_TO_BOB' ? '0.75' : '0'"
-      class="absolute inset-0 bg-[url('/machu-picchu.jpg')] bg-cover bg-center transition-opacity duration-700 pointer-events-none z-0"
+      class="absolute inset-0 bg-gradient-to-r from-white/75 via-white/40 via-35% to-transparent pointer-events-none z-0"
     ></div>
 
-    <div
-      class="absolute inset-0 bg-gradient-to-r from-[#04142E] via-[#04142E] via-50% to-transparent pointer-events-none z-0"
-    ></div>
+    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative z-10">
 
-    <div
-      class="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-3xl -mr-60 -mt-60 pointer-events-none z-0"
-    ></div>
-    <div
-      class="absolute bottom-0 left-0 w-[600px] h-[400px] bg-blue-500/5 rounded-full blur-3xl -ml-80 -mb-40 pointer-events-none z-0"
-    ></div>
+      <!-- Left Column: Title, description, trust metrics and better rate -->
+      <div class="lg:col-span-7 flex flex-col pt-1 sm:pt-3">
 
-    <div class="relative hero-container">
-      <!-- Left: Text content -->
-      <div class="hero-text">
-        <!-- Personas / Empresas cards -->
-        <div
-          shared-view-port="animate-soft-rise"
-          hiddenClasses="opacity-0"
-          [delay]="300"
-          class="flex flex-wrap gap-2 md:gap-3 mt-1 md:mt-2"
-        >
-          <div
-            id="newPerson"
+        <!-- Personas / Empresas pill toggle -->
+        <div class="inline-flex items-center bg-slate-100/90 p-1 rounded-full w-fit mb-5 shadow-xs border border-slate-200/60">
+          <button
+            type="button"
             (click)="showCalculatorPanel()"
-            class="flex items-center gap-2 md:gap-3 bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl px-3 md:px-4 py-2 md:py-3 hover:bg-white/15 hover:-translate-y-1 hover:shadow-lg hover:border-white/30 transition-all duration-300 cursor-pointer"
-            [ngClass]="rightPanel() === 'calculator' ? 'bg-white/20 border-white/40' : ''"
+            class="flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all border-none cursor-pointer"
+            [ngClass]="rightPanel() === 'calculator' ? 'bg-[#18a796] text-white shadow-sm' : 'bg-transparent text-[#00394b] hover:text-[#18a796]'"
           >
-            <i class="pi pi-user text-base md:text-xl text-slate-300"></i>
-            <div>
-              <p class="text-xs md:text-sm font-semibold text-white">
-                Personas
-              </p>
-              <p class="hidden sm:block text-xs text-slate-400">
-                Cuentas personales
-              </p>
-            </div>
-          </div>
-          <div
-            id="newCompany"
+            <i class="pi pi-user text-xs sm:text-sm"></i>
+            Personas
+          </button>
+          <button
+            type="button"
             (click)="showEnterprisePanel()"
-            class="flex items-center gap-2 md:gap-3 bg-white/10 backdrop-blur-sm border border-white/15 rounded-xl px-3 md:px-4 py-2 md:py-3 hover:bg-white/15 hover:-translate-y-1 hover:shadow-lg hover:border-white/30 transition-all duration-300 cursor-pointer"
-            [ngClass]="rightPanel() === 'enterprise' ? 'bg-white/20 border-white/40' : ''"
+            class="flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all border-none cursor-pointer"
+            [ngClass]="rightPanel() === 'enterprise' ? 'bg-[#18a796] text-white shadow-sm' : 'bg-transparent text-[#00394b] hover:text-[#18a796]'"
           >
-            <i class="pi pi-building text-base md:text-xl text-slate-300"></i>
-            <div>
-              <p class="text-xs md:text-sm font-semibold text-white">
-                Empresas
-              </p>
-              <p class="hidden sm:block text-xs text-slate-400">
-                Registra tu Empresa
-              </p>
+            <i class="pi pi-building text-xs sm:text-sm"></i>
+            Empresas
+          </button>
+        </div>
+
+        <!-- Main Heading and Subtitle (Conditional on Personas / Empresas) -->
+        <div class="space-y-3 max-w-xl">
+          @if (rightPanel() === 'calculator') {
+            <h1
+              class="text-3xl sm:text-4xl lg:text-[50px] xl:text-[56px] font-black text-[#00394b] leading-[1.12] tracking-tight font-gotham text-letter-glow-title"
+            >
+              Cambia Bolivianos <br />
+              <span class="text-[#33bb9c]">y Soles online</span> <br />
+              con confianza
+            </h1>
+
+            <p class="text-sm sm:text-base text-[#00394b] leading-relaxed font-gotham pt-1 font-semibold text-letter-glow-body">
+              Realiza tus operaciones de cambio entre Bolivia y Perú de forma
+              <strong class="font-black text-[#00394b]">segura, rápida y transparente</strong> con fazilito.
+            </p>
+          } @else {
+            <div class="space-y-1.5">
+              <span class="block text-xs sm:text-[13px] font-bold text-[#00394b]/75 tracking-wider uppercase">
+                SOLUCIONES CAMBIARIAS PARA TU NEGOCIO
+              </span>
+              <h1
+                class="text-3xl sm:text-4xl lg:text-[46px] xl:text-[52px] font-black text-[#00394b] leading-[1.12] tracking-tight font-gotham text-letter-glow-title"
+              >
+                Impulsa tu empresa <br />
+                <span class="text-[#33bb9c]">en Bolivia y Perú</span> <br />
+                con confianza
+              </h1>
             </div>
-          </div>
+
+            <p class="text-sm sm:text-base text-[#00394b] leading-relaxed font-gotham pt-1 font-semibold text-letter-glow-body">
+              Realiza tus operaciones <strong class="font-black text-[#00394b]">de cambio corporativas</strong> de forma
+              <strong class="font-black text-[#00394b]">segura, rápida</strong> y <strong class="font-black text-[#00394b]">transparente</strong> con Fazilito.
+            </p>
+          }
         </div>
 
-        <!-- desde -->
+        <!-- Metrics & Better Rate Row -->
+        <div class="mt-4 sm:mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 items-center">
+          @if (rightPanel() === 'calculator') {
+            <!-- 3 Stats Badges for Personas -->
+            <div class="space-y-3 font-gotham">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white border border-emerald-100 shadow-sm flex items-center justify-center text-[#18a796] shrink-0">
+                  <i class="pi pi-chart-line text-base sm:text-lg"></i>
+                </div>
+                <div class="text-letter-glow-sm">
+                  <p class="text-[11px] text-[#00394b]/80 font-bold leading-none mb-0.5">Operaciones realizadas</p>
+                  <p class="text-xs sm:text-sm font-black text-[#00394b] leading-tight">
+                    + 1 MILLÓN <span class="text-[11px] font-bold text-[#00394b]/75">de cambios</span>
+                  </p>
+                </div>
+              </div>
 
-        <div max-w-[600px] space-y-4 lg:space-y-6>
-          <h1            
-            class="text-4xl sm:text-3xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-tight text-white font-display"
-          >
-            <span class="block overflow-visible pb-1">
-              <span
-                shared-view-port="animate-hero-word"
-                hiddenClasses="opacity-0"
-                [delay]="100"
-                class="mr-2 inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#0B63FF] to-[#12D6EB]"
-                >Transfiere fazilito
-              </span>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white border border-emerald-100 shadow-sm flex items-center justify-center text-[#18a796] shrink-0">
+                  <i class="pi pi-users text-base sm:text-lg"></i>
+                </div>
+                <div class="text-letter-glow-sm">
+                  <p class="text-[11px] text-[#00394b]/80 font-bold leading-none mb-0.5">Clientes registrados</p>
+                  <p class="text-xs sm:text-sm font-black text-[#00394b] leading-tight">
+                    + 100 MIL <span class="text-[11px] font-bold text-[#00394b]/75">personas confían en nosotros</span>
+                  </p>
+                </div>
+              </div>
 
-              <span
-                shared-view-port="animate-hero-word"
-                hiddenClasses="opacity-0"
-                [delay]="210"
-                class="mr-2 inline-block"
-              >
-                tus
-              </span>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white border border-emerald-100 shadow-sm flex items-center justify-center text-[#18a796] shrink-0">
+                  <i class="pi pi-bolt text-base sm:text-lg"></i>
+                </div>
+                <div class="text-letter-glow-sm">
+                  <p class="text-[11px] text-[#00394b]/80 font-bold leading-none mb-0.5">Atención rápida</p>
+                  <p class="text-xs sm:text-sm font-black text-[#00394b] leading-tight">
+                    en minutos <span class="text-[11px] font-bold text-[#00394b]/75">y soporte especializado</span>
+                  </p>
+                </div>
+              </div>
+            </div>
 
-              <span
-                shared-view-port="animate-hero-word"
-                hiddenClasses="opacity-0"
-                [delay]="320"
-                class="inline-block text-[#21F0D2]"
-              >
-                Bolivianos
-              </span>
-            </span>
+            <!-- Better Rate Card for Personas (Higher up and further right) -->
+            <div class="flex justify-start sm:justify-end items-start sm:-mt-6 lg:-mt-12 sm:translate-x-1 lg:translate-x-3">
+              <app-better-rate-upload class="w-full max-w-[360px]"></app-better-rate-upload>
+            </div>
+          } @else {
+            <!-- 4 Corporate Benefit Badges for Empresas -->
+            <div class="space-y-2.5 font-gotham">
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-white border border-emerald-100 shadow-sm flex items-center justify-center text-[#18a796] shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                </div>
+                <div class="text-letter-glow-sm">
+                  <p class="text-xs sm:text-sm font-black text-[#00394b] leading-tight">Mejores condiciones</p>
+                  <p class="text-[11px] text-[#00394b]/75 font-bold leading-none">para empresas</p>
+                </div>
+              </div>
 
-            <span
-              shared-view-port="animate-hero-word"
-              hiddenClasses="opacity-0"
-              [delay]="460"
-              class="mr-2 inline-block"
-            >
-              y
-            </span>
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-white border border-emerald-100 shadow-sm flex items-center justify-center text-[#18a796] shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <div class="text-letter-glow-sm">
+                  <p class="text-xs sm:text-sm font-black text-[#00394b] leading-tight">Operaciones</p>
+                  <p class="text-[11px] text-[#00394b]/75 font-bold leading-none">de mayor volumen</p>
+                </div>
+              </div>
 
-            <span
-              shared-view-port="animate-hero-word"
-              hiddenClasses="opacity-0"
-              [delay]="590"
-              class="mr-2 inline-block text-[#12D6EB]"
-            >
-              Soles
-            </span>
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-white border border-emerald-100 shadow-sm flex items-center justify-center text-[#18a796] shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                  </svg>
+                </div>
+                <div class="text-letter-glow-sm">
+                  <p class="text-xs sm:text-sm font-black text-[#00394b] leading-tight">Acompañamiento</p>
+                  <p class="text-[11px] text-[#00394b]/75 font-bold leading-none">personalizado</p>
+                </div>
+              </div>
 
-            <span
-              shared-view-port="animate-hero-word"
-              hiddenClasses="opacity-0"
-              [delay]="720"
-              class="inline-block text-[#12D6EB]"
-            >
-              online
-            </span>
-          </h1>
+              <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-full bg-white border border-emerald-100 shadow-sm flex items-center justify-center text-[#18a796] shrink-0">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                  </svg>
+                </div>
+                <div class="text-letter-glow-sm">
+                  <p class="text-xs sm:text-sm font-black text-[#00394b] leading-tight">Procesos seguros</p>
+                  <p class="text-[11px] text-[#00394b]/75 font-bold leading-none">y cumplimiento normativo</p>
+                </div>
+              </div>
+            </div>
 
-          <p
-            shared-view-port="animate-soft-rise"
-            hiddenClasses="opacity-0"
-            [delay]="840"
-            class="text-xs md:text-sm text-slate-300 mb-3 md:mb-5 leading-relaxed animate-[fadeInUp_0.8s_ease-out_0.2s_both]"
-          >
-            Altok conecta tus operaciones entre soles peruanos y bolivianos con
-            una experiencia moderna, transparente y confiable.
-          </p>
+            <!-- Flags illustration for Empresas -->
+            <div class="flex justify-start sm:justify-end items-center min-h-[210px]">
+              <div class="w-full max-w-[310px] flex items-center justify-center p-2">
+                <img
+                  src="/flags-exchange-bo-pe.png"
+                  alt="Cambio de divisas Bolivia Perú para Empresas"
+                  class="w-full h-auto max-h-[195px] object-contain drop-shadow-xl hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+            </div>
+          }
         </div>
 
-        <!-- hasta aqui-->
-
-        <div
-          shared-view-port="animate-soft-rise"
-          hiddenClasses="opacity-0"
-          [delay]="500"
-          class="mb-2.5 md:mb-5 animate-[fadeInUp_0.8s_ease-out_0.3s_both]"
-        >
-          <app-better-rate-upload />
-        </div>
-
-        <!-- CTA Buttons -->
-        <div
-          shared-view-port="animate-soft-rise"
-          hiddenClasses="opacity-0"
-          [delay]="520"
-          class="flex flex-wrap gap-2 md:gap-3 animate-[fadeInUp_0.8s_ease-out_0.4s_both]"
-        >
-          <a
-            href="https://wa.me/59172237251"
-            target="_blank"
-            
-            class="px-3 py-2 rounded-lg bg-emerald-600 text-white text-xs sm:text-sm font-semibold hover:bg-emerald-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors cursor-pointer"
-          >
-            <i class="pi pi-whatsapp"></i>
-            Solicitar via Whatsapp
-          </a>
-          <a
-            href="mailto:contacto&#64;cambiaaltok.com"
-            class="inline-flex items-center justify-center gap-1.5 md:gap-2 bg-white/5 hover:bg-white/10 text-white font-semibold py-2 md:py-2.5 px-3.5 md:px-5 rounded-xl border border-white/20 hover:border-white/40 transition-all duration-200 text-xs md:text-sm"
-          >
-            <i class="pi pi-envelope"></i>
-            Escribir Correo
-          </a>
-        </div>
       </div>
 
-      <div
-        shared-view-port="animate-soft-rise"
-        hiddenClasses="opacity-0"
-        [delay]="500"
-        class="hero-calculator pt-4"
-      >
-        <div class="lg:col-span-5 relative order-1 lg:order-2">
-          <div
-            *ngIf="rightPanel() === 'calculator'"
-            class="hidden lg:block absolute -right-[230px] xl:-right-[270px] -bottom-[70px] w-72 h-72 z-30 pointer-events-none select-none"
-          >
-            <div
-              [ngClass]="
-                  tipoCambio() === 'BOB_TO_PEN'
-                    ? 'translate-x-0 opacity-100'
-                    : 'translate-x-[120%] opacity-0'
-                "
-              class="absolute inset-0 transition-all duration-700 ease-out"
-            >
-              <div class="w-full h-full animate-float-sway">
-                <img
-                  src="/img/billetes/bolivia_hand_cash.webp"
-                  alt="Billetes Bolivianos"
-                  class="cash-image-fade w-full h-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.2)]"
-                />
-              </div>
-            </div>
-
-            <div
-              [ngClass]="
-                  tipoCambio() === 'PEN_TO_BOB'
-                    ? 'translate-x-0 opacity-100'
-                    : 'translate-x-[120%] opacity-0'
-                "
-              class="absolute inset-0 transition-all duration-700 ease-out"
-            >
-              <div class="w-full h-full animate-float-sway">
-                <img
-                  src="/img/billetes/peru_hand_cash.webp"
-                  alt="Billetes Soles"
-                  class="cash-image-fade w-full h-full object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.2)]"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="home-calc-card relative w-full lg:max-w-[390px] mx-auto lg:mr-0 lg:ml-auto lg:-mt-4"
-            [class.hidden]="rightPanel() !== 'calculator'"
-          >
+      <!-- Right Column: Calculator / Enterprise component -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end w-full items-start">
+        <div class="w-full max-w-[440px] min-h-[500px]">
+          @if (rightPanel() === 'calculator') {
             <app-calculator (swapped)="tipoCambio.set($event)"></app-calculator>
-          </div>
-
-          <div
-            class="home-calc-card relative w-full lg:max-w-[620px] xl:max-w-[680px] mx-auto lg:mr-0 lg:ml-auto lg:-mt-4"
-            [class.hidden]="rightPanel() !== 'enterprise'"
-          >
+          } @else {
             <app-enterprise-component></app-enterprise-component>
-          </div>
+          }
         </div>
       </div>
     </div>
   </section>
-  <banks-promotion></banks-promotion>
-  <about-us></about-us>
-  <how-it-works></how-it-works>
-  <contact></contact>
+
+  <!-- Rest of the landing page components -->
+  <banks-promotion id="promociones"></banks-promotion>
+  <about-us id="about-us"></about-us>
+  <how-it-works id="como-funciona"></how-it-works>
+  <contact id="contacto"></contact>
 </main>
+

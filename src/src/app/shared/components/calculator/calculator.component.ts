@@ -91,6 +91,19 @@ export class CalculatorComponent {
     return rate.exchangeRateSell;
   });
 
+  readonly solesABolivianosCompra = computed(() => this.compraMostrada());
+  readonly solesABolivianosVenta = computed(() => this.ventaMostrada());
+  
+  readonly bolivianosASolesCompra = computed(() => {
+    const v = this.ventaMostrada();
+    return v > 0 ? Number((1 / v).toFixed(3)) : 0;
+  });
+
+  readonly bolivianosASolesVenta = computed(() => {
+    const c = this.compraMostrada();
+    return c > 0 ? Number((1 / c).toFixed(3)) : 0;
+  });
+
   readonly appliedRate = computed(() => {
     const rate = this.effectiveRate();
     if (!rate) return null;
@@ -109,6 +122,18 @@ export class CalculatorComponent {
     if (!rate) return null;
     return rate.source;
   });
+
+  setDirection(direction: 'PEN_TO_BOB' | 'BOB_TO_PEN'): void {
+    const sourceCurrencyValue = direction === 'PEN_TO_BOB' ? 'PEN' : 'BOB';
+    if (this.selectedCurrency().value !== sourceCurrencyValue) {
+      const option = this.currencyOptions.find(o => o.value === sourceCurrencyValue);
+      if (option) {
+        this.selectedCurrency.set(option);
+        this.swapped.emit(direction);
+      }
+    }
+  }
+
 
   /** Button should only be enabled when both amounts have valid positive values */
   readonly canStartTransaction = computed(() => {

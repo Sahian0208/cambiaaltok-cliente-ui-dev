@@ -22,6 +22,6 @@ export interface BetterRateFileEvent {
 })
 export class BetterRateUploadComponent {
   getContactWhatsappMessage(): string {
-    return `https://wa.me/${environment.mainWhatsappContact}?text=Hola CambiaAltok, tengo una cotización que me gustaría mejorar.`;
+    return `https://wa.me/${environment.mainWhatsappContact}?text=Hola%20Fazilito,%20tengo%20una%20cotizaci%C3%B3n%20que%20me%20gustar%C3%ADa%20mejorar.`;
   }
 }

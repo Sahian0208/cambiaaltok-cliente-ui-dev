@@ -5,8 +5,9 @@ import { CardModule } from "primeng/card";
 
 interface Testimonial {
   name: string;
+  role: string;
   text: string;
-  gender: 'male' | 'female';
+  avatar: string;
 }
 
 @Component({
@@ -25,19 +26,22 @@ export class HowItWorksComponent {
 
   testimonials: Testimonial[] = [
     {
-      name: 'María Fernanda Ríos',
-      text: 'Cambié mis bolivianos a soles en minutos. La tasa fue mejor que en el banco y la atención por WhatsApp fue inmediata.',
-      gender: 'female',
+      name: 'Milagros Luján',
+      role: 'Cliente verificado',
+      avatar: '/avatar-milagros.png',
+      text: 'Me gustó mucho la rapidez y la claridad del proceso. Pude cambiar Bolivianos y Soles de forma segura y sin complicaciones.',
     },
     {
-      name: 'Carlos Medina',
-      text: 'Uso Cambia Altok para mis operaciones mensuales. El proceso es transparente y siempre recibo mi dinero rápido.',
-      gender: 'male',
+      name: 'Daisy Cueva',
+      role: 'Cliente verificado',
+      avatar: '/avatar-daisy.png',
+      text: 'La atención por WhatsApp fue excelente. Me ayudaron paso a paso y mi operación llegó rápido. ¡Muy recomendado!',
     },
     {
-      name: 'Lucía Paredes',
-      text: 'Me encantó lo fácil que fue registrarme y hacer mi primer cambio. Recomiendo la plataforma a mi familia en Bolivia.',
-      gender: 'female',
+      name: 'Carlos Rojas',
+      role: 'Cliente verificado',
+      avatar: '/avatar-carlos.png',
+      text: 'Uso fazilito para mis operaciones frecuentes y siempre encuentro un proceso ordenado, confiable y transparente.',
     },
   ];
 

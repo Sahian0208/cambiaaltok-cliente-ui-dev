@@ -1,70 +1,190 @@
-<div class="text-center mb-6">
-  <h1 class="text-2xl font-bold text-[#1E3A5F]">Iniciar Sesión</h1>
-  <p class="text-[#6B7280] mt-2">Ingresa tus credenciales para acceder a tu cuenta</p>
-</div>
+<div 
+  class="min-h-screen w-full font-gotham relative flex flex-col justify-between p-6 sm:p-10 lg:py-10 lg:pl-24 lg:pr-12 xl:pl-32 xl:pr-16 bg-cover bg-center overflow-x-hidden"
+  style="background-image: url('/login-full-bg.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center right;"
+>
 
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-5">
-  <!-- Generic error message -->
-  @if (loginError()) {
-    <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm" role="alert">
-      <div class="flex items-center gap-2">
-        <i class="pi pi-exclamation-circle"></i>
-        <span>{{ loginError() }}</span>
+  <!-- Top: Brand Logo (Larger, transparent, directly on the background) -->
+  <header class="relative z-10 pt-2 lg:pt-4">
+    <a routerLink="/" class="inline-block no-underline hover:opacity-90 transition">
+      <img
+        src="/fazilito-logo.png"
+        alt="Fazilito - Casa de Cambio y Remesas"
+        class="h-12 sm:h-14 lg:h-16 w-auto object-contain"
+      />
+    </a>
+  </header>
+
+  <!-- Center Content: Form Section (Larger, shifted more to the right, completely transparent without card background) -->
+  <main class="relative z-10 w-full max-w-[460px] my-auto py-6">
+    
+    <div class="w-full bg-transparent p-0">
+      
+      <!-- Heading -->
+      <div class="mb-6">
+        <h1 class="text-3xl sm:text-4xl font-black text-[#00394b] tracking-tight leading-tight">
+          Inicia sesión
+        </h1>
+        <p class="text-sm sm:text-base text-slate-500 font-medium mt-1.5">
+          Ingresa con tu cuenta para continuar
+        </p>
       </div>
+
+      <!-- Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-4">
+        
+        <!-- Error alert -->
+        @if (loginError()) {
+          <div class="bg-red-50/95 border border-red-200 text-red-700 px-4 py-3 rounded-2xl text-xs sm:text-sm flex items-center gap-2.5 animate-fadeIn shadow-sm">
+            <svg class="w-5 h-5 text-red-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>{{ loginError() }}</span>
+          </div>
+        }
+
+        <!-- Resend confirmation alert -->
+        @if (resendMessage()) {
+          <div class="bg-emerald-50/95 border border-emerald-200 text-emerald-800 px-4 py-3 rounded-2xl text-xs sm:text-sm flex items-center gap-2.5 animate-fadeIn shadow-sm">
+            <svg class="w-5 h-5 text-[#18a796] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>{{ resendMessage() }}</span>
+          </div>
+        }
+
+        <!-- Email input -->
+        <div class="space-y-1">
+          <div class="relative flex items-center bg-[#EAF0F6]/95 hover:bg-[#e2edf6] focus-within:bg-[#EAF0F6] rounded-2xl overflow-hidden focus-within:ring-2 focus-within:ring-[#18a796]/50 transition shadow-xs">
+            <div class="pl-4 pr-1 text-slate-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              </svg>
+            </div>
+            <input
+              type="email"
+              formControlName="email"
+              placeholder="Correo electrónico"
+              class="w-full bg-transparent px-3 py-4 outline-none border-none text-sm sm:text-base text-[#00394b] font-semibold placeholder:text-slate-400"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Password input -->
+        <div class="space-y-1">
+          <div class="relative flex items-center bg-[#EAF0F6]/95 hover:bg-[#e2edf6] focus-within:bg-[#EAF0F6] rounded-2xl overflow-hidden focus-within:ring-2 focus-within:ring-[#18a796]/50 transition shadow-xs">
+            <div class="pl-4 pr-1 text-slate-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+              </svg>
+            </div>
+            <input
+              [type]="showPassword() ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="Contraseña"
+              class="w-full bg-transparent px-3 py-4 outline-none border-none text-sm sm:text-base text-[#00394b] font-semibold placeholder:text-slate-400"
+              required
+            />
+            <button
+              type="button"
+              (click)="togglePasswordVisibility()"
+              class="pr-4 pl-1 text-slate-400 hover:text-[#00394b] cursor-pointer bg-transparent border-none transition"
+              aria-label="Mostrar u ocultar contraseña"
+            >
+              @if (showPassword()) {
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                </svg>
+              } @else {
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              }
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember me & Forgot password -->
+        <div class="flex items-center justify-between pt-1">
+          <label class="flex items-center gap-2 cursor-pointer text-xs sm:text-sm font-semibold text-slate-600 select-none">
+            <input
+              type="checkbox"
+              formControlName="rememberMe"
+              class="w-4 h-4 rounded border-slate-300 text-[#18a796] focus:ring-[#18a796] cursor-pointer"
+            />
+            Recordarme
+          </label>
+          <a
+            href="https://wa.me/51994790996?text=Hola%20Fazilito,%20necesito%20ayuda%20para%20recuperar%20mi%20contrase%C3%B1a."
+            target="_blank"
+            class="text-xs sm:text-sm font-bold text-[#18a796] hover:text-[#148e80] no-underline transition"
+          >
+            ¿Olvidaste tu contraseña?
+          </a>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-2">
+          <button
+            type="submit"
+            [disabled]="isLoading()"
+            class="w-full bg-gradient-to-r from-[#00394b] via-[#0b4d5e] to-[#18a796] hover:from-[#002b38] hover:to-[#148e80] text-white font-bold py-4 px-6 rounded-2xl text-center text-sm sm:text-base tracking-wider flex items-center justify-center gap-2.5 shadow-lg shadow-[#00394b]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all cursor-pointer border-none font-gotham disabled:opacity-50"
+          >
+            @if (isLoading()) {
+              <i class="pi pi-spin pi-spinner text-lg"></i>
+              <span>Iniciando sesión...</span>
+            } @else {
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+              </svg>
+              <span>Iniciar sesión</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            }
+          </button>
+        </div>
+
+        <!-- Divider -->
+        <div class="relative flex py-2 items-center">
+          <div class="flex-grow border-t border-slate-300/80"></div>
+          <span class="flex-shrink mx-3 text-xs font-semibold text-slate-400">¿No tienes una cuenta?</span>
+          <div class="flex-grow border-t border-slate-300/80"></div>
+        </div>
+
+        <!-- Register button -->
+        <a
+          routerLink="/registro-persona"
+          class="w-full rounded-2xl border-2 border-slate-300/80 hover:border-[#18a796] bg-white/95 hover:bg-white text-[#00394b] hover:text-[#18a796] font-bold py-3.5 px-4 text-center text-xs sm:text-sm flex items-center justify-center gap-2 transition-all no-underline cursor-pointer shadow-xs"
+        >
+          <svg class="w-4 h-4 text-[#18a796]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.765z" />
+          </svg>
+          <span>Registrar nuevo usuario</span>
+        </a>
+
+        <!-- Reenviar email de confirmación -->
+        <div class="text-center pt-2">
+          <button
+            type="button"
+            (click)="onResendConfirmationEmail()"
+            class="text-xs sm:text-sm text-[#18a796] hover:text-[#148e80] hover:underline font-semibold bg-transparent border-none cursor-pointer inline-flex items-center gap-1.5 transition"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>
+            Reenviar email de confirmación
+          </button>
+        </div>
+      </form>
     </div>
-  }
 
-  <!-- Email field -->
-  <div class="flex flex-col gap-2">
-    <label for="email" class="text-sm font-medium text-[#1F2937]">Email</label>
-    <input
-      pInputText
-      id="email"
-      type="email"
-      formControlName="email"
-      placeholder="tu@email.com"
-      [class]="loginForm.get('email')!.invalid && loginForm.get('email')!.touched ? 'ng-invalid ng-dirty' : ''"
-      aria-describedby="email-error"
-    />
-    @if (loginForm.get('email')!.touched && loginForm.get('email')!.hasError('required')) {
-      <small id="email-error" class="text-red-500 text-xs">El email es obligatorio.</small>
-    }
-    @if (loginForm.get('email')!.touched && loginForm.get('email')!.hasError('emailFormat')) {
-      <small id="email-error" class="text-red-500 text-xs">El formato del email no es válido.</small>
-    }
-  </div>
+  </main>
 
-  <!-- Password field -->
-  <div class="flex flex-col gap-2">
-    <label for="password" class="text-sm font-medium text-[#1F2937]">Contraseña</label>
-    <p-password
-      id="password"
-      formControlName="password"
-      [feedback]="false"
-      [toggleMask]="true"
-      placeholder="Tu contraseña"
-      styleClass="w-full"
-      [inputStyleClass]="'w-full' + (loginForm.get('password')!.invalid && loginForm.get('password')!.touched ? ' ng-invalid ng-dirty' : '')"
-      aria-describedby="password-error"
-    ></p-password>
-    @if (loginForm.get('password')!.touched && loginForm.get('password')!.hasError('required')) {
-      <small id="password-error" class="text-red-500 text-xs">La contraseña es obligatoria.</small>
-    }
-  </div>
+  <!-- Bottom: Security footer -->
+  <footer class="relative z-10 text-left text-xs text-slate-400 font-medium pb-2">
+    <span>© 2026 Fazilito • Operaciones 100% Seguras y Reguladas</span>
+  </footer>
 
-  <!-- Submit button -->
-  <p-button
-    type="submit"
-    label="Iniciar Sesión"
-    [loading]="isLoading()"
-    [disabled]="isLoading()"
-    styleClass="w-full"
-    severity="primary"
-  ></p-button>
-
-  <!-- Register link -->
-  <div class="text-center text-sm text-[#6B7280]">
-    ¿No tienes cuenta?
-    <a routerLink="/registro" class="text-[#1E3A5F] font-medium hover:underline">Regístrate aquí</a>
-  </div>
-</form>
+</div>

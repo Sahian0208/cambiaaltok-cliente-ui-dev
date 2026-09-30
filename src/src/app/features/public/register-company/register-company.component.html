@@ -5,13 +5,17 @@
         <i class="pi pi-check-circle"></i>
       </div>
       <h2>¡Registro exitoso!</h2>
-      <p>Tu empresa ha sido registrada. Recibirás un correo de confirmación y un link para verificar el email, posterior a eso ya puedes iniciar sesion con tu email y contraseña.</p>
-      <p-button label="Ir al inicio" icon="pi pi-home" (onClick)="router.navigate(['/bc'])"></p-button>
+      <p>Tu empresa ha sido registrada. Recibirás un correo de confirmación y un link para verificar el email, posterior a eso ya puedes iniciar sesión con tu email y contraseña.</p>
+      <button type="button" class="btn-gradient-zion" (click)="router.navigate(['/bc'])">
+        <i class="pi pi-home"></i>
+        <span>Ir al inicio</span>
+      </button>
     </div>
   } @else {
     <div class="register-header">
-      <h2 class="register-title">Registro de Empresa</h2>
+      <h2 class="register-title">Registro de <span class="text-gradient">Empresa</span></h2>
       <p class="register-subtitle">Completa los siguientes pasos para registrar tu empresa</p>
+      <div class="header-accent-bar"></div>
     </div>
 
     <!-- Step indicators -->
@@ -31,7 +35,9 @@
     @if (currentStep() === 0) {
       <div class="section-card">
         <div class="section-card-header">
-          <i class="pi pi-building section-card-icon"></i>
+          <div class="section-card-icon-box">
+            <i class="pi pi-building section-card-icon"></i>
+          </div>
           <div>
             <h3 class="section-card-title">Datos de la empresa</h3>
             <p class="section-card-desc">Ingresa la información legal de tu empresa</p>
@@ -48,7 +54,7 @@
                 [options]="countryOptions"
                 optionLabel="label"
                 optionValue="value"
-                placeholder="Seleccione pais"
+                placeholder="Seleccione país"
                 [style]="{'width': '100%'}">
               </p-select>
               @if (companyForm.get('country')?.invalid && companyForm.get('country')?.touched) {
@@ -74,7 +80,7 @@
             </div>
            <div class="form-field">
               <label for="email" class="form-label">Email *</label>
-              <input pInputText id="email" formControlName="email" placeholder="tu@email.com" type="email" />
+              <input pInputText id="email" formControlName="email" placeholder="rodrigo@g" type="email" />
               @if (companyForm.get('email')?.invalid && companyForm.get('email')?.touched) {
                 <small class="form-error">
                   @if (companyForm.get('email')?.errors?.['required']) {
@@ -120,7 +126,7 @@
                 formControlName="password"
                 [toggleMask]="true"
                 [feedback]="true"
-                placeholder="Mínimo 8 caracteres"
+                placeholder="••••••••••"
                 [style]="{'width': '100%'}"
                 [inputStyle]="{'width': '100%'}">
               </p-password>
@@ -168,14 +174,23 @@
           }
         </form>
 
-        <div class="form-actions">
-          <p-button
-            label="Siguiente"
-            icon="pi pi-arrow-right"
-            iconPos="right"
-            (onClick)="nextStep()"
-            severity="primary">
-          </p-button>
+        <div class="form-actions form-actions--between items-center">
+          <!-- Security note on left -->
+          <div class="security-badge">
+            <div class="security-badge-icon">
+              <i class="pi pi-lock"></i>
+            </div>
+            <div class="security-badge-text">
+              <span class="security-title">Tu información está protegida</span>
+              <span class="security-desc">Con encriptación de nivel bancario</span>
+            </div>
+          </div>
+
+          <!-- Cyan/Zion gradient button on right -->
+          <button type="button" class="btn-gradient-zion" (click)="nextStep()">
+            <span>Siguiente</span>
+            <i class="pi pi-arrow-right"></i>
+          </button>
         </div>
       </div>
     }
@@ -184,7 +199,9 @@
     @if (currentStep() === 1) {
       <div class="section-card">
         <div class="section-card-header">
-          <i class="pi pi-file section-card-icon"></i>
+          <div class="section-card-icon-box">
+            <i class="pi pi-file section-card-icon"></i>
+          </div>
           <div>
             <h3 class="section-card-title">Documento tributario</h3>
             <p class="section-card-desc">Sube o toma una foto de tu registro tributario (NIT/RUC)</p>
@@ -234,22 +251,26 @@
           </div>
         }
 
-        <div class="form-actions form-actions--between">
-          <p-button
-            label="Anterior"
-            icon="pi pi-arrow-left"
-            (onClick)="prevStep()"
-            severity="secondary"
-            [outlined]="true">
-          </p-button>
-          <p-button
-            label="Registrar empresa"
-            icon="pi pi-check"
-            (onClick)="submit()"
-            severity="primary"
-            [loading]="submitting()"
-            [disabled]="!taxpayerRegistrationPhoto()">
-          </p-button>
+        <div class="form-actions form-actions--between items-center">
+          <button type="button" class="btn-secondary-outlined" (click)="prevStep()">
+            <i class="pi pi-arrow-left"></i>
+            <span>Anterior</span>
+          </button>
+          
+          <button
+            type="button"
+            class="btn-gradient-zion"
+            (click)="submit()"
+            [disabled]="submitting() || !taxpayerRegistrationPhoto()"
+          >
+            @if (submitting()) {
+              <i class="pi pi-spin pi-spinner"></i>
+              <span>Registrando...</span>
+            } @else {
+              <i class="pi pi-check"></i>
+              <span>Registrar empresa</span>
+            }
+          </button>
         </div>
       </div>
     }

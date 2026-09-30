@@ -5,13 +5,17 @@
         <i class="pi pi-check-circle"></i>
       </div>
       <h2>¡Registro exitoso!</h2>
-      <p>Tu cuenta ha sido creada. Recibirás un correo de confirmación y un link para verificar el email, posterior a eso ya puedes iniciar sesion con tu email y contraseña.</p>
-      <p-button label="Ir al inicio" icon="pi pi-home" (onClick)="router.navigate(['/bc'])"></p-button>
+      <p>Tu cuenta ha sido creada. Recibirás un correo de confirmación y un link para verificar el email, posterior a eso ya puedes iniciar sesión con tu email y contraseña.</p>
+      <button type="button" class="btn-gradient-zion" (click)="router.navigate(['/bc'])">
+        <i class="pi pi-home"></i>
+        <span>Ir al inicio</span>
+      </button>
     </div>
   } @else {
     <div class="register-header">
-      <h2 class="register-title">Registro de Persona</h2>
+      <h2 class="register-title">Registro de <span class="text-gradient">Persona</span></h2>
       <p class="register-subtitle">Completa los siguientes pasos para crear tu cuenta personal</p>
+      <div class="header-accent-bar"></div>
     </div>
 
     <!-- Step indicators -->
@@ -36,7 +40,9 @@
     @if (currentStep() === 0) {
       <div class="section-card">
         <div class="section-card-header">
-          <i class="pi pi-user section-card-icon"></i>
+          <div class="section-card-icon-box">
+            <i class="pi pi-user section-card-icon"></i>
+          </div>
           <div>
             <h3 class="section-card-title">Datos personales</h3>
             <p class="section-card-desc">Ingresa tu información básica para crear la cuenta</p>
@@ -60,14 +66,6 @@
                 <small class="form-error">Nacionalidad es requerida</small>
               }
             </div>
-            <!-- <div class="form-field">
-              <label for="documentNumber" class="form-label">Número de documento *</label>
-              <input pInputText id="documentNumber" formControlName="documentNumber" placeholder="Número de CI o DNI" />
-              @if (personForm.get('documentNumber')?.invalid && personForm.get('documentNumber')?.touched) {
-                <small class="form-error">Número de documento es requerido</small>
-              }
-            </div> -->
-
 
             <div class="form-field">
               <label for="documentNumber" class="form-label">Número de documento *</label>
@@ -94,22 +92,11 @@
                   @if (personForm.get('documentNumber')?.errors?.['required']) {
                     Número de documento es requerido
                   } @else {
-                    Ingresa un numero valido
+                    Ingresa un número válido
                   }
                 </small>
               }
-              @if (documentNumberErrorMessage()) {
-                <small class="form-error">{{ documentNumberErrorMessage() }}</small>
-              }
-              @if (documentNumberAvailable() === true && !documentNumberChecking()) {
-                <small class="form-success">Numero de documento disponible</small>
-              }
             </div>
-
-
-
-
-
           </div>
 
           <div class="form-row">
@@ -117,32 +104,19 @@
               <label for="firstName" class="form-label">Nombres *</label>
               <input pInputText id="firstName" formControlName="firstName" placeholder="Tus nombres" />
               @if (personForm.get('firstName')?.invalid && personForm.get('firstName')?.touched) {
-                <small class="form-error">Nombres es requerido</small>
+                <small class="form-error">Nombres son requeridos</small>
               }
             </div>
             <div class="form-field">
               <label for="lastName" class="form-label">Apellidos *</label>
               <input pInputText id="lastName" formControlName="lastName" placeholder="Tus apellidos" />
               @if (personForm.get('lastName')?.invalid && personForm.get('lastName')?.touched) {
-                <small class="form-error">Apellidos es requerido</small>
+                <small class="form-error">Apellidos son requeridos</small>
               }
             </div>
           </div>
 
           <div class="form-row">
-            <div class="form-field">
-              <label for="phone" class="form-label">Teléfono *</label>
-              <input pInputText id="phone" formControlName="phone" placeholder="Solo números" />
-              @if (personForm.get('phone')?.invalid && personForm.get('phone')?.touched) {
-                <small class="form-error">
-                  @if (personForm.get('phone')?.errors?.['required']) {
-                    Teléfono es requerido
-                  } @else {
-                    Solo se permiten números
-                  }
-                </small>
-              }
-            </div>
             <div class="form-field">
               <label for="email" class="form-label">Email *</label>
               <div class="email-field-wrapper">
@@ -172,11 +146,13 @@
                   }
                 </small>
               }
-              @if (emailErrorMessage()) {
-                <small class="form-error">{{ emailErrorMessage() }}</small>
-              }
-              @if (emailAvailable() === true && !emailChecking()) {
-                <small class="form-success">Email disponible</small>
+            </div>
+
+            <div class="form-field">
+              <label for="phone" class="form-label">Celular / WhatsApp *</label>
+              <input pInputText id="phone" formControlName="phone" placeholder="Ej: 71234567" />
+              @if (personForm.get('phone')?.invalid && personForm.get('phone')?.touched) {
+                <small class="form-error">Celular es requerido</small>
               }
             </div>
           </div>
@@ -225,7 +201,7 @@
                 formControlName="password"
                 [toggleMask]="true"
                 [feedback]="true"
-                placeholder="Mínimo 8 caracteres"
+                placeholder="••••••••••"
                 [style]="{'width': '100%'}"
                 [inputStyle]="{'width': '100%'}">
               </p-password>
@@ -273,14 +249,21 @@
           }
         </form>
 
-        <div class="form-actions">
-          <p-button
-            label="Siguiente"
-            icon="pi pi-arrow-right"
-            iconPos="right"
-            (onClick)="nextStep()"
-            severity="primary">
-          </p-button>
+        <div class="form-actions form-actions--between items-center">
+          <div class="security-badge">
+            <div class="security-badge-icon">
+              <i class="pi pi-lock"></i>
+            </div>
+            <div class="security-badge-text">
+              <span class="security-title">Tu información está protegida</span>
+              <span class="security-desc">Con encriptación de nivel bancario</span>
+            </div>
+          </div>
+
+          <button type="button" class="btn-gradient-zion" (click)="nextStep()">
+            <span>Siguiente</span>
+            <i class="pi pi-arrow-right"></i>
+          </button>
         </div>
       </div>
     }
@@ -289,7 +272,9 @@
     @if (currentStep() === 1) {
       <div class="section-card">
         <div class="section-card-header">
-          <i class="pi pi-id-card section-card-icon"></i>
+          <div class="section-card-icon-box">
+            <i class="pi pi-id-card section-card-icon"></i>
+          </div>
           <div>
             <h3 class="section-card-title">Documento de identidad</h3>
             <p class="section-card-desc">Sube o toma una foto del anverso y reverso de tu documento</p>
@@ -366,22 +351,21 @@
           <small class="form-error step-error">Ambas fotos del documento son requeridas para continuar</small>
         }
 
-        <div class="form-actions form-actions--between">
-          <p-button
-            label="Anterior"
-            icon="pi pi-arrow-left"
-            (onClick)="prevStep()"
-            severity="secondary"
-            [outlined]="true">
-          </p-button>
-          <p-button
-            label="Siguiente"
-            icon="pi pi-arrow-right"
-            iconPos="right"
-            (onClick)="nextStep()"
-            severity="primary"
-            [disabled]="!documentFrontPhoto() || !documentBackPhoto()">
-          </p-button>
+        <div class="form-actions form-actions--between items-center">
+          <button type="button" class="btn-secondary-outlined" (click)="prevStep()">
+            <i class="pi pi-arrow-left"></i>
+            <span>Anterior</span>
+          </button>
+          
+          <button
+            type="button"
+            class="btn-gradient-zion"
+            (click)="nextStep()"
+            [disabled]="!documentFrontPhoto() || !documentBackPhoto()"
+          >
+            <span>Siguiente</span>
+            <i class="pi pi-arrow-right"></i>
+          </button>
         </div>
       </div>
     }
@@ -390,7 +374,9 @@
     @if (currentStep() === 2) {
       <div class="section-card">
         <div class="section-card-header">
-          <i class="pi pi-video section-card-icon"></i>
+          <div class="section-card-icon-box">
+            <i class="pi pi-video section-card-icon"></i>
+          </div>
           <div>
             <h3 class="section-card-title">Video de identidad</h3>
             <p class="section-card-desc">Graba un video diciendo tu nombre, apellido y número de documento</p>
@@ -454,22 +440,26 @@
           </div>
         }
 
-        <div class="form-actions form-actions--between">
-          <p-button
-            label="Anterior"
-            icon="pi pi-arrow-left"
-            (onClick)="prevStep()"
-            severity="secondary"
-            [outlined]="true">
-          </p-button>
-          <p-button
-            label="Registrarme"
-            icon="pi pi-check"
-            (onClick)="submit()"
-            severity="primary"
-            [loading]="submitting()"
-            [disabled]="!identityVideo()">
-          </p-button>
+        <div class="form-actions form-actions--between items-center">
+          <button type="button" class="btn-secondary-outlined" (click)="prevStep()">
+            <i class="pi pi-arrow-left"></i>
+            <span>Anterior</span>
+          </button>
+          
+          <button
+            type="button"
+            class="btn-gradient-zion"
+            (click)="submit()"
+            [disabled]="submitting() || !identityVideo()"
+          >
+            @if (submitting()) {
+              <i class="pi pi-spin pi-spinner"></i>
+              <span>Registrando...</span>
+            } @else {
+              <i class="pi pi-check"></i>
+              <span>Registrar persona</span>
+            }
+          </button>
         </div>
       </div>
     }

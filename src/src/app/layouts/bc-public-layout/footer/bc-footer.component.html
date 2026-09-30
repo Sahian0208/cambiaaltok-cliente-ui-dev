@@ -1,301 +1,233 @@
 
+      <!-- Background Gradients and Ambient Lighting -->
       <div class="absolute inset-0 pointer-events-none">
         <div
-          class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#0B63FF]/8 rounded-full blur-[120px]"
+          class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#18a796]/10 rounded-full blur-[140px]"
         ></div>
         <div
-          class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#12D6EB]/6 rounded-full blur-[100px]"
+          class="absolute bottom-0 right-0 w-[450px] h-[450px] bg-[#33bb9c]/8 rounded-full blur-[120px]"
         ></div>
       </div>
 
+      <!-- Subtle Grid Pattern -->
       <div
-        class="absolute inset-0 opacity-[0.03] pointer-events-none"
+        class="absolute inset-0 opacity-[0.02] pointer-events-none"
         style="
           background-image:
             linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px),
             linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px);
-          background-size: 48px 48px;
+          background-size: 40px 40px;
         "
       ></div>
 
+      <!-- Top Border Glow -->
       <div
-        class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#0B63FF]/40 to-transparent"
+        class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#33bb9c]/40 to-transparent"
       ></div>
 
-      <div
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-0 relative z-10"
-      >
-        <div
-          class="flex flex-wrap items-start justify-between gap-x-6 gap-y-10 mb-16"
-        >
-          <div class="space-y-5 flex-1 min-w-[140px] basis-[45%] sm:basis-[30%] lg:basis-0">
-            <div class="space-y-1">
-              <div
-                class="w-6 h-0.5 bg-gradient-to-r from-[#0B63FF] to-[#12D6EB] rounded-full mb-3"
-              ></div>
-              <h5
-                class="text-white font-bold font-display uppercase tracking-widest text-[10px]"
-              >
-                Empresa
-              </h5>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 relative z-10 font-gotham">
+        
+        <!-- Main Footer Content Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+          
+          <!-- Column 1: Brand & Badges (Col span 4) -->
+          <div class="lg:col-span-4 space-y-6">
+            <!-- Logo -->
+            <div class="flex items-center">
+              <img
+                src="/fazilito-logo-white.png"
+                alt="Fazilito"
+                class="h-14 sm:h-16 w-auto object-contain"
+              />
             </div>
-            <ul class="space-y-3 text-xs font-light">
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-[#12D6EB] transition-colors duration-200 flex items-center gap-1.5 group"
-                >
-                  <span
-                    class="w-0 group-hover:w-2 h-px bg-[#12D6EB] transition-all duration-300"
-                  ></span>
-                  Empresas
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-[#12D6EB] transition-colors duration-200 flex items-center gap-1.5 group"
-                >
-                  <span
-                    class="w-0 group-hover:w-2 h-px bg-[#12D6EB] transition-all duration-300"
-                  ></span>
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-[#12D6EB] transition-colors duration-200 flex items-center gap-1.5 group"
-                >
-                  <span
-                    class="w-0 group-hover:w-2 h-px bg-[#12D6EB] transition-all duration-300"
-                  ></span>
-                  Trabaja con Nosotros
-                </a>
-              </li>
-            </ul>
+
+            <!-- Description -->
+            <p class="text-slate-300 text-sm leading-relaxed max-w-sm font-normal">
+              Tu casa de cambio segura, rápida y confiable. Cambia, transfiere y envía con <span class="text-[#33bb9c] font-bold">fazilito</span>.
+            </p>
+
+            <!-- Security Badges (without background or borders) -->
+            <div class="flex items-center gap-3 text-xs text-slate-300 font-medium pt-1">
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-[#33bb9c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                Seguro
+              </span>
+              <span class="text-slate-600 font-light">|</span>
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-[#33bb9c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                Rápido
+              </span>
+              <span class="text-slate-600 font-light">|</span>
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-[#33bb9c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                Confiable
+              </span>
+            </div>
           </div>
 
-          <div class="space-y-5 flex-1 min-w-[140px] basis-[45%] sm:basis-[30%] lg:basis-0">
-            <div class="space-y-1">
-              <div
-                class="w-6 h-0.5 bg-gradient-to-r from-[#0B63FF] to-[#12D6EB] rounded-full mb-3"
-              ></div>
-              <h5
-                class="text-white font-bold font-display uppercase tracking-widest text-[10px]"
-              >
-                Ayuda
-              </h5>
+          <!-- Column 2: Empresa & Ayuda (Col span 3) -->
+          <div class="lg:col-span-3 grid grid-cols-2 gap-6">
+            <!-- Empresa -->
+            <div class="space-y-4">
+              <div class="space-y-1.5">
+                <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
+                <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
+                  Empresa
+                </h5>
+              </div>
+              <ul class="space-y-2.5 text-xs text-slate-300 font-light">
+                <li>
+                  <a href="#about-us" class="hover:text-[#33bb9c] transition-colors duration-200 block">Nosotros</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Blog</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Trabaja con Nosotros</a>
+                </li>
+              </ul>
             </div>
-            <ul class="space-y-3 text-xs font-light">
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-[#12D6EB] transition-colors duration-200 flex items-center gap-1.5 group"
-                >
-                  <span
-                    class="w-0 group-hover:w-2 h-px bg-[#12D6EB] transition-all duration-300"
-                  ></span>
-                  Atención al Cliente
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-[#12D6EB] transition-colors duration-200 flex items-center gap-1.5 group"
-                >
-                  <span
-                    class="w-0 group-hover:w-2 h-px bg-[#12D6EB] transition-all duration-300"
-                  ></span>
-                  Preguntas Frecuentes
-                </a>
-              </li>
-            </ul>
+
+            <!-- Ayuda -->
+            <div class="space-y-4">
+              <div class="space-y-1.5">
+                <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
+                <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
+                  Ayuda
+                </h5>
+              </div>
+              <ul class="space-y-2.5 text-xs text-slate-300 font-light">
+                <li>
+                  <a href="#contact" class="hover:text-[#33bb9c] transition-colors duration-200 block">Atención al Cliente</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Preguntas Frecuentes</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Guías y Tutoriales</a>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <div class="space-y-5 flex-1 min-w-[140px] basis-[45%] sm:basis-[30%] lg:basis-0">
-            <div class="space-y-1">
-              <div
-                class="w-6 h-0.5 bg-gradient-to-r from-[#0B63FF] to-[#12D6EB] rounded-full mb-3"
-              ></div>
-              <h5
-                class="text-white font-bold font-display uppercase tracking-widest text-[10px]"
-              >
-                Más Información
-              </h5>
+          <!-- Column 3: Más Información & Legal (Col span 3) -->
+          <div class="lg:col-span-3 space-y-6">
+            <div class="space-y-4">
+              <div class="space-y-1.5">
+                <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
+                <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
+                  Más Información
+                </h5>
+              </div>
+              <ul class="space-y-2.5 text-xs text-slate-300 font-light">
+                <li>
+                  <a href="#how-it-works" class="hover:text-[#33bb9c] transition-colors duration-200 block">Beneficios</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Configurar Alertas</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Tipo de Cambio Hoy</a>
+                </li>
+                <li>
+                  <a href="#about-us" class="hover:text-[#33bb9c] transition-colors duration-200 block">¿Qué es fazilito?</a>
+                </li>
+              </ul>
             </div>
-            <ul class="space-y-3 text-xs font-light">
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-[#12D6EB] transition-colors duration-200 flex items-center gap-1.5 group"
+
+            <div class="space-y-4 pt-1">
+              <div class="space-y-1.5">
+                <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
+                <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
+                  Legal
+                </h5>
+              </div>
+              <ul class="space-y-2 text-xs text-slate-300 font-light">
+                <li>
+                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Términos y Condiciones</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Políticas de Privacidad</a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Derechos ARCO</a>
+                </li>
+              </ul>
+
+              <!-- Libro de reclamaciones -->
+              <a
+                href="#"
+                class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#33bb9c]/40 px-3.5 py-2 rounded-xl transition-all duration-300 group mt-1"
+              >
+                <svg
+                  class="w-3.5 h-3.5 text-[#33bb9c]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
                 >
-                  <span
-                    class="w-0 group-hover:w-2 h-px bg-[#12D6EB] transition-all duration-300"
-                  ></span>
-                  Beneficios
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-[#12D6EB] transition-colors duration-200 flex items-center gap-1.5 group"
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  />
+                </svg>
+                <span
+                  class="text-[10px] uppercase font-bold tracking-wider text-slate-200 group-hover:text-white transition-colors"
                 >
-                  <span
-                    class="w-0 group-hover:w-2 h-px bg-[#12D6EB] transition-all duration-300"
-                  ></span>
-                  Configurar Alertas
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-[#12D6EB] transition-colors duration-200 flex items-center gap-1.5 group"
-                >
-                  <span
-                    class="w-0 group-hover:w-2 h-px bg-[#12D6EB] transition-all duration-300"
-                  ></span>
-                  Tipo de Cambio Hoy
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-[#12D6EB] transition-colors duration-200 flex items-center gap-1.5 group"
-                >
-                  <span
-                    class="w-0 group-hover:w-2 h-px bg-[#12D6EB] transition-all duration-300"
-                  ></span>
-                  ¿Qué es Cambia Altok?
-                </a>
-              </li>
-            </ul>
+                  Libro de Reclamaciones
+                </span>
+              </a>
+            </div>
           </div>
 
-          <div class="space-y-5 flex-1 min-w-[140px] basis-[45%] sm:basis-[30%] lg:basis-0">
-            <div class="space-y-1">
-              <div
-                class="w-6 h-0.5 bg-gradient-to-r from-[#0B63FF] to-[#12D6EB] rounded-full mb-3"
-              ></div>
-              <h5
-                class="text-white font-bold font-display uppercase tracking-widest text-[10px]"
-              >
-                Legal
-              </h5>
-            </div>
-            <ul class="space-y-3 text-xs font-light">
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-[#12D6EB] transition-colors duration-200 flex items-center gap-1.5 group"
-                >
-                  <span
-                    class="w-0 group-hover:w-2 h-px bg-[#12D6EB] transition-all duration-300"
-                  ></span>
-                  Términos y Condiciones
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-[#12D6EB] transition-colors duration-200 flex items-center gap-1.5 group"
-                >
-                  <span
-                    class="w-0 group-hover:w-2 h-px bg-[#12D6EB] transition-all duration-300"
-                  ></span>
-                  Políticas de Privacidad
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="hover:text-[#12D6EB] transition-colors duration-200 flex items-center gap-1.5 group"
-                >
-                  <span
-                    class="w-0 group-hover:w-2 h-px bg-[#12D6EB] transition-all duration-300"
-                  ></span>
-                  Derechos ARCO
-                </a>
-              </li>
-            </ul>
-
-            <a
-              href="#"
-              class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#12D6EB]/40 px-3 py-2 rounded-xl transition-all duration-300 group mt-2"
-            >
-              <svg
-                class="w-3.5 h-3.5 text-[#12D6EB]"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                />
-              </svg>
-              <span
-                class="text-[9px] uppercase font-bold tracking-wider font-display text-slate-300 group-hover:text-white transition-colors"
-                >Libro de Reclamaciones</span
-              >
-            </a>
-          </div>
-
-          <div class="space-y-5 flex-1 min-w-[220px] basis-full sm:basis-[30%] lg:basis-0">
-            <div class="space-y-1">
-              <div
-                class="w-6 h-0.5 bg-gradient-to-r from-[#0B63FF] to-[#12D6EB] rounded-full mb-3"
-              ></div>
-              <h5
-                class="text-white font-bold font-display uppercase tracking-widest text-[10px]"
-              >
-                Horarios
+          <!-- Column 4: Horarios & Síguenos (Col span 2) -->
+          <div class="lg:col-span-2 space-y-5">
+            <div class="space-y-1.5">
+              <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
+              <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
+                Horarios de Atención
               </h5>
             </div>
 
             <div class="space-y-2.5 text-xs">
-              <div
-                class="bg-white/5 border border-white/5 rounded-xl px-3 py-2.5 space-y-0.5"
-              >
-                <p
-                  class="text-slate-500 text-[10px] uppercase tracking-wider font-semibold"
-                >
+              <div class="bg-white/5 border border-white/5 rounded-xl px-3.5 py-2.5 space-y-0.5 backdrop-blur-sm">
+                <p class="text-slate-400 text-[10px] uppercase tracking-wider font-semibold">
                   Lunes a Viernes
                 </p>
-                <p class="text-white font-bold font-display">
+                <p class="text-white font-bold">
                   9:00 AM – 7:00 PM
                 </p>
               </div>
-              <div
-                class="bg-white/5 border border-white/5 rounded-xl px-3 py-2.5 space-y-0.5"
-              >
-                <p
-                  class="text-slate-500 text-[10px] uppercase tracking-wider font-semibold"
-                >
+              <div class="bg-white/5 border border-white/5 rounded-xl px-3.5 py-2.5 space-y-0.5 backdrop-blur-sm">
+                <p class="text-slate-400 text-[10px] uppercase tracking-wider font-semibold">
                   Sábado
                 </p>
-                <p class="text-white font-bold font-display">
+                <p class="text-white font-bold">
                   9:00 AM – 2:00 PM
                 </p>
               </div>
             </div>
 
-            <div class="space-y-3 pt-1">
-              <h5
-                class="text-white font-bold font-display uppercase tracking-widest text-[10px]"
-              >
+            <!-- Social Links -->
+            <div class="space-y-3 pt-2">
+              <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
                 Síguenos
               </h5>
               <div class="flex items-center gap-2.5">
                 <a
                   href="#"
-                  class="flex shrink-0 items-center justify-center rounded-xl bg-white/5 hover:bg-[#0B63FF]/30 border border-white/10 hover:border-[#0B63FF]/40 transition-all duration-300 group"
-                  style="width:2rem;height:2rem;min-width:2rem;min-height:2rem;"
+                  aria-label="Facebook"
+                  class="flex shrink-0 items-center justify-center rounded-xl bg-white/5 hover:bg-[#18a796]/30 border border-white/10 hover:border-[#18a796]/40 transition-all duration-300 group w-8 h-8"
                 >
                   <svg
-                    class="w-4 h-4 text-slate-400 group-hover:text-white transition-colors"
+                    class="w-4 h-4 text-slate-300 group-hover:text-white transition-colors"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -307,11 +239,11 @@
 
                 <a
                   href="#"
-                  class="flex shrink-0 items-center justify-center rounded-xl bg-white/5 hover:bg-pink-500/20 border border-white/10 hover:border-pink-500/30 transition-all duration-300 group"
-                  style="width:2rem;height:2rem;min-width:2rem;min-height:2rem;"
+                  aria-label="Instagram"
+                  class="flex shrink-0 items-center justify-center rounded-xl bg-white/5 hover:bg-pink-500/20 border border-white/10 hover:border-pink-500/30 transition-all duration-300 group w-8 h-8"
                 >
                   <svg
-                    class="w-4 h-4 text-slate-400 group-hover:text-pink-400 transition-colors"
+                    class="w-4 h-4 text-slate-300 group-hover:text-pink-400 transition-colors"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -323,11 +255,11 @@
 
                 <a
                   href="#"
-                  class="flex shrink-0 items-center justify-center rounded-xl bg-white/5 hover:bg-red-500/20 border border-white/10 hover:border-red-500/30 transition-all duration-300 group"
-                  style="width:2rem;height:2rem;min-width:2rem;min-height:2rem;"
+                  aria-label="YouTube"
+                  class="flex shrink-0 items-center justify-center rounded-xl bg-white/5 hover:bg-red-500/20 border border-white/10 hover:border-red-500/30 transition-all duration-300 group w-8 h-8"
                 >
                   <svg
-                    class="w-4 h-4 text-slate-400 group-hover:text-red-400 transition-colors"
+                    class="w-4 h-4 text-slate-300 group-hover:text-red-400 transition-colors"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -341,103 +273,43 @@
           </div>
         </div>
 
-        <div
-          class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-10"
-        ></div>
+        <!-- Divider -->
+        <div class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8"></div>
 
-        <div
-          class="flex flex-col lg:flex-row items-center justify-between gap-8 pb-10"
-        >
-          <div class="flex items-center gap-3">
-            <div
-              class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#0B63FF] to-[#12D6EB] flex items-center justify-center shadow-lg shadow-[#0B63FF]/20 shrink-0"
-            >
-              <img
-                src="altok-logo.png"
-                alt="Cambia Altok Logo"
-                class="h-6 w-auto object-contain"
-              />
-            </div>
-            <div>
-              <span
-                class="text-base font-extrabold tracking-tight font-display text-white block leading-tight whitespace-nowrap"
-                >Cambia Altok</span
-              >
-              <span
-                class="text-[10px] text-[#12D6EB] font-medium tracking-widest uppercase block whitespace-nowrap"
-                >Casa de Cambio Online</span
-              >
-            </div>
-          </div>
-
-          <div
-            class="text-center space-y-1 text-[10px] text-slate-500 font-light"
-          >
-            <p class="text-slate-400">
-              Cambia Altok S.A.C. &nbsp;·&nbsp; RUC 20601708141 &nbsp;·&nbsp;
-              Registro SBS: 00335 - 2017
-            </p>
-            <p>
-              V.E. Luis Fernán Bedoya Reyes (antes Paseo de la República) No.
-              3617
-            </p>
-          </div>
-
-          <div
-            class="text-[10px] text-slate-600 font-light text-center lg:text-right"
-          >
-            <p>© 2026 Cambia Altok</p>
-            <p class="text-slate-700">Todos los derechos reservados</p>
-          </div>
+        <!-- Bottom Copyright Row -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-light text-center sm:text-left">
+          <p class="flex items-center gap-1.5 justify-center sm:justify-start">
+            <span>🛡️</span> © 2026 Fazilito S.A.C. Todos los derechos reservados.
+          </p>
+          <p class="text-slate-400">
+            Casa de Cambio y Transferencias Seguras Online
+          </p>
+          <p class="text-slate-400">
+            Miraflores, Lima – Perú
+          </p>
         </div>
       </div>
 
-      <div
-        class="h-1 bg-gradient-to-r from-[#0B63FF] via-[#12D6EB] to-[#0B63FF]"
-      ></div>
+      <!-- Accent Bottom Stripe -->
+      <div class="h-1 bg-gradient-to-r from-[#00394b] via-[#18a796] to-[#33bb9c]"></div>
 
-      <!-- Botón flotante de contacto por WhatsApp -->
-      <div
-        class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 group animate-fade-in"
-      >
-        <!-- <div
-          class="flex items-start gap-3 w-64 rounded-2xl border border-slate-100 bg-white px-4 py-3 text-[11px] font-semibold text-slate-800 shadow-xl"
-        >
-          <div
-            class="flex shrink-0 items-center justify-center rounded-full bg-[#2563EB]/10 text-[#2563EB]"
-            style="width:1.75rem;height:1.75rem;min-width:1.75rem;min-height:1.75rem;"
-          >
-            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-              <path
-                d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"
-              />
-            </svg>
-          </div>
-          <div class="space-y-0.5">
-            <p class="font-extrabold text-[#172033]">¿Hablamos por WhatsApp?</p>
-            <p class="text-[10px] font-normal leading-tight text-slate-400">
-              Resolvemos tu duda en minutos.
-            </p>
-          </div>
-        </div> -->
-
+      <!-- Floating WhatsApp Button -->
+      <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 group animate-fade-in">
         <a
           href="https://wa.me/51994790996"
           target="_blank"
-          class="relative flex shrink-0 items-center justify-center border border-white/10 bg-[#25D366] text-white shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95"
-          style="width:3.5rem;height:3.5rem;min-width:3.5rem;min-height:3.5rem;border-radius:9999px;"
+          class="relative flex shrink-0 items-center justify-center border border-white/10 bg-[#25D366] text-white shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 w-14 h-14 rounded-full"
+          aria-label="Contactar por WhatsApp"
         >
           <span
-            class="absolute top-0 right-0 animate-ping rounded-full border-2 border-[#25D366] bg-red-500"
-            style="width:0.875rem;height:0.875rem;min-width:0.875rem;min-height:0.875rem;"
+            class="absolute top-0 right-0 animate-ping rounded-full border-2 border-[#25D366] bg-red-500 w-3.5 h-3.5"
           ></span>
           <span
-            class="absolute top-0 right-0 rounded-full border-2 border-[#25D366] bg-red-500"
-            style="width:0.875rem;height:0.875rem;min-width:0.875rem;min-height:0.875rem;"
+            class="absolute top-0 right-0 rounded-full border-2 border-[#25D366] bg-red-500 w-3.5 h-3.5"
           ></span>
           <img
             src="/img/icons/icon-chat.svg"
-            alt=""
+            alt="WhatsApp"
             class="h-7 w-7 brightness-0 invert"
           />
         </a>

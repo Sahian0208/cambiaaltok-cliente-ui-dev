@@ -1,25 +1,30 @@
-// CambiaAltok — Paleta de colores
+// Fazilito — Paleta de colores oficial
 
-// Colores principales
-$color-primary: #1E3A5F;
-$color-primary-light: #2E5A8F;
+// Colores principales de marca
+$color-primary: #00394b;        // Azul Petróleo Oscuro (Pantone 303 C)
+$color-primary-light: #0d4e63;
+$color-teal: #33bb9c;           // Verde Azulado (Pantone 339 C)
+$color-turquoise: #18a796;      // Turquesa (Pantone 7473 C)
+$color-accent: #18a796;
 
-// Colores de acento (países)
+// Colores de países
 $color-bolivia: #00A651;
 $color-peru: #D91023;
 
 // Colores de fondo y superficie
-$color-background: #F8FAFC;
+$color-background: #FFFFFF;
 $color-surface: #FFFFFF;
+$color-surface-subtle: #F8FAFC;
 
 // Colores de texto
-$color-text: #1F2937;
-$color-text-secondary: #6B7280;
+$color-text: #00394b;
+$color-text-secondary: #5A6E78;
 
 // Bordes
-$color-border: #E5E7EB;
+$color-border: #E2E8F0;
 
 // Estados
-$color-success: #10B981;
+$color-success: #33bb9c;
 $color-warning: #F59E0B;
 $color-error: #EF4444;
+

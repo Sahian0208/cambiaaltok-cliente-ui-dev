@@ -17,12 +17,12 @@
 ::ng-deep .why-card.p-card {
   border-radius: 1.5rem;
   border: 1px solid rgba(226, 232, 240, 0.8);
-  box-shadow: 0 10px 25px rgba(23, 32, 51, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 57, 75, 0.06);
   transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
 
 ::ng-deep .why-card.p-card:hover {
-  box-shadow: 0 20px 35px rgba(23, 32, 51, 0.12);
+  box-shadow: 0 20px 35px rgba(0, 57, 75, 0.12);
   transform: translateY(-2px);
 }
 
@@ -50,8 +50,8 @@
 
 ::ng-deep .testimonial-card.testimonial-card--active.p-card {
   opacity: 1;
-  box-shadow: 0 20px 35px rgba(23, 32, 51, 0.12);
-  border-color: rgba(37, 99, 235, 0.25);
+  box-shadow: 0 20px 35px rgba(0, 57, 75, 0.12);
+  border-color: rgba(24, 167, 150, 0.4);
 }
 
 ::ng-deep .testimonial-card .p-card-body {
@@ -67,7 +67,7 @@
 ::ng-deep .community-card.p-card {
   border-radius: 1.75rem;
   border: 1px solid rgba(226, 232, 240, 0.8);
-  box-shadow: 0 10px 25px rgba(23, 32, 51, 0.06);
+  box-shadow: 0 10px 25px rgba(0, 57, 75, 0.06);
 }
 
 ::ng-deep .community-card .p-card-body {

@@ -1,117 +1,199 @@
 <section
   id="contact"
-  class="relative flex min-h-screen flex-col justify-center overflow-hidden bg-slate-50 py-12"
+  class="relative flex flex-col justify-center overflow-hidden bg-gradient-to-b from-white via-[#f0fdfa]/30 to-slate-50 py-16 sm:py-24 font-gotham"
 >
-  <!-- Background Glows -->
-  <div class="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-[#2F6F7E]/10 blur-3xl"></div>
-  <div class="pointer-events-none absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-[#2F8A63]/10 blur-3xl"></div>
+  <!-- Background Glows & Dotted Grid Accents -->
+  <div class="pointer-events-none absolute -left-20 top-20 h-80 w-80 rounded-full bg-[#18a796]/8 blur-3xl"></div>
+  <div class="pointer-events-none absolute -right-20 bottom-20 h-80 w-80 rounded-full bg-[#33bb9c]/10 blur-3xl"></div>
+
+  <!-- Dotted Grid Top Right -->
+  <div class="pointer-events-none absolute right-8 top-12 opacity-30 hidden lg:block">
+    <svg width="80" height="80" fill="none" viewBox="0 0 80 80">
+      <circle cx="10" cy="10" r="2.5" fill="#18a796"/>
+      <circle cx="30" cy="10" r="2.5" fill="#18a796"/>
+      <circle cx="50" cy="10" r="2.5" fill="#18a796"/>
+      <circle cx="70" cy="10" r="2.5" fill="#18a796"/>
+      <circle cx="10" cy="30" r="2.5" fill="#18a796"/>
+      <circle cx="30" cy="30" r="2.5" fill="#18a796"/>
+      <circle cx="50" cy="30" r="2.5" fill="#18a796"/>
+      <circle cx="70" cy="30" r="2.5" fill="#18a796"/>
+      <circle cx="10" cy="50" r="2.5" fill="#18a796"/>
+      <circle cx="30" cy="50" r="2.5" fill="#18a796"/>
+      <circle cx="50" cy="50" r="2.5" fill="#18a796"/>
+      <circle cx="70" cy="50" r="2.5" fill="#18a796"/>
+      <circle cx="10" cy="70" r="2.5" fill="#18a796"/>
+      <circle cx="30" cy="70" r="2.5" fill="#18a796"/>
+      <circle cx="50" cy="70" r="2.5" fill="#18a796"/>
+      <circle cx="70" cy="70" r="2.5" fill="#18a796"/>
+    </svg>
+  </div>
+
+  <!-- Dotted Grid Bottom Left -->
+  <div class="pointer-events-none absolute left-8 bottom-12 opacity-30 hidden lg:block">
+    <svg width="80" height="80" fill="none" viewBox="0 0 80 80">
+      <circle cx="10" cy="10" r="2.5" fill="#18a796"/>
+      <circle cx="30" cy="10" r="2.5" fill="#18a796"/>
+      <circle cx="50" cy="10" r="2.5" fill="#18a796"/>
+      <circle cx="70" cy="10" r="2.5" fill="#18a796"/>
+      <circle cx="10" cy="30" r="2.5" fill="#18a796"/>
+      <circle cx="30" cy="30" r="2.5" fill="#18a796"/>
+      <circle cx="50" cy="30" r="2.5" fill="#18a796"/>
+      <circle cx="70" cy="30" r="2.5" fill="#18a796"/>
+      <circle cx="10" cy="50" r="2.5" fill="#18a796"/>
+      <circle cx="30" cy="50" r="2.5" fill="#18a796"/>
+      <circle cx="50" cy="50" r="2.5" fill="#18a796"/>
+      <circle cx="70" cy="50" r="2.5" fill="#18a796"/>
+      <circle cx="10" cy="70" r="2.5" fill="#18a796"/>
+      <circle cx="30" cy="70" r="2.5" fill="#18a796"/>
+      <circle cx="50" cy="70" r="2.5" fill="#18a796"/>
+      <circle cx="70" cy="70" r="2.5" fill="#18a796"/>
+    </svg>
+  </div>
 
   <!-- Contenedor principal -->
-  <div class="relative mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+  <div class="relative mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 z-10">
     
     <!-- Encabezado -->
     <div
       shared-view-port="animate-soft-rise"
       hiddenClasses="opacity-0"
       [delay]="80"
-      class="mx-auto mb-8 max-w-2xl text-center"
+      class="mx-auto mb-12 max-w-4xl text-center"
     >
-      <span class="inline-flex rounded-full border border-[#DDE4E7] bg-[#E8F3F1] px-3 py-1 text-xs font-semibold text-[#2F6F7E]">
-        Contacto
-      </span>
+      <!-- Título en una sola línea -->
+      <div class="relative inline-block">
+        <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#00394b] font-display leading-tight">
+          Estamos cerca de ti con <span class="text-[#18a796]">fazilito</span>
+        </h2>
 
-      <h2 class="mt-3 text-2xl font-bold leading-tight tracking-tight text-[#172033] sm:text-3xl lg:text-4xl">
-        Encuéntranos
-        <span class="bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#1E40AF] bg-clip-text text-transparent">
-          fazilito
-        </span>
-      </h2>
-    </div>
-
-    <div class="relative z-10 mx-auto w-full space-y-8 py-4">
-      <!-- Canales de Atención (Display Flex: mobile columna, desktop fila) -->
-      <div class="flex flex-col md:flex-row overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-lg divide-y md:divide-y-0 md:divide-x divide-slate-200">
-        
-        <!-- Card: Visítanos -->
-        <div class="group flex min-h-[220px] flex-1 flex-col items-center gap-2.5 p-4 text-center transition-colors duration-300 hover:bg-slate-50 md:p-5 lg:p-6">
-          <div class="flex h-12 w-12 items-center justify-center">
-            <svg class="h-10 w-10 text-[#0B63FF] transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5-2.5-1.12 2.5-2.5 2.5z" />
-            </svg>
-          </div>
-          <h4 class="font-display text-xs font-black uppercase tracking-[0.15em] text-[#04142E]">
-            Visítanos
-          </h4>
-          <p class="text-xs font-light leading-relaxed text-slate-500">
-            Oficina en Miraflores.<br />Lunes a viernes, de 9am a 6pm.
-          </p>
-          <a
-            href="https://maps.google.com/?q=Calle+Arias+Schreiber+165+Miraflores+Lima"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-auto text-xs font-bold text-[#0B63FF] transition hover:underline focus:outline-none focus:ring-2 focus:ring-[#0B63FF]"
-          >
-            Cal. Arias Schreiber 165, Miraflores
-          </a>
-        </div>
-
-        <!-- Card: Llámanos -->
-        <div class="group flex min-h-[220px] flex-1 flex-col items-center gap-2.5 p-4 text-center transition-colors duration-300 hover:bg-slate-50 md:p-5 lg:p-6">
-          <div class="flex h-12 w-12 items-center justify-center">
-            <svg class="h-10 w-10 text-[#0B63FF] transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.01-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
-            </svg>
-          </div>
-          <h4 class="font-display text-xs font-black uppercase tracking-[0.15em] text-[#04142E]">
-            Llámanos
-          </h4>
-          <p class="text-xs font-light leading-relaxed text-slate-500">
-            Atención personalizada y respuestas sin intermediarios.
-          </p>
-          <a
-            href="tel:+51994790996"
-            class="mt-auto text-xs font-bold text-[#0B63FF] transition hover:underline focus:outline-none focus:ring-2 focus:ring-[#0B63FF]"
-          >
-            +51 994 790 996
-          </a>
-        </div>
-
-        <!-- Card: Escríbenos -->
-        <div class="group flex min-h-[220px] flex-1 flex-col items-center gap-2.5 p-4 text-center transition-colors duration-300 hover:bg-slate-50 md:p-5 lg:p-6">
-          <div class="flex h-12 w-12 items-center justify-center">
-            <svg class="h-10 w-10 text-[#0B63FF] transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-            </svg>
-          </div>
-          <h4 class="font-display text-xs font-black uppercase tracking-[0.15em] text-[#04142E]">
-            Escríbenos
-          </h4>
-          <p class="text-xs font-light leading-relaxed text-slate-500">
-            Respuesta en &lt; 24 hrs para soporte y consultas.
-          </p>
-          <a
-            href="mailto:operaciones@srcambio.pe"
-            class="mt-auto text-xs font-bold text-[#0B63FF] transition hover:underline focus:outline-none focus:ring-2 focus:ring-[#0B63FF]"
-          >
-            operaciones@srcambio.pe
-          </a>
-        </div>
-
+        <!-- Línea decorativa sutil inferior -->
+        <div class="w-24 sm:w-32 h-1 bg-gradient-to-r from-[#18a796] to-[#33bb9c] rounded-full mx-auto mt-2.5"></div>
       </div>
 
-      <!-- Mapa de Ubicación Geográfica -->
-      <div class="h-[280px] w-full overflow-hidden rounded-2xl border border-slate-200 shadow-md md:h-[350px]">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.8!2d-77.0324!3d-12.1197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8b5d35662b1%3A0x6e8f0c87d2c5e1a0!2sCalle%20Arias%20Schreiber%20165%2C%20Miraflores%2015074%2C%20Lima!5e0!3m2!1ses!2spe!4v1718000000000!5m2!1ses!2spe"
-          width="100%"
-          height="100%"
-          class="border-0"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Ubicación de Cambia Altok - Cal. Arias Schreiber 165, Miraflores, Lima"
-        ></iframe>
-      </div>
+      <p class="mt-3 text-sm sm:text-base leading-relaxed text-slate-600 font-normal">
+        Tu casa de cambio segura, rápida y confiable.
+      </p>
     </div>
+
+    <!-- 3 Tarjetas de Contacto -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch mb-10">
+      
+      <!-- Card 1: VISÍTANOS -->
+      <div class="relative bg-white rounded-3xl p-6 sm:p-7 border border-slate-100 shadow-xl shadow-[#00394b]/5 flex flex-col justify-between hover:-translate-y-1 hover:shadow-2xl transition-all duration-300">
+        <div>
+          <!-- Icono Circular + Título y Descripción -->
+          <div class="flex items-start gap-4 mb-4">
+            <div class="w-14 h-14 rounded-full bg-[#e6f7f5] text-[#18a796] flex items-center justify-center shrink-0 shadow-xs">
+              <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5-2.5-1.12 2.5-2.5 2.5z" />
+              </svg>
+            </div>
+            <div class="min-w-0">
+              <h4 class="font-black text-base text-[#00394b] font-display uppercase tracking-wider mb-1">
+                VISÍTANOS
+              </h4>
+              <p class="text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed">
+                Oficina en Miraflores.<br />Lunes a viernes, de 9am a 6pm.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón / Píldora inferior -->
+        <a
+          href="https://maps.google.com/?q=Calle+Arias+Schreiber+165+Miraflores+Lima"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-4 flex items-center justify-center gap-2.5 rounded-2xl bg-[#f0fdfa] hover:bg-[#e6f7f5] text-[#00394b] py-3.5 px-4 text-xs sm:text-[13px] font-bold transition-colors shadow-xs border border-teal-100/50"
+        >
+          <svg class="w-4 h-4 text-[#18a796] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+          </svg>
+          <span class="truncate">Cal. Arias Schreiber 165, Miraflores</span>
+        </a>
+      </div>
+
+      <!-- Card 2: LLÁMANOS -->
+      <div class="relative bg-white rounded-3xl p-6 sm:p-7 border border-slate-100 shadow-xl shadow-[#00394b]/5 flex flex-col justify-between hover:-translate-y-1 hover:shadow-2xl transition-all duration-300">
+        <div>
+          <!-- Icono Circular + Título y Descripción -->
+          <div class="flex items-start gap-4 mb-4">
+            <div class="w-14 h-14 rounded-full bg-[#e6f7f5] text-[#18a796] flex items-center justify-center shrink-0 shadow-xs">
+              <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.01-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+              </svg>
+            </div>
+            <div class="min-w-0">
+              <h4 class="font-black text-base text-[#00394b] font-display uppercase tracking-wider mb-1">
+                LLÁMANOS
+              </h4>
+              <p class="text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed">
+                Atención personalizada y respuestas sin intermediarios.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón / Píldora inferior -->
+        <a
+          href="tel:+51994790996"
+          class="mt-4 flex items-center justify-center gap-2.5 rounded-2xl bg-[#f0fdfa] hover:bg-[#e6f7f5] text-[#00394b] py-3.5 px-4 text-xs sm:text-[13px] font-bold transition-colors shadow-xs border border-teal-100/50"
+        >
+          <svg class="w-4 h-4 text-[#18a796] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          <span>+51 994 790 996</span>
+        </a>
+      </div>
+
+      <!-- Card 3: ESCRÍBENOS -->
+      <div class="relative bg-white rounded-3xl p-6 sm:p-7 border border-slate-100 shadow-xl shadow-[#00394b]/5 flex flex-col justify-between hover:-translate-y-1 hover:shadow-2xl transition-all duration-300">
+        <div>
+          <!-- Icono Circular + Título y Descripción -->
+          <div class="flex items-start gap-4 mb-4">
+            <div class="w-14 h-14 rounded-full bg-[#e6f7f5] text-[#18a796] flex items-center justify-center shrink-0 shadow-xs">
+              <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+              </svg>
+            </div>
+            <div class="min-w-0">
+              <h4 class="font-black text-base text-[#00394b] font-display uppercase tracking-wider mb-1">
+                ESCRÍBENOS
+              </h4>
+              <p class="text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed">
+                Respuesta en &lt; 24 hrs para soporte y consultas.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón / Píldora inferior -->
+        <a
+          href="mailto:operaciones@srcambio.pe"
+          class="mt-4 flex items-center justify-center gap-2.5 rounded-2xl bg-[#f0fdfa] hover:bg-[#e6f7f5] text-[#00394b] py-3.5 px-4 text-xs sm:text-[13px] font-bold transition-colors shadow-xs border border-teal-100/50"
+        >
+          <svg class="w-4 h-4 text-[#18a796] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          <span class="truncate">operaciones@srcambio.pe</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Mapa Ilustrado con Tooltip de Ubicación y Enlace a Google Maps -->
+    <a
+      href="https://maps.google.com/?q=Calle+Arias+Schreiber+165+Miraflores+Lima"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="block relative w-full overflow-hidden rounded-[32px] border border-slate-100 shadow-xl shadow-[#00394b]/5 hover:shadow-2xl transition-all duration-300 group"
+    >
+      <img
+        src="/contact-map.png"
+        alt="Ubicación Fazilito - Coronel Luis Arias Schreiber 165, Miraflores"
+        class="w-full h-auto object-cover group-hover:scale-[1.01] transition-transform duration-500"
+      />
+    </a>
+
   </div>
 </section>

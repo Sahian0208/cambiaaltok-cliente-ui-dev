@@ -1,162 +1,190 @@
 <section
   id="how-it-works"
-  class="relative overflow-hidden bg-slate-50 py-16"
+  class="relative overflow-hidden bg-gradient-to-b from-[#f8fafc] via-[#f0fdfa]/40 to-[#e6f7f5]/60 pt-16 pb-24"
 >
-  <!-- Background Glows -->
-  <div
-    class="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-[#2F6F7E]/10 blur-3xl"
-  ></div>
-  <div
-    class="pointer-events-none absolute -right-20 bottom-10 h-72 w-72 rounded-full bg-[#2F8A63]/10 blur-3xl"
-  ></div>
+  <!-- Background Constellation & Glows -->
+  <div class="pointer-events-none absolute left-0 top-12 w-72 h-72 opacity-35 hidden md:block">
+    <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-[#18a796]">
+      <circle cx="40" cy="80" r="4" fill="currentColor" opacity="0.6"/>
+      <circle cx="120" cy="40" r="5" fill="currentColor" opacity="0.8"/>
+      <circle cx="200" cy="110" r="4" fill="currentColor" opacity="0.5"/>
+      <circle cx="100" cy="180" r="6" fill="currentColor" opacity="0.9"/>
+      <circle cx="180" cy="220" r="4" fill="currentColor" opacity="0.6"/>
+      <circle cx="20" cy="240" r="5" fill="currentColor" opacity="0.7"/>
+      <line x1="40" y1="80" x2="120" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="120" y1="40" x2="200" y2="110" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="40" y1="80" x2="100" y2="180" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="100" y1="180" x2="200" y2="110" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="100" y1="180" x2="180" y2="220" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="100" y1="180" x2="20" y2="240" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="20" y1="240" x2="40" y2="80" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
+    </svg>
+  </div>
 
-  <!-- Reducido a max-w-5xl para que los cards sean más compactos -->
-  <div class="relative mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+  <div class="pointer-events-none absolute right-0 top-16 w-80 h-80 opacity-35 hidden md:block">
+    <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-[#18a796]">
+      <circle cx="260" cy="60" r="4" fill="currentColor" opacity="0.6"/>
+      <circle cx="180" cy="100" r="5" fill="currentColor" opacity="0.8"/>
+      <circle cx="220" cy="180" r="6" fill="currentColor" opacity="0.9"/>
+      <circle cx="120" cy="150" r="4" fill="currentColor" opacity="0.5"/>
+      <circle cx="160" cy="250" r="5" fill="currentColor" opacity="0.7"/>
+      <circle cx="270" cy="230" r="4" fill="currentColor" opacity="0.6"/>
+      <line x1="260" y1="60" x2="180" y2="100" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="180" y1="100" x2="220" y2="180" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="180" y1="100" x2="120" y2="150" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="120" y1="150" x2="160" y2="250" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="220" y1="180" x2="160" y2="250" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="220" y1="180" x2="270" y2="230" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+    </svg>
+  </div>
+
+  <div class="pointer-events-none absolute -left-20 top-20 h-96 w-96 rounded-full bg-[#18a796]/10 blur-3xl"></div>
+  <div class="pointer-events-none absolute -right-20 top-40 h-96 w-96 rounded-full bg-[#33bb9c]/12 blur-3xl"></div>
+
+  <div class="relative mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 z-10">
     
-    <!-- Encabezado -->
+    <!-- Encabezado Principal -->
     <div
       shared-view-port="animate-soft-rise"
       hiddenClasses="opacity-0"
       [delay]="80"
-      class="mx-auto max-w-2xl text-center mb-10"
+      class="mx-auto max-w-3xl text-center mb-16"
     >
-      <h2
-        class="mt-3 text-3xl font-bold leading-tight tracking-tight text-[#172033] sm:text-4xl lg:text-5xl"
-      >
-        ¿Cómo usar
-        <span
-          class="bg-gradient-to-r from-[#2563EB] via-[#1D4ED8] to-[#1E40AF] bg-clip-text text-transparent"
-        >
-          Cambia Altok</span
-        >?
-      </h2>
+      <div class="relative inline-block">
+        <!-- Destellos decorativos a la izquierda -->
+        <div class="absolute -top-3 -left-8 sm:-left-10 text-[#33bb9c]">
+          <svg class="w-6 h-6 sm:w-8 sm:h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round">
+            <line x1="24" y1="8" x2="8" y2="16"/>
+            <line x1="24" y1="24" x2="8" y2="16"/>
+          </svg>
+        </div>
 
-      <p class="mt-3 text-sm leading-relaxed text-slate-500 sm:text-base">
-        Realiza tu cambio de soles y bolivianos en solo tres pasos desde
-        cualquier dispositivo, de forma segura y sin complicaciones.
+        <!-- Destellos decorativos a la derecha -->
+        <div class="absolute -top-3 -right-8 sm:-right-10 text-[#33bb9c]">
+          <svg class="w-6 h-6 sm:w-8 sm:h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+            <line x1="16" y1="4" x2="16" y2="10"/>
+            <line x1="6" y1="8" x2="11" y2="13"/>
+            <line x1="26" y1="8" x2="21" y2="13"/>
+          </svg>
+        </div>
+
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-[#00394b] font-display">
+          Cambia con <span class="text-[#00394b]">fazilito</span><br />
+          <span class="text-[#18a796]">en 3 pasos</span>
+        </h2>
+      </div>
+
+      <!-- Divisor redondeado -->
+      <div class="mx-auto mt-4 mb-3 h-1.5 w-16 rounded-full bg-[#33bb9c]"></div>
+
+      <div class="flex items-center justify-center gap-2.5 mt-2">
+        <span class="text-xl sm:text-2xl lg:text-3xl font-black text-[#00394b] font-display">¿Cómo funciona</span>
+        <img src="/fazilito-logo.png" alt="fazilito" class="h-7 sm:h-8 lg:h-9 w-auto object-contain inline-block" />
+        <span class="text-xl sm:text-2xl lg:text-3xl font-black text-[#00394b] font-display">?</span>
+      </div>
+
+      <p class="mt-3 text-sm sm:text-base leading-relaxed text-slate-600 max-w-xl mx-auto font-normal">
+        Rápido, seguro y sin complicaciones.
       </p>
     </div>
 
-    <!-- Pasos: Cotiza, Transfiere, Recibe -->
-    <div class="relative mx-auto max-w-4xl pt-4">
-      <svg
-        class="absolute inset-x-0 top-0 w-full h-[220px] hidden md:block pointer-events-none z-0"
-        viewBox="0 0 1000 220"
-        preserveAspectRatio="none"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M 166.6,70 L 500,150 L 833.3,70"
-          stroke="#2D7393"
-          stroke-width="2.5"
-          stroke-dasharray="8 6"
-          stroke-linecap="round"
-          opacity="0.3"
-          vector-effect="non-scaling-stroke"
-        />
-      </svg>
+    <!-- 3 Pasos con tarjetas e ilustraciones -->
+    <div class="relative mx-auto max-w-5xl">
 
-      <div
-        class="absolute left-1/2 top-16 bottom-16 w-0.5 -translate-x-1/2 border-l-2 border-dashed border-slate-200 block md:hidden z-0"
-      ></div>
+      <!-- Flechas curvas conectoras para pantallas medianas/grandes -->
+      <div class="hidden md:block absolute top-[120px] left-0 right-0 w-full pointer-events-none z-0">
+        <!-- Flecha 1 a 2 -->
+        <svg class="absolute left-[27%] top-0 w-24 h-12 text-[#18a796]" viewBox="0 0 100 40" fill="none">
+          <path d="M 5 30 Q 50 -10 90 20" stroke="#18a796" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+          <polygon points="90,14 96,22 86,24" fill="#18a796" />
+        </svg>
 
-      <div class="flex flex-col md:flex-row items-start justify-center gap-12 md:gap-6 relative z-10">
+        <!-- Flecha 2 a 3 -->
+        <svg class="absolute left-[61%] top-0 w-24 h-12 text-[#18a796]" viewBox="0 0 100 40" fill="none">
+          <path d="M 5 30 Q 50 -10 90 20" stroke="#18a796" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+          <polygon points="90,14 96,22 86,24" fill="#18a796" />
+        </svg>
+      </div>
 
-        <!-- Paso 1: Cotiza -->
-        <div class="flex flex-col items-center text-center justify-start gap-4 h-auto md:h-[240px] relative group flex-1 basis-0 min-w-0">
-          <div class="shrink-0 rounded-full bg-white flex items-center justify-center relative shadow-lg shadow-slate-200/60 group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 z-10" style="width:8rem;height:8rem;min-width:8rem;min-height:8rem;border-radius:9999px;">
-            <span class="absolute -top-1 -left-1 shrink-0 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-sm border-2 border-white shadow-sm select-none" style="width:2rem;height:2rem;min-width:2rem;min-height:2rem;border-radius:9999px;">1</span>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 lg:gap-8 items-stretch relative z-10">
 
-            <svg class="w-24 h-24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="40" fill="url(#gradStep1)" opacity="0.06" />
-              <rect x="32" y="16" width="36" height="68" rx="6" fill="#172033" stroke="#2563EB" stroke-width="3" />
-              <rect x="37" y="22" width="26" height="12" rx="2" fill="#2563EB" fill-opacity="0.25" stroke="#38BDF8" stroke-width="2" />
-              <text x="59" y="31" font-family="Outfit" font-size="10" font-weight="950" fill="#38BDF8" text-anchor="end">1,487</text>
-              <rect x="37" y="38" width="6" height="6" rx="1.5" fill="#38BDF8" opacity="0.9" />
-              <rect x="47" y="38" width="6" height="6" rx="1.5" fill="#38BDF8" opacity="0.9" />
-              <rect x="57" y="38" width="6" height="6" rx="1.5" fill="#2563EB" />
-              <rect x="37" y="48" width="6" height="6" rx="1.5" fill="#ffffff" opacity="0.25" />
-              <rect x="47" y="48" width="6" height="6" rx="1.5" fill="#ffffff" opacity="0.25" />
-              <rect x="57" y="48" width="6" height="6" rx="1.5" fill="#ffffff" opacity="0.25" />
-              <rect x="37" y="58" width="6" height="6" rx="1.5" fill="#ffffff" opacity="0.25" />
-              <rect x="47" y="58" width="6" height="6" rx="1.5" fill="#ffffff" opacity="0.25" />
-              <rect x="57" y="58" width="6" height="6" rx="1.5" fill="#ffffff" opacity="0.25" />
-              <rect x="37" y="68" width="6" height="6" rx="1.5" fill="#ffffff" opacity="0.25" />
-              <rect x="47" y="68" width="16" height="6" rx="1.5" fill="#38BDF8" />
-              <circle cx="22" cy="30" r="13" fill="#172033" stroke="#38BDF8" stroke-width="2.5" />
-              <text x="22" y="34" font-family="Outfit" font-size="10" font-weight="950" fill="#38BDF8" text-anchor="middle">S/.</text>
-              <circle cx="78" cy="68" r="13" fill="#172033" stroke="#2563EB" stroke-width="2.5" />
-              <text x="78" y="73" font-family="Outfit" font-size="12" font-weight="950" fill="#38BDF8" text-anchor="middle">$</text>
-              <defs>
-                <linearGradient id="gradStep1" x1="0" y1="0" x2="100" y2="100">
-                  <stop offset="0%" stop-color="#2563EB" />
-                  <stop offset="100%" stop-color="#1D4ED8" />
-                </linearGradient>
-              </defs>
-            </svg>
+        <!-- PASO 1: Cotiza -->
+        <div class="flex flex-col items-center flex-1">
+          <!-- Ilustración superior Oficial 3D -->
+          <div class="relative w-full h-60 sm:h-64 flex items-center justify-center pb-4">
+            <img
+              src="/how-it-works-step1.png"
+              alt="Paso 1: Cotiza en fazilito"
+              class="w-56 sm:w-64 h-auto object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm"
+            />
           </div>
 
-          <div class="space-y-1.5">
-            <h3 class="text-lg font-bold text-[#172033]">Cotiza</h3>
-            <p class="text-sm leading-relaxed text-slate-500 max-w-[220px] mx-auto">
-              Usa nuestra calculadora para saber cuánto valdrá tu dinero al cambiarlo.
+          <!-- Tarjeta de Contenido -->
+          <div class="relative w-full bg-white rounded-3xl p-6 sm:p-7 shadow-lg shadow-[#00394b]/5 border border-slate-100 flex-1 flex flex-col justify-start">
+            <!-- Badge número -->
+            <div class="absolute -top-4 -left-3 w-10 h-10 rounded-full bg-[#00394b] text-white font-black text-lg flex items-center justify-center shadow-md ring-4 ring-[#f8fafc]">
+              1
+            </div>
+
+            <h3 class="mt-1 text-2xl font-black text-[#00394b] font-display">
+              Cotiza
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600 font-normal">
+              Usa nuestra calculadora para saber cuánto recibirás. Obtén el mejor tipo de cambio en tiempo real.
             </p>
           </div>
         </div>
 
-        <!-- Paso 2: Transfiere -->
-        <div class="flex flex-col md:flex-col-reverse items-center text-center justify-start gap-4 h-auto md:h-[240px] relative group flex-1 basis-0 min-w-0">
-          <div class="shrink-0 rounded-full bg-white flex items-center justify-center relative shadow-lg shadow-slate-200/60 group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 z-10" style="width:8rem;height:8rem;min-width:8rem;min-height:8rem;border-radius:9999px;">
-            <span class="absolute -top-1 -left-1 shrink-0 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-sm border-2 border-white shadow-sm select-none" style="width:2rem;height:2rem;min-width:2rem;min-height:2rem;border-radius:9999px;">2</span>
-
-            <svg class="w-24 h-24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="40" fill="url(#gradStep1)" opacity="0.06" />
-              <rect x="32" y="14" width="36" height="70" rx="7" fill="#172033" stroke="#2563EB" stroke-width="3" />
-              <line x1="45" y1="19" x2="55" y2="19" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.4" />
-              <circle cx="50" cy="44" r="13" fill="#38BDF8" fill-opacity="0.2" stroke="#38BDF8" stroke-width="2" />
-              <path d="M45.5 44L48.5 47L54.5 41" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M22 30C24 22 28 18 34 18" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 2" />
-              <path d="M76 68C76 76 72 80 66 80" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" stroke-dasharray="3 2" />
-              <g transform="translate(18, 56)">
-                <path d="M0 0H26V22L21.5 20L17 22L12.5 20L8 22L3.5 20L0 22V0Z" fill="#38BDF8" stroke="#172033" stroke-width="2" />
-                <line x1="4" y1="5" x2="22" y2="5" stroke="#172033" stroke-width="2" stroke-linecap="round" />
-                <line x1="4" y1="10" x2="18" y2="10" stroke="#172033" stroke-width="2" stroke-linecap="round" />
-                <text x="13" y="16" font-family="Outfit" font-size="6" font-weight="950" fill="#172033" text-anchor="middle">VCH</text>
-              </g>
-            </svg>
+        <!-- PASO 2: Transfiere -->
+        <div class="flex flex-col items-center flex-1">
+          <!-- Ilustración superior Oficial 3D -->
+          <div class="relative w-full h-60 sm:h-64 flex items-center justify-center pb-4">
+            <img
+              src="/how-it-works-step2.png"
+              alt="Paso 2: Transfiere a fazilito"
+              class="w-56 sm:w-64 h-auto object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm"
+            />
           </div>
 
-          <div class="space-y-1.5">
-            <h3 class="text-lg font-bold text-[#172033]">Transfiere</h3>
-            <p class="text-sm leading-relaxed text-slate-500 max-w-[220px] mx-auto">
-              Deposítanos el dinero desde tu banco y guarda el voucher.
+          <!-- Tarjeta de Contenido -->
+          <div class="relative w-full bg-white rounded-3xl p-6 sm:p-7 shadow-lg shadow-[#00394b]/5 border border-slate-100 flex-1 flex flex-col justify-start">
+            <!-- Badge número -->
+            <div class="absolute -top-4 -left-3 w-10 h-10 rounded-full bg-[#00394b] text-white font-black text-lg flex items-center justify-center shadow-md ring-4 ring-[#f8fafc]">
+              2
+            </div>
+
+            <h3 class="mt-1 text-2xl font-black text-[#00394b] font-display">
+              Transfiere
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600 font-normal">
+              Realiza el depósito desde tu banco a nuestras cuentas verificadas. Te compartimos todos los detalles de forma segura.
             </p>
           </div>
         </div>
 
-        <!-- Paso 3: Recibe -->
-        <div class="flex flex-col items-center text-center justify-start gap-4 h-auto md:h-[240px] relative group flex-1 basis-0 min-w-0">
-          <div class="shrink-0 rounded-full bg-white flex items-center justify-center relative shadow-lg shadow-slate-200/60 group-hover:shadow-xl group-hover:scale-105 transition-all duration-300 z-10" style="width:8rem;height:8rem;min-width:8rem;min-height:8rem;border-radius:9999px;">
-            <span class="absolute -top-1 -left-1 shrink-0 rounded-full bg-[#2563EB] text-white flex items-center justify-center font-bold text-sm border-2 border-white shadow-sm select-none" style="width:2rem;height:2rem;min-width:2rem;min-height:2rem;border-radius:9999px;">3</span>
-
-            <svg class="w-24 h-24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="38" fill="#38BDF8" fill-opacity="0.06" />
-              <rect x="28" y="20" width="28" height="50" rx="3.5" fill="#2563EB" stroke="#172033" stroke-width="2" transform="rotate(-15 42 45)" />
-              <rect x="33" y="22" width="28" height="50" rx="3.5" fill="#38BDF8" stroke="#172033" stroke-width="2" transform="rotate(10 47 47)" />
-              <rect x="36" y="25" width="28" height="50" rx="3.5" fill="#90CAF9" stroke="#172033" stroke-width="2" />
-              <circle cx="50" cy="50" r="9" fill="#172033" stroke="#38BDF8" stroke-width="2" />
-              <text x="50" y="54" font-family="Outfit" font-size="13" font-weight="950" fill="#38BDF8" text-anchor="middle">$</text>
-              <path d="M14 40H22M12 46H20M15 52H22" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" />
-              <circle cx="78" cy="32" r="7" fill="#172033" stroke="#38BDF8" stroke-width="2" />
-              <circle cx="76" cy="62" r="6" fill="#172033" stroke="#2563EB" stroke-width="2" />
-            </svg>
+        <!-- PASO 3: Recibe -->
+        <div class="flex flex-col items-center flex-1">
+          <!-- Ilustración superior Oficial 3D -->
+          <div class="relative w-full h-60 sm:h-64 flex items-center justify-center pb-4">
+            <img
+              src="/how-it-works-step3.png"
+              alt="Paso 3: Recibe tu cambio con fazilito"
+              class="w-56 sm:w-64 h-auto object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm"
+            />
           </div>
 
-          <div class="space-y-1.5">
-            <h3 class="text-lg font-bold text-[#172033]">Recibe</h3>
-            <p class="text-sm leading-relaxed text-slate-500 max-w-[220px] mx-auto">
-              Enviaremos tu cambio a tu cuenta en un estimado de 15 minutos (Aplican T&amp;C).
+          <!-- Tarjeta de Contenido -->
+          <div class="relative w-full bg-white rounded-3xl p-6 sm:p-7 shadow-lg shadow-[#00394b]/5 border border-slate-100 flex-1 flex flex-col justify-start">
+            <!-- Badge número -->
+            <div class="absolute -top-4 -left-3 w-10 h-10 rounded-full bg-[#00394b] text-white font-black text-lg flex items-center justify-center shadow-md ring-4 ring-[#f8fafc]">
+              3
+            </div>
+
+            <h3 class="mt-1 text-2xl font-black text-[#00394b] font-display">
+              Recibe
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600 font-normal">
+              Enviamos tu cambio a la cuenta que elijas en un promedio de 15 minutos.
             </p>
           </div>
         </div>
@@ -167,239 +195,306 @@
   </div>
 </section>
 
-<!-- ¿Por qué cambiar con nosotros? -->
-<section class="relative overflow-hidden">
-  <div class="relative bg-[#172033] pt-14 pb-20 text-center overflow-hidden">
-    <div class="pointer-events-none absolute -left-20 -top-16 h-72 w-72 rounded-full bg-[#2563EB]/20 blur-[100px]"></div>
-    <div class="pointer-events-none absolute -right-20 -bottom-16 h-72 w-72 rounded-full bg-[#38BDF8]/15 blur-[100px]"></div>
+<!-- ¿Por qué cambiar con fazilito? -->
+<section class="relative overflow-hidden bg-gradient-to-b from-[#f8fafc] via-[#f0fdfa]/30 to-white py-16 sm:py-24">
+  <!-- Background Floating 3D Orbs & Dotted Orbital Path -->
+  <div class="pointer-events-none absolute -left-12 top-24 w-32 h-32 rounded-full bg-gradient-to-br from-[#33bb9c] to-[#18a796] opacity-30 blur-sm hidden lg:block"></div>
+  <div class="pointer-events-none absolute left-36 top-48 w-10 h-10 rounded-full bg-gradient-to-br from-[#33bb9c] to-[#18a796] opacity-60 shadow-lg shadow-[#18a796]/30 hidden lg:block"></div>
+  
+  <div class="pointer-events-none absolute right-12 top-28 w-44 h-44 rounded-full bg-gradient-to-br from-[#33bb9c]/40 to-[#18a796]/30 blur-xs hidden lg:block"></div>
+  <div class="pointer-events-none absolute right-48 top-64 w-8 h-8 rounded-full bg-gradient-to-br from-[#33bb9c] to-[#18a796] opacity-70 shadow-md hidden lg:block"></div>
 
-    <div class="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
-        ¿Por qué cambiar con nosotros?
-      </h2>
-      <div class="mx-auto mt-3 h-1 w-16 rounded-full bg-gradient-to-r from-[#2563EB] to-[#38BDF8]"></div>
-    </div>
+  <!-- Dotted orbital path SVG -->
+  <div class="pointer-events-none absolute inset-0 w-full h-full opacity-30 hidden lg:block">
+    <svg class="w-full h-full" viewBox="0 0 1440 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M -50 200 C 300 100, 1100 500, 1500 250" stroke="#18a796" stroke-width="2" stroke-dasharray="6 8" fill="none"/>
+    </svg>
   </div>
 
-  <div class="border-b border-slate-100 bg-white pb-16">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="relative z-20 -mt-12 flex flex-col md:flex-row items-stretch justify-center gap-8">
+  <div class="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Encabezado Principal de Beneficios -->
+    <div
+      shared-view-port="animate-soft-rise"
+      hiddenClasses="opacity-0"
+      [delay]="80"
+      class="mx-auto max-w-3xl text-center mb-16"
+    >
+      <div class="relative inline-block">
+        <!-- Destellos decorativos superior izquierdo (3 marcas mint) -->
+        <div class="absolute -top-5 -left-8 text-[#33bb9c]">
+          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+            <line x1="16" y1="2" x2="16" y2="9"/>
+            <line x1="26" y1="6" x2="20" y2="12"/>
+            <line x1="6" y1="6" x2="12" y2="12"/>
+          </svg>
+        </div>
 
-        <!-- Alertas de tipo de cambio -->
-        <p-card styleClass="why-card flex-1">
-          <div class="flex h-full min-h-[220px] flex-col justify-between text-left">
-            <div>
-              <div class="mb-5 flex shrink-0 items-center justify-center rounded-full bg-[#2563EB] text-white shadow-md shadow-[#2563EB]/20" style="width:3.5rem;height:3.5rem;min-width:3.5rem;min-height:3.5rem;border-radius:9999px;">
-                <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-              </div>
-              <h3 class="mb-2 text-xl font-black text-[#172033] sm:text-2xl">Alertas de tipo de cambio</h3>
-              <p class="text-sm leading-relaxed text-slate-600 sm:text-base">
-                Te notificamos cuando el boliviano llegue al precio que buscas. Crea tu alarma desde la App Cambia Altok.
-              </p>
-            </div>
-            <a href="#" class="mt-6 flex shrink-0 items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#2563EB] transition-colors duration-300 hover:text-[#38BDF8]">
-              Crear alerta
-              <span class="transition-transform duration-300">&rarr;</span>
-            </a>
-          </div>
-        </p-card>
+        <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-[#00394b] font-display">
+          Cambia <span class="text-[#18a796]">fácil.</span><br />
+          Cambia <span class="text-[#18a796]">seguro.</span>
+        </h2>
 
-        <!-- TC Preferencial -->
-        <p-card styleClass="why-card flex-1">
-          <div class="flex h-full min-h-[220px] flex-col justify-between text-left">
-            <div>
-              <div class="mb-5 flex shrink-0 items-center justify-center rounded-full bg-[#2563EB] text-white shadow-md shadow-[#2563EB]/20" style="width:3.5rem;height:3.5rem;min-width:3.5rem;min-height:3.5rem;border-radius:9999px;">
-                <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" />
-                </svg>
-              </div>
-              <h3 class="mb-2 text-xl font-black text-[#172033] sm:text-2xl">TC Preferencial</h3>
-              <p class="text-sm leading-relaxed text-slate-600 sm:text-base">
-                Obtén un tipo de cambio preferencial por WhatsApp para grandes montos corporativos o personales.
-              </p>
-            </div>
-            <a href="#" class="mt-6 flex shrink-0 items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#2563EB] transition-colors duration-300 hover:text-[#38BDF8]">
-              Solicitar tasa
-              <span class="transition-transform duration-300">&rarr;</span>
-            </a>
-          </div>
-        </p-card>
-
-        <!-- Atención por WhatsApp -->
-        <p-card styleClass="why-card flex-1">
-          <div class="flex h-full min-h-[220px] flex-col justify-between text-left">
-            <div>
-              <div class="mb-5 flex shrink-0 items-center justify-center rounded-full bg-[#2563EB] text-white shadow-md shadow-[#2563EB]/20" style="width:3.5rem;height:3.5rem;min-width:3.5rem;min-height:3.5rem;border-radius:9999px;">
-                <svg class="h-7 w-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-              </div>
-              <h3 class="mb-2 text-xl font-black text-[#172033] sm:text-2xl">Atención por WhatsApp</h3>
-              <p class="text-sm leading-relaxed text-slate-600 sm:text-base">
-                ¿Tienes alguna duda? Escríbenos por WhatsApp al 922 340 125 para ayudarte en tiempo real.
-              </p>
-            </div>
-            <a href="https://wa.me/51922340125" target="_blank" class="mt-6 flex shrink-0 items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#2563EB] transition-colors duration-300 hover:text-[#38BDF8]">
-              Contactar
-              <span class="transition-transform duration-300">&rarr;</span>
-            </a>
-          </div>
-        </p-card>
-
+        <!-- Trazo / Píldora redondeada inferior debajo de seguro -->
+        <div class="mx-auto mt-2 h-2 w-32 sm:w-40 rounded-full bg-[#33bb9c]"></div>
       </div>
+
+      <div class="flex items-center justify-center gap-2 mt-5">
+        <span class="text-2xl sm:text-3xl font-black text-[#00394b] font-display">¿Por qué cambiar con</span>
+        <img src="/fazilito-logo.png" alt="fazilito" class="h-7 sm:h-8 w-auto object-contain inline-block" />
+        <span class="text-2xl sm:text-3xl font-black text-[#00394b] font-display">?</span>
+      </div>
+
+      <p class="mt-2.5 text-sm sm:text-base leading-relaxed text-slate-600 max-w-xl mx-auto font-normal">
+        Descubre los beneficios que hacen tus operaciones más cómodas, rápidas y seguras.
+      </p>
+    </div>
+
+    <!-- 3 Tarjetas de Beneficios Horizontales -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-7 items-stretch">
+
+      <!-- Beneficio 1: Alertas de tipo de cambio -->
+      <div class="relative bg-gradient-to-br from-white via-white to-[#f0fdfa]/70 rounded-[32px] p-6 lg:p-7 border border-slate-100/90 shadow-xl shadow-[#00394b]/5 flex flex-row items-center justify-between gap-3 sm:gap-4 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+        <!-- Glow suave detrás de la ilustración -->
+        <div class="pointer-events-none absolute -right-6 -bottom-6 w-44 h-44 rounded-full bg-[#18a796]/10 blur-2xl"></div>
+
+        <!-- Columna Izquierda: Icono + Título + Línea + Texto -->
+        <div class="flex-1 min-w-0 text-left z-10">
+          <!-- Icono Cuadrado Menta -->
+          <div class="w-11 h-11 rounded-2xl bg-[#e6f7f5] text-[#18a796] flex items-center justify-center mb-4 shadow-xs">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-black text-[#00394b] font-display leading-tight mb-2">
+            Alertas de<br />tipo de cambio
+          </h3>
+          <!-- Barra pequeña turquesa -->
+          <div class="w-8 h-1 bg-[#18a796] rounded-full mb-3"></div>
+
+          <p class="text-xs sm:text-[13px] leading-relaxed text-slate-600 font-normal">
+            Te avisamos cuando el tipo de cambio llegue al valor que buscas. Activa tu alerta y mantente informado al instante.
+          </p>
+        </div>
+
+        <!-- Columna Derecha: Ilustración 3D Oficial en Podio -->
+        <div class="w-40 sm:w-44 lg:w-48 shrink-0 flex items-center justify-center -mr-3 z-10">
+          <img
+            src="/benefit-alerts.png"
+            alt="Alertas de tipo de cambio"
+            class="w-full h-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      </div>
+
+      <!-- Beneficio 2: TC Preferencial -->
+      <div class="relative bg-gradient-to-br from-white via-white to-[#f0fdfa]/70 rounded-[32px] p-6 lg:p-7 border border-slate-100/90 shadow-xl shadow-[#00394b]/5 flex flex-row items-center justify-between gap-3 sm:gap-4 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+        <!-- Glow suave detrás de la ilustración -->
+        <div class="pointer-events-none absolute -right-6 -bottom-6 w-44 h-44 rounded-full bg-[#18a796]/10 blur-2xl"></div>
+
+        <!-- Columna Izquierda: Icono + Título + Línea + Texto -->
+        <div class="flex-1 min-w-0 text-left z-10">
+          <!-- Icono Cuadrado Menta Porcentaje -->
+          <div class="w-11 h-11 rounded-2xl bg-[#e6f7f5] text-[#18a796] flex items-center justify-center mb-4 shadow-xs font-black text-xl">
+            %
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-black text-[#00394b] font-display leading-tight mb-2">
+            TC<br />Preferencial
+          </h3>
+          <!-- Barra pequeña turquesa -->
+          <div class="w-8 h-1 bg-[#18a796] rounded-full mb-3"></div>
+
+          <p class="text-xs sm:text-[13px] leading-relaxed text-slate-600 font-normal">
+            Obtén un <strong>tipo de cambio preferencial</strong> para montos mayores y operaciones especiales.
+          </p>
+        </div>
+
+        <!-- Columna Derecha: Ilustración 3D Oficial en Podio -->
+        <div class="w-40 sm:w-44 lg:w-48 shrink-0 flex items-center justify-center -mr-3 z-10">
+          <img
+            src="/benefit-preferential.png"
+            alt="Tipo de Cambio Preferencial"
+            class="w-full h-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      </div>
+
+      <!-- Beneficio 3: Atención por WhatsApp -->
+      <div class="relative bg-gradient-to-br from-white via-white to-[#f0fdfa]/70 rounded-[32px] p-6 lg:p-7 border border-slate-100/90 shadow-xl shadow-[#00394b]/5 flex flex-row items-center justify-between gap-3 sm:gap-4 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+        <!-- Glow suave detrás de la ilustración -->
+        <div class="pointer-events-none absolute -right-6 -bottom-6 w-44 h-44 rounded-full bg-[#18a796]/10 blur-2xl"></div>
+
+        <!-- Columna Izquierda: Icono + Título + Línea + Texto -->
+        <div class="flex-1 min-w-0 text-left z-10">
+          <!-- Icono Cuadrado Menta WhatsApp -->
+          <div class="w-11 h-11 rounded-2xl bg-[#e6f7f5] text-[#25D366] flex items-center justify-center mb-4 shadow-xs">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-black text-[#00394b] font-display leading-tight mb-2">
+            Atención<br />por WhatsApp
+          </h3>
+          <!-- Barra pequeña turquesa -->
+          <div class="w-8 h-1 bg-[#18a796] rounded-full mb-3"></div>
+
+          <p class="text-xs sm:text-[13px] leading-relaxed text-slate-600 font-normal">
+            Resolvemos tus dudas y te acompañamos en cada paso por WhatsApp, de forma rápida y personalizada.
+          </p>
+        </div>
+
+        <!-- Columna Derecha: Ilustración 3D Oficial en Podio -->
+        <div class="w-40 sm:w-44 lg:w-48 shrink-0 flex items-center justify-center -mr-3 z-10">
+          <img
+            src="/benefit-whatsapp.png"
+            alt="Atención por WhatsApp"
+            class="w-full h-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- Números que inspiran confianza -->
-<section class="relative overflow-hidden bg-[#172033] py-14 sm:py-16">
-  <div class="pointer-events-none absolute -left-16 top-0 h-72 w-72 rounded-full bg-[#2563EB]/15 blur-[100px]"></div>
-  <div class="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-[#38BDF8]/10 blur-[100px]"></div>
+<section class="relative overflow-hidden bg-[#00394b] py-14 sm:py-16">
+  <div class="pointer-events-none absolute -left-16 top-0 h-72 w-72 rounded-full bg-[#18a796]/15 blur-[100px]"></div>
+  <div class="pointer-events-none absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-[#33bb9c]/10 blur-[100px]"></div>
 
   <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-3xl space-y-4 text-center">
-      <h2 class="text-2xl font-extrabold leading-tight text-white sm:text-3xl lg:text-4xl">
+      <h2 class="text-2xl font-black leading-tight text-white sm:text-3xl lg:text-4xl font-display">
         Números que inspiran
-        <span class="bg-gradient-to-r from-[#38BDF8] to-[#2563EB] bg-clip-text text-transparent">confianza</span>
+        <span class="bg-gradient-to-r from-[#33bb9c] to-[#18a796] bg-clip-text text-transparent">confianza</span>
         al momento de cambiar bolivianos y soles
       </h2>
-      <p class="mx-auto max-w-2xl text-sm leading-relaxed text-slate-400 sm:text-base">
-        Nuestra trayectoria e innovación en el mercado cambiario nos respaldan como la plataforma digital preferida por miles de peruanos y empresas.
+      <p class="mx-auto max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
+        Nuestra trayectoria e innovación en el mercado cambiario nos respaldan como la plataforma digital preferida por miles de personas y empresas entre Bolivia y Perú.
       </p>
     </div>
 
     <div class="mx-auto mt-10 flex flex-col flex-wrap items-stretch justify-center gap-8 sm:flex-row">
       <div class="flex flex-1 flex-col items-center justify-center gap-2.5 text-center group">
-        <div class="mb-1 text-[#38BDF8] transition-transform duration-300 group-hover:scale-110">
+        <div class="mb-1 text-[#33bb9c] transition-transform duration-300 group-hover:scale-110">
           <svg class="h-9 w-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
           </svg>
         </div>
-        <span class="text-3xl font-black leading-none tracking-tight text-white sm:text-4xl lg:text-5xl">+ 5K</span>
-        <span class="text-xs font-medium uppercase leading-normal tracking-widest text-slate-400 sm:text-sm">Operaciones<br />realizadas</span>
+        <span class="text-3xl font-black leading-none tracking-tight text-white sm:text-4xl lg:text-5xl font-display">+ 1M</span>
+        <span class="text-xs font-medium uppercase leading-normal tracking-widest text-slate-300 sm:text-sm">Operaciones<br />realizadas</span>
       </div>
 
       <div class="flex flex-1 flex-col items-center justify-center gap-2.5 text-center group">
-        <div class="mb-1 text-[#38BDF8] transition-transform duration-300 group-hover:scale-110">
+        <div class="mb-1 text-[#33bb9c] transition-transform duration-300 group-hover:scale-110">
           <svg class="h-9 w-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
         </div>
-        <span class="text-3xl font-black leading-none tracking-tight text-white sm:text-4xl lg:text-5xl">+ 2K</span>
-        <span class="text-xs font-medium uppercase leading-normal tracking-widest text-slate-400 sm:text-sm">Usuarios<br />registrados</span>
+        <span class="text-3xl font-black leading-none tracking-tight text-white sm:text-4xl lg:text-5xl font-display">+ 100K</span>
+        <span class="text-xs font-medium uppercase leading-normal tracking-widest text-slate-300 sm:text-sm">Clientes<br />registrados</span>
       </div>
 
       <div class="flex flex-1 flex-col items-center justify-center gap-2.5 text-center group">
-        <div class="mb-1 text-[#38BDF8] transition-transform duration-300 group-hover:scale-110">
+        <div class="mb-1 text-[#33bb9c] transition-transform duration-300 group-hover:scale-110">
           <svg class="h-9 w-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
-        <span class="text-3xl font-black leading-none tracking-tight text-white sm:text-4xl lg:text-5xl">+ S/50K</span>
-        <span class="text-xs font-medium uppercase leading-normal tracking-widest text-slate-400 sm:text-sm">Ahorrados<br />por usuarios</span>
+        <span class="text-3xl font-black leading-none tracking-tight text-white sm:text-4xl lg:text-5xl font-display">15 Min</span>
+        <span class="text-xs font-medium uppercase leading-normal tracking-widest text-slate-300 sm:text-sm">Atención<br />rápida</span>
       </div>
 
       <div class="flex flex-1 flex-col items-center justify-center gap-2.5 text-center group">
-        <div class="mb-1 text-[#38BDF8] transition-transform duration-300 group-hover:scale-110">
+        <div class="mb-1 text-[#33bb9c] transition-transform duration-300 group-hover:scale-110">
           <svg class="h-9 w-9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
           </svg>
         </div>
-        <span class="text-3xl font-black leading-none tracking-tight text-white sm:text-4xl lg:text-5xl">+ Bs/500K</span>
-        <span class="text-xs font-medium uppercase leading-normal tracking-widest text-slate-400 sm:text-sm">Bolivianos<br />cambiados</span>
+        <span class="text-3xl font-black leading-none tracking-tight text-white sm:text-4xl lg:text-5xl font-display">100%</span>
+        <span class="text-xs font-medium uppercase leading-normal tracking-widest text-slate-300 sm:text-sm">Seguro y<br />transparente</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Lo que dicen nuestros usuarios -->
-<section class="relative overflow-hidden bg-slate-50 py-14 sm:py-16">
-  <div class="pointer-events-none absolute right-0 top-0 h-72 w-72 -translate-y-1/2 translate-x-1/2 rounded-full bg-[#2563EB]/5 blur-3xl"></div>
-  <div class="pointer-events-none absolute bottom-0 left-0 h-72 w-72 -translate-x-1/2 translate-y-1/2 rounded-full bg-[#38BDF8]/5 blur-3xl"></div>
+<!-- Lo que dice nuestra comunidad (Testimonios) -->
+<section class="relative overflow-hidden bg-gradient-to-b from-[#f8fafc] via-[#f0fdfa]/40 to-white py-16 sm:py-20">
+  <!-- Watermark quote decorativa -->
+  <div class="pointer-events-none absolute left-6 top-16 text-[#18a796]/10 select-none hidden lg:block">
+    <span class="text-[160px] font-serif font-black leading-none">“</span>
+  </div>
+  
+  <div class="pointer-events-none absolute right-0 top-0 h-80 w-80 -translate-y-1/2 translate-x-1/2 rounded-full bg-[#18a796]/5 blur-3xl"></div>
+  <div class="pointer-events-none absolute bottom-0 left-0 h-80 w-80 -translate-x-1/2 translate-y-1/2 rounded-full bg-[#33bb9c]/5 blur-3xl"></div>
 
   <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto mb-12 max-w-2xl space-y-3 text-center">
-      <h2 class="text-2xl font-extrabold leading-tight text-[#172033] sm:text-3xl">
-        Lo que dicen nuestros
-        <span class="bg-gradient-to-r from-[#2563EB] to-[#38BDF8] bg-clip-text text-transparent">usuarios</span>
+    <!-- Encabezado -->
+    <div class="mx-auto mb-14 max-w-2xl text-center space-y-2">
+      <!-- Pill divisora -->
+      <div class="mx-auto mb-3 h-1.5 w-12 rounded-full bg-[#18a796]"></div>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#00394b] font-display">
+        Lo que dice nuestra<br />
+        <span class="text-[#18a796]">comunidad</span>
       </h2>
-      <p class="mx-auto max-w-xl text-sm leading-relaxed text-slate-500">
-        Miles de peruanos y bolivianos ya cambian con nosotros. Estas son sus experiencias.
+      <p class="mx-auto max-w-xl text-sm sm:text-base leading-relaxed text-slate-600 font-normal pt-1">
+        Miles de usuarios ya cambian Soles y Bolivianos con confianza en fazilito.
       </p>
     </div>
 
-    <div class="flex flex-col items-stretch justify-center gap-6 md:flex-row">
+    <!-- 3 Tarjetas de Testimonios -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
       @for (t of testimonials; track t.name; let i = $index) {
-        <p-card
-          styleClass="testimonial-card flex-1"
-          (click)="activeTestimonialIndex.set(i)"
-          [ngClass]="{ 'testimonial-card--active': i === activeTestimonialIndex() }"
+        <div
+          class="relative bg-white rounded-3xl p-6 sm:p-7 shadow-lg shadow-[#00394b]/5 border border-slate-100 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
         >
-          <div class="flex h-full min-h-[220px] flex-col justify-between text-left">
-            <div class="flex gap-1">
-              @for (s of [1, 2, 3, 4, 5]; track s) {
-                <span class="text-base text-amber-400">★</span>
-              }
+          <!-- Top: User Info & Quotation Mark -->
+          <div>
+            <div class="flex items-start justify-between gap-3 mb-4">
+              <div class="flex items-center gap-3">
+                <!-- Avatar -->
+                <div class="w-14 h-14 rounded-full overflow-hidden shrink-0 ring-2 ring-[#18a796]/30 shadow-sm">
+                  <img [src]="t.avatar" [alt]="t.name" class="w-full h-full object-cover" />
+                </div>
+                <!-- Name and Badge -->
+                <div class="min-w-0">
+                  <h4 class="text-base sm:text-lg font-black text-[#00394b] font-display leading-tight">
+                    {{ t.name }}
+                  </h4>
+                  <div class="mt-1 inline-flex items-center gap-1 bg-[#e6f7f5] text-[#18a796] text-[11px] font-bold px-2 py-0.5 rounded-full">
+                    <svg class="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+                    <span>{{ t.role }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Decorative Quote Mark -->
+              <span class="text-[#33bb9c]/30 text-3xl sm:text-4xl font-serif font-black select-none leading-none">”</span>
             </div>
 
-            <p class="my-3 flex-1 text-sm font-light leading-relaxed text-slate-600">
+            <!-- Testimonial Quote -->
+            <p class="text-sm leading-relaxed text-slate-600 font-normal">
               {{ t.text }}
             </p>
-
-            <div class="mt-4 flex items-center gap-3 border-t border-slate-100 pt-4">
-              <div
-                class="flex shrink-0 items-center justify-center text-white shadow-md"
-                [ngClass]="t.gender === 'female' ? 'bg-gradient-to-br from-pink-400 to-rose-500' : 'bg-gradient-to-br from-[#2563EB] to-[#38BDF8]'"
-                style="width:2.75rem;height:2.75rem;min-width:2.75rem;min-height:2.75rem;border-radius:9999px;"
-              >
-                <svg class="h-6 w-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
-                  <path d="M12 14c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z" />
-                </svg>
-              </div>
-              <div class="min-w-0 flex-1">
-                <p class="truncate text-sm font-bold leading-tight text-[#172033]">{{ t.name }}</p>
-                <p class="text-xs font-light text-slate-400">Usuario verificado</p>
-              </div>
-            </div>
           </div>
-        </p-card>
+
+          <!-- Bottom: 5 Gold Stars -->
+          <div class="flex items-center gap-1 text-amber-400 text-lg mt-5 pt-3 border-t border-slate-50">
+            @for (s of [1, 2, 3, 4, 5]; track s) {
+              <span>★</span>
+            }
+          </div>
+        </div>
       }
     </div>
 
-    <div class="mt-8 flex items-center justify-center gap-4 sm:gap-6">
-      <button
-        (click)="prevTestimonial()"
-        class="flex shrink-0 items-center justify-center border-2 border-slate-200 bg-white shadow-sm transition-all duration-300 hover:border-[#2563EB] hover:bg-[#2563EB] hover:shadow-md group"
-        style="width:3rem;height:3rem;min-width:3rem;min-height:3rem;border-radius:9999px;"
-      >
-        <svg class="h-5 w-5 text-slate-400 transition-colors duration-300 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-
-      <div class="flex items-center gap-2">
-        @for (t of testimonials; track t.name; let i = $index) {
-          <button
-            (click)="activeTestimonialIndex.set(i)"
-            class="h-2.5 rounded-full transition-all duration-300"
-            [ngClass]="i === activeTestimonialIndex() ? 'w-8 bg-gradient-to-r from-[#2563EB] to-[#38BDF8] shadow-sm' : 'w-2.5 bg-slate-200 hover:bg-slate-300'"
-          ></button>
-        }
-      </div>
-
-      <button
-        (click)="nextTestimonial()"
-        class="flex shrink-0 items-center justify-center border-2 border-slate-200 bg-white shadow-sm transition-all duration-300 hover:border-[#2563EB] hover:bg-[#2563EB] hover:shadow-md group"
-        style="width:3rem;height:3rem;min-width:3rem;min-height:3rem;border-radius:9999px;"
-      >
-        <svg class="h-5 w-5 text-slate-400 transition-colors duration-300 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-    </div>
   </div>
 </section>
 
@@ -409,7 +504,7 @@
     <p-card styleClass="community-card">
       <div class="flex flex-col items-center justify-between gap-10 p-2 lg:flex-row">
         <div class="max-w-xl space-y-5 text-center lg:text-left">
-          <h4 class="text-2xl font-extrabold leading-snug text-[#172033] sm:text-3xl">
+          <h4 class="text-2xl font-black leading-snug text-[#00394b] sm:text-3xl font-display">
             ¡Únete a nuestra <span class="text-[#25D366]">Comunidad!</span>
           </h4>
           <p class="text-sm leading-relaxed text-slate-600 sm:text-base">
@@ -438,7 +533,7 @@
             <div class="flex items-center gap-2 text-sm text-slate-600">
               <div class="flex shrink-0 items-center justify-center bg-[#25D366]/15" style="width:1.25rem;height:1.25rem;min-width:1.25rem;min-height:1.25rem;border-radius:9999px;">
                 <svg class="h-3 w-3 text-[#25D366]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
               <span class="whitespace-nowrap">Sin spam, solo oportunidades</span>
@@ -448,15 +543,17 @@
 
         <div class="flex w-full max-w-md flex-col items-center gap-3">
           <a
-            href="https://chat.whatsapp.com/invite/altok-group"
+            href="https://chat.whatsapp.com/invite/fazilito-group"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex w-full flex-nowrap items-center justify-center gap-3 whitespace-nowrap rounded-xl bg-[#25D366] px-6 py-4 text-xs font-bold uppercase tracking-wide text-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:bg-[#20ba5a] hover:shadow-lg hover:shadow-[#25D366]/25 sm:px-8 sm:text-sm sm:tracking-wider"
+            class="flex w-full flex-nowrap items-center justify-center gap-3 whitespace-nowrap rounded-2xl bg-[#25D366] px-6 py-4 text-xs font-black uppercase tracking-wide text-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:bg-[#20ba5a] hover:shadow-lg hover:shadow-[#25D366]/25 sm:px-8 sm:text-sm sm:tracking-wider"
           >
-            <img src="/whatsapp_logo_transparent.png" alt="WhatsApp" class="shrink-0 object-contain" style="width:1.5rem;height:1.5rem;min-width:1.5rem;min-height:1.5rem;" />
+            <svg class="w-6 h-6 fill-current shrink-0" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
             <span>Unirme al grupo de WhatsApp</span>
           </a>
-          <p class="text-center text-[10px] font-light tracking-wide text-slate-400">
+          <p class="text-center text-[11px] font-medium tracking-wide text-slate-600">
             🔒 Grupo oficial. Únete con un solo clic y sal cuando desees.
           </p>
         </div>
