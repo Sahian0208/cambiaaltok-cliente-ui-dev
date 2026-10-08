@@ -1,4 +1,5 @@
 {
+  "outputDirectory": "src/dist/cambiaaltok-client-ui/browser",
   "rewrites": [
     {
       "source": "/(.*)",
