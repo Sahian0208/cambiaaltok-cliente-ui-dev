@@ -1,55 +1,55 @@
 <nav
-  class="mx-auto flex h-20 sm:h-24 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 font-gotham text-white"
+  class="mx-auto flex h-20 sm:h-24 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 font-gotham text-[#00394b]"
 >
-  <!-- Logo Fazilito (White version for dark background) -->
+  <!-- Logo Fazilito (Color/Dark version for light navbar, enlarged) -->
   <button
     (click)="navigateToPage('home')"
     type="button"
     class="cursor-pointer bg-transparent border-none p-0 flex items-center"
   >
-    <img src="/fazilito-logo-white.png" alt="Fazilito - Casa de Cambio y Remesas" class="h-11 sm:h-14 lg:h-16 w-auto object-contain drop-shadow-sm hover:scale-105 transition-transform" />
+    <img src="/fazilito-logo.png" alt="Fazilito - Casa de Cambio y Remesas" class="h-11 sm:h-14 lg:h-16 w-auto object-contain drop-shadow-xs hover:scale-105 transition-transform" />
   </button>
 
   <!-- Desktop Nav Links -->
-  <div class="hidden items-center gap-7 lg:gap-9 text-[15px] font-medium text-slate-100 md:flex">
+  <div class="hidden items-center gap-7 lg:gap-9 text-[15px] font-medium text-[#00394b]/85 md:flex">
     <button
       type="button"
       (click)="scrollToSection('how-it-works')"
-      class="group relative cursor-pointer bg-transparent border-none py-1 text-[15px] font-semibold text-slate-100 transition hover:text-[#33bb9c]"
+      class="group relative cursor-pointer bg-transparent border-none py-1 text-[15px] font-semibold text-[#00394b] transition hover:text-[#18a796]"
     >
       Cómo funciona
       <span
-        class="absolute -bottom-1.5 left-0 h-[3px] w-0 rounded-full bg-[#33bb9c] transition-all duration-300 group-hover:w-full"
+        class="absolute -bottom-1.5 left-0 h-[3px] w-0 rounded-full bg-[#18a796] transition-all duration-300 group-hover:w-full"
       ></span>
     </button>
     <button
       type="button"
       (click)="scrollToSection('promociones')"
-      class="group relative cursor-pointer bg-transparent border-none py-1 text-[15px] text-slate-200 transition hover:text-[#33bb9c]"
+      class="group relative cursor-pointer bg-transparent border-none py-1 text-[15px] text-[#00394b]/85 transition hover:text-[#18a796]"
     >
       Promociones
       <span
-        class="absolute -bottom-1.5 left-0 h-[3px] w-0 rounded-full bg-[#33bb9c] transition-all duration-300 group-hover:w-full"
+        class="absolute -bottom-1.5 left-0 h-[3px] w-0 rounded-full bg-[#18a796] transition-all duration-300 group-hover:w-full"
       ></span>
     </button>
     <button
       type="button"
       (click)="scrollToSection('about-us')"
-      class="group relative cursor-pointer bg-transparent border-none py-1 text-[15px] text-slate-200 transition hover:text-[#33bb9c]"
+      class="group relative cursor-pointer bg-transparent border-none py-1 text-[15px] text-[#00394b]/85 transition hover:text-[#18a796]"
     >
       Quiénes somos
       <span
-        class="absolute -bottom-1.5 left-0 h-[3px] w-0 rounded-full bg-[#33bb9c] transition-all duration-300 group-hover:w-full"
+        class="absolute -bottom-1.5 left-0 h-[3px] w-0 rounded-full bg-[#18a796] transition-all duration-300 group-hover:w-full"
       ></span>
     </button>
     <button
       type="button"
       (click)="scrollToSection('about-us')"
-      class="group relative cursor-pointer bg-transparent border-none py-1 text-[15px] text-slate-200 transition hover:text-[#33bb9c]"
+      class="group relative cursor-pointer bg-transparent border-none py-1 text-[15px] text-[#00394b]/85 transition hover:text-[#18a796]"
     >
       Blog
       <span
-        class="absolute -bottom-1.5 left-0 h-[3px] w-0 rounded-full bg-[#33bb9c] transition-all duration-300 group-hover:w-full"
+        class="absolute -bottom-1.5 left-0 h-[3px] w-0 rounded-full bg-[#18a796] transition-all duration-300 group-hover:w-full"
       ></span>
     </button>
   </div>
@@ -59,7 +59,7 @@
     @if (!authService.isAuthenticated()) {
       <a
         routerLink="/login"
-        class="inline-flex cursor-pointer items-center justify-center rounded-xl border border-white/30 px-5 py-2 text-sm font-semibold text-white transition hover:bg-white/10 hover:border-white/60 no-underline"
+        class="inline-flex cursor-pointer items-center justify-center rounded-xl border border-[#00394b]/30 px-5 py-2 text-sm font-semibold text-[#00394b] transition hover:bg-slate-50 hover:border-[#00394b]/60 no-underline"
       >
         Iniciar sesión
       </a>
@@ -69,7 +69,7 @@
         <button
           type="button"
           (click)="toggleRegisterMenu()"
-          class="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-[#33bb9c] hover:bg-[#289e83] px-5 py-2.5 text-sm font-bold text-[#00394b] shadow-sm shadow-[#33bb9c]/20 transition-all hover:shadow-md border-none"
+          class="inline-flex cursor-pointer items-center gap-2 rounded-xl bg-[#18a796] hover:bg-[#148e80] px-5 py-2.5 text-sm font-bold text-white shadow-sm shadow-[#18a796]/20 transition-all hover:shadow-md border-none"
         >
           Regístrate
           <i class="pi pi-chevron-down text-xs"></i>
@@ -97,14 +97,14 @@
     } @else {
       <a
         routerLink="/cliente/perfil"
-        class="inline-flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold text-white bg-white/10 hover:bg-white/20 transition no-underline"
+        class="inline-flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold text-[#00394b] bg-slate-50 hover:bg-slate-100 transition no-underline"
       >
-        <i class="pi pi-verified text-[#33bb9c]"></i>
+        <i class="pi pi-verified text-[#18a796]"></i>
         {{ userDisplayName() }}
       </a>
       <a
         (click)="logout()"
-        class="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-white/25 px-4 py-2 text-sm font-medium text-white transition hover:bg-red-500/20 hover:text-red-300 hover:border-red-400 no-underline"
+        class="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-[#00394b]/25 px-4 py-2 text-sm font-medium text-[#00394b] transition hover:bg-red-50 hover:text-red-600 hover:border-red-200 no-underline"
       >
         <i class="pi pi-sign-out"></i> Salir
       </a>
@@ -114,7 +114,7 @@
   <!-- Mobile Hamburger Button -->
   <button
     type="button"
-    class="inline-flex items-center justify-center rounded-xl p-2.5 text-white hover:bg-white/10 transition md:hidden border-none bg-transparent cursor-pointer"
+    class="inline-flex items-center justify-center rounded-xl p-2.5 text-[#00394b] hover:bg-slate-100 transition md:hidden border-none bg-transparent cursor-pointer"
     (click)="toggleMobileMenu()"
     aria-label="Abrir menú"
   >
@@ -152,57 +152,57 @@
 
 <!-- Mobile Menu -->
 @if (mobileMenuOpen()) {
-  <div class="border-t border-[#002b38] bg-[#00394b] px-4 pb-6 pt-3 shadow-2xl md:hidden font-gotham text-white">
+  <div class="border-t border-slate-100 bg-white px-4 pb-6 pt-3 shadow-lg md:hidden font-gotham text-[#00394b]">
     <div class="flex flex-col gap-1">
       <button
         type="button"
         (click)="scrollToSection('how-it-works'); closeMobileMenu()"
-        class="w-full rounded-xl px-4 py-2.5 text-left text-sm font-semibold text-white hover:bg-white/10 border-none bg-transparent cursor-pointer"
+        class="w-full rounded-xl px-4 py-2.5 text-left text-sm font-semibold text-[#00394b] hover:bg-slate-50 border-none bg-transparent cursor-pointer"
       >
         Cómo funciona
       </button>
       <button
         type="button"
         (click)="scrollToSection('promociones'); closeMobileMenu()"
-        class="w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium text-slate-200 hover:bg-white/10 border-none bg-transparent cursor-pointer"
+        class="w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium text-[#00394b] hover:bg-slate-50 border-none bg-transparent cursor-pointer"
       >
         Promociones
       </button>
       <button
         type="button"
         (click)="scrollToSection('about-us'); closeMobileMenu()"
-        class="w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium text-slate-200 hover:bg-white/10 border-none bg-transparent cursor-pointer"
+        class="w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium text-[#00394b] hover:bg-slate-50 border-none bg-transparent cursor-pointer"
       >
         Quiénes somos
       </button>      
       <button
         type="button"
         (click)="scrollToSection('about-us'); closeMobileMenu()"
-        class="w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium text-slate-200 hover:bg-white/10 border-none bg-transparent cursor-pointer"
+        class="w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium text-[#00394b] hover:bg-slate-50 border-none bg-transparent cursor-pointer"
       >
         Blog
       </button>      
     </div>
-    <div class="mt-4 flex flex-col gap-2.5 border-t border-white/10 pt-4">
+    <div class="mt-4 flex flex-col gap-2.5 border-t border-slate-100 pt-4">
       @if (!authService.isAuthenticated()) {
         <a
           routerLink="/login"
           (click)="closeMobileMenu()"
-          class="flex items-center justify-center gap-2 rounded-xl border border-white/30 px-4 py-3 text-sm font-semibold text-white hover:bg-white/10 no-underline"
+          class="flex items-center justify-center gap-2 rounded-xl border border-[#00394b]/30 px-4 py-3 text-sm font-semibold text-[#00394b] hover:bg-slate-50 no-underline"
         >
           Iniciar sesión
         </a>
         <button
           type="button"
           (click)="navigateToRegister('persona')"
-          class="flex items-center justify-center gap-2 rounded-xl bg-[#33bb9c] hover:bg-[#289e83] px-4 py-3 text-sm font-bold text-[#00394b] shadow-sm border-none cursor-pointer"
+          class="flex items-center justify-center gap-2 rounded-xl bg-[#18a796] hover:bg-[#148e80] px-4 py-3 text-sm font-bold text-white shadow-sm border-none cursor-pointer"
         >
           Regístrate como Persona
         </button>
         <button
           type="button"
           (click)="navigateToRegister('empresa')"
-          class="flex items-center justify-center gap-2 rounded-xl bg-[#002b38] hover:bg-[#00202a] border border-white/20 px-4 py-3 text-sm font-bold text-white shadow-sm cursor-pointer"
+          class="flex items-center justify-center gap-2 rounded-xl bg-[#00394b] hover:bg-[#002b38] px-4 py-3 text-sm font-bold text-white shadow-sm border-none cursor-pointer"
         >
           Regístrate como Empresa
         </button>
@@ -210,14 +210,14 @@
         <a
           routerLink="/cliente/perfil"
           (click)="closeMobileMenu()"
-          class="flex items-center justify-center gap-2 rounded-xl bg-white/10 px-4 py-3 text-sm font-bold text-white cursor-pointer no-underline"
+          class="flex items-center justify-center gap-2 rounded-xl bg-slate-50 px-4 py-3 text-sm font-bold text-[#00394b] cursor-pointer no-underline"
         >
-          <i class="pi pi-verified text-[#33bb9c]"></i>
+          <i class="pi pi-verified text-[#18a796]"></i>
           {{ userDisplayName() }}
         </a>
         <a
           (click)="logout(); closeMobileMenu()"
-          class="flex items-center justify-center gap-2 rounded-xl border border-red-400 text-red-300 px-4 py-2.5 text-sm font-medium hover:bg-red-500/20 cursor-pointer no-underline"
+          class="flex items-center justify-center gap-2 rounded-xl border border-red-200 text-red-600 px-4 py-2.5 text-sm font-medium hover:bg-red-50 cursor-pointer no-underline"
         >
           <i class="pi pi-sign-out"></i> Cerrar Sesión
         </a>
