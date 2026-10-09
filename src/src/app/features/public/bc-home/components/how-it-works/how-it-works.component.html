@@ -498,41 +498,68 @@
   </div>
 </section>
 
-<!-- ¡Únete a nuestra Comunidad! -->
-<section class="relative overflow-hidden bg-white py-14 sm:py-16">
+<!-- ¡Únete a nuestra Comunidad! (Rediseño moderno sin bordes) -->
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-[#f0fdf9]/60 to-white py-16 sm:py-20 font-gotham">
+  <!-- Glowing subtle ambient background orbs -->
+  <div class="pointer-events-none absolute -left-12 top-10 h-72 w-72 rounded-full bg-[#18a796]/10 blur-[100px]"></div>
+  <div class="pointer-events-none absolute -right-12 bottom-10 h-72 w-72 rounded-full bg-[#25D366]/10 blur-[100px]"></div>
+
   <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-    <p-card styleClass="community-card">
-      <div class="flex flex-col items-center justify-between gap-10 p-2 lg:flex-row">
-        <div class="max-w-xl space-y-5 text-center lg:text-left">
-          <h4 class="text-2xl font-black leading-snug text-[#00394b] sm:text-3xl font-display">
+    <div
+      class="relative overflow-hidden rounded-[36px] bg-gradient-to-br from-[#00394b] via-[#00475e] to-[#002b37] text-white p-8 sm:p-12 lg:p-14 shadow-2xl shadow-[#00394b]/20"
+    >
+      <!-- Background Decorative WhatsApp Watermark & Ambient Radial Glow -->
+      <div class="pointer-events-none absolute -right-10 -bottom-10 h-72 w-72 rounded-full bg-[#25D366]/15 blur-3xl"></div>
+      <div class="pointer-events-none absolute -left-10 -top-10 h-64 w-64 rounded-full bg-[#18a796]/20 blur-3xl"></div>
+      
+      <svg
+        class="pointer-events-none absolute -right-8 -bottom-10 h-64 w-64 text-white/[0.04] fill-current select-none"
+        viewBox="0 0 24 24"
+      >
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+
+      <div class="relative z-10 flex flex-col items-center justify-between gap-8 lg:flex-row lg:gap-12">
+        <!-- Left Content -->
+        <div class="max-w-xl space-y-4 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 bg-[#25D366]/20 text-[#25D366] px-3.5 py-1.5 rounded-full text-xs font-black tracking-wider uppercase backdrop-blur-md">
+            <span class="w-2 h-2 rounded-full bg-[#25D366] animate-pulse"></span>
+            Comunidad Fazilito
+          </div>
+
+          <h3 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight text-white font-display">
             ¡Únete a nuestra <span class="text-[#25D366]">Comunidad!</span>
-          </h4>
-          <p class="text-sm leading-relaxed text-slate-600 sm:text-base">
+          </h3>
+
+          <p class="text-sm sm:text-base leading-relaxed text-slate-200 font-normal">
             Entérate antes que nadie del tipo de cambio diario, cupones exclusivos y alertas del mercado en nuestro
-            <span class="font-semibold text-[#25D366]">grupo de WhatsApp</span>.
+            <strong class="font-bold text-white">grupo de WhatsApp</strong>.
           </p>
 
-          <div class="flex flex-wrap justify-center gap-4 pt-2 lg:justify-start">
-            <div class="flex items-center gap-2 text-sm text-slate-600">
-              <div class="flex shrink-0 items-center justify-center bg-[#25D366]/15" style="width:1.25rem;height:1.25rem;min-width:1.25rem;min-height:1.25rem;border-radius:9999px;">
-                <svg class="h-3 w-3 text-[#25D366]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <!-- Badges / Beneficios (sin bordes duros, con píldoras translúcidas) -->
+          <div class="flex flex-wrap justify-center gap-3 pt-3 lg:justify-start">
+            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white">
+              <div class="flex shrink-0 items-center justify-center w-6 h-6 rounded-lg bg-[#25D366]/25 text-[#25D366]">
+                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                 </svg>
               </div>
               <span class="whitespace-nowrap">Alertas en tiempo real</span>
             </div>
-            <div class="flex items-center gap-2 text-sm text-slate-600">
-              <div class="flex shrink-0 items-center justify-center bg-[#25D366]/15" style="width:1.25rem;height:1.25rem;min-width:1.25rem;min-height:1.25rem;border-radius:9999px;">
-                <svg class="h-3 w-3 text-[#25D366]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+
+            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white">
+              <div class="flex shrink-0 items-center justify-center w-6 h-6 rounded-lg bg-[#25D366]/25 text-[#25D366]">
+                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581a1.125 1.125 0 001.59 0l4.318-4.318a1.125 1.125 0 000-1.59l-9.58-9.58A2.25 2.25 0 009.568 3z" />
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
                 </svg>
               </div>
               <span class="whitespace-nowrap">Cupones y promociones</span>
             </div>
-            <div class="flex items-center gap-2 text-sm text-slate-600">
-              <div class="flex shrink-0 items-center justify-center bg-[#25D366]/15" style="width:1.25rem;height:1.25rem;min-width:1.25rem;min-height:1.25rem;border-radius:9999px;">
-                <svg class="h-3 w-3 text-[#25D366]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+
+            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white">
+              <div class="flex shrink-0 items-center justify-center w-6 h-6 rounded-lg bg-[#25D366]/25 text-[#25D366]">
+                <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
@@ -541,23 +568,24 @@
           </div>
         </div>
 
-        <div class="flex w-full max-w-md flex-col items-center gap-3">
+        <!-- Right Button & Lock Message -->
+        <div class="flex w-full max-w-sm flex-col items-center gap-3 shrink-0">
           <a
             href="https://chat.whatsapp.com/invite/fazilito-group"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex w-full flex-nowrap items-center justify-center gap-3 whitespace-nowrap rounded-2xl bg-[#25D366] px-6 py-4 text-xs font-black uppercase tracking-wide text-white shadow-md transition-all duration-300 hover:scale-[1.02] hover:bg-[#20ba5a] hover:shadow-lg hover:shadow-[#25D366]/25 sm:px-8 sm:text-sm sm:tracking-wider"
+            class="flex w-full items-center justify-center gap-3 whitespace-nowrap rounded-2xl bg-[#25D366] hover:bg-[#20ba5a] px-7 py-4.5 text-sm sm:text-base font-black uppercase tracking-wider text-white shadow-xl shadow-[#25D366]/30 hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 no-underline cursor-pointer border-none"
           >
             <svg class="w-6 h-6 fill-current shrink-0" viewBox="0 0 24 24">
               <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
             </svg>
             <span>Unirme al grupo de WhatsApp</span>
           </a>
-          <p class="text-center text-[11px] font-medium tracking-wide text-slate-600">
+          <p class="text-center text-xs font-medium text-slate-300">
             🔒 Grupo oficial. Únete con un solo clic y sal cuando desees.
           </p>
         </div>
       </div>
-    </p-card>
+    </div>
   </div>
 </section>
