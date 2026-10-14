@@ -19,12 +19,37 @@ export interface RegisterDto {
 }
 
 const TOKEN_KEY = 'current_token';
+const USER_KEY = 'current_user';
+
+function getStoredUser(): User | null {
+  try {
+    const raw = sessionStorage.getItem(USER_KEY) || localStorage.getItem(USER_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function generateMockJwtToken(email: string, role: UserRole): string {
+  const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+  const exp = Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 365); // 1 año
+  const payload = btoa(
+    JSON.stringify({
+      sub: 'usr-001',
+      email: email,
+      role: [role],
+      name: 'Carlos Alberto Mamani Quispe',
+      exp: exp,
+    })
+  );
+  return `${header}.${payload}.mock_signature_fazilito`;
+}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly oidcSecurityService = inject(OidcSecurityService);
-  private readonly currentUser = signal<User | null>(null);
+  private readonly currentUser = signal<User | null>(getStoredUser());
   private readonly naturalPersonUrl = `${environment.apiBaseUrl}/v1/natural-person`;
 
   readonly isAuthenticated = computed(() => this.currentUser() !== null && this.hasValidToken());
@@ -87,6 +112,32 @@ export class AuthService {
     // Map OAuth user data to our User model
     const user = this.mapOAuthUserToUser(userData);
     this.currentUser.set(user);
+    sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+  }
+
+  /**
+   * Iniciar sesión con credenciales mock en el frontend (para diseño y desarrollo sin backend).
+   */
+  loginWithMockCredentials(email: string = 'cliente@fazilito.com', role: UserRole = 'cliente'): User {
+    const mockUser: User = {
+      id: 'usr-001',
+      firstName: 'Carlos Alberto',
+      lastName: 'Mamani Quispe',
+      phone: '+591 71234567',
+      documentType: 'CI',
+      documentNumber: '8901234',
+      birthDate: '1990-05-15',
+      email: email || 'cliente@fazilito.com',
+      passwordHash: '',
+      role: role,
+      registeredAt: '2024-01-10T08:30:00.000Z',
+    };
+
+    const token = generateMockJwtToken(mockUser.email, role);
+    sessionStorage.setItem(TOKEN_KEY, token);
+    sessionStorage.setItem(USER_KEY, JSON.stringify(mockUser));
+    this.currentUser.set(mockUser);
+    return mockUser;
   }
 
   /**
@@ -95,8 +146,13 @@ export class AuthService {
    */
   logout(): void {
     sessionStorage.removeItem(TOKEN_KEY);
+    sessionStorage.removeItem(USER_KEY);
     this.currentUser.set(null);
-    
+
+    if (environment.useMockData) {
+      window.location.href = '/login';
+      return;
+    }
 
     this.oidcSecurityService.logoffAndRevokeTokens().subscribe({
       next: () => {
@@ -142,6 +198,7 @@ export class AuthService {
    */
   setCurrentUser(user: User): void {
     this.currentUser.set(user);
+    sessionStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
   getRedirectUrlForRole(role: UserRole): string {

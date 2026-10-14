@@ -4,7 +4,7 @@ export const environment = {
   //apiBaseUrl: 'https://cambiaaltok-api-dev.premiumasp.net',
   apiBaseUrl: 'https://localhost:7025',
   ratePollingInterval: 300000, // 5 minutos
-  useMockData: false,
+  useMockData: true,
   mainWhatsappContact: '59172237251',
   oauth: {
     authority: 'https://cambiaaltok-auth.premiumasp.net',

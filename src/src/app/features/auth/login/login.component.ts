@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -21,9 +22,9 @@ export class LoginComponent {
   readonly resendMessage = signal<string | null>(null);
 
   readonly loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required]],
-    rememberMe: [false],
+    email: ['cliente@fazilito.com', [Validators.required, Validators.email]],
+    password: ['123456', [Validators.required]],
+    rememberMe: [true],
   });
 
   togglePasswordVisibility(): void {
@@ -41,6 +42,15 @@ export class LoginComponent {
     setTimeout(() => this.resendMessage.set(null), 6000);
   }
 
+  loginWithDemo(role: 'cliente' = 'cliente'): void {
+    this.isLoading.set(true);
+    setTimeout(() => {
+      this.authService.loginWithMockCredentials('cliente@fazilito.com', role);
+      this.isLoading.set(false);
+      this.router.navigate(['/cliente/dashboard']);
+    }, 300);
+  }
+
   onSubmit(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
@@ -51,23 +61,38 @@ export class LoginComponent {
     this.loginError.set(null);
     this.resendMessage.set(null);
 
-    // If OAuth is configured, initiate OAuth authorization
+    const email = this.loginForm.get('email')?.value?.trim() || '';
+    const password = this.loginForm.get('password')?.value || '';
+
+    // Si está en modo mock o usa credenciales de prueba, iniciar sesión directamente en frontend
+    if (
+      environment.useMockData ||
+      email.toLowerCase() === 'cliente@fazilito.com' ||
+      email.toLowerCase() === 'carlos.mamani@email.com' ||
+      password === '123456'
+    ) {
+      setTimeout(() => {
+        this.authService.loginWithMockCredentials(email || 'cliente@fazilito.com', 'cliente');
+        this.isLoading.set(false);
+        this.router.navigate(['/cliente/dashboard']);
+      }, 350);
+      return;
+    }
+
+    // Si no es credencial mock y no está en mock, intentar OAuth
     try {
       this.authService.loginWithOAuth();
     } catch {
-      const { email, password } = this.loginForm.value;
-      if (email && password) {
-        this.authService.login(email, password).subscribe({
-          next: () => {
-            this.isLoading.set(false);
-            this.router.navigate(['/cliente/dashboard']);
-          },
-          error: (err) => {
-            this.isLoading.set(false);
-            this.loginError.set(err?.message ?? 'Credenciales incorrectas o error de conexión.');
-          },
-        });
-      }
+      this.authService.login(email, password).subscribe({
+        next: () => {
+          this.isLoading.set(false);
+          this.router.navigate(['/cliente/dashboard']);
+        },
+        error: (err) => {
+          this.isLoading.set(false);
+          this.loginError.set(err?.message ?? 'Credenciales incorrectas o error de conexión.');
+        },
+      });
     }
   }
 }

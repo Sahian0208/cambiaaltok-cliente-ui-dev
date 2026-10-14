@@ -10,6 +10,7 @@ import { User } from '../models/user.model';
 import { Transaction } from '../models/transaction.model';
 import { BankAccount } from '../models/bank-account.model';
 import { Bank } from '../models/bank.model';
+import { environment } from '../../../environments/environment';
 
 interface MockResponse {
   status: number;
@@ -77,18 +78,18 @@ function getMockResponse(
     const id = url.split('/api/transactions/')[1];
     return handleGetTransactionById(id);
   }
-  if (method === 'GET' && url.includes('/api/transactions')) {
+  if (method === 'GET' && (url.includes('/api/transactions') || url.includes('/v1/exchange-transaction/transactions-of-customer') || url.includes('/v1/exchange-transaction'))) {
     return handleGetTransactions(url);
   }
-  if (method === 'POST' && url.endsWith('/api/transactions')) {
+  if (method === 'POST' && (url.endsWith('/api/transactions') || url.includes('/v1/exchange-transaction/create-from-client'))) {
     return handleCreateTransaction(body as Partial<Transaction>);
   }
 
   // --- ACCOUNTS (v1/customer-favorites-account) ---
-  if (method === 'GET' && url.includes('/v1/customer-favorites-account/get-all-accounts-for-client')) {
+  if (method === 'GET' && (url.includes('/v1/customer-favorites-account/get-all-accounts-for-client') || url.includes('/v1/customer-favorites-account/get-accounts-by-country-for-client'))) {
     return handleGetAccounts(url);
   }
-  if (method === 'POST' && url.endsWith('/v1/customer-favorites-account')) {
+  if (method === 'POST' && url.includes('/v1/customer-favorites-account')) {
     return handleCreateAccount(body as Partial<BankAccount>);
   }
   if (method === 'PUT' && url.match(/\/v1\/customer-favorites-account\/[^/]+$/)) {
@@ -200,14 +201,14 @@ function handleRegister(
 // --- TRANSACTION Handlers ---
 function handleGetTransactions(url: string): MockResponse {
   const params = getUrlParams(url);
-  const clientId = params.get('clientId');
+  const clientId = params.get('clientId') || params.get('authUserId');
 
   let result = [...transactions];
   if (clientId) {
-    result = result.filter((t) => t.clientId === clientId);
+    result = result.filter((t) => t.clientId === clientId || t.clientId === 'usr-001');
   }
 
-  return { status: 200, body: result };
+  return toApiResponse(result);
 }
 
 function handleGetPendingTransactions(): MockResponse {
@@ -327,7 +328,7 @@ function handleGetAccounts(url: string): MockResponse {
 
   let result = [...accounts];
   if (authUseId) {
-    result = result.filter((a) => a.userId === authUseId);
+    result = result.filter((a) => a.userId === authUseId || a.userId === 'usr-001');
   }
   if (accountType) {
     result = result.filter((a) => a.type === accountType);
@@ -389,11 +390,11 @@ function handleDeleteAccount(id: string): MockResponse {
 // GET /v1/financial-entity/all-by-country?country= (para clientes, envuelto en ApiResponse, solo activos)
 function handleGetBanksForClient(url: string): MockResponse {
   const params = getUrlParams(url);
-  const country = params.get('country');
+  const country = params.get('country') || params.get('Country');
 
   let result = banks.filter((b) => b.active);
   if (country) {
-    result = result.filter((b) => b.country === country);
+    result = result.filter((b) => b.country.toLowerCase() === country.toLowerCase());
   }
 
   return toApiResponse(result);
@@ -475,6 +476,10 @@ function handleChangeUserRole(
 
 // --- INTERCEPTOR ---
 export const mockApiInterceptor: HttpInterceptorFn = (req, next) => {
+  if (!environment.useMockData) {
+    return next(req);
+  }
+
   // Routes that pass through to the real API
   if (
     req.url.includes('exchangerate-api.com') ||
@@ -491,7 +496,7 @@ export const mockApiInterceptor: HttpInterceptorFn = (req, next) => {
         status: mockResponse.status,
         body: mockResponse.body,
       }),
-    ).pipe(delay(300)); // Simulate latency
+    ).pipe(delay(100)); // Simulate latency
   }
 
   return next(req);

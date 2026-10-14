@@ -19,6 +19,7 @@ import { routes } from './app.routes';
 import { environment } from '../environments/environment';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { DialogService } from 'primeng/dynamicdialog';
+import { mockApiInterceptor } from './core/interceptors/mock-api.interceptor';
 import { httpBasicInterceptor } from './core/interceptors/http-basic.interceptor';
 import {
   errorInterceptor,
@@ -35,6 +36,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(
       withInterceptors([
+        mockApiInterceptor,
         authInterceptor(),
         httpBasicInterceptor,
         loadingInterceptor,

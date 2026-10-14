@@ -20,13 +20,35 @@
     <div class="w-full bg-transparent p-0">
       
       <!-- Heading -->
-      <div class="mb-6">
+      <div class="mb-4">
         <h1 class="text-3xl sm:text-4xl font-black text-[#00394b] tracking-tight leading-tight">
           Inicia sesión
         </h1>
-        <p class="text-sm sm:text-base text-slate-500 font-medium mt-1.5">
+        <p class="text-sm sm:text-base text-slate-500 font-medium mt-1">
           Ingresa con tu cuenta para continuar
         </p>
+      </div>
+
+      <!-- Tarjeta de Acceso Rápido / Credenciales Demo -->
+      <div class="mb-5 bg-gradient-to-r from-[#00394b]/10 via-[#00394b]/5 to-[#18a796]/15 border border-[#18a796]/35 rounded-2xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-[#18a796] flex items-center justify-center text-white shrink-0 shadow-xs">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+            </svg>
+          </div>
+          <div>
+            <p class="font-bold text-xs text-[#00394b] leading-tight">Credenciales de prueba:</p>
+            <p class="text-[11px] text-slate-600 font-semibold mt-0.5 font-mono">cliente@fazilito.com • 123456</p>
+          </div>
+        </div>
+        <button
+          type="button"
+          (click)="loginWithDemo('cliente')"
+          class="bg-[#18a796] hover:bg-[#148e80] text-white font-bold px-3.5 py-2 rounded-xl text-xs transition shadow-xs border-none cursor-pointer whitespace-nowrap active:scale-95"
+        >
+          Entrar directo
+        </button>
       </div>
 
       <!-- Form -->
