@@ -13,6 +13,7 @@ import { forkJoin, Observable, of, switchMap } from 'rxjs';
 
 import { NaturalPersonService } from '../../../core/services/natural-person.service';
 import { LegalPersonService } from '../../../core/services/legal-person.service';
+import { ThemeService } from '../../../core/services/theme.service';
 import { NaturalPerson, NaturalPersonClientDto, LegalPersonClientDto } from '../../../core/models/natural-person.model';
 import { OCCUPATION_OPTIONS, HOW_DID_YOU_FIND_US_OPTIONS, SOURCE_OF_FUNDS_OPTIONS, SelectOption } from '../../../shared/constants/select-options.constants';
 
@@ -39,6 +40,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private readonly naturalPersonService = inject(NaturalPersonService);
   private readonly attachmentService = inject(AttachmentService);
   private readonly legalPersonService = inject(LegalPersonService);
+  readonly themeService = inject(ThemeService);
 
   readonly occupations: SelectOption[] = OCCUPATION_OPTIONS;
   readonly howDidYouFindUsOptions: SelectOption[] = HOW_DID_YOU_FIND_US_OPTIONS;
@@ -201,6 +203,49 @@ export class ProfileComponent implements OnInit, OnDestroy {
   removeLegalDocument(): void {
     this.legalDocumentUrl = null;
     this.legalDocumentFile = null;
+  }
+
+  // --- Drag and Drop Handlers ---
+
+  onDropDocFront(event: DragEvent): void {
+    event.preventDefault();
+    if (event.dataTransfer?.files && event.dataTransfer.files.length > 0) {
+      const file = event.dataTransfer.files[0];
+      if (file.size > 5 * 1024 * 1024) {
+        this.notificationService.error('Archivo muy grande', 'El tamaño máximo es 5 MB.');
+        return;
+      }
+      this.documentFrontFile = file;
+      this.readFileAsDataUrl(file, (url) => this.documentFrontUrl = url);
+    }
+  }
+
+  onDropDocBack(event: DragEvent): void {
+    event.preventDefault();
+    if (event.dataTransfer?.files && event.dataTransfer.files.length > 0) {
+      const file = event.dataTransfer.files[0];
+      if (file.size > 5 * 1024 * 1024) {
+        this.notificationService.error('Archivo muy grande', 'El tamaño máximo es 5 MB.');
+        return;
+      }
+      this.documentBackFile = file;
+      this.readFileAsDataUrl(file, (url) => this.documentBackUrl = url);
+    }
+  }
+
+  saveAll(): void {
+    if (this.profilePhotoFile) {
+      this.saveProfilePhoto();
+    }
+    if (this.documentFrontFile || this.documentBackFile || this.legalDocumentFile) {
+      this.saveDocuments();
+    }
+    this.saveProfile();
+  }
+
+  cancelChanges(): void {
+    this.initForm();
+    this.notificationService.info('Cancelado', 'Se han restaurado los valores del formulario.');
   }
 
   // --- Camera ---
