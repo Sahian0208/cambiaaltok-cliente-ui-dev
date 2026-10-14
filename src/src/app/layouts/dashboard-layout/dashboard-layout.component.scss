@@ -205,14 +205,28 @@ $transition-speed: 0.25s;
   }
 
   &.active {
-    background: linear-gradient(135deg, rgba(24, 167, 150, 0.28) 0%, rgba(0, 57, 75, 0.5) 100%);
-    color: #ffffff;
-    font-weight: 700;
-    border: 1px solid rgba(24, 167, 150, 0.45);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    background: #ffffff;
+    color: #00394b;
+    font-weight: 800;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+    position: relative;
 
     i {
-      color: #18a796;
+      color: #00394b;
+      font-weight: bold;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -0.65rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 24px;
+      border-radius: 0 4px 4px 0;
+      background: #ffffff;
     }
   }
 }
