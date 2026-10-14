@@ -6,11 +6,19 @@ const THEME_KEY = 'cambiaaltok_theme';
 export class ThemeService {
   readonly isDarkMode = signal(this.loadTheme());
 
+  constructor() {
+    this.initTheme();
+  }
+
   toggleDarkMode(): void {
     const newValue = !this.isDarkMode();
     this.isDarkMode.set(newValue);
     this.applyTheme(newValue);
-    localStorage.setItem(THEME_KEY, newValue ? 'dark' : 'light');
+    try {
+      localStorage.setItem(THEME_KEY, newValue ? 'dark' : 'light');
+    } catch {
+      // ignore
+    }
   }
 
   initTheme(): void {
@@ -21,19 +29,23 @@ export class ThemeService {
     if (typeof localStorage === 'undefined') return false;
     const stored = localStorage.getItem(THEME_KEY);
     if (stored) return stored === 'dark';
-    // Respect system preference
-    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+    return false;
   }
 
   private applyTheme(dark: boolean): void {
     if (typeof document === 'undefined') return;
     const root = document.documentElement;
+    const body = document.body;
     if (dark) {
-      root.classList.add('dark-mode');
-      root.classList.add('dark');
+      root.classList.add('dark-mode', 'dark');
+      if (body) {
+        body.classList.add('dark-mode', 'dark');
+      }
     } else {
-      root.classList.remove('dark-mode');
-      root.classList.remove('dark');
+      root.classList.remove('dark-mode', 'dark');
+      if (body) {
+        body.classList.remove('dark-mode', 'dark');
+      }
     }
   }
 }

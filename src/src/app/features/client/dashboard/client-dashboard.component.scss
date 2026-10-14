@@ -675,8 +675,8 @@
 // ==========================================
 // DARK MODE STYLES
 // ==========================================
-:root.dark-mode,
-.dark-mode {
+.dashboard-page.dark-mode,
+:host-context(.dark-mode) .dashboard-page {
   .welcome-title {
     color: #ffffff;
   }

@@ -450,15 +450,21 @@ $transition-speed: 0.25s;
 // ==========================================
 // DARK MODE STYLES
 // ==========================================
-:root.dark-mode,
-.dark-mode {
-  .dashboard-layout {
-    background-color: #07151b;
+.dashboard-layout.dark-mode,
+:host-context(.dark-mode) .dashboard-layout {
+  background-color: #06151c;
+
+  .main-area {
+    background-color: #06151c;
+  }
+
+  .dashboard-content {
+    background-color: #06151c;
   }
 
   .sidebar {
-    background-color: #08171e;
-    border-right-color: #122833;
+    background-color: #06151c;
+    border-right-color: #102834;
   }
 
   .sidebar-toggle {

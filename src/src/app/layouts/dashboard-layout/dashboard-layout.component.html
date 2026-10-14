@@ -1,4 +1,4 @@
-<div class="dashboard-layout" [class.sidebar-collapsed]="sidebarCollapsed">
+<div class="dashboard-layout" [class.dark-mode]="themeService.isDarkMode()" [class.dark]="themeService.isDarkMode()" [class.sidebar-collapsed]="sidebarCollapsed">
   <!-- Mobile Overlay -->
   @if (mobileSidebarOpen) {
     <div class="mobile-overlay" (click)="closeMobileSidebar()"></div>

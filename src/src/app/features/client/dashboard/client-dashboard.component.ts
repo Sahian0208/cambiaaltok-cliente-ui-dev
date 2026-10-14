@@ -13,6 +13,8 @@ import { BankAccount } from '../../../core/models/bank-account.model';
 import { Bank } from '../../../core/models/bank.model';
 import { NationalFlagComponent } from '../../../shared/components/national-flag/national-flag.component';
 
+import { ThemeService } from '../../../core/services/theme.service';
+
 @Component({
   selector: 'app-client-dashboard',
   standalone: true,
@@ -31,6 +33,8 @@ export class ClientDashboardComponent implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly bankAccountService = inject(BankAccountService);
   private readonly router = inject(Router);
+  readonly themeService = inject(ThemeService);
+  readonly isDarkMode = this.themeService.isDarkMode;
 
   /** All client transactions */
   transactions = signal<Transaction[]>([]);

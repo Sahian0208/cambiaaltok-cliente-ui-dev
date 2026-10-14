@@ -71,20 +71,163 @@ html, body {
 
 /* Dark Mode Variables */
 :root.dark-mode {
-  --color-background: #0f172a;
-  --color-surface: #1e293b;
-  --color-text: #f1f5f9;
-  --color-text-secondary: #94a3b8;
-  --color-border: #334155;
-  --color-primary: #60a5fa;
-  --color-primary-light: #93c5fd;
+  --color-background: #06151c;
+  --color-surface: #0b1f28;
+  --color-text: #ffffff;
+  --color-text-secondary: #8ea5b1;
+  --color-border: #122d3a;
+  --color-primary: #70e4ba;
+  --color-primary-light: #5ce0b0;
+}
+
+html.dark-mode,
+html.dark,
+body.dark-mode,
+body.dark {
+  background-color: #06151c !important;
+  color: #ffffff;
 }
 
 .dark-mode {
-  background-color: #0f172a;
-  color: #f1f5f9;
+  background-color: #06151c;
+  color: #ffffff;
+
+  /* Layout and Core Containers */
+  .dashboard-layout,
+  .main-area,
+  .dashboard-content {
+    background-color: #06151c !important;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    background-color: #06151c !important;
+    border-right-color: #102834 !important;
+
+    .sidebar-header {
+      border-bottom-color: #102834;
+    }
+
+    .sidebar-toggle {
+      color: #8ea5b1;
+      &:hover {
+        background-color: #0e2733;
+        color: #ffffff;
+      }
+    }
+
+    .sidebar-item {
+      color: #8ea5b1 !important;
+
+      i {
+        color: #7b94a0 !important;
+      }
+
+      &:hover:not(.active) {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        color: #ffffff !important;
+        i {
+          color: #ffffff !important;
+        }
+      }
+
+      &.active {
+        background-color: #70e4ba !important;
+        color: #002b37 !important;
+        font-weight: 700;
+
+        i {
+          color: #002b37 !important;
+        }
+      }
+    }
+
+    .help-card {
+      background-color: #0a222c !important;
+      border: 1px solid #143846 !important;
+      color: #8ea5b1 !important;
+
+      .help-title {
+        color: #ffffff !important;
+      }
+      .help-desc {
+        color: #8ea5b1 !important;
+      }
+      .help-icon-wrap {
+        background-color: #123340 !important;
+        color: #70e4ba !important;
+      }
+      .help-link-btn {
+        border-color: #70e4ba !important;
+        color: #70e4ba !important;
+
+        &:hover {
+          background-color: #70e4ba !important;
+          color: #002b37 !important;
+        }
+      }
+    }
+
+    .sidebar-logout-btn {
+      color: #8ea5b1 !important;
+      &:hover {
+        background-color: rgba(239, 68, 68, 0.12) !important;
+        color: #f87171 !important;
+        i {
+          color: #f87171 !important;
+        }
+      }
+    }
+  }
+
+  /* Header */
+  .dashboard-header {
+    background-color: #06151c !important;
+    border-bottom: 1px solid #102834 !important;
+
+    .header-breadcrumbs {
+      color: #8ea5b1 !important;
+    }
+    .breadcrumb-home-icon,
+    .breadcrumb-root {
+      color: #8ea5b1 !important;
+    }
+    .breadcrumb-separator {
+      color: #435b67 !important;
+    }
+    .breadcrumb-current {
+      color: #ffffff !important;
+    }
+
+    .theme-toggle-btn,
+    .notification-btn {
+      background-color: #0e242e !important;
+      border-color: #163644 !important;
+      color: #cbd5e1 !important;
+
+      &:hover {
+        background-color: #13303d !important;
+        color: #ffffff !important;
+      }
+    }
+
+    .user-profile-pill {
+      background-color: #0e242e !important;
+      border-color: #163644 !important;
+
+      .user-avatar-circle {
+        background-color: #163644 !important;
+        color: #ffffff !important;
+      }
+
+      .user-fullname {
+        color: #ffffff !important;
+      }
+    }
+  }
 
   /* Global card/form overrides for all components */
+  .dashboard-panel,
   .form-section,
   .section-card,
   .content-card,
@@ -93,19 +236,20 @@ html, body {
   .photo-card,
   .profile-form,
   .password-form,
-  .readonly-card,
   .account-card,
   .accounts-section,
   .transactions-section,
   .dialog-form,
   .dest-info,
-  .dest-amount-section {
-    background-color: #1e293b !important;
-    border-color: #334155 !important;
-    color: #f1f5f9;
+  .dest-amount-section,
+  .kpi-card {
+    background-color: #0b1f28 !important;
+    border-color: #122d3a !important;
+    color: #ffffff;
   }
 
-  /* Inner cards with lighter background */
+  /* Inner cards with darker petrol background */
+  .active-card,
   .transaction-card,
   .transaction-amounts,
   .conversion-card,
@@ -125,10 +269,61 @@ html, body {
   .payment-method-standard,
   .payment-method-yape,
   .payment-method-qr,
-
+  .readonly-card,
   .coupon-applied {
-    background-color: #0f172a !important;
-    border-color: #334155 !important;
+    background-color: #081820 !important;
+    border-color: #122d3a !important;
+    color: #ffffff;
+  }
+
+  /* Active transaction cards on Dashboard */
+  .active-card {
+    background-color: #091b24 !important;
+    border-color: #133240 !important;
+
+    .active-card-meta {
+      .meta-tag, .meta-time { color: #8ea5b1 !important; }
+    }
+    .active-exchange-box {
+      .exchange-col-title { color: #8ea5b1 !important; }
+      .exchange-value { color: #ffffff !important; }
+      .exchange-currency { color: #8ea5b1 !important; }
+      .exchange-arrow-circle { background-color: #0e2733 !important; color: #8ea5b1 !important; }
+    }
+    .active-card-stepper {
+      border-top-color: #122d3a !important;
+    }
+  }
+
+  /* Table styling */
+  .fazilito-table {
+    thead tr {
+      border-bottom-color: #122d3a !important;
+      th {
+        color: #8ea5b1 !important;
+      }
+    }
+    tbody tr {
+      border-bottom-color: #0d2532 !important;
+      &:hover {
+        background-color: #0e242e !important;
+      }
+      td {
+        color: #ffffff !important;
+      }
+    }
+  }
+
+  .date-day,
+  .amount-text,
+  .bank-name-text {
+    color: #ffffff !important;
+  }
+
+  .date-hour,
+  .currency-code,
+  .pagination-info {
+    color: #8ea5b1 !important;
   }
 
   /* Text colors */
@@ -158,14 +353,15 @@ html, body {
   .register-title,
   .readonly-value,
   .dest-amount-value,
-  .dest-bank-field-value {
-    color: #f1f5f9 !important;
+  .dest-bank-field-value,
+  .kpi-number,
+  .panel-title {
+    color: #ffffff !important;
   }
 
   .form-section-hint,
   .section-card-desc,
   .action-card-desc,
-  .field-label,
   .dialog-hint,
   .detail-label,
   .stat-label,
@@ -185,8 +381,10 @@ html, body {
   .readonly-label,
   .dest-amount-label,
   .dest-bank-field-label,
-  .dest-bank-country {
-    color: #94a3b8 !important;
+  .dest-bank-country,
+  .kpi-label,
+  .panel-subtitle {
+    color: #8ea5b1 !important;
   }
 
   /* Input fields */
@@ -194,47 +392,83 @@ html, body {
   textarea,
   .p-inputtext,
   .p-select,
-  .p-password input {
-    background-color: #0f172a !important;
-    border-color: #475569 !important;
-    color: #f1f5f9 !important;
+  .p-password input,
+  .table-search-input,
+  .table-status-select {
+    background-color: #081820 !important;
+    border-color: #153948 !important;
+    color: #ffffff !important;
+
+    &::placeholder {
+      color: #567280 !important;
+    }
+
+    &:focus {
+      background-color: #0b1f28 !important;
+      border-color: #70e4ba !important;
+      box-shadow: 0 0 0 2px rgba(112, 228, 186, 0.25) !important;
+    }
+  }
+
+  .table-status-select option {
+    background-color: #081820 !important;
+    color: #ffffff !important;
   }
 
   /* Buttons */
+  .export-icon-btn,
+  .page-nav-btn,
+  .page-number-btn {
+    background-color: #081820 !important;
+    border-color: #153948 !important;
+    color: #8ea5b1 !important;
+
+    &:hover {
+      background-color: #0e242e !important;
+      color: #ffffff !important;
+    }
+
+    &.active {
+      background-color: #70e4ba !important;
+      border-color: #70e4ba !important;
+      color: #002b37 !important;
+    }
+  }
+
   .add-account-btn,
   .coupon-toggle,
   .photo-btn {
-    border-color: #475569 !important;
-    color: #94a3b8 !important;
+    border-color: #153948 !important;
+    color: #8ea5b1 !important;
 
     &:hover {
-      border-color: #60a5fa !important;
-      color: #60a5fa !important;
+      border-color: #70e4ba !important;
+      color: #70e4ba !important;
     }
   }
 
   .back-btn,
   .theme-toggle {
-    background: #334155 !important;
-    border-color: #475569 !important;
-    color: #94a3b8 !important;
+    background: #0e242e !important;
+    border-color: #153948 !important;
+    color: #8ea5b1 !important;
   }
 
   /* Search box */
   .search-box {
-    background: #1e293b !important;
-    border-color: #334155 !important;
+    background: #081820 !important;
+    border-color: #153948 !important;
   }
 
   .search-input {
-    color: #f1f5f9 !important;
+    color: #ffffff !important;
   }
 
   /* Filter pills */
   .filter-pill {
-    background: #1e293b !important;
-    border-color: #334155 !important;
-    color: #94a3b8 !important;
+    background: #081820 !important;
+    border-color: #153948 !important;
+    color: #8ea5b1 !important;
   }
 
   /* Status banner */
