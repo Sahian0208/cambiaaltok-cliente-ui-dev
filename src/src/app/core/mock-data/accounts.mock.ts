@@ -38,6 +38,18 @@ export const MOCK_ACCOUNTS: BankAccount[] = [
     otherAccountValue: '',
     isQR: false
   },
+  {
+    id: 'acc-bnb',
+    userId: 'usr-001',
+    bankId: 'bank-bo-002',
+    accountNumber: '4455667788',
+    holderName: 'Carlos Alberto Mamani Quispe',
+    type: 'destino',
+    country: 'Bolivia',
+    isYape: false,
+    otherAccountValue: '',
+    isQR: false
+  },
   // Cuentas de la intermediaria María (usr-002) - Perú
   {
     id: 'acc-004',

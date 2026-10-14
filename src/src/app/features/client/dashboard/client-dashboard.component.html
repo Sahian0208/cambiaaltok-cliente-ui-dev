@@ -1,397 +1,290 @@
-<div class="dashboard-page font-gotham">
-  <div class="dashboard-layout-grid">
-    
-    <!-- ============================================== -->
-    <!-- CENTER MAIN COLUMN: Title, Filters, Cards, Table -->
-    <!-- ============================================== -->
-    <div class="dashboard-main-area">
+<div class="dashboard-page">
+  <!-- Top Welcome Header -->
+  <div class="welcome-header">
+    <div class="welcome-info">
+      <h1 class="welcome-title">Mi dashboard</h1>
+      <p class="welcome-subtitle">Resumen de tus operaciones de cambio</p>
+    </div>
+    <button class="new-transfer-action-btn" (click)="goToDetail('new')">
+      <i class="pi pi-plus"></i>
+      <span>Nueva transferencia</span>
+    </button>
+  </div>
 
-      <!-- Header: Title + Search & Notifications (Identical to reference image) -->
-      <div class="top-nav-bar">
-        <div class="title-group">
-          <h1 class="main-title">Mis Operaciones</h1>
-          <p class="main-subtitle">Panel principal de transferencias y cambio de divisas</p>
-        </div>
-
-        <div class="header-tools">
-          <div class="search-box">
-            <i class="pi pi-search search-icon"></i>
-            <input 
-              type="text" 
-              [(ngModel)]="searchQuery" 
-              placeholder="Buscar operación..." 
-              class="search-field"
-            />
-          </div>
-
-          <button class="notif-btn" title="Notificaciones del sistema">
-            <i class="pi pi-bell"></i>
-            <span class="notif-pulse-dot"></span>
-          </button>
-        </div>
+  <!-- 3 Stats KPI Cards -->
+  <div class="kpi-grid">
+    <!-- Card 1: Operaciones Activas -->
+    <div class="kpi-card" (click)="selectedStatus.set('all')">
+      <div class="kpi-icon-wrap kpi-icon-wrap--active">
+        <i class="pi pi-sync"></i>
       </div>
-
-      <!-- Filters Row ("Filter by: Time, Level, Language, Type" in reference) -->
-      <div class="filters-row">
-        <span class="filters-heading">Filtrar por:</span>
-
-        <div class="filter-dropdowns">
-          <!-- Filter Currency -->
-          <div class="dropdown-wrapper">
-            <select 
-              [ngModel]="selectedCurrencyFilter" 
-              (ngModelChange)="setCurrencyFilter($event)"
-              class="filter-select-pill"
-            >
-              <option value="ALL">Moneda: Todas</option>
-              <option value="BOB">Bolivianos (BOB)</option>
-              <option value="PEN">Soles (PEN)</option>
-            </select>
-            <i class="pi pi-chevron-down select-caret"></i>
-          </div>
-
-          <!-- Filter Status -->
-          <div class="dropdown-wrapper">
-            <select 
-              [ngModel]="selectedStatusFilter" 
-              (ngModelChange)="setStatusFilter($event)"
-              class="filter-select-pill"
-            >
-              <option value="ALL">Estado: Todos</option>
-              <option value="ACTIVE">Solo Activas</option>
-              <option value="finalizado">Completadas</option>
-              <option value="pendiente_deposito">Pendiente depósito</option>
-            </select>
-            <i class="pi pi-chevron-down select-caret"></i>
-          </div>
-
-          <!-- Fast Action: Nueva Operación -->
-          <button (click)="goToDetail('new')" class="new-transfer-action-pill">
-            <i class="pi pi-plus text-xs"></i>
-            <span>Nueva Operación</span>
-          </button>
-        </div>
+      <div class="kpi-content">
+        <span class="kpi-number">{{ activeTransactions().length }}</span>
+        <span class="kpi-label">Operaciones activas</span>
       </div>
-
-      <!-- ============================================== -->
-      <!-- 3 FEATURE CARDS ("Los recuadros que sean otros") -->
-      <!-- ============================================== -->
-      <div class="cards-stack">
-        
-        <!-- CARD 1: Operación Activa / Transferencia en Curso (Ice Blue/White) -->
-        <div 
-          class="feature-row-card feature-row-card--blue cursor-pointer"
-          (click)="goToDetail(activeTransactions.length > 0 ? activeTransactions[0].id : 'new')"
-        >
-          <!-- Left Illustration / Vector box -->
-          <div class="card-visual-wrapper">
-            <div class="card-graphic card-graphic--blue">
-              <svg class="w-12 h-12 text-[#00394b]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Middle Information -->
-          <div class="card-body">
-            <div class="flex items-center gap-2">
-              <h2 class="card-title">Transferencia en Curso BOB ⇄ PEN</h2>
-              @if (activeTransactions.length > 0) {
-                <span class="active-pulse-badge">Activa</span>
-              }
-            </div>
-
-            @if (activeTransactions.length > 0) {
-              <p class="card-description">
-                Envías <strong>{{ activeTransactions[0].sourceAmount | number:'1.2-2' }} {{ activeTransactions[0].sourceCurrency }}</strong> y recibes <strong>{{ activeTransactions[0].destinationAmount | number:'1.2-2' }} {{ activeTransactions[0].destinationCurrency }}</strong> en {{ getDestinationBankName(activeTransactions[0]) }}.
-              </p>
-              <div class="card-meta">
-                <span>Estado: <strong class="text-[#00394b]">{{ getStatusLabel(activeTransactions[0].status) }}</strong></span>
-                <span class="dot-separator">•</span>
-                <span>Transferencia en tan solo ~30 min</span>
-              </div>
-            } @else {
-              <p class="card-description">
-                Envía dinero entre cuentas de Bolivia y Perú con cotización congelada al instante. Atención garantizada en menos de 30 minutos.
-              </p>
-              <div class="card-meta">
-                <span>Tasa preferencial: <strong class="text-[#00394b]">Compra y Venta al día</strong></span>
-                <span class="dot-separator">•</span>
-                <span>Operaciones 100% seguras y protegidas</span>
-              </div>
-            }
-          </div>
-
-          <!-- Right Action Button -->
-          <button 
-            class="card-action-btn card-action-btn--blue"
-            title="Ver transferencia"
-          >
-            <i class="pi pi-arrow-right"></i>
-          </button>
-        </div>
-
-        <!-- CARD 2: Nueva Operación de Cambio (Soft Mint/Teal) -->
-        <div 
-          class="feature-row-card feature-row-card--teal cursor-pointer"
-          (click)="goToDetail('new')"
-        >
-          <!-- Left Illustration / Vector box -->
-          <div class="card-visual-wrapper">
-            <div class="card-graphic card-graphic--teal">
-              <svg class="w-12 h-12 text-[#18a796]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Middle Information -->
-          <div class="card-body">
-            <h2 class="card-title">Nueva Operación de Cambio</h2>
-            <p class="card-description">
-              Cotiza y transfiere directamente a bancos en Bolivia (Banco Unión, BNB, Mercantil) o Perú (BCP, Interbank, BBVA, Yape) con el mejor tipo de cambio.
-            </p>
-            <div class="card-meta">
-              <span>Rapidez: <strong class="text-[#18a796]">Atención en 30 minutos</strong></span>
-              <span class="dot-separator">•</span>
-              <span>Sin comisiones bancarias ocultas</span>
-            </div>
-          </div>
-
-          <!-- Right Action Button -->
-          <button 
-            class="card-action-btn card-action-btn--teal"
-            title="Iniciar nueva operación"
-          >
-            <i class="pi pi-arrow-right"></i>
-          </button>
-        </div>
-
-        <!-- CARD 3: Cuentas Bancarias & Billeteras (Soft Peach/Warm) -->
-        <div 
-          class="feature-row-card feature-row-card--warm cursor-pointer"
-          (click)="router.navigate(['/cliente/cuentas'])"
-        >
-          <!-- Left Illustration / Vector box -->
-          <div class="card-visual-wrapper">
-            <div class="card-graphic card-graphic--warm">
-              <svg class="w-12 h-12 text-[#e27350]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
-              </svg>
-            </div>
-          </div>
-
-          <!-- Middle Information -->
-          <div class="card-body">
-            <h2 class="card-title">Cuentas Bancarias & Billeteras</h2>
-            <p class="card-description">
-              Administra tus cuentas favoritas de Bolivia y Perú para transferir y recibir tus fondos de forma inmediata con un solo clic.
-            </p>
-            <div class="card-meta">
-              <span>Cuentas activas: <strong class="text-[#00394b]">{{ accountsMap.size }} registradas</strong></span>
-              <span class="dot-separator">•</span>
-              <span>Soporte para cuentas propias y de terceros</span>
-            </div>
-          </div>
-
-          <!-- Right Action Button -->
-          <button 
-            class="card-action-btn card-action-btn--warm"
-            title="Administrar cuentas"
-          >
-            <i class="pi pi-arrow-right"></i>
-          </button>
-        </div>
-
-      </div>
-
-      <!-- ============================================== -->
-      <!-- TABLE SECTION: Historial de Transacciones -->
-      <!-- ============================================== -->
-      <div class="history-container">
-        <div class="history-top">
-          <div>
-            <h3 class="history-title">Historial de Transacciones</h3>
-            <p class="history-subtitle">Detalle de movimientos y comprobantes</p>
-          </div>
-          <span class="history-badge">{{ filteredTransactions.length }} operaciones</span>
-        </div>
-
-        <div class="table-card">
-          <p-table
-            [value]="filteredTransactions"
-            [paginator]="true"
-            [rows]="5"
-            [rowsPerPageOptions]="[5, 10, 20]"
-            [loading]="loading"
-            [sortField]="'createdAt'"
-            [sortOrder]="-1"
-            styleClass="p-datatable-sm"
-          >
-            <ng-template #header>
-              <tr>
-                <th pSortableColumn="createdAt">Fecha <p-sortIcon field="createdAt" /></th>
-                <th pSortableColumn="sourceAmount">Envías <p-sortIcon field="sourceAmount" /></th>
-                <th>Recibes</th>
-                <th pSortableColumn="status">Estado <p-sortIcon field="status" /></th>
-                <th>Banco Destino</th>
-                <th class="text-center">Acción</th>
-              </tr>
-            </ng-template>
-
-            <ng-template #body let-transaction>
-              <tr class="table-row-hover" (click)="goToDetail(transaction.id)">
-                <td>
-                  <span class="date-main">{{ transaction.createdAt | date:'dd/MM/yyyy' }}</span>
-                  <span class="date-time">{{ transaction.createdAt | date:'HH:mm' }}</span>
-                </td>
-                <td>
-                  <span class="amount-text inline-flex items-center gap-1 font-bold text-[#00394b]">
-                    {{ transaction.sourceAmount | currencyFormat:transaction.sourceCurrency }}
-                    <app-national-flag [country]="transaction.sourceCurrency" size="w-1"></app-national-flag>
-                  </span>
-                </td>
-                <td>
-                  <span class="amount-text inline-flex items-center gap-1 font-bold text-[#18a796]">
-                    {{ transaction.destinationAmount | currencyFormat:transaction.destinationCurrency }}
-                    <app-national-flag [country]="transaction.destinationCurrency" size="w-1"></app-national-flag>
-                  </span>
-                </td>
-                <td>
-                  <p-tag
-                    [value]="getStatusLabel(transaction.status)"
-                    [severity]="getStatusSeverity(transaction.status)"
-                    [rounded]="true"
-                  />
-                </td>
-                <td>
-                  <span class="bank-pill">{{ getDestinationBankName(transaction) }}</span>
-                </td>
-                <td class="text-center">
-                  <button 
-                    (click)="goToDetail(transaction.id); $event.stopPropagation()"
-                    class="view-detail-btn"
-                    title="Ver detalle"
-                  >
-                    <i class="pi pi-eye"></i>
-                  </button>
-                </td>
-              </tr>
-            </ng-template>
-
-            <ng-template #emptymessage>
-              <tr>
-                <td colspan="6" class="text-center py-8 text-slate-400">
-                  <div class="empty-state-box">
-                    <i class="pi pi-inbox text-3xl mb-2 text-slate-300"></i>
-                    <p class="font-medium text-sm">No se encontraron transacciones con los filtros seleccionados.</p>
-                  </div>
-                </td>
-              </tr>
-            </ng-template>
-          </p-table>
-        </div>
-      </div>
-
+      <i class="pi pi-angle-right kpi-arrow"></i>
     </div>
 
-    <!-- ============================================== -->
-    <!-- RIGHT COLUMN PANEL (Exact matching reference image) -->
-    <!-- ============================================== -->
-    <aside class="dashboard-side-panel">
-      
-      <!-- User Profile Header -->
-      <div class="user-profile-header">
-        <div class="user-text-meta">
-          <span class="user-display-name">
-            {{ currentUser()?.firstName }} {{ currentUser()?.lastName }}
-          </span>
-          <span class="user-id-code">
-            CI • {{ currentUser()?.documentNumber || '8901234' }}
-          </span>
+    <!-- Card 2: Completadas -->
+    <div class="kpi-card" (click)="selectedStatus.set('finalizado')">
+      <div class="kpi-icon-wrap kpi-icon-wrap--completed">
+        <i class="pi pi-check"></i>
+      </div>
+      <div class="kpi-content">
+        <span class="kpi-number">{{ getCompletedCount() }}</span>
+        <span class="kpi-label">Completada</span>
+      </div>
+      <i class="pi pi-angle-right kpi-arrow"></i>
+    </div>
+
+    <!-- Card 3: Operaciones Totales -->
+    <div class="kpi-card" (click)="selectedStatus.set('all')">
+      <div class="kpi-icon-wrap kpi-icon-wrap--total">
+        <i class="pi pi-bars"></i>
+      </div>
+      <div class="kpi-content">
+        <span class="kpi-number">{{ transactions().length }}</span>
+        <span class="kpi-label">Operaciones totales</span>
+      </div>
+      <i class="pi pi-angle-right kpi-arrow"></i>
+    </div>
+  </div>
+
+  <!-- Operaciones Activas Section -->
+  @if (activeTransactions().length > 0) {
+    <section class="dashboard-panel">
+      <div class="panel-header">
+        <div class="panel-title-group">
+          <i class="pi pi-bolt panel-icon-bolt"></i>
+          <h2 class="panel-title">Operaciones activas</h2>
         </div>
-        <div class="user-avatar-circle">
-          <img 
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80" 
-            alt="Usuario" 
-            class="user-photo"
+        <a class="panel-view-all-link" (click)="selectedStatus.set('all')">
+          <span>Ver las {{ activeTransactions().length }} operaciones</span>
+          <i class="pi pi-arrow-right text-xs"></i>
+        </a>
+      </div>
+
+      <div class="active-cards-grid">
+        @for (tx of activeTransactions().slice(0, 3); track tx.id) {
+          <div class="active-card" (click)="goToDetail(tx.id)">
+            <!-- Top meta row -->
+            <div class="active-card-top">
+              <div class="active-meta-left">
+                <span class="active-code">#{{ tx.id }}</span>
+                <span class="active-date">
+                  <i class="pi pi-calendar"></i>
+                  {{ tx.createdAt | date:'dd/MM/yyyy HH:mm' }}
+                </span>
+              </div>
+              <div class="status-pill {{ getStatusBadgeClass(tx.status) }}">
+                <i [class]="getStatusIcon(tx.status)"></i>
+                <span>{{ getStatusLabel(tx.status) }}</span>
+              </div>
+            </div>
+
+            <!-- Middle amounts exchange row -->
+            <div class="active-amounts-row">
+              <div class="amount-side">
+                <span class="amount-label-mini">ENVÍAS</span>
+                <div class="amount-display">
+                  <span class="amount-value">{{ tx.sourceAmount | number:'1.2-2' }}</span>
+                  <div class="currency-tag">
+                    <app-national-flag [country]="tx.sourceCurrency" size="w-3.5"></app-national-flag>
+                    <span>{{ tx.sourceCurrency }}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="amount-arrow-circle">
+                <i class="pi pi-arrow-right"></i>
+              </div>
+
+              <div class="amount-side">
+                <span class="amount-label-mini">RECIBES</span>
+                <div class="amount-display">
+                  <span class="amount-value">{{ tx.destinationAmount | number:'1.2-2' }}</span>
+                  <div class="currency-tag">
+                    <app-national-flag [country]="tx.destinationCurrency" size="w-3.5"></app-national-flag>
+                    <span>{{ tx.destinationCurrency }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Stepper -->
+            <div class="active-stepper-wrap">
+              <app-stepper [currentStep]="getStep(tx.status)" [status]="tx.status"></app-stepper>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- Historial de Transacciones Section -->
+  <section class="dashboard-panel">
+    <div class="panel-header panel-header--wrap">
+      <div class="panel-title-group">
+        <i class="pi pi-history panel-icon-history"></i>
+        <h2 class="panel-title">Historial de transacciones</h2>
+      </div>
+
+      <!-- Filters Toolbar -->
+      <div class="table-filters-toolbar">
+        <!-- Search Input -->
+        <div class="search-input-wrap">
+          <i class="pi pi-search search-icon"></i>
+          <input
+            type="text"
+            placeholder="Buscar operación..."
+            [value]="searchQuery()"
+            (input)="onSearchChange($event)"
+            class="table-search-input"
           />
         </div>
-      </div>
 
-      <!-- Mini Calendar Widget -->
-      <div class="side-card calendar-card">
-        <div class="calendar-top">
-          <h3 class="calendar-month-title">{{ currentMonthName }}</h3>
-          <div class="calendar-arrows">
-            <button (click)="prevMonth()" class="cal-arrow-btn" title="Mes anterior">
-              <i class="pi pi-chevron-left text-xs"></i>
-            </button>
-            <button (click)="nextMonth()" class="cal-arrow-btn" title="Mes siguiente">
-              <i class="pi pi-chevron-right text-xs"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="calendar-week-header">
-          <span>Lun</span>
-          <span>Mar</span>
-          <span>Mié</span>
-          <span>Jue</span>
-          <span>Vie</span>
-          <span>Sáb</span>
-          <span>Dom</span>
-        </div>
-
-        <div class="calendar-grid-days">
-          @for (day of calendarDays; track $index) {
-            <span 
-              class="cal-day-cell"
-              [class.cal-day-cell--today]="day.isToday"
-              [class.cal-day-cell--event]="day.hasEvent"
-              [class.cal-day-cell--empty]="day.isEmpty"
-            >
-              {{ day.label }}
-            </span>
-          }
-        </div>
-      </div>
-
-      <!-- Online Support Advisors (Online Users in screenshot) -->
-      <div class="side-card advisors-card">
-        <div class="advisors-top-bar">
-          <h3 class="advisors-title">Asesores en Línea</h3>
-          <a 
-            href="https://wa.me/59172237251?text=Hola%20Fazilito,%20necesito%20ayuda%20con%20mi%20cuenta." 
-            target="_blank" 
-            class="see-all-btn"
+        <!-- Status Select Filter -->
+        <div class="status-select-wrap">
+          <select
+            [value]="selectedStatus()"
+            (change)="onStatusChange($event)"
+            class="table-status-select"
           >
-            Ver todos
-          </a>
+            <option value="all">Todos los estados</option>
+            <option value="pendiente_verificacion">Pendiente de verificación</option>
+            <option value="transferido">Transferido</option>
+            <option value="verificado">Verificado</option>
+            <option value="pendiente_deposito">Pendiente de depósito</option>
+            <option value="finalizado">Completada</option>
+            <option value="denegado">Denegado</option>
+          </select>
+          <i class="pi pi-chevron-down select-chevron"></i>
         </div>
 
-        <div class="advisors-list">
-          @for (advisor of onlineAdvisors; track advisor.name) {
-            <a 
-              [href]="'https://wa.me/' + advisor.phone + '?text=Hola%20' + advisor.name + ',%20solicito%20asistencia%20en%20Fazilito.'"
-              target="_blank"
-              class="advisor-row"
-              title="Contactar por WhatsApp"
-            >
-              <div class="advisor-pic-container">
-                <img [src]="advisor.avatar" [alt]="advisor.name" class="advisor-pic" />
-              </div>
-              <div class="advisor-meta">
-                <span class="advisor-fullname">{{ advisor.name }}</span>
-                <span class="advisor-sub">{{ advisor.code }}</span>
-              </div>
-              <span class="status-indicator-dot"></span>
-            </a>
-          }
-        </div>
+        <!-- Download CSV Button -->
+        <button class="export-icon-btn" (click)="exportCsv()" title="Descargar reporte CSV">
+          <i class="pi pi-download"></i>
+        </button>
       </div>
+    </div>
 
-    </aside>
+    <!-- Transactions Table -->
+    <div class="table-responsive-wrapper">
+      <table class="fazilito-table">
+        <thead>
+          <tr>
+            <th>Fecha <i class="pi pi-sort-alt text-[10px] ml-1"></i></th>
+            <th>Envías <i class="pi pi-sort-alt text-[10px] ml-1"></i></th>
+            <th>Recibes <i class="pi pi-sort-alt text-[10px] ml-1"></i></th>
+            <th>Estado <i class="pi pi-sort-alt text-[10px] ml-1"></i></th>
+            <th>Banco destino</th>
+            <th class="text-center">Detalle</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (tx of paginatedTransactions(); track tx.id) {
+            <tr (click)="goToDetail(tx.id)" class="cursor-pointer">
+              <!-- Fecha -->
+              <td>
+                <div class="date-cell">
+                  <span class="date-day">{{ tx.createdAt | date:'dd/MM/yyyy' }}</span>
+                  <span class="date-hour">{{ tx.createdAt | date:'HH:mm' }}</span>
+                </div>
+              </td>
 
-  </div>
+              <!-- Envías -->
+              <td>
+                <div class="amount-cell">
+                  <span class="amount-text">
+                    {{ tx.sourceCurrency === 'PEN' ? 'S/. ' : 'Bs. ' }}{{ tx.sourceAmount | number:'1.2-2' }}
+                  </span>
+                  <span class="currency-code">{{ tx.sourceCurrency }}</span>
+                  <app-national-flag [country]="tx.sourceCurrency" size="w-3.5"></app-national-flag>
+                </div>
+              </td>
+
+              <!-- Recibes -->
+              <td>
+                <div class="amount-cell">
+                  <span class="amount-text">
+                    {{ tx.destinationCurrency === 'BOB' ? 'Bs. ' : 'S/. ' }}{{ tx.destinationAmount | number:'1.2-2' }}
+                  </span>
+                  <span class="currency-code">{{ tx.destinationCurrency }}</span>
+                  <app-national-flag [country]="tx.destinationCurrency" size="w-3.5"></app-national-flag>
+                </div>
+              </td>
+
+              <!-- Estado -->
+              <td>
+                <div class="status-pill {{ getStatusBadgeClass(tx.status) }}">
+                  <i [class]="getStatusIcon(tx.status)"></i>
+                  <span>{{ getStatusLabel(tx.status) }}</span>
+                </div>
+              </td>
+
+              <!-- Banco Destino -->
+              <td>
+                <span class="bank-name-text">{{ getDestinationBankName(tx) }}</span>
+              </td>
+
+              <!-- Detalle -->
+              <td class="text-center" (click)="$event.stopPropagation(); goToDetail(tx.id)">
+                <button class="view-detail-btn" title="Ver detalle de operación">
+                  <i class="pi pi-eye"></i>
+                </button>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="6" class="text-center py-10">
+                <div class="empty-state-wrap">
+                  <i class="pi pi-inbox text-3xl text-slate-400"></i>
+                  <p class="text-sm font-semibold text-slate-500 mt-2">No se encontraron operaciones registradas.</p>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Table Pagination Footer -->
+    <div class="table-pagination-footer">
+      <span class="pagination-info">
+        Mostrando {{ paginatedTransactions().length }} de {{ filteredTransactions().length }} operaciones
+      </span>
+
+      <div class="pagination-controls">
+        <button
+          class="page-nav-btn"
+          [disabled]="currentPage() === 1"
+          (click)="prevPage()"
+          title="Página anterior"
+        >
+          <i class="pi pi-angle-left"></i>
+        </button>
+
+        @for (page of [1, 2]; track page) {
+          @if (page <= totalPages()) {
+            <button
+              class="page-number-btn"
+              [class.active]="currentPage() === page"
+              (click)="goToPage(page)"
+            >
+              {{ page }}
+            </button>
+          }
+        }
+
+        <button
+          class="page-nav-btn"
+          [disabled]="currentPage() >= totalPages()"
+          (click)="nextPage()"
+          title="Página siguiente"
+        >
+          <i class="pi pi-angle-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
 </div>

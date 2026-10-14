@@ -1,10 +1,30 @@
-<div class="stepper-container" [class.stepper-denied]="isDenied">
-  <p-steps
-    [model]="steps"
-    [activeIndex]="activeIndex"
-    [readonly]="true"
-    styleClass="cambia-stepper"
-  ></p-steps>
+<div class="custom-stepper" [class.stepper-denied]="isDenied">
+  <div class="stepper-track">
+    @for (step of [1, 2, 3, 4, 5]; track step; let i = $index) {
+      <div 
+        class="step-item"
+        [class.completed]="step < currentStep && !isDenied"
+        [class.active]="step === currentStep && !isDenied"
+        [class.pending]="step > currentStep && !isDenied"
+        [class.denied]="isDenied"
+      >
+        <div class="step-circle">
+          @if (step < currentStep && !isDenied) {
+            <i class="pi pi-check text-[9px]"></i>
+          } @else {
+            <span>{{ step }}</span>
+          }
+        </div>
+        <span class="step-label">{{ stepLabels[i] }}</span>
+      </div>
+      @if (i < 4) {
+        <div 
+          class="step-connector"
+          [class.filled]="step < currentStep && !isDenied"
+        ></div>
+      }
+    }
+  </div>
 
   @if (isDenied) {
     <div class="denied-message">

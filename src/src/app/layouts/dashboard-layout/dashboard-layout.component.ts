@@ -40,7 +40,27 @@ export class DashboardLayoutComponent implements OnInit {
 
   readonly userName = computed(() => {
     const user = this.currentUser();
-    return user ? `${user.firstName} ${user.lastName}` : '';
+    return user ? `${user.firstName} ${user.lastName}` : 'Carlos Alberto Mamani Quispe';
+  });
+
+  readonly userInitials = computed(() => {
+    const user = this.currentUser();
+    if (!user) return 'CM';
+    const first = user.firstName ? user.firstName[0].toUpperCase() : '';
+    const last = user.lastName ? user.lastName[0].toUpperCase() : '';
+    return `${first}${last}` || 'CM';
+  });
+
+  readonly currentRouteTitle = computed(() => {
+    const url = this.router.url;
+    if (url.includes('dashboard')) return 'Dashboard';
+    if (url.includes('inicio')) return 'Inicio';
+    if (url.includes('cuentas')) return 'Cuentas';
+    if (url.includes('transferencia')) return 'Transferencias';
+    if (url.includes('micupon')) return 'Cupones';
+    if (url.includes('perfil')) return 'Mis datos';
+    if (url.includes('cambiar-password')) return 'Seguridad';
+    return 'Dashboard';
   });
 
   readonly sidebarItems = computed<SidebarItem[]>(() => {
@@ -53,18 +73,17 @@ export class DashboardLayoutComponent implements OnInit {
           { label: 'Inicio', routerLink: '/cliente/inicio', icon: 'pi pi-home' },
           { label: 'Dashboard', routerLink: '/cliente/dashboard', icon: 'pi pi-th-large' },
           { label: 'Cuentas', routerLink: '/cliente/cuentas', icon: 'pi pi-wallet' },
-          { label: 'Transferencia', routerLink: '/cliente/transferencia', icon: 'pi pi-send' },
-          { label: 'Cupón', routerLink: '/cliente/micupon', icon: 'pi pi-gift' },
-          { label: 'Mis Datos', routerLink: '/cliente/perfil', icon: 'pi pi-user-edit' },
-          { label: 'Contraseña', routerLink: '/cliente/cambiar-password', icon: 'pi pi-lock' },
-          { label: 'Ir al Portal', routerLink: '/', icon: 'pi pi-building' },
+          { label: 'Transferencias', routerLink: '/cliente/transferencia', icon: 'pi pi-send' },
+          { label: 'Cupones', routerLink: '/cliente/micupon', icon: 'pi pi-gift' },
+          { label: 'Mis datos', routerLink: '/cliente/perfil', icon: 'pi pi-user' },
+          { label: 'Seguridad', routerLink: '/cliente/cambiar-password', icon: 'pi pi-shield' },
         ];
       case 'intermediario':
         return [
           { label: 'Dashboard', routerLink: '/intermediario', icon: 'pi pi-th-large' },
-          { label: 'Mis Datos', routerLink: '/cliente/perfil', icon: 'pi pi-user-edit' },
-          { label: 'Contraseña', routerLink: '/cliente/cambiar-password', icon: 'pi pi-lock' },
-          { label: 'Ir al Portal', routerLink: '/', icon: 'pi pi-th-large' },
+          { label: 'Mis datos', routerLink: '/cliente/perfil', icon: 'pi pi-user' },
+          { label: 'Seguridad', routerLink: '/cliente/cambiar-password', icon: 'pi pi-shield' },
+          { label: 'Ir al Portal', routerLink: '/', icon: 'pi pi-building' },
         ];
       default:
         return [];
