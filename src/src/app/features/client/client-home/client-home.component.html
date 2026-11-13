@@ -1,115 +1,535 @@
-<div class="client-home">
-  <!-- Hero Section with background transitions -->
-  <section class="client-hero">
-    <!-- Background images with transition -->
-    <div
-      class="client-hero-bg client-hero-bg--bolivia"
-      [style.opacity]="tipoCambio() === 'BOB_TO_PEN' ? '0.6' : '0'"
-    ></div>
-    <div
-      class="client-hero-bg client-hero-bg--peru"
-      [style.opacity]="tipoCambio() === 'PEN_TO_BOB' ? '0.6' : '0'"
-    ></div>
+<div class="inicio-page" [class.dark-mode]="themeService.isDarkMode()" [class.dark]="themeService.isDarkMode()">
 
-    <!-- Gradient overlay -->
-    <div class="client-hero-overlay"></div>
+  <!-- ======================================================== -->
+  <!-- 1. TOP HEADER BAR                                        -->
+  <!-- ======================================================== -->
+  <header class="inicio-top-bar">
+    <div class="top-bar-left">
+      <h1 class="page-title">Inicio</h1>
+      <span class="bar-divider">|</span>
+      <span class="schedule-text">
+        Horario: Lunes a viernes 9:00 am a 7:00 p.m. / Sábados de 09:00 am a 2:00 pm
+      </span>
+    </div>
 
-    <!-- Decorative blurs -->
-    <div class="client-hero-blur client-hero-blur--top"></div>
-    <div class="client-hero-blur client-hero-blur--bottom"></div>
-
-    <!-- Content -->
-    <div class="client-hero-content">
-      <!-- Left: Welcome text -->
-      <div class="client-hero-text !hidden md:!block">
-        <h1 class="client-hero-title">        
-
-
-            <span class="block overflow-visible pb-1">
-              <span
-                class="mr-2 inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#00394b] via-[#0b4d5e] to-[#18a796] font-black"
-                >Transfiere fazilito
-              </span>
-              <span
-                class="mr-2 inline-block text-[#00394b] font-bold"
-              >
-                tus
-              </span>
-              <span
-                class="inline-block text-[#18a796] font-extrabold"
-              >
-                Bolivianos
-              </span>
-            </span>
-
-            <span
-              class="mr-2 inline-block text-[#00394b] font-bold"
-            >
-              y
-            </span>
-
-            <span
-              class="mr-2 inline-block text-[#18a796] font-extrabold"
-            >
-              Soles
-            </span>
-
-            <span
-              class="inline-block text-[#00394b] font-black"
-            >
-              online
-            </span> 
-
-        </h1>       
-        <div class="client-hero-features">
-          <div class="client-hero-feature">
-             <a
-            href="https://wa.me/59172237251"
-            target="_blank"
-            
-            class="px-3 py-2 rounded-lg bg-emerald-600 text-white text-xs sm:text-sm font-semibold hover:bg-emerald-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors cursor-pointer"
-          >
-            <i class="pi pi-whatsapp"></i>
-            Contactar a un asesor personal
-          </a>
-           
-          
-          </div>
-        
-        </div>
-
-        <!-- Coupon summary (desktop: below text) -->
-        <div class="client-hero-coupon">
-          <app-my-coupon-summary></app-my-coupon-summary>
-        </div>
+    <div class="top-bar-right">
+      <!-- Koinks indicator -->
+      <div class="koinks-indicator" (click)="goToCupones()" title="Ver mis Koinks y cupones">
+        <span>Tienes <strong>{{ userKoinks() }} Koinks</strong></span>
+        <span class="gold-coin-mini">K</span>
       </div>
 
-      <!-- Right: Calculator -->
-      <div class="client-hero-calculator">
-        <app-calculator (swapped)="tipoCambio.set($event)"></app-calculator>
-      </div>
+      <span class="bar-divider">|</span>
 
-       <div class="client-hero-features !block md:!hidden">
-          <div class="client-hero-feature">
-             <a
-            href="https://wa.me/59172237251"
-            target="_blank"
-            
-            class="px-3 py-2 rounded-lg bg-emerald-600 text-white text-xs sm:text-sm font-semibold hover:bg-emerald-700 disabled:opacity-60 disabled:cursor-not-allowed transition-colors cursor-pointer"
-          >
-            <i class="pi pi-whatsapp"></i>
-             Contactar a un asesor personal
-          </a>
-           
-          
-          </div>
-        
+      <!-- User pill -->
+      <div class="user-pill-inline" routerLink="/cliente/perfil" title="Mi perfil">
+        <div class="user-avatar-mini">
+          <i class="pi pi-user"></i>
         </div>
+        <span class="user-name-text">{{ userName() }}</span>
+        <i class="pi pi-chevron-down chevron-icon"></i>
+      </div>
+    </div>
+  </header>
 
-      <!-- Coupon summary (mobile: below calculator) -->
-      <div class="client-hero-coupon-mobile">
-        <app-my-coupon-summary></app-my-coupon-summary>
+  <!-- ======================================================== -->
+  <!-- 2. PROMOTIONAL BANNER: ¡Gana CUPONES!                    -->
+  <!-- ======================================================== -->
+  <section class="promo-banner">
+    <!-- Left: Tilted Mint Ticket & Floating Koinks -->
+    <div class="banner-ticket-zone">
+      <div class="floating-coin coin-top">K</div>
+      <div class="floating-coin coin-bottom">K</div>
+
+      <div class="tilted-ticket">
+        <div class="ticket-notch notch-left"></div>
+        <div class="ticket-notch notch-right"></div>
+        <div class="ticket-content">
+          <span class="ticket-logo-text">fazilito</span>
+          <span class="ticket-subtext">CUPÓN</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center: Catchy Copy -->
+    <div class="banner-copy-zone">
+      <h2 class="banner-heading">
+        ¡Gana <span class="text-accent-cupones">CUPONES!</span>
+      </h2>
+      <p class="banner-subheading">Canjea tus Koinks y ahorra</p>
+    </div>
+
+    <!-- Center-Right: Action Button -->
+    <div class="banner-button-zone">
+      <button type="button" class="btn-canjear-ahora" (click)="goToCupones()">
+        <span>Canjear ahora</span>
+        <i class="pi pi-arrow-right"></i>
+      </button>
+    </div>
+
+    <!-- Right: 3D Gift Box Graphic -->
+    <div class="banner-gift-zone">
+      <div class="gift-box-3d">
+        <div class="gift-lid">
+          <div class="gift-ribbon-vertical"></div>
+          <div class="gift-bow"></div>
+        </div>
+        <div class="gift-body">
+          <div class="gift-ribbon-vertical"></div>
+          <div class="gift-tag">
+            <span>%</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- ======================================================== -->
+  <!-- 3. MAIN CONTENT: 2 COLUMNS (CALCULATOR & INFO CARDS)     -->
+  <!-- ======================================================== -->
+  <div class="inicio-main-grid">
+
+    <!-- ====================================================== -->
+    <!-- LEFT COLUMN: THE EXCHANGE CALCULATOR                   -->
+    <!-- ====================================================== -->
+    <div class="calculator-card">
+      
+      <!-- Top Rate Tabs: Compra / Venta -->
+      <div class="rate-tabs-header">
+        <button
+          type="button"
+          class="rate-tab-btn"
+          [class.active]="activeTab() === 'compra'"
+          (click)="setTab('compra')"
+        >
+          <span class="tab-label">Compra:</span>
+          <span class="tab-rate">{{ buyRate() | number:'1.3-3' }}</span>
+        </button>
+
+        <button
+          type="button"
+          class="rate-tab-btn"
+          [class.active]="activeTab() === 'venta'"
+          (click)="setTab('venta')"
+        >
+          <span class="tab-label">Venta:</span>
+          <span class="tab-rate">{{ sellRate() | number:'1.3-3' }}</span>
+        </button>
+      </div>
+
+      <!-- Calculator Body -->
+      <div class="calculator-body">
+
+        <!-- Inputs Container with Swap Button -->
+        <div class="inputs-exchange-wrapper">
+
+          <!-- Input 1: ¿Cuánto envías? -->
+          <div class="exchange-input-box">
+            <div class="input-col-left">
+              <label class="exchange-label" for="amountFrom">¿Cuánto envías?</label>
+              <input
+                id="amountFrom"
+                type="text"
+                inputmode="decimal"
+                class="exchange-amount-input"
+                [value]="amountFromInput()"
+                (input)="onFromAmountInput($any($event.target).value)"
+                placeholder="100"
+              />
+            </div>
+
+            <!-- Currency Pill 1 -->
+            <div class="currency-pill-container">
+              <button
+                type="button"
+                class="currency-pill-btn"
+                (click)="fromDropdownOpen.set(!fromDropdownOpen()); toDropdownOpen.set(false)"
+              >
+                <span>{{ currencyFrom().label }}</span>
+                <i class="pi pi-chevron-down pill-chevron"></i>
+              </button>
+
+              @if (fromDropdownOpen()) {
+                <div class="currency-dropdown-menu">
+                  @for (c of currencies; track c.code) {
+                    <div
+                      class="currency-dropdown-item"
+                      [class.selected]="c.code === currencyFrom().code"
+                      (click)="selectFromCurrency(c)"
+                    >
+                      <span class="currency-flag">{{ c.flag }}</span>
+                      <span class="currency-name">{{ c.label }}</span>
+                      <span class="currency-code">({{ c.code }})</span>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Central Swap Button -->
+          <div class="swap-floating-container">
+            <button
+              type="button"
+              class="swap-circle-btn"
+              (click)="onSwapCurrencies()"
+              title="Invertir monedas"
+              aria-label="Invertir monedas"
+            >
+              <i
+                class="pi pi-sync swap-icon"
+                [style.transform]="'rotate(' + swapRotation() + 'deg)'"
+              ></i>
+            </button>
+          </div>
+
+          <!-- Input 2: Entonces recibes -->
+          <div class="exchange-input-box">
+            <div class="input-col-left">
+              <label class="exchange-label" for="amountTo">Entonces recibes</label>
+              <input
+                id="amountTo"
+                type="text"
+                inputmode="decimal"
+                class="exchange-amount-input"
+                [value]="amountToInput()"
+                (input)="onToAmountInput($any($event.target).value)"
+                placeholder="338.50"
+              />
+            </div>
+
+            <!-- Currency Pill 2 -->
+            <div class="currency-pill-container">
+              <button
+                type="button"
+                class="currency-pill-btn"
+                (click)="toDropdownOpen.set(!toDropdownOpen()); fromDropdownOpen.set(false)"
+              >
+                <span>{{ currencyTo().label }}</span>
+                <i class="pi pi-chevron-down pill-chevron"></i>
+              </button>
+
+              @if (toDropdownOpen()) {
+                <div class="currency-dropdown-menu">
+                  @for (c of currencies; track c.code) {
+                    <div
+                      class="currency-dropdown-item"
+                      [class.selected]="c.code === currencyTo().code"
+                      (click)="selectToCurrency(c)"
+                    >
+                      <span class="currency-flag">{{ c.flag }}</span>
+                      <span class="currency-name">{{ c.label }}</span>
+                      <span class="currency-code">({{ c.code }})</span>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Savings & Koinks Row -->
+        <div class="savings-koinks-row">
+          <div class="savings-text">
+            <span>Ahorro estimado:</span>
+            <strong>{{ estimatedSavings() }}</strong>
+          </div>
+
+          <div class="koinks-reward-text">
+            <span>Koinks:</span>
+            <i class="pi pi-info-circle info-icon" title="Puntos ganados por cada operación de cambio"></i>
+            <strong>{{ earnedKoinks() }}</strong>
+            <span class="gold-coin-small">K</span>
+          </div>
+        </div>
+
+        <!-- Coupon Input Box -->
+        <div class="coupon-section">
+          @if (!appliedCouponCode()) {
+            <div class="coupon-input-wrapper">
+              <div class="coupon-icon-badge">
+                <i class="pi pi-percentage"></i>
+              </div>
+              <input
+                type="text"
+                class="coupon-text-input"
+                placeholder="Ingresa el cupón"
+                [ngModel]="couponCodeInput()"
+                (ngModelChange)="couponCodeInput.set($event)"
+                (keyup.enter)="applyCoupon()"
+              />
+              <button
+                type="button"
+                class="btn-apply-coupon"
+                (click)="applyCoupon()"
+                [disabled]="isApplyingCoupon()"
+              >
+                @if (isApplyingCoupon()) {
+                  <i class="pi pi-spin pi-spinner text-xs"></i>
+                } @else {
+                  <span>Aplicar</span>
+                }
+              </button>
+            </div>
+          } @else {
+            <!-- Coupon Applied Pill -->
+            <div class="coupon-applied-card">
+              <div class="applied-badge-left">
+                <i class="pi pi-check-circle"></i>
+                <span>Cupón <strong>{{ appliedCouponCode() }}</strong> aplicado (+{{ currencyTo().symbol }} {{ couponDiscount().toFixed(2) }})</span>
+              </div>
+              <button type="button" class="remove-coupon-btn" (click)="removeCoupon()" title="Quitar cupón">
+                <i class="pi pi-times"></i>
+              </button>
+            </div>
+          }
+        </div>
+
+        <!-- Expandable Koinks Redemption Link -->
+        <div class="koinks-expandable-zone">
+          <button type="button" class="koinks-toggle-btn" (click)="toggleKoinksSection()">
+            <span>Canjea tus Koinks</span>
+            <i [class]="showKoinksRedemption() ? 'pi pi-chevron-up' : 'pi pi-chevron-down'"></i>
+          </button>
+
+          @if (showKoinksRedemption()) {
+            <div class="koinks-options-panel">
+              <p class="koinks-panel-hint">Tienes {{ userKoinks() }} Koinks disponibles. Canjea para obtener un descuento extra:</p>
+              <div class="koinks-pills-grid">
+                <button type="button" class="btn-koink-option" (click)="redeemKoinks(500)" [disabled]="userKoinks() < 500">
+                  <span>500 Koinks</span>
+                  <small>+{{ currencyTo().symbol }} 2.50</small>
+                </button>
+                <button type="button" class="btn-koink-option" (click)="redeemKoinks(1000)" [disabled]="userKoinks() < 1000">
+                  <span>1000 Koinks</span>
+                  <small>+{{ currencyTo().symbol }} 5.00</small>
+                </button>
+                <button type="button" class="btn-koink-option" (click)="redeemKoinks(2000)" [disabled]="userKoinks() < 2000">
+                  <span>2000 Koinks</span>
+                  <small>+{{ currencyTo().symbol }} 10.00</small>
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- Preferential Rate Box for Large Amounts -->
+        <div class="preferential-rate-box">
+          <div class="preferential-star-wrap">
+            <i class="pi pi-star text-emerald-500"></i>
+          </div>
+          <div class="preferential-text">
+            <span>¿Monto mayor a $ 5,000 o S/ 18,000?</span>
+            <a
+              href="https://wa.me/51994790996?text=Hola%20Fazilito,%20deseo%20un%20Tipo%20de%20Cambio%20Preferencial%20para%20un%20monto%20mayor."
+              target="_blank"
+              class="preferential-link"
+            >
+              Obtén un Tipo de Cambio Preferencial
+            </a>
+          </div>
+        </div>
+
+        <!-- Primary CTA: INICIAR OPERACIÓN -->
+        <button type="button" class="btn-iniciar-operacion" (click)="startOperation()">
+          <span>INICIAR OPERACIÓN</span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- ====================================================== -->
+    <!-- RIGHT COLUMN: KOINKS & BANK CARDS                      -->
+    <!-- ====================================================== -->
+    <div class="right-info-column">
+
+      <!-- Card 1: ¡Tienes 2106 Koinks! -->
+      <div class="card-koinks-banner" (click)="goToCupones()">
+        <div class="koinks-gold-badge">
+          <span>K</span>
+        </div>
+        <div class="koinks-card-text">
+          <h3 class="koinks-card-title">¡Tienes {{ userKoinks() }} Koinks!</h3>
+          <p class="koinks-card-desc">Canjea por cupones de descuento y ahorra en tus operaciones.</p>
+        </div>
+        <button type="button" class="btn-canjear-pill" (click)="goToCupones(); $event.stopPropagation()">
+          <span>Canjear</span>
+          <i class="pi pi-arrow-right"></i>
+        </button>
+      </div>
+
+      <!-- Card 2: Transferencias inmediatas en 15 minutos aprox. -->
+      <div class="card-immediate-transfers">
+        
+        <!-- Header -->
+        <div class="transfers-card-header">
+          <div class="transfer-time-badge">
+            <div class="time-circle-icon">
+              <span class="time-number">15</span>
+              <span class="time-unit">MIN</span>
+            </div>
+          </div>
+          <div class="time-header-divider"></div>
+          <div class="transfers-title-wrap">
+            <span class="transfers-type-label">Transferencias inmediatas</span>
+            <h4 class="transfers-main-time">en 15 minutos aprox.</h4>
+          </div>
+        </div>
+
+        <!-- Bank Content Section -->
+        @if (showBankDetails()) {
+          <div class="bank-details-body">
+            
+            <!-- Subtitle with country switch -->
+            <div class="bank-country-switch">
+              <span class="bank-subheading">
+                Bancos disponibles en {{ selectedBankCountry() === 'peru' ? 'Perú' : 'Bolivia' }}
+              </span>
+              <div class="country-toggle-chips">
+                <button
+                  type="button"
+                  class="country-chip-btn"
+                  [class.active]="selectedBankCountry() === 'peru'"
+                  (click)="setBankCountry('peru')"
+                >
+                  🇵🇪 Perú
+                </button>
+                <button
+                  type="button"
+                  class="country-chip-btn"
+                  [class.active]="selectedBankCountry() === 'bolivia'"
+                  (click)="setBankCountry('bolivia')"
+                >
+                  🇧🇴 Bolivia
+                </button>
+              </div>
+            </div>
+
+            <!-- Bank Logos Grid (Peru) -->
+            @if (selectedBankCountry() === 'peru') {
+              <div class="bank-logos-grid">
+                <!-- BCP -->
+                <div class="bank-logo-item bcp-item">
+                  <span class="bcp-chevron">&gt;</span>
+                  <span class="bcp-brand">BCP</span>
+                  <span class="bcp-chevron">&gt;</span>
+                </div>
+
+                <!-- Interbank -->
+                <div class="bank-logo-item interbank-item">
+                  <span class="ibk-square"></span>
+                  <span class="ibk-brand">Interbank</span>
+                </div>
+
+                <!-- BBVA -->
+                <div class="bank-logo-item bbva-item">
+                  <span class="bbva-brand">BBVA</span>
+                </div>
+
+                <!-- BanBif -->
+                <div class="bank-logo-item banbif-item">
+                  <span class="banbif-brand">BanBif</span>
+                </div>
+
+                <!-- Scotiabank -->
+                <div class="bank-logo-item scotia-item">
+                  <span class="scotia-flame">🔥</span>
+                  <span class="scotia-brand">Scotiabank</span>
+                </div>
+
+                <!-- Banco Pichincha -->
+                <div class="bank-logo-item pichincha-item">
+                  <span class="pichincha-square"></span>
+                  <span class="pichincha-brand">BANCO PICHINCHA</span>
+                </div>
+              </div>
+            } @else {
+              <!-- Bank Logos Grid (Bolivia) -->
+              <div class="bank-logos-grid">
+                <!-- Banco Unión -->
+                <div class="bank-logo-item union-item">
+                  <span class="union-icon">U</span>
+                  <span class="union-brand">Banco Unión</span>
+                </div>
+
+                <!-- BNB -->
+                <div class="bank-logo-item bnb-item">
+                  <span class="bnb-brand">BNB</span>
+                </div>
+
+                <!-- Banco Mercantil Santa Cruz -->
+                <div class="bank-logo-item mercantil-item">
+                  <span class="mercantil-brand">Mercantil Santa Cruz</span>
+                </div>
+
+                <!-- Banco BISA -->
+                <div class="bank-logo-item bisa-item">
+                  <span class="bisa-brand">BISA</span>
+                </div>
+
+                <!-- Banco Ganadero -->
+                <div class="bank-logo-item ganadero-item">
+                  <span class="ganadero-brand">Banco Ganadero</span>
+                </div>
+
+                <!-- Banco Económico -->
+                <div class="bank-logo-item economico-item">
+                  <span class="economico-brand">Banco Económico</span>
+                </div>
+              </div>
+            }
+
+            <!-- Limit Info Pill Banner -->
+            <div class="limits-info-pill">
+              <p class="limits-bold-text">
+                {{ selectedBankCountry() === 'peru' ? 'BCP, Interbank, BanBif y Pichincha sin monto límite.' : 'Banco Unión, BNB y Mercantil Santa Cruz sin monto límite.' }}
+              </p>
+              <p class="limits-sub-text">
+                {{ selectedBankCountry() === 'peru' ? 'Montos hasta S/ 10,000 o $ 3,000 a otros bancos.' : 'Montos hasta Bs 25,000 a otros bancos interbancarios.' }}
+              </p>
+            </div>
+
+          </div>
+        }
+
+        <!-- Toggle Accordion Footer -->
+        <button type="button" class="btn-accordion-toggle" (click)="toggleBankDetails()">
+          <span>{{ showBankDetails() ? 'Ver menos' : 'Ver más' }}</span>
+          <i [class]="showBankDetails() ? 'pi pi-chevron-up' : 'pi pi-chevron-down'"></i>
+        </button>
+
+      </div>
+
+      <!-- Card 3: Transferencias diferidas en 1 día hábil -->
+      <div class="card-deferred-transfers">
+        <div class="transfers-card-header">
+          <div class="transfer-time-badge">
+            <div class="time-circle-icon deferred">
+              <span class="time-number">24</span>
+              <span class="time-unit">HRS</span>
+            </div>
+          </div>
+          <div class="time-header-divider"></div>
+          <div class="transfers-title-wrap">
+            <span class="transfers-type-label">Transferencias diferidas</span>
+            <h4 class="transfers-main-time">en 1 día hábil</h4>
+          </div>
+          <button type="button" class="btn-deferred-link" (click)="toggleDeferredDetails()">
+            <span>{{ showDeferredDetails() ? 'Ver menos' : 'Ver más' }}</span>
+            <i [class]="showDeferredDetails() ? 'pi pi-chevron-up' : 'pi pi-arrow-right'"></i>
+          </button>
+        </div>
+
+        @if (showDeferredDetails()) {
+          <div class="deferred-expanded-info">
+            <p>Operaciones interbancarias procesadas fuera de horario hábil o bancos secundarios se completan durante el siguiente día hábil bancario antes de las 2:00 p.m.</p>
+          </div>
+        }
+      </div>
+
+    </div>
+
+  </div>
+
 </div>

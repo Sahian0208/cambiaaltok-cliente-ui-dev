@@ -1,237 +1,1613 @@
 :host {
   display: block;
-}
-
-.client-home {
   width: 100%;
 }
 
-// ========================================
-// Hero Section
-// ========================================
-.client-hero {
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  padding: 2rem 1.5rem;
-  min-height: 420px;
-  display: flex;
-  align-items: center;
-  background: linear-gradient(135deg, #04142E 0%, #0a2540 50%, #0c1e3a 100%);
-
-  @media (min-width: 768px) {
-    padding: 2.5rem 2rem;
-    min-height: 460px;
-  }
-
-  @media (min-width: 1024px) {
-    padding: 3rem 2.5rem;
-    min-height: 500px;
-  }
-}
-
-// Background images
-.client-hero-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  transition: opacity 0.7s ease;
-  pointer-events: none;
-  z-index: 0;
-
-  &--bolivia {
-    background-image: url('/salar-de-uyuni.jpg');
-  }
-
-  &--peru {
-    background-image: url('/machu-picchu.jpg');
-  }
-}
-
-// Gradient overlay
-.client-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, #04142E, #04142E 40%, transparent);
-  pointer-events: none;
-  z-index: 1;
-}
-
-// Decorative blurs
-.client-hero-blur {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-
-  &--top {
-    top: -80px;
-    right: -80px;
-    width: 300px;
-    height: 300px;
-    background: rgba(59, 130, 246, 0.1);
-    filter: blur(60px);
-  }
-
-  &--bottom {
-    bottom: -60px;
-    left: -80px;
-    width: 350px;
-    height: 250px;
-    background: rgba(59, 130, 246, 0.05);
-    filter: blur(60px);
-  }
-}
-
-// Content container
-.client-hero-content {
-  position: relative;
-  z-index: 2;
+.inicio-page {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  width: 100%;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    align-items: center;
-    gap: 2rem;
-  }
+  font-family: 'Gotham', 'Montserrat', 'Plus Jakarta Sans', sans-serif;
+  color: #002b37;
+  transition: all 0.25s ease;
 }
 
-// Left text section
-.client-hero-text {
-  flex: 1;
+// ========================================================
+// 1. TOP HEADER BAR
+// ========================================================
+.inicio-top-bar {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  min-width: 0;
-
-  @media (min-width: 768px) {
-    gap: 1.25rem;
-  }
-}
-
-.client-hero-title {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: white;
-  line-height: 1.2;
-  margin: 0;
-
-  @media (min-width: 768px) {
-    font-size: 2.25rem;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 2.75rem;
-  }
-}
-
-.client-hero-title-accent {
-  background: linear-gradient(to right, #0B63FF, #12D6EB);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.client-hero-title-highlight {
-  color: #21F0D2;
-}
-
-.client-hero-subtitle {
-  font-size: 0.875rem;
-  color: #94a3b8;
-  line-height: 1.6;
-  margin: 0;
-  max-width: 420px;
-
-  @media (min-width: 768px) {
-    font-size: 0.9375rem;
-  }
-}
-
-// Features row
-.client-hero-features {
-  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
+  gap: 1rem;
 }
 
-.client-hero-feature {
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.page-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #002b37;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.bar-divider {
+  color: #cbd5e1;
+  font-weight: 300;
+  font-size: 1.1rem;
+}
+
+.schedule-text {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.koinks-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  color: #002b37;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #e8f9f4;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.gold-coin-mini {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 50%, #d97706 100%);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  box-shadow: 0 1px 3px rgba(245, 158, 11, 0.4);
+}
+
+.user-pill-inline {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 0.875rem;  
-  
-  border-radius: 8px;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #cbd5e1;
+    background-color: #f8fafc;
+  }
+}
+
+.user-avatar-mini {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 0.75rem;
-  font-weight: 600;  
-  
+}
 
-  
+.user-name-text {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #002b37;
+}
 
-  @media (min-width: 768px) {
-    font-size: 0.8125rem;
-    padding: 0.5rem 1rem;
+.chevron-icon {
+  font-size: 0.65rem;
+  color: #94a3b8;
+}
+
+// ========================================================
+// 2. PROMOTIONAL BANNER: ¡Gana CUPONES!
+// ========================================================
+.promo-banner {
+  background: linear-gradient(135deg, #093c4a 0%, #062b36 50%, #021a22 100%);
+  border-radius: 1.25rem;
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(6, 43, 54, 0.15);
+  min-height: 110px;
+  gap: 1.5rem;
+
+  @media (max-width: 860px) {
+    flex-wrap: wrap;
+    padding: 1.25rem;
   }
 }
 
-// Coupon summary containers
-.client-hero-coupon {
-  margin-top: 1rem;
-}
-
-.client-hero-coupon-mobile {
-  display: block;
-  width: 100%;
-
-  @media (min-width: 768px) {
-    display: none;
-  }
-}
-
-// Right calculator section
-.client-hero-calculator {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
+// Ticket Zone
+.banner-ticket-zone {
+  position: relative;
+  width: 140px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+}
 
-  @media (min-width: 768px) {
-    width: auto;
-    flex: 0 0 380px;
-    margin: 0;
+.tilted-ticket {
+  width: 120px;
+  height: 64px;
+  background: linear-gradient(135deg, #a7f3d0 0%, #70e4ba 50%, #34d399 100%);
+  border-radius: 0.65rem;
+  transform: rotate(-10deg);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 1px dashed rgba(0, 43, 55, 0.35);
+
+  .ticket-notch {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #062b36;
+    top: calc(50% - 6px);
+
+    &.notch-left { left: -6px; }
+    &.notch-right { right: -6px; }
   }
 
-  @media (min-width: 1024px) {
-    flex: 0 0 400px;
+  .ticket-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+  }
+
+  .ticket-logo-text {
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: #002b37;
+    letter-spacing: -0.02em;
+  }
+
+  .ticket-subtext {
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: #00394b;
+    margin-top: 0.15rem;
+    letter-spacing: 0.08em;
   }
 }
 
-// ========================================
-// Dark Mode
-// ========================================
-:host-context(.dark-mode) {
-  .client-hero {
-    background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%);
+.floating-coin {
+  position: absolute;
+  width: 1.65rem;
+  height: 1.65rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fde047 0%, #f59e0b 50%, #d97706 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+
+  &.coin-top {
+    top: 0;
+    left: 10px;
+    animation: floatSlow 3s ease-in-out infinite alternate;
   }
 
-  .client-hero-overlay {
-    background: linear-gradient(to right, #020617, #020617 40%, transparent);
+  &.coin-bottom {
+    bottom: -2px;
+    left: 28px;
+    animation: floatSlow 3.5s ease-in-out infinite alternate-reverse;
+  }
+}
+
+@keyframes floatSlow {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+// Banner Copy
+.banner-copy-zone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.banner-heading {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+
+  .text-accent-cupones {
+    color: #ffffff;
+    font-weight: 900;
+  }
+}
+
+.banner-subheading {
+  font-size: 0.95rem;
+  color: #a7f3d0;
+  margin: 0;
+  font-weight: 500;
+}
+
+// Banner Action
+.banner-button-zone {
+  flex-shrink: 0;
+}
+
+.btn-canjear-ahora {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #70e4ba;
+  color: #002b37;
+  font-size: 0.875rem;
+  font-weight: 700;
+  padding: 0.65rem 1.35rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(112, 228, 186, 0.35);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #5ce0b0;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(112, 228, 186, 0.5);
+  }
+}
+
+// Banner Gift Box
+.banner-gift-zone {
+  width: 90px;
+  height: 80px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gift-box-3d {
+  position: relative;
+  width: 68px;
+  height: 60px;
+  transform: rotate(6deg);
+
+  .gift-lid {
+    position: absolute;
+    top: 4px;
+    left: -2px;
+    width: 72px;
+    height: 14px;
+    background: #ffffff;
+    border-radius: 3px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    z-index: 2;
   }
 
-  .client-hero-subtitle {
+  .gift-body {
+    position: absolute;
+    top: 16px;
+    left: 2px;
+    width: 64px;
+    height: 44px;
+    background: #f1f5f9;
+    border-radius: 2px 2px 4px 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .gift-ribbon-vertical {
+    position: absolute;
+    left: calc(50% - 4px);
+    width: 8px;
+    height: 100%;
+    background-color: #70e4ba;
+  }
+
+  .gift-bow {
+    position: absolute;
+    top: -10px;
+    left: calc(50% - 10px);
+    width: 20px;
+    height: 12px;
+    border: 3px solid #70e4ba;
+    border-radius: 50% 50% 0 0;
+    z-index: 3;
+  }
+
+  .gift-tag {
+    position: absolute;
+    right: -8px;
+    bottom: 6px;
+    background-color: #70e4ba;
+    color: #002b37;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 800;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// ========================================================
+// 3. MAIN 2-COLUMN GRID
+// ========================================================
+.inicio-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 1.5rem;
+  align-items: start;
+
+  @media (max-width: 980px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ========================================================
+// LEFT COLUMN: CALCULATOR CARD
+// ========================================================
+.calculator-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+// Top Rate Tabs
+.rate-tabs-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.rate-tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.95rem 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: #002b37;
+  transition: all 0.2s ease;
+
+  .tab-label {
+    font-weight: 600;
+  }
+
+  .tab-rate {
+    font-weight: 800;
+  }
+
+  &.active {
+    background-color: #07232e;
+    color: #ffffff;
+  }
+
+  &:not(.active):hover {
+    background-color: #f8fafc;
+  }
+}
+
+.calculator-body {
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+// Inputs Container & Floating Swap Button
+.inputs-exchange-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.exchange-input-box {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.95rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: all 0.2s ease;
+
+  &:focus-within {
+    border-color: #70e4ba;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(112, 228, 186, 0.25);
+  }
+}
+
+.input-col-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+
+.exchange-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: -0.01em;
+}
+
+.exchange-amount-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #002b37;
+  width: 100%;
+  font-family: inherit;
+
+  &::placeholder {
+    color: #cbd5e1;
+  }
+}
+
+// Currency Selector Pill
+.currency-pill-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.currency-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: #07232e;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.55rem 0.95rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #0b3546;
+  }
+}
+
+.pill-chevron {
+  font-size: 0.65rem;
+  color: #94a3b8;
+}
+
+.currency-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  z-index: 50;
+  min-width: 150px;
+  padding: 0.35rem 0;
+  overflow: hidden;
+}
+
+.currency-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.95rem;
+  cursor: pointer;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #002b37;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background-color: #f1f5f9;
+  }
+
+  &.selected {
+    background-color: #e8f9f4;
+    color: #047857;
+  }
+
+  .currency-code {
+    font-size: 0.75rem;
     color: #64748b;
   }
+}
 
-  .client-hero-feature {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.75);
+// Floating Central Swap Button
+.swap-floating-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.swap-circle-btn {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  color: #002b37;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: #70e4ba;
+    background-color: #f0fdf9;
+    color: #047857;
+    transform: scale(1.08);
+  }
+}
+
+.swap-icon {
+  font-size: 0.85rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// Savings & Koinks Row
+.savings-koinks-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.25rem;
+  font-size: 0.825rem;
+  color: #475569;
+}
+
+.savings-text {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  strong {
+    color: #002b37;
+    font-weight: 700;
+  }
+}
+
+.koinks-reward-text {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  .info-icon {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    cursor: help;
+  }
+
+  strong {
+    color: #002b37;
+    font-weight: 700;
+  }
+}
+
+.gold-coin-small {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 50%, #d97706 100%);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  font-weight: 800;
+}
+
+// Coupon Input
+.coupon-section {
+  width: 100%;
+}
+
+.coupon-input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem;
+  background-color: #ffffff;
+  padding: 0.35rem 0.45rem;
+  gap: 0.65rem;
+  transition: all 0.2s ease;
+
+  &:focus-within {
+    border-color: #70e4ba;
+    box-shadow: 0 0 0 2px rgba(112, 228, 186, 0.25);
+  }
+}
+
+.coupon-icon-badge {
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 0.5rem;
+  background-color: #d1fae5;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.coupon-text-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: #002b37;
+  font-family: inherit;
+
+  &::placeholder {
+    color: #94a3b8;
+  }
+}
+
+.btn-apply-coupon {
+  background-color: #07232e;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.45rem 1.15rem;
+  border-radius: 0.55rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: #0b3546;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.coupon-applied-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e8f9f4;
+  border: 1px solid #70e4ba;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.85rem;
+  font-size: 0.825rem;
+  color: #047857;
+}
+
+.applied-badge-left {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.remove-coupon-btn {
+  background: transparent;
+  border: none;
+  color: #047857;
+  cursor: pointer;
+  padding: 0.2rem;
+  font-size: 0.8rem;
+
+  &:hover {
+    color: #ef4444;
+  }
+}
+
+// Koinks Expandable Zone
+.koinks-expandable-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.koinks-toggle-btn {
+  background: transparent;
+  border: none;
+  color: #002b37;
+  font-size: 0.825rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+
+  &:hover {
+    color: #047857;
+  }
+
+  i {
+    font-size: 0.65rem;
+  }
+}
+
+.koinks-options-panel {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.85rem;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.koinks-panel-hint {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin: 0;
+  text-align: center;
+}
+
+.koinks-pills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.btn-koink-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.45rem 0.25rem;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.65rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #002b37;
+  transition: all 0.2s ease;
+
+  small {
+    font-size: 0.65rem;
+    color: #059669;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: #70e4ba;
+    background-color: #f0fdf9;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+// Preferential Rate VIP Box
+.preferential-rate-box {
+  background-color: #f0fdf9;
+  border: 1px solid #ccfbf1;
+  border-radius: 0.75rem;
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.preferential-star-wrap {
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 50%;
+  background-color: #d1fae5;
+  color: #059669;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.preferential-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.785rem;
+  color: #002b37;
+}
+
+.preferential-link {
+  font-weight: 700;
+  text-decoration: underline;
+  color: #002b37;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #059669;
+  }
+}
+
+// Big CTA Button: INICIAR OPERACIÓN
+.btn-iniciar-operacion {
+  width: 100%;
+  background-color: #70e4ba;
+  color: #002b37;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 0.95rem;
+  border-radius: 0.85rem;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 14px rgba(112, 228, 186, 0.4);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #5ce0b0;
+    box-shadow: 0 6px 18px rgba(112, 228, 186, 0.55);
+    transform: translateY(-1px);
+  }
+}
+
+// ========================================================
+// RIGHT COLUMN: KOINKS & BANK CARDS
+// ========================================================
+.right-info-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+// Card 1: Koinks Card
+.card-koinks-banner {
+  background-color: #07232e;
+  border-radius: 1.25rem;
+  padding: 1.15rem 1.35rem;
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #0a2d3b;
+    transform: translateY(-1px);
+  }
+}
+
+.koinks-gold-badge {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fde047 0%, #f59e0b 50%, #d97706 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 900;
+  box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+  flex-shrink: 0;
+}
+
+.koinks-card-text {
+  flex: 1;
+}
+
+.koinks-card-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.15rem;
+  letter-spacing: -0.01em;
+}
+
+.koinks-card-desc {
+  font-size: 0.775rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.btn-canjear-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: #70e4ba;
+  color: #002b37;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #5ce0b0;
+  }
+}
+
+// Card 2: Immediate Transfers
+.card-immediate-transfers {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  padding: 1.35rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.transfers-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.transfer-time-badge {
+  flex-shrink: 0;
+}
+
+.time-circle-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 2px dashed #002b37;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+
+  &.deferred {
+    border-color: #64748b;
+  }
+
+  .time-number {
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: #002b37;
+  }
+
+  .time-unit {
+    font-size: 0.55rem;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.05em;
+  }
+}
+
+.time-header-divider {
+  width: 1px;
+  height: 2.25rem;
+  background-color: #e2e8f0;
+}
+
+.transfers-title-wrap {
+  flex: 1;
+}
+
+.transfers-type-label {
+  font-size: 0.825rem;
+  color: #475569;
+  display: block;
+}
+
+.transfers-main-time {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #002b37;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.bank-details-body {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.bank-country-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.bank-subheading {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.country-toggle-chips {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.country-chip-btn {
+  padding: 0.2rem 0.55rem;
+  font-size: 0.725rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &.active {
+    background-color: #07232e;
+    color: #ffffff;
+    border-color: #07232e;
+  }
+}
+
+// Bank Logos Grid
+.bank-logos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  padding: 0.25rem 0;
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.bank-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 0.5rem;
+  border-radius: 0.65rem;
+  background-color: #f8fafc;
+  border: 1px solid #f1f5f9;
+  min-height: 48px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #f1f5f9;
+    border-color: #e2e8f0;
+  }
+}
+
+// Stylized bank logos
+.bcp-item {
+  color: #002b37;
+  gap: 0.15rem;
+
+  .bcp-chevron {
+    color: #f97316;
+    font-size: 1rem;
+    font-weight: 900;
+  }
+  .bcp-brand {
+    color: #002b37;
+    font-weight: 900;
+    font-size: 0.95rem;
+  }
+}
+
+.interbank-item {
+  gap: 0.35rem;
+  color: #047857;
+
+  .ibk-square {
+    width: 10px;
+    height: 10px;
+    background-color: #10b981;
+    border-radius: 2px;
+  }
+  .ibk-brand {
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #002b37;
+  }
+}
+
+.bbva-item {
+  color: #004481;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.banbif-item {
+  color: #0ea5e9;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.scotia-item {
+  color: #dc2626;
+  gap: 0.25rem;
+
+  .scotia-flame {
+    font-size: 0.75rem;
+  }
+  .scotia-brand {
+    font-weight: 800;
+    font-size: 0.825rem;
+  }
+}
+
+.pichincha-item {
+  gap: 0.35rem;
+
+  .pichincha-square {
+    width: 9px;
+    height: 9px;
+    background-color: #facc15;
+    border-radius: 1px;
+  }
+  .pichincha-brand {
+    font-size: 0.65rem;
+    font-weight: 900;
+    color: #002b37;
+    letter-spacing: -0.01em;
+  }
+}
+
+// Bolivia bank items
+.union-item {
+  gap: 0.35rem;
+  .union-icon {
+    width: 14px;
+    height: 14px;
+    background-color: #2563eb;
+    color: #ffffff;
+    border-radius: 2px;
+    font-size: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .union-brand { font-size: 0.75rem; }
+}
+
+.bnb-item {
+  color: #15803d;
+  font-size: 0.95rem;
+}
+
+.mercantil-item {
+  color: #0284c7;
+  font-size: 0.725rem;
+  text-align: center;
+}
+
+.bisa-item {
+  color: #0f766e;
+  font-size: 0.9rem;
+}
+
+.ganadero-item, .economico-item {
+  font-size: 0.725rem;
+  text-align: center;
+}
+
+// Limits Info Pill
+.limits-info-pill {
+  background-color: #f0f4ff;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  text-align: center;
+
+  .limits-bold-text {
+    font-size: 0.825rem;
+    font-weight: 700;
+    color: #002b37;
+    margin: 0 0 0.15rem;
+  }
+
+  .limits-sub-text {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0;
+  }
+}
+
+// Accordion toggle button
+.btn-accordion-toggle {
+  width: 100%;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f1f5f9;
+  background: transparent;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #002b37;
+  cursor: pointer;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: #059669;
+  }
+
+  i {
+    font-size: 0.65rem;
+  }
+}
+
+// Card 3: Deferred Transfers
+.card-deferred-transfers {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  padding: 1.15rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.btn-deferred-link {
+  background: transparent;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: #002b37;
+  cursor: pointer;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: #059669;
+  }
+
+  i {
+    font-size: 0.75rem;
+  }
+}
+
+.deferred-expanded-info {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f1f5f9;
+  font-size: 0.775rem;
+  color: #64748b;
+  line-height: 1.4;
+
+  p {
+    margin: 0;
+  }
+}
+
+// ========================================================
+// 4. DARK MODE STYLES
+// ========================================================
+.inicio-page.dark-mode,
+:host-context(.dark-mode) .inicio-page {
+  color: #ffffff;
+
+  .page-title {
+    color: #ffffff;
+  }
+
+  .bar-divider {
+    color: #1e3948;
+  }
+
+  .schedule-text {
+    color: #8ea5b1;
+  }
+
+  .koinks-indicator {
+    color: #ffffff;
+    &:hover { background-color: #081f2a; }
+  }
+
+  .user-pill-inline {
+    background-color: #0b1f28;
+    border-color: #122d3a;
+    &:hover { background-color: #0e2733; }
+  }
+
+  .user-avatar-mini {
+    background-color: #081820;
+    color: #8ea5b1;
+  }
+
+  .user-name-text {
+    color: #ffffff;
+  }
+
+  // Calculator Card Dark
+  .calculator-card {
+    background-color: #0b1f28;
+    border-color: #122d3a;
+  }
+
+  .rate-tabs-header {
+    background-color: #0b1f28;
+    border-bottom-color: #122d3a;
+  }
+
+  .rate-tab-btn {
+    color: #8ea5b1;
+
+    &.active {
+      background-color: #081820;
+      color: #70e4ba;
+    }
+
+    &:not(.active):hover {
+      background-color: #0e2733;
+      color: #ffffff;
+    }
+  }
+
+  .exchange-input-box {
+    background-color: #081820;
+    border-color: #153948;
+
+    &:focus-within {
+      background-color: #0a1f2b;
+      border-color: #70e4ba;
+    }
+  }
+
+  .exchange-label {
+    color: #8ea5b1;
+  }
+
+  .exchange-amount-input {
+    color: #ffffff;
+    &::placeholder { color: #435b67; }
+  }
+
+  .currency-pill-btn {
+    background-color: #0e2733;
+    color: #ffffff;
+    &:hover { background-color: #133444; }
+  }
+
+  .currency-dropdown-menu {
+    background-color: #0b1f28;
+    border-color: #153948;
+  }
+
+  .currency-dropdown-item {
+    color: #ffffff;
+    &:hover { background-color: #0e2733; }
+    &.selected {
+      background-color: #08232c;
+      color: #70e4ba;
+    }
+  }
+
+  .swap-circle-btn {
+    background-color: #0b1f28;
+    border-color: #153948;
+    color: #70e4ba;
+
+    &:hover {
+      background-color: #0e2733;
+      border-color: #70e4ba;
+    }
+  }
+
+  .savings-koinks-row {
+    color: #8ea5b1;
+    strong { color: #ffffff; }
+  }
+
+  .coupon-input-wrapper {
+    background-color: #081820;
+    border-color: #153948;
+  }
+
+  .coupon-text-input {
+    color: #ffffff;
+    &::placeholder { color: #567280; }
+  }
+
+  .btn-apply-coupon {
+    background-color: #0e2733;
+    &:hover { background-color: #133444; }
+  }
+
+  .coupon-applied-card {
+    background-color: #08232c;
+    border-color: #154e5e;
+    color: #70e4ba;
+  }
+
+  .koinks-toggle-btn {
+    color: #70e4ba;
+    &:hover { color: #a7f3d0; }
+  }
+
+  .koinks-options-panel {
+    background-color: #081820;
+    border-color: #122d3a;
+  }
+
+  .koinks-panel-hint {
+    color: #8ea5b1;
+  }
+
+  .btn-koink-option {
+    background-color: #0b1f28;
+    border-color: #153948;
+    color: #ffffff;
+
+    &:hover:not(:disabled) {
+      background-color: #0e2733;
+      border-color: #70e4ba;
+    }
+  }
+
+  .preferential-rate-box {
+    background-color: #08232c;
+    border-color: #124352;
+  }
+
+  .preferential-text {
+    color: #ffffff;
+  }
+
+  .preferential-link {
+    color: #70e4ba;
+    &:hover { color: #a7f3d0; }
+  }
+
+  // Right Cards Dark
+  .card-koinks-banner {
+    background-color: #0b1f28;
+    border: 1px solid #122d3a;
+
+    &:hover {
+      background-color: #0e2733;
+    }
+  }
+
+  .card-immediate-transfers,
+  .card-deferred-transfers {
+    background-color: #0b1f28;
+    border-color: #122d3a;
+  }
+
+  .time-circle-icon {
+    border-color: #70e4ba;
+    .time-number { color: #ffffff; }
+    .time-unit { color: #8ea5b1; }
+  }
+
+  .time-header-divider {
+    background-color: #122d3a;
+  }
+
+  .transfers-type-label {
+    color: #8ea5b1;
+  }
+
+  .transfers-main-time {
+    color: #ffffff;
+  }
+
+  .bank-subheading {
+    color: #8ea5b1;
+  }
+
+  .country-chip-btn {
+    background-color: #081820;
+    border-color: #153948;
+    color: #8ea5b1;
+
+    &.active {
+      background-color: #70e4ba;
+      color: #002b37;
+      border-color: #70e4ba;
+    }
+  }
+
+  .bank-logo-item {
+    background-color: #081820;
+    border-color: #122d3a;
+    color: #ffffff;
+
+    &:hover {
+      background-color: #0e2733;
+    }
+  }
+
+  .bcp-item .bcp-brand { color: #ffffff; }
+  .interbank-item .ibk-brand { color: #ffffff; }
+  .pichincha-item .pichincha-brand { color: #ffffff; }
+
+  .limits-info-pill {
+    background-color: #08232c;
+    .limits-bold-text { color: #70e4ba; }
+    .limits-sub-text { color: #8ea5b1; }
+  }
+
+  .btn-accordion-toggle {
+    border-top-color: #122d3a;
+    color: #70e4ba;
+  }
+
+  .btn-deferred-link {
+    color: #70e4ba;
+  }
+
+  .deferred-expanded-info {
+    border-top-color: #122d3a;
+    color: #8ea5b1;
   }
 }
