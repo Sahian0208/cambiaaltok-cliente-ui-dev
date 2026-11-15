@@ -1,316 +1,471 @@
+<!-- Background Gradients and Ambient Lighting -->
+<div class="absolute inset-0 pointer-events-none">
+  <div
+    class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#18a796]/10 rounded-full blur-[140px]"
+  ></div>
+  <div
+    class="absolute bottom-0 right-0 w-[450px] h-[450px] bg-[#33bb9c]/8 rounded-full blur-[120px]"
+  ></div>
+</div>
 
-      <!-- Background Gradients and Ambient Lighting -->
-      <div class="absolute inset-0 pointer-events-none">
-        <div
-          class="absolute top-0 left-0 w-[500px] h-[500px] bg-[#18a796]/10 rounded-full blur-[140px]"
-        ></div>
-        <div
-          class="absolute bottom-0 right-0 w-[450px] h-[450px] bg-[#33bb9c]/8 rounded-full blur-[120px]"
-        ></div>
+<!-- Subtle Grid Pattern -->
+<div
+  class="absolute inset-0 opacity-[0.02] pointer-events-none"
+  style="
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px);
+    background-size: 40px 40px;
+  "
+></div>
+
+<!-- Top Border Glow -->
+<div
+  class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#33bb9c]/40 to-transparent"
+></div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 pb-8 relative z-10 font-gotham">
+  
+  <!-- ======================================================== -->
+  <!-- MOBILE VIEW (< md) Optimized for Mobile Layout           -->
+  <!-- ======================================================== -->
+  <div class="block md:hidden space-y-6">
+    
+    <!-- 1. Enlaces Rápidos (2 columnas limpias) -->
+    <div class="space-y-3 pb-5 border-b border-white/10">
+      <div class="flex items-center gap-2">
+        <div class="w-4 h-0.5 bg-[#33bb9c] rounded-full"></div>
+        <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
+          Enlaces Rápidos
+        </h5>
+      </div>
+      <div class="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs text-slate-300 font-light">
+        <a href="#about-us" class="hover:text-[#33bb9c] transition-colors py-0.5 block">Nosotros</a>
+        <a href="#como-funciona" class="hover:text-[#33bb9c] transition-colors py-0.5 block">¿Cómo funciona?</a>
+        <a href="#promociones" class="hover:text-[#33bb9c] transition-colors py-0.5 block">Bancos asociados</a>
+        <a href="#home" class="hover:text-[#33bb9c] transition-colors py-0.5 block">Tipo de cambio</a>
+        <a href="#contact" class="hover:text-[#33bb9c] transition-colors py-0.5 block">Contáctanos</a>
+        <a href="#promociones" class="hover:text-[#33bb9c] transition-colors py-0.5 block">Programa Koinks</a>
+      </div>
+    </div>
+
+    <!-- 2. Atención y Soporte Directo -->
+    <div class="space-y-3.5 pb-5 border-b border-white/10">
+      <div class="flex items-center gap-2">
+        <div class="w-4 h-0.5 bg-[#33bb9c] rounded-full"></div>
+        <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
+          Atención y Soporte
+        </h5>
       </div>
 
-      <!-- Subtle Grid Pattern -->
-      <div
-        class="absolute inset-0 opacity-[0.02] pointer-events-none"
-        style="
-          background-image:
-            linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px);
-          background-size: 40px 40px;
-        "
-      ></div>
-
-      <!-- Top Border Glow -->
-      <div
-        class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#33bb9c]/40 to-transparent"
-      ></div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 relative z-10 font-gotham">
-        
-        <!-- Main Footer Content Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
-          
-          <!-- Column 1: Brand & Badges (Col span 4) -->
-          <div class="lg:col-span-4 space-y-6">
-            <!-- Logo -->
-            <div class="flex items-center">
-              <img
-                src="/fazilito-logo-white.png"
-                alt="Fazilito"
-                class="h-14 sm:h-16 w-auto object-contain"
-              />
-            </div>
-
-            <!-- Description -->
-            <p class="text-slate-300 text-sm leading-relaxed max-w-sm font-normal">
-              Tu casa de cambio segura, rápida y confiable. Cambia, transfiere y envía con <span class="text-[#33bb9c] font-bold">fazilito</span>.
-            </p>
-
-            <!-- Security Badges (without background or borders) -->
-            <div class="flex items-center gap-3 text-xs text-slate-300 font-medium pt-1">
-              <span class="flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-[#33bb9c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-                Seguro
-              </span>
-              <span class="text-slate-600 font-light">|</span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-[#33bb9c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                Rápido
-              </span>
-              <span class="text-slate-600 font-light">|</span>
-              <span class="flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-[#33bb9c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                Confiable
-              </span>
-            </div>
+      <div class="space-y-2 text-xs">
+        <!-- Teléfono -->
+        <a href="tel:+51994790996" class="flex items-center gap-2.5 text-slate-200 hover:text-white transition-colors py-1">
+          <div class="w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#33bb9c] shrink-0">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.01-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+            </svg>
           </div>
+          <span class="font-bold text-sm tracking-tight">+51 994 790 996</span>
+        </a>
 
-          <!-- Column 2: Empresa & Ayuda (Col span 3) -->
-          <div class="lg:col-span-3 grid grid-cols-2 gap-6">
-            <!-- Empresa -->
-            <div class="space-y-4">
-              <div class="space-y-1.5">
-                <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
-                <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
-                  Empresa
-                </h5>
-              </div>
-              <ul class="space-y-2.5 text-xs text-slate-300 font-light">
-                <li>
-                  <a href="#about-us" class="hover:text-[#33bb9c] transition-colors duration-200 block">Nosotros</a>
-                </li>
-                <li>
-                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Blog</a>
-                </li>
-                <li>
-                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Trabaja con Nosotros</a>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Ayuda -->
-            <div class="space-y-4">
-              <div class="space-y-1.5">
-                <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
-                <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
-                  Ayuda
-                </h5>
-              </div>
-              <ul class="space-y-2.5 text-xs text-slate-300 font-light">
-                <li>
-                  <a href="#contact" class="hover:text-[#33bb9c] transition-colors duration-200 block">Atención al Cliente</a>
-                </li>
-                <li>
-                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Preguntas Frecuentes</a>
-                </li>
-                <li>
-                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Guías y Tutoriales</a>
-                </li>
-              </ul>
-            </div>
+        <!-- Correo -->
+        <a href="mailto:operaciones@srcambio.pe" class="flex items-center gap-2.5 text-slate-200 hover:text-white transition-colors py-1">
+          <div class="w-7 h-7 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#33bb9c] shrink-0">
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
           </div>
+          <span class="text-xs text-slate-300">operaciones@srcambio.pe</span>
+        </a>
+      </div>
 
-          <!-- Column 3: Más Información & Legal (Col span 3) -->
-          <div class="lg:col-span-3 space-y-6">
-            <div class="space-y-4">
-              <div class="space-y-1.5">
-                <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
-                <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
-                  Más Información
-                </h5>
-              </div>
-              <ul class="space-y-2.5 text-xs text-slate-300 font-light">
-                <li>
-                  <a href="#how-it-works" class="hover:text-[#33bb9c] transition-colors duration-200 block">Beneficios</a>
-                </li>
-                <li>
-                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Configurar Alertas</a>
-                </li>
-                <li>
-                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Tipo de Cambio Hoy</a>
-                </li>
-                <li>
-                  <a href="#about-us" class="hover:text-[#33bb9c] transition-colors duration-200 block">¿Qué es fazilito?</a>
-                </li>
-              </ul>
-            </div>
+      <!-- Botón de acción directo -->
+      <a
+        href="#home"
+        class="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#18a796] to-[#33bb9c] hover:from-[#148f80] hover:to-[#2ba387] text-[#002b37] text-xs font-black uppercase tracking-wider transition-all shadow-md active:scale-98"
+      >
+        <span>Cambiar Ahora</span>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+        </svg>
+      </a>
+    </div>
 
-            <div class="space-y-4 pt-1">
-              <div class="space-y-1.5">
-                <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
-                <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
-                  Legal
-                </h5>
-              </div>
-              <ul class="space-y-2 text-xs text-slate-300 font-light">
-                <li>
-                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Términos y Condiciones</a>
-                </li>
-                <li>
-                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Políticas de Privacidad</a>
-                </li>
-                <li>
-                  <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Derechos ARCO</a>
-                </li>
-              </ul>
-
-              <!-- Libro de reclamaciones -->
-              <a
-                href="#"
-                class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#33bb9c]/40 px-3.5 py-2 rounded-xl transition-all duration-300 group mt-1"
-              >
-                <svg
-                  class="w-3.5 h-3.5 text-[#33bb9c]"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                  />
-                </svg>
-                <span
-                  class="text-[10px] uppercase font-bold tracking-wider text-slate-200 group-hover:text-white transition-colors"
-                >
-                  Libro de Reclamaciones
-                </span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Column 4: Horarios & Síguenos (Col span 2) -->
-          <div class="lg:col-span-2 space-y-5">
-            <div class="space-y-1.5">
-              <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
-              <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
-                Horarios de Atención
-              </h5>
-            </div>
-
-            <div class="space-y-2.5 text-xs">
-              <div class="bg-white/5 border border-white/5 rounded-xl px-3.5 py-2.5 space-y-0.5 backdrop-blur-sm">
-                <p class="text-slate-400 text-[10px] uppercase tracking-wider font-semibold">
-                  Lunes a Viernes
-                </p>
-                <p class="text-white font-bold">
-                  9:00 AM – 7:00 PM
-                </p>
-              </div>
-              <div class="bg-white/5 border border-white/5 rounded-xl px-3.5 py-2.5 space-y-0.5 backdrop-blur-sm">
-                <p class="text-slate-400 text-[10px] uppercase tracking-wider font-semibold">
-                  Sábado
-                </p>
-                <p class="text-white font-bold">
-                  9:00 AM – 2:00 PM
-                </p>
-              </div>
-            </div>
-
-            <!-- Social Links -->
-            <div class="space-y-3 pt-2">
-              <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
-                Síguenos
-              </h5>
-              <div class="flex items-center gap-2.5">
-                <a
-                  href="#"
-                  aria-label="Facebook"
-                  class="flex shrink-0 items-center justify-center rounded-xl bg-white/5 hover:bg-[#18a796]/30 border border-white/10 hover:border-[#18a796]/40 transition-all duration-300 group w-8 h-8"
-                >
-                  <svg
-                    class="w-4 h-4 text-slate-300 group-hover:text-white transition-colors"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  href="#"
-                  aria-label="Instagram"
-                  class="flex shrink-0 items-center justify-center rounded-xl bg-white/5 hover:bg-pink-500/20 border border-white/10 hover:border-pink-500/30 transition-all duration-300 group w-8 h-8"
-                >
-                  <svg
-                    class="w-4 h-4 text-slate-300 group-hover:text-pink-400 transition-colors"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-                    />
-                  </svg>
-                </a>
-
-                <a
-                  href="#"
-                  aria-label="YouTube"
-                  class="flex shrink-0 items-center justify-center rounded-xl bg-white/5 hover:bg-red-500/20 border border-white/10 hover:border-red-500/30 transition-all duration-300 group w-8 h-8"
-                >
-                  <svg
-                    class="w-4 h-4 text-slate-300 group-hover:text-red-400 transition-colors"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Divider -->
-        <div class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8"></div>
-
-        <!-- Bottom Copyright Row -->
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-light text-center sm:text-left">
-          <p class="flex items-center gap-1.5 justify-center sm:justify-start">
-            <span>🛡️</span> © 2026 Fazilito S.A.C. Todos los derechos reservados.
-          </p>
-          <p class="text-slate-400">
-            Casa de Cambio y Transferencias Seguras Online
-          </p>
-          <p class="text-slate-400">
-            Miraflores, Lima – Perú
-          </p>
+    <!-- 3. Acerca de Fazilito -->
+    <div class="space-y-3 pb-5 border-b border-white/10">
+      <div class="flex items-center justify-between">
+        <img
+          src="/fazilito-logo-white.png"
+          alt="Fazilito"
+          class="h-9 w-auto object-contain"
+        />
+        <!-- Trust Badges -->
+        <div class="flex items-center gap-2 text-[10px] text-slate-300 font-medium">
+          <span class="flex items-center gap-1">
+            <svg class="w-3 h-3 text-[#33bb9c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            Seguro
+          </span>
+          <span class="text-slate-600">•</span>
+          <span>Rápido</span>
+          <span class="text-slate-600">•</span>
+          <span>Confiable</span>
         </div>
       </div>
 
-      <!-- Accent Bottom Stripe -->
-      <div class="h-1 bg-gradient-to-r from-[#00394b] via-[#18a796] to-[#33bb9c]"></div>
+      <p class="text-xs text-slate-300 leading-relaxed font-light">
+        Tu casa de cambio digital segura, rápida y transparente para operaciones entre Bolivia y Perú. Cambia tus divisas al mejor tipo de cambio del mercado con respaldo y asesoría personalizada.
+      </p>
 
-      <!-- Floating WhatsApp Button -->
-      <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 group animate-fade-in">
+      <!-- Horario badge -->
+      <div class="bg-white/5 border border-white/5 rounded-xl px-3 py-2 text-[11px] flex items-center justify-between text-slate-300">
+        <span class="font-medium">Lun - Vie: 9am - 7pm</span>
+        <span class="text-slate-500">|</span>
+        <span class="font-medium">Sáb: 9am - 2pm</span>
+      </div>
+    </div>
+
+    <!-- 4. Ubicación, Legal & Redes Sociales -->
+    <div class="space-y-4 text-center">
+      <!-- Ubicación -->
+      <a
+        href="https://maps.google.com/?q=Calle+Arias+Schreiber+165+Miraflores+Lima"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 text-xs text-slate-300 hover:text-white transition-colors"
+      >
+        <div class="w-6 h-6 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#33bb9c] shrink-0">
+          <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5-2.5-1.12 2.5-2.5 2.5z" />
+          </svg>
+        </div>
+        <span>Cal. Arias Schreiber 165, Miraflores, Lima – Perú</span>
+      </a>
+
+      <!-- Legal Links -->
+      <div class="flex items-center justify-center gap-3 text-[11px] text-slate-400 font-light">
+        <a href="#" class="hover:text-[#33bb9c] transition-colors">Términos y Condiciones</a>
+        <span class="text-slate-600">•</span>
+        <a href="#" class="hover:text-[#33bb9c] transition-colors">Políticas de Privacidad</a>
+        <span class="text-slate-600">•</span>
+        <a href="#" class="hover:text-[#33bb9c] transition-colors">Libro de Reclamaciones</a>
+      </div>
+
+      <!-- Copyright -->
+      <p class="text-[11px] text-slate-400 font-light">
+        © 2026 Fazilito S.A.C. Todos los derechos reservados.
+      </p>
+
+      <!-- Redes Sociales Circulares -->
+      <div class="flex items-center justify-center gap-3 pt-1">
+        <a
+          href="#"
+          aria-label="Facebook"
+          class="w-9 h-9 rounded-full bg-[#1877F2]/20 border border-[#1877F2]/40 text-[#1877F2] hover:bg-[#1877F2] hover:text-white flex items-center justify-center transition-all"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+
+        <a
+          href="#"
+          aria-label="Instagram"
+          class="w-9 h-9 rounded-full bg-pink-500/20 border border-pink-500/40 text-pink-400 hover:bg-pink-500 hover:text-white flex items-center justify-center transition-all"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </a>
+
+        <a
+          href="#"
+          aria-label="YouTube"
+          class="w-9 h-9 rounded-full bg-red-500/20 border border-red-500/40 text-red-400 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </a>
+
         <a
           href="https://wa.me/51994790996"
           target="_blank"
-          class="relative flex shrink-0 items-center justify-center border border-white/10 bg-[#25D366] text-white shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 w-14 h-14 rounded-full"
-          aria-label="Contactar por WhatsApp"
+          aria-label="WhatsApp"
+          class="w-9 h-9 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 hover:bg-emerald-500 hover:text-white flex items-center justify-center transition-all"
         >
-          <span
-            class="absolute top-0 right-0 animate-ping rounded-full border-2 border-[#25D366] bg-red-500 w-3.5 h-3.5"
-          ></span>
-          <span
-            class="absolute top-0 right-0 rounded-full border-2 border-[#25D366] bg-red-500 w-3.5 h-3.5"
-          ></span>
-          <img
-            src="/img/icons/icon-chat.svg"
-            alt="WhatsApp"
-            class="h-7 w-7 brightness-0 invert"
-          />
+          <img src="/img/icons/icon-chat.svg" alt="WhatsApp" class="w-4 h-4 brightness-0 invert" />
         </a>
       </div>
+    </div>
+
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- DESKTOP VIEW (>= md)                                     -->
+  <!-- ======================================================== -->
+  <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+    
+    <!-- Column 1: Brand & Badges (Col span 4) -->
+    <div class="lg:col-span-4 space-y-6">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <img
+          src="/fazilito-logo-white.png"
+          alt="Fazilito"
+          class="h-14 sm:h-16 w-auto object-contain"
+        />
+      </div>
+
+      <!-- Description -->
+      <p class="text-slate-300 text-sm leading-relaxed max-w-sm font-normal">
+        Tu casa de cambio segura, rápida y confiable. Cambia, transfiere y envía con <span class="text-[#33bb9c] font-bold">fazilito</span>.
+      </p>
+
+      <!-- Security Badges -->
+      <div class="flex items-center gap-3 text-xs text-slate-300 font-medium pt-1">
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-[#33bb9c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          Seguro
+        </span>
+        <span class="text-slate-600 font-light">|</span>
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-[#33bb9c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          Rápido
+        </span>
+        <span class="text-slate-600 font-light">|</span>
+        <span class="flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-[#33bb9c]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          Confiable
+        </span>
+      </div>
+    </div>
+
+    <!-- Column 2: Empresa & Ayuda (Col span 3) -->
+    <div class="lg:col-span-3 grid grid-cols-2 gap-6">
+      <!-- Empresa -->
+      <div class="space-y-4">
+        <div class="space-y-1.5">
+          <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
+          <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
+            Empresa
+          </h5>
+        </div>
+        <ul class="space-y-2.5 text-xs text-slate-300 font-light list-none p-0">
+          <li>
+            <a href="#about-us" class="hover:text-[#33bb9c] transition-colors duration-200 block">Nosotros</a>
+          </li>
+          <li>
+            <a href="#como-funciona" class="hover:text-[#33bb9c] transition-colors duration-200 block">¿Cómo funciona?</a>
+          </li>
+          <li>
+            <a href="#promociones" class="hover:text-[#33bb9c] transition-colors duration-200 block">Bancos asociados</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Ayuda -->
+      <div class="space-y-4">
+        <div class="space-y-1.5">
+          <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
+          <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
+            Ayuda
+          </h5>
+        </div>
+        <ul class="space-y-2.5 text-xs text-slate-300 font-light list-none p-0">
+          <li>
+            <a href="#contact" class="hover:text-[#33bb9c] transition-colors duration-200 block">Atención al Cliente</a>
+          </li>
+          <li>
+            <a href="#home" class="hover:text-[#33bb9c] transition-colors duration-200 block">Tipo de Cambio</a>
+          </li>
+          <li>
+            <a href="#promociones" class="hover:text-[#33bb9c] transition-colors duration-200 block">Programa Koinks</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Column 3: Más Información & Legal (Col span 3) -->
+    <div class="lg:col-span-3 space-y-6">
+      <div class="space-y-4">
+        <div class="space-y-1.5">
+          <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
+          <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
+            Legal
+          </h5>
+        </div>
+        <ul class="space-y-2.5 text-xs text-slate-300 font-light list-none p-0">
+          <li>
+            <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Términos y Condiciones</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Políticas de Privacidad</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-[#33bb9c] transition-colors duration-200 block">Derechos ARCO</a>
+          </li>
+        </ul>
+
+        <!-- Libro de reclamaciones -->
+        <a
+          href="#"
+          class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#33bb9c]/40 px-3.5 py-2 rounded-xl transition-all duration-300 group mt-1"
+        >
+          <svg
+            class="w-3.5 h-3.5 text-[#33bb9c]"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+            />
+          </svg>
+          <span
+            class="text-[10px] uppercase font-bold tracking-wider text-slate-200 group-hover:text-white transition-colors"
+          >
+            Libro de Reclamaciones
+          </span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Column 4: Horarios & Síguenos (Col span 2) -->
+    <div class="lg:col-span-2 space-y-5">
+      <div class="space-y-1.5">
+        <div class="w-5 h-0.5 bg-[#33bb9c] rounded-full"></div>
+        <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
+          Horarios de Atención
+        </h5>
+      </div>
+
+      <div class="space-y-2.5 text-xs">
+        <div class="bg-white/5 border border-white/5 rounded-xl px-3.5 py-2.5 space-y-0.5 backdrop-blur-sm">
+          <p class="text-slate-400 text-[10px] uppercase tracking-wider font-semibold">
+            Lunes a Viernes
+          </p>
+          <p class="text-white font-bold">
+            9:00 AM – 7:00 PM
+          </p>
+        </div>
+        <div class="bg-white/5 border border-white/5 rounded-xl px-3.5 py-2.5 space-y-0.5 backdrop-blur-sm">
+          <p class="text-slate-400 text-[10px] uppercase tracking-wider font-semibold">
+            Sábado
+          </p>
+          <p class="text-white font-bold">
+            9:00 AM – 2:00 PM
+          </p>
+        </div>
+      </div>
+
+      <!-- Social Links -->
+      <div class="space-y-2.5 pt-1">
+        <h5 class="text-white font-bold uppercase tracking-wider text-xs font-display">
+          Síguenos
+        </h5>
+        <div class="flex items-center gap-2.5">
+          <a
+            href="#"
+            aria-label="Facebook"
+            class="flex shrink-0 items-center justify-center rounded-xl bg-white/5 hover:bg-[#18a796]/30 border border-white/10 hover:border-[#18a796]/40 transition-all duration-300 group w-8 h-8"
+          >
+            <svg
+              class="w-4 h-4 text-slate-300 group-hover:text-white transition-colors"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+              />
+            </svg>
+          </a>
+
+          <a
+            href="#"
+            aria-label="Instagram"
+            class="flex shrink-0 items-center justify-center rounded-xl bg-white/5 hover:bg-pink-500/20 border border-white/10 hover:border-pink-500/30 transition-all duration-300 group w-8 h-8"
+          >
+            <svg
+              class="w-4 h-4 text-slate-300 group-hover:text-pink-400 transition-colors"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+              />
+            </svg>
+          </a>
+
+          <a
+            href="#"
+            aria-label="YouTube"
+            class="flex shrink-0 items-center justify-center rounded-xl bg-white/5 hover:bg-red-500/20 border border-white/10 hover:border-red-500/30 transition-all duration-300 group w-8 h-8"
+          >
+            <svg
+              class="w-4 h-4 text-slate-300 group-hover:text-red-400 transition-colors"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6 sm:mb-8"></div>
+
+  <!-- Bottom Copyright Row (Desktop & Tablet) -->
+  <div class="hidden sm:flex flex-row items-center justify-between gap-4 text-xs text-slate-400 font-light">
+    <p class="flex items-center gap-1.5">
+      <span>🛡️</span> © 2026 Fazilito S.A.C. Todos los derechos reservados.
+    </p>
+    <p class="text-slate-400">
+      Casa de Cambio y Transferencias Seguras Online
+    </p>
+    <p class="text-slate-400">
+      Miraflores, Lima – Perú
+    </p>
+  </div>
+</div>
+
+<!-- Accent Bottom Stripe -->
+<div class="h-1 bg-gradient-to-r from-[#00394b] via-[#18a796] to-[#33bb9c]"></div>
+
+<!-- Floating WhatsApp Button -->
+<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 group animate-fade-in">
+  <a
+    href="https://wa.me/51994790996"
+    target="_blank"
+    class="relative flex shrink-0 items-center justify-center border border-white/10 bg-[#25D366] text-white shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 w-14 h-14 rounded-full"
+    aria-label="Contactar por WhatsApp"
+  >
+    <span
+      class="absolute top-0 right-0 animate-ping rounded-full border-2 border-[#25D366] bg-red-500 w-3.5 h-3.5"
+    ></span>
+    <span
+      class="absolute top-0 right-0 rounded-full border-2 border-[#25D366] bg-red-500 w-3.5 h-3.5"
+    ></span>
+    <img
+      src="/img/icons/icon-chat.svg"
+      alt="WhatsApp"
+      class="h-7 w-7 brightness-0 invert"
+    />
+  </a>
+</div>
