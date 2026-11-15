@@ -1,18 +1,18 @@
 import { Component, signal } from "@angular/core";
-import { SharedViewPortDirective } from "../../../../../shared/directives";
-
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: 'banks-promotion',
   templateUrl: './banks-promotion.component.html',
   styleUrl: './banks-promotion.component.css',
-  standalone: true  
+  standalone: true,
+  imports: [CommonModule]
 })
 export class BanksPromotionComponent {
+  activePromotionIndex = signal(0);
+  selectedCountry = signal<'peru' | 'bolivia'>('peru');
 
-     activePromotionIndex = signal(0);
-     
- constructor() {
+  constructor() {
     if (typeof window !== 'undefined') {
       setInterval(() => {        
         this.nextPromotionSlide();
@@ -23,5 +23,4 @@ export class BanksPromotionComponent {
   nextPromotionSlide() {
     this.activePromotionIndex.set((this.activePromotionIndex() + 1) % 2);
   }
-
 }
