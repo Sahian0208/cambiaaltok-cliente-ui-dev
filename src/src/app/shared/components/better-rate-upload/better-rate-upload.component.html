@@ -1,13 +1,13 @@
 <div
-  class="w-full max-w-[360px] rounded-3xl border border-slate-200/90 bg-white/95 backdrop-blur-sm p-4 sm:p-5 shadow-sm font-gotham text-left"
+  class="w-full max-w-[440px] sm:max-w-[360px] rounded-2xl sm:rounded-3xl border border-slate-200/90 bg-white/95 backdrop-blur-sm p-3 sm:p-5 shadow-sm font-gotham text-left"
 >
-  <div class="flex items-center justify-between mb-1">
-    <h3 class="text-sm sm:text-base font-bold text-[#00394b] flex items-center gap-1.5">
+  <div class="flex items-center justify-between mb-0.5 sm:mb-1">
+    <h3 class="text-xs sm:text-base font-bold text-[#00394b] flex items-center gap-1.5">
       Mejora tu cotización aquí
-      <span class="text-sm">📄</span>
+      <span class="text-xs sm:text-sm">📄</span>
     </h3>
   </div>
-  <p class="text-xs sm:text-[12.5px] text-slate-500 leading-snug mb-3">
+  <p class="text-[11px] sm:text-[12.5px] text-slate-500 leading-tight sm:leading-snug mb-2 sm:mb-3">
     ¿Tienes una cotización de otra casa de cambio? Nosotros la mejoramos.
   </p>
 
@@ -16,38 +16,38 @@
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Enviar cotización por WhatsApp"
-    class="border border-dashed border-slate-300 hover:border-[#18a796] rounded-2xl p-3.5 flex flex-col items-center justify-center gap-2 bg-slate-50/70 hover:bg-emerald-50/40 transition-all duration-200 no-underline cursor-pointer group block text-center"
+    class="border border-dashed border-slate-300 hover:border-[#18a796] rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 flex flex-row sm:flex-col items-center justify-between sm:justify-center gap-2 bg-slate-50/70 hover:bg-emerald-50/40 transition-all duration-200 no-underline cursor-pointer group block text-center"
   >
-    <div class="w-9 h-9 rounded-full bg-emerald-50 flex items-center justify-center text-[#18a796] group-hover:scale-110 transition-transform">
-      <svg
-        class="w-4 h-4 text-[#18a796]"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
-        />
-      </svg>
+    <div class="flex items-center gap-2 sm:flex-col sm:gap-2">
+      <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-emerald-50 flex items-center justify-center text-[#18a796] group-hover:scale-110 transition-transform shrink-0">
+        <svg
+          class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#18a796]"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+          />
+        </svg>
+      </div>
+      
+      <span class="text-[11px] sm:text-xs text-slate-600 block leading-tight font-medium text-left sm:text-center">
+        Envíanos una captura de tu cotización
+      </span>
     </div>
-    
-    <span class="text-xs text-slate-600 block leading-tight font-medium">
-      Envíanos una captura de tu cotización
-    </span>
 
     <span
-      class="inline-block rounded-xl border border-[#18a796] text-[#18a796] bg-white group-hover:bg-[#18a796] group-hover:text-white px-4 py-1 text-xs font-bold tracking-wider uppercase transition-colors shadow-2xs"
+      class="inline-block rounded-lg sm:rounded-xl border border-[#18a796] text-[#18a796] bg-white group-hover:bg-[#18a796] group-hover:text-white px-2.5 sm:px-4 py-1 text-[10px] sm:text-xs font-bold tracking-wider uppercase transition-colors shadow-2xs shrink-0"
     >
       Enviar archivo
     </span>
   </a>
 
-  <p class="text-[10px] text-slate-400 text-center mt-2 font-medium">
+  <p class="text-[9px] sm:text-[10px] text-slate-400 text-center mt-1.5 sm:mt-2 font-medium">
     Formatos: JPG, PNG o PDF (Máx. 5 MB)
   </p>
 </div>
-
-

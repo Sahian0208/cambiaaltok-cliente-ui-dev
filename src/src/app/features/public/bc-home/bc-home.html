@@ -14,17 +14,17 @@
       class="absolute inset-y-0 left-0 w-full lg:w-[65%] xl:w-[58%] bg-gradient-to-r from-[#002430]/95 via-[#003444]/85 via-50% to-transparent pointer-events-none z-0"
     ></div>
 
-    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative z-10">
+    <div class="max-w-7xl mx-auto w-full flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-start relative z-10">
 
       <!-- Left Column: Title, description, trust metrics and better rate -->
-      <div class="lg:col-span-7 flex flex-col pt-1 sm:pt-3">
+      <div class="lg:col-span-7 flex flex-col pt-1 sm:pt-3 w-full">
 
         <!-- Personas / Empresas pill toggle (Dark mode style) -->
-        <div class="inline-flex items-center bg-[#002430]/95 p-1 rounded-full w-fit mb-5 shadow-lg border border-[#004d66] backdrop-blur-md">
+        <div class="inline-flex items-center bg-[#002430]/95 p-1 rounded-full w-fit mb-4 sm:mb-5 shadow-lg border border-[#004d66] backdrop-blur-md">
           <button
             type="button"
             (click)="showCalculatorPanel()"
-            class="flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all border-none cursor-pointer"
+            class="flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold transition-all border-none cursor-pointer"
             [ngClass]="rightPanel() === 'calculator' ? 'bg-[#33bb9c] text-[#00394b] shadow-md' : 'bg-transparent text-slate-300 hover:text-white'"
           >
             <i class="pi pi-user text-xs sm:text-sm"></i>
@@ -33,7 +33,7 @@
           <button
             type="button"
             (click)="showEnterprisePanel()"
-            class="flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm font-bold transition-all border-none cursor-pointer"
+            class="flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold transition-all border-none cursor-pointer"
             [ngClass]="rightPanel() === 'enterprise' ? 'bg-[#33bb9c] text-[#00394b] shadow-md' : 'bg-transparent text-slate-300 hover:text-white'"
           >
             <i class="pi pi-building text-xs sm:text-sm"></i>
@@ -42,7 +42,7 @@
         </div>
 
         <!-- Main Heading and Subtitle (Conditional on Personas / Empresas) -->
-        <div class="space-y-3 max-w-xl">
+        <div class="space-y-2 sm:space-y-3 max-w-xl">
           @if (rightPanel() === 'calculator') {
             <h1
               class="text-3xl sm:text-4xl lg:text-[50px] xl:text-[56px] font-black text-white leading-[1.12] tracking-tight font-gotham drop-shadow-[0_3px_8px_rgba(0,0,0,0.7)]"
@@ -52,7 +52,8 @@
               con confianza
             </h1>
 
-            <p class="text-sm sm:text-base text-slate-100 leading-relaxed font-gotham pt-1 font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
+            <!-- Subtitle: Oculto en móviles (desaparece en celular según pedido del usuario) -->
+            <p class="hidden lg:block text-sm sm:text-base text-slate-100 leading-relaxed font-gotham pt-1 font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
               Realiza tus operaciones de cambio entre Bolivia y Perú de forma
               <strong class="font-bold text-white">segura, rápida y transparente</strong> con Fazilito.
             </p>
@@ -70,15 +71,16 @@
               </h1>
             </div>
 
-            <p class="text-sm sm:text-base text-slate-100 leading-relaxed font-gotham pt-1 font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
+            <!-- Subtitle: Oculto en móviles -->
+            <p class="hidden lg:block text-sm sm:text-base text-slate-100 leading-relaxed font-gotham pt-1 font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)]">
               Realiza tus operaciones <strong class="font-bold text-white">de cambio corporativas</strong> de forma
               <strong class="font-bold text-white">segura, rápida</strong> y <strong class="font-bold text-white">transparente</strong> con Fazilito.
             </p>
           }
         </div>
 
-        <!-- Metrics & Better Rate Row -->
-        <div class="mt-5 sm:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 items-center">
+        <!-- Metrics & Better Rate Row: Oculto en móviles (desaparece en celular según pedido del usuario) -->
+        <div class="hidden lg:grid mt-5 sm:mt-6 grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6 items-center">
           @if (rightPanel() === 'calculator') {
             <!-- 3 Stats Badges for Personas (Enlarged and protected by dark backdrop) -->
             <div class="space-y-4 font-gotham bg-[#002430]/80 backdrop-blur-md p-4 sm:p-5 rounded-3xl border border-white/10 shadow-xl w-fit">
@@ -190,9 +192,9 @@
 
       </div>
 
-      <!-- Right Column: Calculator / Enterprise component -->
+      <!-- Right Column: Calculator / Enterprise component (Directly below Title on mobile) -->
       <div class="lg:col-span-5 flex justify-center lg:justify-end w-full items-start">
-        <div class="w-full max-w-[440px] min-h-[500px]">
+        <div class="w-full max-w-[440px] min-h-0 lg:min-h-[500px]">
           @if (rightPanel() === 'calculator') {
             <app-calculator (swapped)="tipoCambio.set($event)"></app-calculator>
           } @else {
@@ -200,6 +202,13 @@
           }
         </div>
       </div>
+
+      <!-- Mobile Only: Compact Better Rate Upload (Directly below Calculator) -->
+      @if (rightPanel() === 'calculator') {
+        <div class="w-full flex justify-center lg:hidden mt-2">
+          <app-better-rate-upload class="w-full max-w-[440px]"></app-better-rate-upload>
+        </div>
+      }
     </div>
   </section>
 
