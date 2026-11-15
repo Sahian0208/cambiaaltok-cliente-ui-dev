@@ -5,17 +5,26 @@
   <!-- ======================================================== -->
   <header class="inicio-top-bar">
     <div class="top-bar-left">
-      <h1 class="page-title">Inicio</h1>
-      <span class="bar-divider">|</span>
-      <span class="schedule-text">
-        Horario: Lunes a viernes 9:00 am a 7:00 p.m. / Sábados de 09:00 am a 2:00 pm
-      </span>
+      <div class="title-with-divider">
+        <h1 class="page-title">Inicio</h1>
+        <span class="bar-divider desktop-only">|</span>
+      </div>
+
+      <div class="schedule-badge">
+        <i class="pi pi-clock schedule-icon"></i>
+        <span class="schedule-text desktop-schedule">
+          Horario: Lunes a viernes 9:00 am a 7:00 p.m. / Sábados de 09:00 am a 2:00 pm
+        </span>
+        <span class="schedule-text mobile-schedule">
+          Lun-Vie 9am-7pm · Sáb 9am-2pm
+        </span>
+      </div>
     </div>
 
     <div class="top-bar-right">
       <!-- Koinks indicator -->
       <div class="koinks-indicator" (click)="goToCupones()" title="Ver mis Koinks y cupones">
-        <span>Tienes <strong>{{ userKoinks() }} Koinks</strong></span>
+        <span class="koinks-text">Tienes <strong>{{ userKoinks() }} Koinks</strong></span>
         <span class="gold-coin-mini">K</span>
       </div>
 
@@ -36,51 +45,53 @@
   <!-- 2. PROMOTIONAL BANNER: ¡Gana CUPONES!                    -->
   <!-- ======================================================== -->
   <section class="promo-banner">
-    <!-- Left: Tilted Mint Ticket & Floating Koinks -->
-    <div class="banner-ticket-zone">
-      <div class="floating-coin coin-top">K</div>
-      <div class="floating-coin coin-bottom">K</div>
+    <div class="banner-top-content">
+      <!-- Left: Tilted Mint Ticket & Floating Koinks -->
+      <div class="banner-ticket-zone">
+        <div class="floating-coin coin-top">K</div>
+        <div class="floating-coin coin-bottom">K</div>
 
-      <div class="tilted-ticket">
-        <div class="ticket-notch notch-left"></div>
-        <div class="ticket-notch notch-right"></div>
-        <div class="ticket-content">
-          <span class="ticket-logo-text">fazilito</span>
-          <span class="ticket-subtext">CUPÓN</span>
+        <div class="tilted-ticket">
+          <div class="ticket-notch notch-left"></div>
+          <div class="ticket-notch notch-right"></div>
+          <div class="ticket-content">
+            <span class="ticket-logo-text">fazilito</span>
+            <span class="ticket-subtext">CUPÓN</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center: Catchy Copy -->
+      <div class="banner-copy-zone">
+        <h2 class="banner-heading">
+          ¡Gana <span class="text-accent-cupones">CUPONES!</span>
+        </h2>
+        <p class="banner-subheading">Canjea tus Koinks y ahorra</p>
+      </div>
+
+      <!-- Right: 3D Gift Box Graphic -->
+      <div class="banner-gift-zone">
+        <div class="gift-box-3d">
+          <div class="gift-lid">
+            <div class="gift-ribbon-vertical"></div>
+            <div class="gift-bow"></div>
+          </div>
+          <div class="gift-body">
+            <div class="gift-ribbon-vertical"></div>
+            <div class="gift-tag">
+              <span>%</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Center: Catchy Copy -->
-    <div class="banner-copy-zone">
-      <h2 class="banner-heading">
-        ¡Gana <span class="text-accent-cupones">CUPONES!</span>
-      </h2>
-      <p class="banner-subheading">Canjea tus Koinks y ahorra</p>
-    </div>
-
-    <!-- Center-Right: Action Button -->
+    <!-- Action Button (Desktop: side, Mobile: full-width bottom) -->
     <div class="banner-button-zone">
       <button type="button" class="btn-canjear-ahora" (click)="goToCupones()">
         <span>Canjear ahora</span>
         <i class="pi pi-arrow-right"></i>
       </button>
-    </div>
-
-    <!-- Right: 3D Gift Box Graphic -->
-    <div class="banner-gift-zone">
-      <div class="gift-box-3d">
-        <div class="gift-lid">
-          <div class="gift-ribbon-vertical"></div>
-          <div class="gift-bow"></div>
-        </div>
-        <div class="gift-body">
-          <div class="gift-ribbon-vertical"></div>
-          <div class="gift-tag">
-            <span>%</span>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
