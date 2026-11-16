@@ -1,56 +1,97 @@
-<div class="coupon-summary">
+<div class="coupon-summary" [class.dark-mode]="isDarkMode()" [class.dark]="isDarkMode()">
   @if (loading()) {
     <div class="coupon-summary-loading">
       <i class="pi pi-spin pi-spinner"></i>
       <span>Cargando tu cupón...</span>
     </div>
-  } @else if (error()) {
-    <div class="coupon-summary-error">
-      <i class="pi pi-exclamation-circle"></i>
-      <span>No se pudo cargar tu cupón</span>
-    </div>
-  } @else if (coupon()) {
-    <div class="coupon-summary-content">
-      <!-- Coupon code - prominent display -->
-      <div class="coupon-code-display">
-        <span class="coupon-code-label">Tu código de cupón</span>
-        <span class="coupon-code-value">{{ coupon()!.couponCode }}</span>
-        <span class="coupon-code-hint">Comparte este código con otros clientes para que obtengan mejores tasas</span>
+  } @else {
+    <!-- Main Green Ticket Card -->
+    <div class="fazilito-coupon-box">
+      <!-- Top Status Pill -->
+      <div class="coupon-status-row">
+        <span class="status-available-pill">
+          <i class="pi pi-check-circle"></i>
+          <span>Cupón disponible</span>
+        </span>
       </div>
 
-      <!-- Description -->
-      <p class="coupon-description">{{ coupon()!.couponDescription }}</p>
-
-      <!-- Stats -->
-      <div class="coupon-stats">
-        <div class="coupon-stat">
-          <i class="pi pi-users"></i>
-          <div class="coupon-stat-info">
-            <span class="coupon-stat-value">{{ coupon()!.usedCount }}</span>
-            <span class="coupon-stat-label">Veces usado</span>
-          </div>
+      <!-- Ticket Graphic Area with Top-Right Sparks -->
+      <div class="ticket-positioner">
+        <div class="ticket-sparks">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 2L11 6" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M17 5L14 8" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M20 11L16 11" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
         </div>
 
-        @if (coupon()!.lastUsedAt) {
-          <div class="coupon-stat">
-            <i class="pi pi-clock"></i>
-            <div class="coupon-stat-info">
-              <span class="coupon-stat-value">{{ coupon()!.lastUsedAt | date:'dd/MM/yyyy' }}</span>
-              <span class="coupon-stat-label">Último uso</span>
+        <!-- The Perforated Coupon Ticket -->
+        <div class="coupon-ticket-wrapper">
+          <!-- Left Stub (Mint Green with gift and notch) -->
+          <div class="ticket-stub-left">
+            <div class="stub-notch-cutout"></div>
+            <div class="stub-icon-wrap">
+              <i class="pi pi-gift"></i>
             </div>
           </div>
-        }
 
-        @if (coupon()!.lastUsedByUsername) {
-          <div class="coupon-stat">
-            <i class="pi pi-user"></i>
-            <div class="coupon-stat-info">
-              <span class="coupon-stat-value">{{ coupon()!.lastUsedByUsername }}</span>
-              <span class="coupon-stat-label">Usado por</span>
+          <!-- Perforated Line -->
+          <div class="ticket-perforated-line"></div>
+
+          <!-- Right Stub (White with code and copy button) -->
+          <div class="ticket-stub-right">
+            <div class="stub-code-info">
+              <span class="stub-label">Tu código de cupón</span>
+              <span class="stub-code">{{ coupon()?.couponCode || 'FAZILITO10' }}</span>
             </div>
+            <button class="btn-copy-ticket" (click)="copyCode()" [title]="copied() ? 'Copiado' : 'Copiar código'">
+              <i [class]="copied() ? 'pi pi-check text-emerald-600 font-bold' : 'pi pi-copy'"></i>
+            </button>
           </div>
-        }
+        </div>
       </div>
+
+      <!-- Subtitle hint -->
+      <p class="coupon-action-hint">Comparte este código y obtén mejores tasas.</p>
+
+      <!-- Share Action Button -->
+      <button class="btn-share-coupon" (click)="shareCoupon()">
+        <i class="pi pi-share-alt"></i>
+        <span>Compartir cupón</span>
+      </button>
+
+      <!-- Optional stats if used before -->
+      @if (coupon() && coupon()!.usedCount > 0) {
+        <div class="coupon-stats-strip">
+          <div class="stat-bubble">
+            <i class="pi pi-users"></i>
+            <span>Usado {{ coupon()!.usedCount }} {{ coupon()!.usedCount === 1 ? 'vez' : 'veces' }}</span>
+          </div>
+          @if (coupon()!.lastUsedAt) {
+            <div class="stat-bubble">
+              <i class="pi pi-clock"></i>
+              <span>Último uso: {{ coupon()!.lastUsedAt | date:'dd/MM/yyyy' }}</span>
+            </div>
+          }
+        </div>
+      }
     </div>
+
+    <!-- Error / Retry Banner (if there was an issue syncing with backend) -->
+    @if (error()) {
+      <div class="coupon-error-banner">
+        <div class="error-banner-left">
+          <i class="pi pi-exclamation-circle error-banner-icon"></i>
+          <div class="error-banner-text">
+            <h4 class="error-title">No se pudo cargar tu cupón</h4>
+            <p class="error-subtitle">Intenta nuevamente más tarde.</p>
+          </div>
+        </div>
+        <button class="btn-retry-banner" (click)="loadCoupon()">
+          <i class="pi pi-sync"></i>
+          <span>Reintentar</span>
+        </button>
+      </div>
+    }
   }
 </div>
