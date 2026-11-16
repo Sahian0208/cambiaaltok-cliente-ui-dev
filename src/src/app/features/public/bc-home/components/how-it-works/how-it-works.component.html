@@ -1,66 +1,86 @@
 <section
   id="how-it-works"
-  class="relative overflow-hidden bg-gradient-to-b from-[#f8fdfb] via-white to-[#f0fdf9] py-14 sm:py-18 font-gotham"
+  class="relative overflow-hidden bg-gradient-to-b from-[#f8fafc] via-[#f0fdfa]/40 to-[#e6f7f5]/60 pt-14 pb-20 sm:pt-16 sm:pb-24 font-gotham"
 >
-  <!-- Glowing subtle ambient background orbs -->
+  <!-- Background Constellations & Glows -->
+  <div class="pointer-events-none absolute left-0 top-12 w-72 h-72 opacity-35 hidden md:block">
+    <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-[#18a796]">
+      <circle cx="40" cy="80" r="4" fill="currentColor" opacity="0.6"/>
+      <circle cx="120" cy="40" r="5" fill="currentColor" opacity="0.8"/>
+      <circle cx="200" cy="110" r="4" fill="currentColor" opacity="0.5"/>
+      <circle cx="100" cy="180" r="6" fill="currentColor" opacity="0.9"/>
+      <circle cx="180" cy="220" r="4" fill="currentColor" opacity="0.6"/>
+      <circle cx="20" cy="240" r="5" fill="currentColor" opacity="0.7"/>
+      <line x1="40" y1="80" x2="120" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="120" y1="40" x2="200" y2="110" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="40" y1="80" x2="100" y2="180" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="100" y1="180" x2="200" y2="110" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="100" y1="180" x2="180" y2="220" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="100" y1="180" x2="20" y2="240" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="20" y1="240" x2="40" y2="80" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
+    </svg>
+  </div>
+
+  <div class="pointer-events-none absolute right-0 top-16 w-80 h-80 opacity-35 hidden md:block">
+    <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-[#18a796]">
+      <circle cx="260" cy="60" r="4" fill="currentColor" opacity="0.6"/>
+      <circle cx="180" cy="100" r="5" fill="currentColor" opacity="0.8"/>
+      <circle cx="220" cy="180" r="6" fill="currentColor" opacity="0.9"/>
+      <circle cx="120" cy="150" r="4" fill="currentColor" opacity="0.5"/>
+      <circle cx="160" cy="250" r="5" fill="currentColor" opacity="0.7"/>
+      <circle cx="270" cy="230" r="4" fill="currentColor" opacity="0.6"/>
+      <line x1="260" y1="60" x2="180" y2="100" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="180" y1="100" x2="220" y2="180" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="180" y1="100" x2="120" y2="150" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="120" y1="150" x2="160" y2="250" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="220" y1="180" x2="160" y2="250" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+      <line x1="220" y1="180" x2="270" y2="230" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
+    </svg>
+  </div>
+
   <div class="pointer-events-none absolute -left-20 top-20 h-96 w-96 rounded-full bg-[#18a796]/10 blur-3xl"></div>
   <div class="pointer-events-none absolute -right-20 top-40 h-96 w-96 rounded-full bg-[#33bb9c]/12 blur-3xl"></div>
 
-  <div class="relative mx-auto w-full max-w-3xl px-4 sm:px-6 lg:px-8 z-10">
-    
-    <!-- Encabezado Principal (Exacto a maqueta) -->
+  <!-- ========================================== -->
+  <!-- VISTA MÓVIL (block md:hidden): Línea de tiempo vertical según maqueta -->
+  <!-- ========================================== -->
+  <div class="block md:hidden relative mx-auto w-full max-w-3xl px-4 z-10">
+    <!-- Encabezado Móvil -->
     <div
       shared-view-port="animate-soft-rise"
       hiddenClasses="opacity-0"
       [delay]="80"
-      class="text-left mb-8 sm:mb-10"
+      class="text-left mb-8"
     >
-      <!-- Eyebrow Tag -->
-      <span class="text-[#00394b] text-xs sm:text-sm font-extrabold tracking-widest uppercase block mb-2">
+      <span class="text-[#00394b] text-xs font-extrabold tracking-widest uppercase block mb-2">
         CÓMO FUNCIONA
       </span>
-
-      <!-- Main Title -->
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.08] text-[#00394b] font-display">
+      <h2 class="text-3xl font-black tracking-tight leading-[1.08] text-[#00394b] font-display">
         Cambia con Fazilito<br />
         <span class="text-[#33bb9c]">en 3 pasos</span>
       </h2>
-
-      <!-- Trazo / Píldora redondeada inferior debajo de en 3 pasos -->
-      <div class="w-14 sm:w-16 h-1.5 rounded-full bg-[#33bb9c] mt-2 sm:mt-2.5 mb-2.5 sm:mb-3"></div>
-
-      <!-- Subtitle -->
-      <p class="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
+      <div class="w-14 h-1.5 rounded-full bg-[#33bb9c] mt-2 mb-2.5"></div>
+      <p class="text-sm text-slate-600 font-normal leading-relaxed">
         Rápido, seguro y sin complicaciones.
       </p>
     </div>
 
-    <!-- Timeline con línea vertical continua y 3 tarjetas (Exacto a maqueta) -->
-    <div class="relative pl-7 sm:pl-8">
-      <!-- Línea vertical conectora continua -->
-      <div class="absolute left-4.5 sm:left-5 top-5 bottom-6 w-1 bg-[#33bb9c] -translate-x-1/2 rounded-full"></div>
+    <!-- Timeline con línea vertical continua y 3 tarjetas -->
+    <div class="relative pl-7">
+      <div class="absolute left-4.5 top-5 bottom-6 w-1 bg-[#33bb9c] -translate-x-1/2 rounded-full"></div>
 
       <!-- PASO 1: Cotiza -->
-      <div class="relative flex items-center gap-3 sm:gap-5 mb-4 sm:mb-5">
-        <!-- Número 1 en círculo sobre la línea -->
-        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#00394b] text-white font-black text-base sm:text-lg flex items-center justify-center shrink-0 z-10 shadow-md ring-4 ring-[#f8fdfb]">
+      <div class="relative flex items-center gap-3 mb-4">
+        <div class="w-9 h-9 rounded-full bg-[#00394b] text-white font-black text-base flex items-center justify-center shrink-0 z-10 shadow-md ring-4 ring-[#f8fafc]">
           1
         </div>
-
-        <!-- Tarjeta Paso 1 -->
-        <div class="flex-1 bg-white rounded-[22px] sm:rounded-[28px] p-3.5 sm:p-5 border border-slate-100 shadow-lg shadow-[#00394b]/5 flex flex-row items-center gap-3 sm:gap-5 hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300">
-          <div class="w-20 sm:w-28 md:w-32 shrink-0 flex items-center justify-center">
-            <img
-              src="/how-it-works-step1.png"
-              alt="Paso 1: Cotiza"
-              class="w-full h-auto object-contain drop-shadow-xs"
-            />
+        <div class="flex-1 bg-white rounded-[22px] p-3.5 border border-slate-100 shadow-lg shadow-[#00394b]/5 flex flex-row items-center gap-3 hover:-translate-y-0.5 transition-all">
+          <div class="w-20 shrink-0 flex items-center justify-center">
+            <img src="/how-it-works-step1.png" alt="Paso 1: Cotiza" class="w-full h-auto object-contain drop-shadow-xs" />
           </div>
           <div class="flex-1 min-w-0 text-left">
-            <h3 class="text-lg sm:text-xl md:text-2xl font-black text-[#00394b] font-display leading-tight">
-              Cotiza
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-600 font-normal leading-snug sm:leading-relaxed mt-1">
+            <h3 class="text-lg font-black text-[#00394b] font-display leading-tight">Cotiza</h3>
+            <p class="text-xs text-slate-600 font-normal leading-snug mt-1">
               Usa la calculadora para saber cuánto recibirás.
             </p>
           </div>
@@ -68,26 +88,17 @@
       </div>
 
       <!-- PASO 2: Transfiere -->
-      <div class="relative flex items-center gap-3 sm:gap-5 mb-4 sm:mb-5">
-        <!-- Número 2 en círculo sobre la línea -->
-        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#00394b] text-white font-black text-base sm:text-lg flex items-center justify-center shrink-0 z-10 shadow-md ring-4 ring-[#f8fdfb]">
+      <div class="relative flex items-center gap-3 mb-4">
+        <div class="w-9 h-9 rounded-full bg-[#00394b] text-white font-black text-base flex items-center justify-center shrink-0 z-10 shadow-md ring-4 ring-[#f8fafc]">
           2
         </div>
-
-        <!-- Tarjeta Paso 2 -->
-        <div class="flex-1 bg-white rounded-[22px] sm:rounded-[28px] p-3.5 sm:p-5 border border-slate-100 shadow-lg shadow-[#00394b]/5 flex flex-row items-center gap-3 sm:gap-5 hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300">
-          <div class="w-20 sm:w-28 md:w-32 shrink-0 flex items-center justify-center">
-            <img
-              src="/how-it-works-step2.png"
-              alt="Paso 2: Transfiere"
-              class="w-full h-auto object-contain drop-shadow-xs"
-            />
+        <div class="flex-1 bg-white rounded-[22px] p-3.5 border border-slate-100 shadow-lg shadow-[#00394b]/5 flex flex-row items-center gap-3 hover:-translate-y-0.5 transition-all">
+          <div class="w-20 shrink-0 flex items-center justify-center">
+            <img src="/how-it-works-step2.png" alt="Paso 2: Transfiere" class="w-full h-auto object-contain drop-shadow-xs" />
           </div>
           <div class="flex-1 min-w-0 text-left">
-            <h3 class="text-lg sm:text-xl md:text-2xl font-black text-[#00394b] font-display leading-tight">
-              Transfiere
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-600 font-normal leading-snug sm:leading-relaxed mt-1">
+            <h3 class="text-lg font-black text-[#00394b] font-display leading-tight">Transfiere</h3>
+            <p class="text-xs text-slate-600 font-normal leading-snug mt-1">
               Deposita desde tu banco a una de nuestras cuentas verificadas.
             </p>
           </div>
@@ -95,52 +106,145 @@
       </div>
 
       <!-- PASO 3: Recibe -->
-      <div class="relative flex items-center gap-3 sm:gap-5">
-        <!-- Número 3 en círculo sobre la línea -->
-        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#00394b] text-white font-black text-base sm:text-lg flex items-center justify-center shrink-0 z-10 shadow-md ring-4 ring-[#f8fdfb]">
+      <div class="relative flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-[#00394b] text-white font-black text-base flex items-center justify-center shrink-0 z-10 shadow-md ring-4 ring-[#f8fafc]">
           3
         </div>
-
-        <!-- Tarjeta Paso 3 -->
-        <div class="flex-1 bg-white rounded-[22px] sm:rounded-[28px] p-3.5 sm:p-5 border border-slate-100 shadow-lg shadow-[#00394b]/5 flex flex-row items-center gap-3 sm:gap-5 hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300">
-          <div class="w-20 sm:w-28 md:w-32 shrink-0 flex items-center justify-center">
-            <img
-              src="/how-it-works-step3.png"
-              alt="Paso 3: Recibe"
-              class="w-full h-auto object-contain drop-shadow-xs"
-            />
+        <div class="flex-1 bg-white rounded-[22px] p-3.5 border border-slate-100 shadow-lg shadow-[#00394b]/5 flex flex-row items-center gap-3 hover:-translate-y-0.5 transition-all">
+          <div class="w-20 shrink-0 flex items-center justify-center">
+            <img src="/how-it-works-step3.png" alt="Paso 3: Recibe" class="w-full h-auto object-contain drop-shadow-xs" />
           </div>
           <div class="flex-1 min-w-0 text-left">
-            <h3 class="text-lg sm:text-xl md:text-2xl font-black text-[#00394b] font-display leading-tight">
-              Recibe
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-600 font-normal leading-snug sm:leading-relaxed mt-1">
+            <h3 class="text-lg font-black text-[#00394b] font-display leading-tight">Recibe</h3>
+            <p class="text-xs text-slate-600 font-normal leading-snug mt-1">
               Recibe tu cambio en la cuenta que elijas, en un promedio de 15 minutos.
             </p>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Botón CTA Inferior (Exacto a maqueta) -->
-    <div class="mt-6 sm:mt-8">
-      <a
-        href="#calculator"
-        class="flex w-full items-center justify-center gap-2.5 rounded-2xl bg-[#18a796] hover:bg-[#139a89] py-4 px-6 text-base sm:text-lg font-black text-white shadow-xl shadow-[#18a796]/25 hover:shadow-2xl hover:scale-[1.01] active:scale-[0.99] transition-all no-underline cursor-pointer border-none"
-      >
-        <span>Cotizar mi cambio</span>
-        <svg class="w-5 h-5 fill-none stroke-current stroke-2.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-        </svg>
-      </a>
+  <!-- ========================================== -->
+  <!-- VISTA TABLET Y PC (hidden md:block): Versión original horizontal -->
+  <!-- ========================================== -->
+  <div class="hidden md:block relative mx-auto w-full max-w-6xl px-6 lg:px-8 z-10">
+    <!-- Encabezado Principal -->
+    <div
+      shared-view-port="animate-soft-rise"
+      hiddenClasses="opacity-0"
+      [delay]="80"
+      class="mx-auto max-w-3xl text-center mb-16"
+    >
+      <div class="relative inline-block">
+        <!-- Destellos decorativos a la izquierda -->
+        <div class="absolute -top-3 -left-8 sm:-left-10 text-[#33bb9c]">
+          <svg class="w-6 h-6 sm:w-8 sm:h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round">
+            <line x1="24" y1="8" x2="8" y2="16"/>
+            <line x1="24" y1="24" x2="8" y2="16"/>
+          </svg>
+        </div>
+
+        <!-- Destellos decorativos a la derecha -->
+        <div class="absolute -top-3 -right-8 sm:-right-10 text-[#33bb9c]">
+          <svg class="w-6 h-6 sm:w-8 sm:h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+            <line x1="16" y1="4" x2="16" y2="10"/>
+            <line x1="6" y1="8" x2="11" y2="13"/>
+            <line x1="26" y1="8" x2="21" y2="13"/>
+          </svg>
+        </div>
+
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-[#00394b] font-display">
+          Cambia con <span class="text-[#00394b]">fazilito</span><br />
+          <span class="text-[#18a796]">en 3 pasos</span>
+        </h2>
+      </div>
+
+      <!-- Divisor redondeado -->
+      <div class="mx-auto mt-4 mb-3 h-1.5 w-16 rounded-full bg-[#33bb9c]"></div>
+
+      <div class="flex items-center justify-center gap-2.5 mt-2">
+        <span class="text-xl sm:text-2xl lg:text-3xl font-black text-[#00394b] font-display">¿Cómo funciona</span>
+        <img src="/fazilito-logo.png" alt="fazilito" class="h-7 sm:h-8 lg:h-9 w-auto object-contain inline-block" />
+        <span class="text-xl sm:text-2xl lg:text-3xl font-black text-[#00394b] font-display">?</span>
+      </div>
+
+      <p class="mt-3 text-sm sm:text-base leading-relaxed text-slate-600 max-w-xl mx-auto font-normal">
+        Rápido, seguro y sin complicaciones.
+      </p>
     </div>
 
+    <!-- 3 Pasos con tarjetas e ilustraciones (3 en línea horizontal) -->
+    <div class="relative mx-auto max-w-5xl">
+      <!-- Flechas curvas conectoras -->
+      <div class="absolute top-[110px] left-0 right-0 w-full pointer-events-none z-0">
+        <svg class="absolute left-[27%] top-0 w-24 h-12 text-[#18a796]" viewBox="0 0 100 40" fill="none">
+          <path d="M 5 30 Q 50 -10 90 20" stroke="#18a796" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+          <polygon points="90,14 96,22 86,24" fill="#18a796" />
+        </svg>
+
+        <svg class="absolute left-[61%] top-0 w-24 h-12 text-[#18a796]" viewBox="0 0 100 40" fill="none">
+          <path d="M 5 30 Q 50 -10 90 20" stroke="#18a796" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+          <polygon points="90,14 96,22 86,24" fill="#18a796" />
+        </svg>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 lg:gap-8 items-stretch relative z-10">
+        <!-- PASO 1: Cotiza -->
+        <div class="flex flex-col items-center flex-1">
+          <div class="relative w-full h-44 md:h-56 lg:h-60 flex items-center justify-center pb-3">
+            <img src="/how-it-works-step1.png" alt="Paso 1: Cotiza en fazilito" class="w-44 md:w-56 h-auto object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm" />
+          </div>
+          <div class="relative w-full bg-white rounded-3xl p-5 md:p-6 lg:p-7 shadow-lg shadow-[#00394b]/5 border border-slate-100 flex-1 flex flex-col justify-start">
+            <div class="absolute -top-4 -left-3 w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#00394b] text-white font-black text-base md:text-lg flex items-center justify-center shadow-md ring-4 ring-[#f8fafc]">
+              1
+            </div>
+            <h3 class="mt-1 text-xl md:text-2xl font-black text-[#00394b] font-display">Cotiza</h3>
+            <p class="mt-2 text-xs md:text-sm leading-relaxed text-slate-600 font-normal">
+              Usa nuestra calculadora para saber cuánto recibirás. Obtén el mejor tipo de cambio en tiempo real.
+            </p>
+          </div>
+        </div>
+
+        <!-- PASO 2: Transfiere -->
+        <div class="flex flex-col items-center flex-1">
+          <div class="relative w-full h-44 md:h-56 lg:h-60 flex items-center justify-center pb-3">
+            <img src="/how-it-works-step2.png" alt="Paso 2: Transfiere a fazilito" class="w-44 md:w-56 h-auto object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm" />
+          </div>
+          <div class="relative w-full bg-white rounded-3xl p-5 md:p-6 lg:p-7 shadow-lg shadow-[#00394b]/5 border border-slate-100 flex-1 flex flex-col justify-start">
+            <div class="absolute -top-4 -left-3 w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#00394b] text-white font-black text-base md:text-lg flex items-center justify-center shadow-md ring-4 ring-[#f8fafc]">
+              2
+            </div>
+            <h3 class="mt-1 text-xl md:text-2xl font-black text-[#00394b] font-display">Transfiere</h3>
+            <p class="mt-2 text-xs md:text-sm leading-relaxed text-slate-600 font-normal">
+              Realiza el depósito desde tu banco a nuestras cuentas verificadas. Te compartimos todos los detalles de forma segura.
+            </p>
+          </div>
+        </div>
+
+        <!-- PASO 3: Recibe -->
+        <div class="flex flex-col items-center flex-1">
+          <div class="relative w-full h-44 md:h-56 lg:h-60 flex items-center justify-center pb-3">
+            <img src="/how-it-works-step3.png" alt="Paso 3: Recibe tu cambio con fazilito" class="w-44 md:w-56 h-auto object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm" />
+          </div>
+          <div class="relative w-full bg-white rounded-3xl p-5 md:p-6 lg:p-7 shadow-lg shadow-[#00394b]/5 border border-slate-100 flex-1 flex flex-col justify-start">
+            <div class="absolute -top-4 -left-3 w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#00394b] text-white font-black text-base md:text-lg flex items-center justify-center shadow-md ring-4 ring-[#f8fafc]">
+              3
+            </div>
+            <h3 class="mt-1 text-xl md:text-2xl font-black text-[#00394b] font-display">Recibe</h3>
+            <p class="mt-2 text-xs md:text-sm leading-relaxed text-slate-600 font-normal">
+              Enviamos tu cambio a la cuenta que elijas en un promedio de 15 minutos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ¿Por qué cambiar con fazilito? -->
-<section class="relative overflow-hidden bg-gradient-to-b from-[#f8fafc] via-[#f0fdfa]/30 to-white py-16 sm:py-24">
-  <!-- Background Floating 3D Orbs & Dotted Orbital Path -->
+<section class="relative overflow-hidden bg-gradient-to-b from-[#f8fafc] via-[#f0fdfa]/30 to-white py-14 sm:py-20 md:py-24 font-gotham">
+  <!-- Background Floating 3D Orbs & Dotted Orbital Path for Desktop -->
   <div class="pointer-events-none absolute -left-12 top-24 w-32 h-32 rounded-full bg-gradient-to-br from-[#33bb9c] to-[#18a796] opacity-30 blur-sm hidden lg:block"></div>
   <div class="pointer-events-none absolute left-36 top-48 w-10 h-10 rounded-full bg-gradient-to-br from-[#33bb9c] to-[#18a796] opacity-60 shadow-lg shadow-[#18a796]/30 hidden lg:block"></div>
   
@@ -154,58 +258,45 @@
     </svg>
   </div>
 
-  <div class="relative z-10 mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
-    
+  <!-- ========================================== -->
+  <!-- VISTA MÓVIL (block md:hidden): Diseño Maqueta Beneficios -->
+  <!-- ========================================== -->
+  <div class="block md:hidden relative z-10 mx-auto w-full max-w-4xl px-4">
     <!-- Encabezado Principal de Beneficios (Exacto a maqueta) -->
     <div
       shared-view-port="animate-soft-rise"
       hiddenClasses="opacity-0"
       [delay]="80"
-      class="text-left mb-8 sm:mb-10"
+      class="text-left mb-8"
     >
-      <!-- Eyebrow Tag -->
-      <span class="text-[#18a796] text-xs sm:text-sm font-extrabold tracking-widest uppercase block mb-2">
+      <span class="text-[#18a796] text-xs font-extrabold tracking-widest uppercase block mb-2">
         BENEFICIOS FAZILITO
       </span>
-
-      <!-- Main Title -->
-      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-[#00394b] font-display">
+      <h2 class="text-4xl font-black tracking-tight leading-[1.08] text-[#00394b] font-display">
         Cambia <span class="text-[#33bb9c]">fácil.</span><br />
         Cambia <span class="text-[#33bb9c]">seguro.</span>
       </h2>
-
-      <!-- Trazo / Píldora redondeada inferior debajo de Cambia -->
-      <div class="w-16 sm:w-20 h-1.5 sm:h-2 rounded-full bg-[#33bb9c] mt-2 sm:mt-2.5 mb-2.5 sm:mb-3"></div>
-
-      <!-- Subtitle -->
-      <p class="text-sm sm:text-base lg:text-lg text-slate-600 font-normal leading-relaxed">
+      <div class="w-16 h-1.5 rounded-full bg-[#33bb9c] mt-2 mb-2.5"></div>
+      <p class="text-sm text-slate-600 font-normal leading-relaxed">
         Tres ventajas para tu próximo cambio.
       </p>
     </div>
 
-    <!-- 3 Tarjetas de Beneficios (Exacto a maqueta móvil y responsivo) -->
-    <div class="flex flex-col gap-4 sm:gap-5">
-
+    <!-- 3 Tarjetas de Beneficios Móviles -->
+    <div class="flex flex-col gap-4">
       <!-- Beneficio 1: Alertas de tipo de cambio -->
-      <div class="relative bg-white rounded-[26px] sm:rounded-[32px] p-5 sm:p-7 border border-slate-100/90 shadow-lg shadow-[#00394b]/5 flex flex-row items-center justify-between gap-3 sm:gap-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 overflow-hidden group">
-        <!-- Glow suave detrás de la ilustración -->
+      <div class="relative bg-white rounded-[26px] p-5 border border-slate-100/90 shadow-lg shadow-[#00394b]/5 flex flex-row items-center justify-between gap-3 hover:-translate-y-1 transition-all overflow-hidden group">
         <div class="pointer-events-none absolute -right-6 -bottom-6 w-36 h-36 rounded-full bg-[#18a796]/10 blur-2xl"></div>
-
-        <!-- Columna Izquierda: Título + Línea + Texto -->
         <div class="flex-1 min-w-0 text-left z-10">
-          <h3 class="text-xl sm:text-2xl lg:text-[26px] font-black text-[#00394b] font-display leading-tight">
+          <h3 class="text-xl font-black text-[#00394b] font-display leading-tight">
             Alertas de tipo<br />de cambio
           </h3>
-          <!-- Barra pequeña turquesa -->
           <div class="w-8 h-1 bg-[#18a796] rounded-full mt-1.5 mb-2.5"></div>
-
-          <p class="text-xs sm:text-sm lg:text-[15px] leading-relaxed text-slate-600 font-normal">
+          <p class="text-xs leading-relaxed text-slate-600 font-normal">
             Te avisamos cuando el cambio llegue al valor que buscas.
           </p>
         </div>
-
-        <!-- Columna Derecha: Ilustración 3D Oficial en Podio -->
-        <div class="w-36 sm:w-44 md:w-52 shrink-0 flex items-center justify-center -mr-2 sm:mr-0 z-10">
+        <div class="w-36 shrink-0 flex items-center justify-center -mr-2 z-10">
           <img
             src="/benefit-alerts.png"
             alt="Alertas de tipo de cambio"
@@ -215,25 +306,18 @@
       </div>
 
       <!-- Beneficio 2: TC Preferencial -->
-      <div class="relative bg-white rounded-[26px] sm:rounded-[32px] p-5 sm:p-7 border border-slate-100/90 shadow-lg shadow-[#00394b]/5 flex flex-row items-center justify-between gap-3 sm:gap-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 overflow-hidden group">
-        <!-- Glow suave detrás de la ilustración -->
+      <div class="relative bg-white rounded-[26px] p-5 border border-slate-100/90 shadow-lg shadow-[#00394b]/5 flex flex-row items-center justify-between gap-3 hover:-translate-y-1 transition-all overflow-hidden group">
         <div class="pointer-events-none absolute -right-6 -bottom-6 w-36 h-36 rounded-full bg-[#18a796]/10 blur-2xl"></div>
-
-        <!-- Columna Izquierda: Título + Línea + Texto -->
         <div class="flex-1 min-w-0 text-left z-10">
-          <h3 class="text-xl sm:text-2xl lg:text-[26px] font-black text-[#00394b] font-display leading-tight">
+          <h3 class="text-xl font-black text-[#00394b] font-display leading-tight">
             Tipo de cambio<br />preferencial
           </h3>
-          <!-- Barra pequeña turquesa -->
           <div class="w-8 h-1 bg-[#18a796] rounded-full mt-1.5 mb-2.5"></div>
-
-          <p class="text-xs sm:text-sm lg:text-[15px] leading-relaxed text-slate-600 font-normal">
+          <p class="text-xs leading-relaxed text-slate-600 font-normal">
             Accede a una tasa especial para montos mayores.
           </p>
         </div>
-
-        <!-- Columna Derecha: Ilustración 3D Oficial en Podio -->
-        <div class="w-36 sm:w-44 md:w-52 shrink-0 flex items-center justify-center -mr-2 sm:mr-0 z-10">
+        <div class="w-36 shrink-0 flex items-center justify-center -mr-2 z-10">
           <img
             src="/benefit-preferential.png"
             alt="Tipo de cambio preferencial"
@@ -243,25 +327,165 @@
       </div>
 
       <!-- Beneficio 3: Atención por WhatsApp -->
-      <div class="relative bg-white rounded-[26px] sm:rounded-[32px] p-5 sm:p-7 border border-slate-100/90 shadow-lg shadow-[#00394b]/5 flex flex-row items-center justify-between gap-3 sm:gap-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 overflow-hidden group">
-        <!-- Glow suave detrás de la ilustración -->
+      <div class="relative bg-white rounded-[26px] p-5 border border-slate-100/90 shadow-lg shadow-[#00394b]/5 flex flex-row items-center justify-between gap-3 hover:-translate-y-1 transition-all overflow-hidden group">
         <div class="pointer-events-none absolute -right-6 -bottom-6 w-36 h-36 rounded-full bg-[#18a796]/10 blur-2xl"></div>
-
-        <!-- Columna Izquierda: Título + Línea + Texto -->
         <div class="flex-1 min-w-0 text-left z-10">
-          <h3 class="text-xl sm:text-2xl lg:text-[26px] font-black text-[#00394b] font-display leading-tight">
+          <h3 class="text-xl font-black text-[#00394b] font-display leading-tight">
             Atención por<br />WhatsApp
           </h3>
-          <!-- Barra pequeña turquesa -->
           <div class="w-8 h-1 bg-[#18a796] rounded-full mt-1.5 mb-2.5"></div>
-
-          <p class="text-xs sm:text-sm lg:text-[15px] leading-relaxed text-slate-600 font-normal">
+          <p class="text-xs leading-relaxed text-slate-600 font-normal">
             Te ayudamos en cada paso de tu operación.
+          </p>
+        </div>
+        <div class="w-36 shrink-0 flex items-center justify-center -mr-2 z-10">
+          <img
+            src="/benefit-whatsapp.png"
+            alt="Atención por WhatsApp"
+            class="w-full h-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- VISTA TABLET Y PC (hidden md:block): Versión original horizontal -->
+  <!-- ========================================== -->
+  <div class="hidden md:block relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-8">
+    <!-- Encabezado Principal de Beneficios -->
+    <div
+      shared-view-port="animate-soft-rise"
+      hiddenClasses="opacity-0"
+      [delay]="80"
+      class="mx-auto max-w-3xl text-center mb-16"
+    >
+      <div class="relative inline-block">
+        <!-- Destellos decorativos superior izquierdo (3 marcas mint) -->
+        <div class="absolute -top-5 -left-8 text-[#33bb9c]">
+          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+            <line x1="16" y1="2" x2="16" y2="9"/>
+            <line x1="26" y1="6" x2="20" y2="12"/>
+            <line x1="6" y1="6" x2="12" y2="12"/>
+          </svg>
+        </div>
+
+        <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-[#00394b] font-display">
+          Cambia <span class="text-[#18a796]">fácil.</span><br />
+          Cambia <span class="text-[#18a796]">seguro.</span>
+        </h2>
+
+        <!-- Trazo / Píldora redondeada inferior debajo de seguro -->
+        <div class="mx-auto mt-2 h-2 w-32 sm:w-40 rounded-full bg-[#33bb9c]"></div>
+      </div>
+
+      <div class="flex items-center justify-center gap-2 mt-5">
+        <span class="text-2xl sm:text-3xl font-black text-[#00394b] font-display">¿Por qué cambiar con</span>
+        <img src="/fazilito-logo.png" alt="fazilito" class="h-7 sm:h-8 w-auto object-contain inline-block" />
+        <span class="text-2xl sm:text-3xl font-black text-[#00394b] font-display">?</span>
+      </div>
+
+      <p class="mt-2.5 text-sm sm:text-base leading-relaxed text-slate-600 max-w-xl mx-auto font-normal">
+        Descubre los beneficios que hacen tus operaciones más cómodas, rápidas y seguras.
+      </p>
+    </div>
+
+    <!-- 3 Tarjetas de Beneficios (Tablet y PC: 3 en línea horizontal) -->
+    <div class="grid grid-cols-3 gap-5 md:gap-6 lg:gap-7 items-stretch max-w-6xl mx-auto">
+
+      <!-- Beneficio 1: Alertas de tipo de cambio -->
+      <div class="relative bg-gradient-to-br from-white via-white to-[#f0fdfa]/70 rounded-3xl p-5 md:p-5 lg:p-7 border border-slate-100/90 shadow-xl shadow-[#00394b]/5 flex flex-col lg:flex-row items-center justify-between gap-3 lg:gap-4 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+        <!-- Glow suave detrás de la ilustración -->
+        <div class="pointer-events-none absolute -right-6 -bottom-6 w-32 lg:w-44 h-32 lg:h-44 rounded-full bg-[#18a796]/10 blur-2xl"></div>
+
+        <!-- Columna Izquierda: Icono + Título + Línea + Texto -->
+        <div class="flex-1 min-w-0 text-left z-10 w-full">
+          <!-- Icono Cuadrado Menta -->
+          <div class="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-[#e6f7f5] text-[#18a796] flex items-center justify-center mb-3 shadow-xs">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+
+          <h3 class="text-base md:text-lg lg:text-xl font-black text-[#00394b] font-display leading-tight mb-2">
+            Alertas de<br />tipo de cambio
+          </h3>
+          <div class="w-8 h-1 bg-[#18a796] rounded-full mb-2.5"></div>
+
+          <p class="text-xs md:text-xs lg:text-[13px] leading-relaxed text-slate-600 font-normal">
+            Te avisamos cuando el tipo de cambio llegue al valor que buscas. Activa tu alerta y mantente informado al instante.
           </p>
         </div>
 
         <!-- Columna Derecha: Ilustración 3D Oficial en Podio -->
-        <div class="w-36 sm:w-44 md:w-52 shrink-0 flex items-center justify-center -mr-2 sm:mr-0 z-10">
+        <div class="w-28 md:w-28 lg:w-40 shrink-0 flex items-center justify-center mt-2 lg:mt-0 z-10">
+          <img
+            src="/benefit-alerts.png"
+            alt="Alertas de tipo de cambio"
+            class="w-full h-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      </div>
+
+      <!-- Beneficio 2: TC Preferencial -->
+      <div class="relative bg-gradient-to-br from-white via-white to-[#f0fdfa]/70 rounded-3xl p-5 md:p-5 lg:p-7 border border-slate-100/90 shadow-xl shadow-[#00394b]/5 flex flex-col lg:flex-row items-center justify-between gap-3 lg:gap-4 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+        <!-- Glow suave detrás de la ilustración -->
+        <div class="pointer-events-none absolute -right-6 -bottom-6 w-32 lg:w-44 h-32 lg:h-44 rounded-full bg-[#18a796]/10 blur-2xl"></div>
+
+        <!-- Columna Izquierda: Icono + Título + Línea + Texto -->
+        <div class="flex-1 min-w-0 text-left z-10 w-full">
+          <!-- Icono Cuadrado Menta Porcentaje -->
+          <div class="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-[#e6f7f5] text-[#18a796] flex items-center justify-center mb-3 shadow-xs font-black text-lg lg:text-xl">
+            %
+          </div>
+
+          <h3 class="text-base md:text-lg lg:text-xl font-black text-[#00394b] font-display leading-tight mb-2">
+            TC<br />Preferencial
+          </h3>
+          <div class="w-8 h-1 bg-[#18a796] rounded-full mb-2.5"></div>
+
+          <p class="text-xs md:text-xs lg:text-[13px] leading-relaxed text-slate-600 font-normal">
+            Obtén un <strong>tipo de cambio preferencial</strong> para montos mayores y operaciones especiales.
+          </p>
+        </div>
+
+        <!-- Columna Derecha: Ilustración 3D Oficial en Podio -->
+        <div class="w-28 md:w-28 lg:w-40 shrink-0 flex items-center justify-center mt-2 lg:mt-0 z-10">
+          <img
+            src="/benefit-preferential.png"
+            alt="Tipo de Cambio Preferencial"
+            class="w-full h-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      </div>
+
+      <!-- Beneficio 3: Atención por WhatsApp -->
+      <div class="relative bg-gradient-to-br from-white via-white to-[#f0fdfa]/70 rounded-3xl p-5 md:p-5 lg:p-7 border border-slate-100/90 shadow-xl shadow-[#00394b]/5 flex flex-col lg:flex-row items-center justify-between gap-3 lg:gap-4 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+        <!-- Glow suave detrás de la ilustración -->
+        <div class="pointer-events-none absolute -right-6 -bottom-6 w-32 lg:w-44 h-32 lg:h-44 rounded-full bg-[#18a796]/10 blur-2xl"></div>
+
+        <!-- Columna Izquierda: Icono + Título + Línea + Texto -->
+        <div class="flex-1 min-w-0 text-left z-10 w-full">
+          <!-- Icono Cuadrado Menta WhatsApp -->
+          <div class="w-10 h-10 lg:w-11 lg:h-11 rounded-xl bg-[#e6f7f5] text-[#25D366] flex items-center justify-center mb-3 shadow-xs">
+            <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+          </div>
+
+          <h3 class="text-base md:text-lg lg:text-xl font-black text-[#00394b] font-display leading-tight mb-2">
+            Atención<br />por WhatsApp
+          </h3>
+          <div class="w-8 h-1 bg-[#18a796] rounded-full mb-2.5"></div>
+
+          <p class="text-xs md:text-xs lg:text-[13px] leading-relaxed text-slate-600 font-normal">
+            Resolvemos tus dudas y te acompañamos en cada paso por WhatsApp, de forma rápida y personalizada.
+          </p>
+        </div>
+
+        <!-- Columna Derecha: Ilustración 3D Oficial en Podio -->
+        <div class="w-28 md:w-28 lg:w-40 shrink-0 flex items-center justify-center mt-2 lg:mt-0 z-10">
           <img
             src="/benefit-whatsapp.png"
             alt="Atención por WhatsApp"
