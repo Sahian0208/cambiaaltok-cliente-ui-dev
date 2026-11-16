@@ -1,414 +1,499 @@
-<section class="bank-promo-shell relative z-30 -mt-4 sm:-mt-6 lg:-mt-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 font-gotham">
-  <!-- Main Banks Card (matching design in user screenshot) -->
-  <div class="bg-white rounded-3xl shadow-[0_12px_40px_rgba(0,43,55,0.08)] border border-slate-100/90 py-5 sm:py-6 px-4 sm:px-8 relative z-20 transition-all">
-    
-    <div class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-7">
-      
-      <!-- Left: 15 MIN Clock Icon -->
-      <div class="shrink-0 flex items-center justify-center pt-0 md:pt-1">
-        <svg class="w-16 h-16 sm:w-20 sm:h-20 select-none" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Dotted bottom arc -->
-          <circle cx="40" cy="40" r="30" stroke="#002b37" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round" />
-          <!-- Solid top arc with arrow -->
-          <path d="M 18 48 A 30 30 0 1 1 68 33" stroke="#002b37" stroke-width="3.2" stroke-linecap="round" fill="none" />
-          <polygon points="68,25 75,33 65,36" fill="#002b37" />
-          <!-- Center numbers: 15 MIN. -->
-          <text x="40" y="38" text-anchor="middle" font-family="'Gotham', 'Montserrat', sans-serif" font-weight="900" font-size="20" fill="#002b37">15</text>
-          <text x="40" y="50" text-anchor="middle" font-family="'Gotham', 'Montserrat', sans-serif" font-weight="800" font-size="8.5" letter-spacing="0.8" fill="#002b37">MIN.</text>
-        </svg>
-      </div>
-
-      <!-- Right: Main Content (Title, Rows of Banks, T&C) -->
-      <div class="flex-1 w-full flex flex-col items-center md:items-start text-center md:text-left">
-        
-        <!-- Header row with Title and Country Toggle -->
-        <div class="w-full flex flex-col sm:flex-row items-center justify-between gap-2.5 mb-3 sm:mb-4">
-          <h3 class="text-base sm:text-lg font-black text-[#002b37] tracking-tight leading-none m-0">
-            Transferencias Inmediatas (15 min.)
-          </h3>
-
-          <!-- Country selector pills (defaults to Perú matching mockup) -->
-          <div class="inline-flex items-center bg-slate-100/90 p-0.5 rounded-full border border-slate-200/80 shadow-2xs">
-            <button
-              type="button"
-              (click)="selectedCountry.set('peru')"
-              [ngClass]="selectedCountry() === 'peru' ? 'bg-[#002b37] text-white shadow-xs font-bold' : 'text-slate-500 hover:text-slate-800 font-medium'"
-              class="px-3 py-1 rounded-full text-xs transition-all border-none cursor-pointer flex items-center gap-1.5"
-            >
-              <span>🇵🇪 Perú</span>
-            </button>
-            <button
-              type="button"
-              (click)="selectedCountry.set('bolivia')"
-              [ngClass]="selectedCountry() === 'bolivia' ? 'bg-[#002b37] text-white shadow-xs font-bold' : 'text-slate-500 hover:text-slate-800 font-medium'"
-              class="px-3 py-1 rounded-full text-xs transition-all border-none cursor-pointer flex items-center gap-1.5"
-            >
-              <span>🇧🇴 Bolivia</span>
-            </button>
-          </div>
-        </div>
-
-        @if (selectedCountry() === 'peru') {
-          <!-- PERU BANKS -->
-          <!-- Row 1: Primary Banks (BCP | Interbank | BanBif | Pichincha) -->
-          <div class="w-full flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-4 sm:gap-2 lg:gap-3 py-1">
-            
-            <!-- BCP -->
-            <div class="flex flex-col items-center justify-center text-center px-2 sm:px-3">
-              <div class="h-8 sm:h-9 flex items-center justify-center">
-                <img src="/img/banks/pe/logo-bcp-new.svg" alt="BCP" class="h-6 sm:h-7 w-auto object-contain" />
-              </div>
-              <span class="text-[10px] sm:text-[11px] font-semibold text-slate-500 mt-1 whitespace-nowrap">Todo el Perú</span>
-            </div>
-
-            <!-- Divider -->
-            <div class="hidden sm:block h-9 w-[1px] bg-slate-200 self-center mx-1 lg:mx-3"></div>
-
-            <!-- Interbank -->
-            <div class="flex flex-col items-center justify-center text-center px-2 sm:px-3">
-              <div class="h-8 sm:h-9 flex items-center justify-center">
-                <img src="/img/banks/pe/logo-interbank-new.svg" alt="Interbank" class="h-6 sm:h-7 w-auto object-contain" />
-              </div>
-              <span class="text-[10px] sm:text-[11px] font-semibold text-slate-500 mt-1 whitespace-nowrap">Todo el Perú</span>
-            </div>
-
-            <!-- Divider -->
-            <div class="hidden sm:block h-9 w-[1px] bg-slate-200 self-center mx-1 lg:mx-3"></div>
-
-            <!-- BanBif -->
-            <div class="flex flex-col items-center justify-center text-center px-2 sm:px-3">
-              <div class="h-8 sm:h-9 flex items-center justify-center">
-                <span class="text-[#00A3E0] font-black text-xl sm:text-2xl tracking-tight leading-none">BanBif</span>
-              </div>
-              <span class="text-[10px] sm:text-[11px] font-semibold text-slate-500 mt-1 whitespace-nowrap">Solo Lima</span>
-            </div>
-
-            <!-- Divider -->
-            <div class="hidden sm:block h-9 w-[1px] bg-slate-200 self-center mx-1 lg:mx-3"></div>
-
-            <!-- BANCO PICHINCHA -->
-            <div class="flex flex-col items-center justify-center text-center px-2 sm:px-3">
-              <div class="h-8 sm:h-9 flex items-center justify-center gap-1.5">
-                <div class="w-5 h-5 rounded-xs bg-[#FFD200] flex items-center justify-center relative overflow-hidden shrink-0 shadow-2xs">
-                  <div class="w-2.5 h-2.5 border-t-2 border-r-2 border-black rotate-45 translate-x-[-1px] translate-y-[1px]"></div>
-                </div>
-                <div class="flex flex-col text-left leading-[1.05]">
-                  <span class="text-[8.5px] sm:text-[9.5px] font-black text-black tracking-tight">BANCO</span>
-                  <span class="text-[9.5px] sm:text-[10.5px] font-black text-black tracking-tight">PICHINCHA</span>
-                </div>
-              </div>
-              <span class="text-[10px] sm:text-[11px] font-semibold text-slate-500 mt-1 whitespace-nowrap leading-tight">
-                Solo Lima <br class="hidden sm:inline" /><span class="text-[9px] sm:text-[9.5px] text-slate-400 sm:text-slate-500">(Lunes a Viernes)</span>
-              </span>
-            </div>
-
-          </div>
-
-          <!-- Row 2: Secondary Banks (BBVA | Scotiabank | otros bancos) in soft grey container -->
-          <div class="w-full flex justify-center mt-3 sm:mt-4">
-            <div class="bg-[#F1F4F8] rounded-xl sm:rounded-2xl py-2 px-5 sm:px-7 inline-flex items-center justify-center gap-4 sm:gap-6 shadow-2xs">
-              
-              <!-- BBVA -->
-              <div class="flex flex-col items-center justify-center text-center">
-                <div class="h-7 sm:h-8 flex items-center justify-center">
-                  <img src="/img/banks/pe/logo-bbva-new.svg" alt="BBVA" class="h-5 sm:h-5.5 w-auto object-contain" />
-                </div>
-                <span class="text-[10px] sm:text-[11px] font-semibold text-slate-500 mt-0.5 whitespace-nowrap">Solo Lima</span>
-              </div>
-
-              <!-- Divider -->
-              <div class="h-7 w-[1px] bg-slate-300 self-center"></div>
-
-              <!-- Scotiabank -->
-              <div class="flex flex-col items-center justify-center text-center">
-                <div class="h-7 sm:h-8 flex items-center justify-center gap-1.5">
-                  <div class="w-5 h-5 rounded-full bg-[#EC111A] flex items-center justify-center shrink-0 shadow-2xs">
-                    <svg class="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <circle cx="12" cy="12" r="10" />
-                      <line x1="2" y1="12" x2="22" y2="12" />
-                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                    </svg>
-                  </div>
-                  <span class="text-[#EC111A] font-black text-sm sm:text-base tracking-tight leading-none">Scotiabank</span>
-                </div>
-                <span class="text-[10px] sm:text-[11px] font-semibold text-slate-500 mt-0.5 whitespace-nowrap">Solo Lima</span>
-              </div>
-
-              <!-- Divider -->
-              <div class="h-7 w-[1px] bg-slate-300 self-center"></div>
-
-              <!-- otros bancos -->
-              <div class="flex items-center justify-center text-center px-1">
-                <span class="text-xs sm:text-[13px] font-bold text-[#002b37] leading-tight">otros<br/>bancos</span>
-              </div>
-
-            </div>
-          </div>
-
-        } @else {
-          <!-- BOLIVIA BANKS -->
-          <!-- Row 1: Primary Banks (Banco Unión | BNB | Mercantil Santa Cruz | BISA) -->
-          <div class="w-full flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-4 sm:gap-2 lg:gap-3 py-1">
-            
-            <!-- Banco Unión -->
-            <div class="flex flex-col items-center justify-center text-center px-2 sm:px-3">
-              <div class="h-8 sm:h-9 flex items-center justify-center">
-                <img src="/img/banks/bo/logo-union-new.svg" alt="Banco Unión" class="h-7 sm:h-8 w-auto object-contain" />
-              </div>
-              <span class="text-[10px] sm:text-[11px] font-semibold text-slate-500 mt-1 whitespace-nowrap">Todo Bolivia</span>
-            </div>
-
-            <!-- Divider -->
-            <div class="hidden sm:block h-9 w-[1px] bg-slate-200 self-center mx-1 lg:mx-3"></div>
-
-            <!-- BNB -->
-            <div class="flex flex-col items-center justify-center text-center px-2 sm:px-3">
-              <div class="h-8 sm:h-9 flex items-center justify-center">
-                <img src="/img/banks/bo/logo-bnb-new.svg" alt="BNB" class="h-7 sm:h-8 w-auto object-contain" />
-              </div>
-              <span class="text-[10px] sm:text-[11px] font-semibold text-slate-500 mt-1 whitespace-nowrap">Todo Bolivia</span>
-            </div>
-
-            <!-- Divider -->
-            <div class="hidden sm:block h-9 w-[1px] bg-slate-200 self-center mx-1 lg:mx-3"></div>
-
-            <!-- Mercantil Santa Cruz -->
-            <div class="flex flex-col items-center justify-center text-center px-2 sm:px-3">
-              <div class="h-8 sm:h-9 flex items-center justify-center">
-                <img src="/img/banks/bo/logo-mercantil-new.svg" alt="Mercantil Santa Cruz" class="h-7 sm:h-8 w-auto object-contain" />
-              </div>
-              <span class="text-[10px] sm:text-[11px] font-semibold text-slate-500 mt-1 whitespace-nowrap">Todo Bolivia</span>
-            </div>
-
-            <!-- Divider -->
-            <div class="hidden sm:block h-9 w-[1px] bg-slate-200 self-center mx-1 lg:mx-3"></div>
-
-            <!-- Banco BISA -->
-            <div class="flex flex-col items-center justify-center text-center px-2 sm:px-3">
-              <div class="h-8 sm:h-9 flex items-center justify-center">
-                <span class="text-[#00529b] font-black text-xl sm:text-2xl tracking-tight leading-none">BISA</span>
-              </div>
-              <span class="text-[10px] sm:text-[11px] font-semibold text-slate-500 mt-1 whitespace-nowrap">Todo Bolivia</span>
-            </div>
-
-          </div>
-
-          <!-- Row 2: Secondary Banks (Banco Ganadero | Banco Económico | otros bancos) in soft grey container -->
-          <div class="w-full flex justify-center mt-3 sm:mt-4">
-            <div class="bg-[#F1F4F8] rounded-xl sm:rounded-2xl py-2 px-5 sm:px-7 inline-flex items-center justify-center gap-4 sm:gap-6 shadow-2xs">
-              
-              <!-- Banco Ganadero -->
-              <div class="flex flex-col items-center justify-center text-center">
-                <div class="h-7 sm:h-8 flex items-center justify-center">
-                  <span class="text-[#007A3D] font-extrabold text-sm sm:text-base tracking-tight">Ganadero</span>
-                </div>
-                <span class="text-[10px] sm:text-[11px] font-semibold text-slate-500 mt-0.5 whitespace-nowrap">Todo Bolivia</span>
-              </div>
-
-              <!-- Divider -->
-              <div class="h-7 w-[1px] bg-slate-300 self-center"></div>
-
-              <!-- Banco Económico -->
-              <div class="flex flex-col items-center justify-center text-center">
-                <div class="h-7 sm:h-8 flex items-center justify-center">
-                  <span class="text-[#E31B23] font-extrabold text-sm sm:text-base tracking-tight">Económico</span>
-                </div>
-                <span class="text-[10px] sm:text-[11px] font-semibold text-slate-500 mt-0.5 whitespace-nowrap">Todo Bolivia</span>
-              </div>
-
-              <!-- Divider -->
-              <div class="h-7 w-[1px] bg-slate-300 self-center"></div>
-
-              <!-- otros bancos -->
-              <div class="flex items-center justify-center text-center px-1">
-                <span class="text-xs sm:text-[13px] font-bold text-[#002b37] leading-tight">otros<br/>bancos</span>
-              </div>
-
-            </div>
-          </div>
-
-        }
-
-        <!-- Footer *Aplican T&C centered -->
-        <p class="text-[10.5px] sm:text-xs text-slate-400 font-medium text-center w-full mt-3 mb-0">
-          *Aplican T&C
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- Promotion Carousel -->
-  <div
-    class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 select-none transition-all duration-500"
-  >
-    <div
-      class="flex w-[200%] transition-transform duration-500 ease-out"
-      [style.transform]="'translateX(-' + activePromotionIndex() * 50 + '%)'"
+<section      
+      class="bank-promo-shell relative z-30 -mt-3 sm:-mt-5 lg:-mt-7 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 font-gotham"
     >
       <div
-        class="w-1/2 shrink-0 bg-gradient-to-r from-[#1E0B36] via-[#0F0526] to-[#040C1A] text-white py-3 px-6 md:py-3 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 relative min-h-[110px]"
+        class="banks-strip bg-white rounded-2xl shadow-xl border border-slate-100 py-3.5 px-5 md:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-5 lg:gap-6 relative z-20"
       >
-        <div
-          class="absolute -right-10 -top-10 w-48 h-48 bg-purple-500/25 rounded-full blur-3xl pointer-events-none"
-        ></div>
-        <div
-          class="absolute -left-10 -bottom-10 w-48 h-48 bg-pink-500/10 rounded-full blur-3xl pointer-events-none"
-        ></div>
 
+
+        <!-- Left: Bancos Perú (Centered layout) -->
         <div
-          class="flex-1 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 relative z-10 text-center md:text-left w-full"
+          class="w-full md:flex-1 md:min-w-0 flex flex-col items-center justify-center text-center gap-1"
         >
-          <div class="space-y-1 md:max-w-[70%]">
-            <h3
-              class="text-lg md:text-xl font-extrabold font-display leading-tight"
-            >
-              ¡Refiere y Gana
-              <span
-                class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300"
-                >S/. 15 en Efectivo</span
-              >!
-            </h3>
-            <p
-              class="text-xs md:text-[13px] text-slate-300 font-light leading-relaxed"
-            >
-              Comparte tu código de referido. Cuando tu amigo haga su primer
-              cambio, tú recibes S/. 15 de regalo y él obtiene una
-              cotización preferencial en su operación. ¡Todos ganan!
-            </p>
+          <div
+            class="flex items-center justify-center gap-1.5 text-xs lg:text-[13px] font-extrabold text-[#00394b] uppercase tracking-wider"
+          >
+            <svg class="w-3.5 h-2 rounded-sm shadow-sm" viewBox="0 0 3 2">
+              <rect width="1" height="2" fill="#d91414" />
+              <rect x="1" width="1" height="2" fill="#fff" />
+              <rect x="2" width="1" height="2" fill="#d91414" />
+            </svg>
+            <span class="whitespace-nowrap">Bancos Perú</span>
           </div>
-          <div class="shrink-0 flex justify-center md:justify-start">
-            <button
-              class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white font-black px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition duration-300 active:scale-95 shadow-lg shadow-purple-500/20 border-none cursor-pointer whitespace-nowrap"
+          <div
+            class="flex flex-wrap lg:flex-nowrap items-center justify-center gap-2.5 lg:gap-3 mt-0.5 w-full"
+          >
+            <div
+              class="flex items-center justify-center px-3.5 py-1.5 hover:scale-105 transition-all duration-300 h-11 sm:h-12 animate-fade-in shrink-0"
             >
-              Compartir Código
-            </button>
+              <img
+                src="/img/banks/pe/logo-bcp-new.svg"
+                alt="BCP"
+                class="h-6.5 sm:h-7 w-auto object-contain"
+              />
+            </div>
+            <div
+              class="flex items-center justify-center px-3.5 py-1.5 hover:scale-105 transition-all duration-300 h-11 sm:h-12 animate-fade-in shrink-0"
+            >
+              <img
+                src="/img/banks/pe/logo-interbank-new.svg"
+                alt="Interbank"
+                class="h-6.5 sm:h-7 w-auto object-contain"
+              />
+            </div>
+            <div
+              class="flex items-center justify-center px-3.5 py-1.5 hover:scale-105 transition-all duration-300 h-11 sm:h-12 animate-fade-in shrink-0"
+            >
+              <img
+                src="/img/banks/pe/logo-bbva-new.svg"
+                alt="BBVA"
+                class="h-6.5 sm:h-7 w-auto object-contain"
+              />
+            </div>
           </div>
         </div>
 
+        <!-- Center: 20 min Speed Badge (Enlarged) -->
         <div
-          class="relative w-24 h-24 shrink-0 z-10 flex items-center justify-center"
+          class="flex flex-col items-center justify-center shrink-0 px-3 md:px-5 lg:px-6 min-w-[160px] w-full md:w-[200px] lg:w-[220px]"
         >
-          <img
-            src="/mascota.png"
-            alt="Mascota Altok Promoción"
-            class="w-16 md:w-18 h-auto object-contain z-10 drop-shadow-[0_8px_16px_rgba(168,85,247,0.3)]"
-          />
-
-          <span class="absolute text-lg -top-1 -left-1 animate-float-slow"
-            >🎁</span
-          >
-          <span class="absolute text-lg top-6 -right-2 animate-float-fast"
-            >💵</span
-          >
           <span
-            class="absolute text-base bottom-1 -left-3 animate-float-slow delay-75"
-            >🪙</span
+            class="text-[11px] sm:text-xs lg:text-[13px] font-black text-[#00394b] uppercase tracking-wider block mb-2 leading-none whitespace-nowrap"
+            >Transferencia en <span class="text-[#18a796]">tan solo</span></span
           >
-        </div>
-      </div>
 
-      <div
-        class="w-1/2 shrink-0 bg-gradient-to-r from-[#061A2B] via-[#092B45] to-[#04121F] text-white py-3 px-6 md:py-3 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 relative min-h-[110px]"
-      >
-        <div
-          class="absolute -right-10 -top-10 w-48 h-48 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"
-        ></div>
-        <div
-          class="absolute -left-10 -bottom-10 w-48 h-48 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none"
-        ></div>
-
-        <div
-          class="flex-1 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 relative z-10 text-center md:text-left w-full"
-        >
-          <div class="space-y-1 md:max-w-[70%]">
-            <h3
-              class="text-lg md:text-xl font-extrabold font-display leading-tight"
+          <div
+            class="relative w-18 h-18 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center shrink-0"
+          >
+            <svg
+              class="w-full h-full overflow-visible"
+              viewBox="0 0 100 100"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              ¡Gana Puntos
-              <span
-                class="text-transparent bg-clip-text bg-gradient-to-r from-[#33bb9c] to-cyan-300"
-                >Koinks</span
+              <defs>
+                <linearGradient
+                  id="clockArrowGrad"
+                  x1="0%"
+                  y1="100%"
+                  x2="100%"
+                  y2="0%"
+                >
+                  <stop offset="0%" stop-color="#33bb9c" stop-opacity="0.2" />
+                  <stop offset="60%" stop-color="#18a796" stop-opacity="0.9" />
+                  <stop offset="100%" stop-color="#00394b" stop-opacity="1" />
+                </linearGradient>
+                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="1.5" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+
+              <g
+                stroke="#00394b"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                opacity="0.25"
               >
-              en cada Cambio!
-            </h3>
-            <p
-              class="text-xs md:text-[13px] text-slate-300 font-light leading-relaxed"
-            >
-              Acumula Koinks con cada operación realizada. Canjéalos por cupones
-              de descuento, mejoras en el tipo de cambio y premios exclusivos en
-              nuestra plataforma.
-            </p>
-          </div>
-          <div class="shrink-0 flex justify-center md:justify-start">
-            <button
-              class="bg-gradient-to-r from-[#18a796] to-cyan-500 hover:from-[#148f80] hover:to-cyan-400 text-white font-black px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition duration-300 active:scale-95 shadow-lg shadow-teal-500/20 border-none cursor-pointer whitespace-nowrap"
-            >
-              Conocer Koinks
-            </button>
+                <line x1="50" y1="22" x2="50" y2="25" />
+                <line
+                  x1="50"
+                  y1="22"
+                  x2="50"
+                  y2="25"
+                  transform="rotate(30 50 50)"
+                />
+                <line
+                  x1="50"
+                  y1="22"
+                  x2="50"
+                  y2="25"
+                  transform="rotate(60 50 50)"
+                />
+                <line
+                  x1="50"
+                  y1="22"
+                  x2="50"
+                  y2="25"
+                  transform="rotate(90 50 50)"
+                />
+                <line
+                  x1="50"
+                  y1="22"
+                  x2="50"
+                  y2="25"
+                  transform="rotate(120 50 50)"
+                />
+                <line
+                  x1="50"
+                  y1="22"
+                  x2="50"
+                  y2="25"
+                  transform="rotate(150 50 50)"
+                />
+                <line
+                  x1="50"
+                  y1="22"
+                  x2="50"
+                  y2="25"
+                  transform="rotate(180 50 50)"
+                />
+                <line
+                  x1="50"
+                  y1="22"
+                  x2="50"
+                  y2="25"
+                  transform="rotate(210 50 50)"
+                />
+                <line
+                  x1="50"
+                  y1="22"
+                  x2="50"
+                  y2="25"
+                  transform="rotate(240 50 50)"
+                />
+                <line
+                  x1="50"
+                  y1="22"
+                  x2="50"
+                  y2="25"
+                  transform="rotate(270 50 50)"
+                />
+                <line
+                  x1="50"
+                  y1="22"
+                  x2="50"
+                  y2="25"
+                  transform="rotate(300 50 50)"
+                />
+                <line
+                  x1="50"
+                  y1="22"
+                  x2="50"
+                  y2="25"
+                  transform="rotate(330 50 50)"
+                />
+              </g>
+
+              <g class="clock-arrow-group" filter="url(#glow)">
+                <path
+                  d="M 33.9 84.4 A 38 38 0 0 1 50 12"
+                  fill="none"
+                  stroke="url(#clockArrowGrad)"
+                  stroke-width="6.5"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M 43,2.5 L 57,12 L 43,21.5 Z"
+                  fill="#00394b"
+                  stroke="#ffffff"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                />
+              </g>
+
+              <g>
+                <text
+                  x="50"
+                  y="61.5"
+                  font-family="'Gotham', 'Montserrat', sans-serif"
+                  font-size="30"
+                  font-weight="900"
+                  fill="none"
+                  stroke="#ffffff"
+                  stroke-width="5"
+                  stroke-linejoin="round"
+                  text-anchor="middle"
+                >
+                  30
+                  <tspan
+                    font-size="13"
+                    font-weight="900"
+                    dx="1.5"
+                    dy="-5"
+                  >
+                    min
+                  </tspan>
+                </text>
+                <text
+                  x="50"
+                  y="61.5"
+                  font-family="'Gotham', 'Montserrat', sans-serif"
+                  font-size="30"
+                  font-weight="900"
+                  fill="#00394b"
+                  text-anchor="middle"
+                >
+                  30
+                  <tspan
+                    font-size="13"
+                    font-weight="900"
+                    fill="#18a796"
+                    dx="1.5"
+                    dy="-5"
+                  >
+                    min
+                  </tspan>
+                </text>
+              </g>
+            </svg>
+
+            <style>
+              @keyframes clock-sweep {
+                0% {
+                  transform: rotate(0deg);
+                }
+
+                100% {
+                  transform: rotate(360deg);
+                }
+              }
+
+              .clock-arrow-group {
+                transform-origin: 50px 50px;
+                animation: clock-sweep 15s linear infinite;
+              }
+            </style>
           </div>
         </div>
 
+        <!-- Right: Bancos de Bolivia (Centered layout) -->
         <div
-          class="relative w-24 h-24 shrink-0 z-10 flex items-center justify-center"
+          class="banks-bo-group w-full md:flex-1 md:min-w-0 flex flex-col items-center justify-center text-center gap-1"
         >
-          <img
-            src="/mascota.png"
-            alt="Mascota Altok Promoción"
-            class="w-16 md:w-18 h-auto object-contain z-10 drop-shadow-[0_8px_16px_rgba(20,184,166,0.3)]"
-          />
+          <div
+            class="banks-bo-title-wrap flex items-center justify-center gap-1.5 text-xs lg:text-[13px] font-extrabold text-[#00394b] uppercase tracking-wider"
+          >
+            <svg
+              class="banks-bo-flag w-4 h-2.5 min-w-4 shrink-0 rounded-sm shadow-sm"
+              viewBox="0 0 3 2"
+            >
+              <rect width="3" height="0.66" fill="#F42A2A" />
+              <rect y="0.66" width="3" height="0.68" fill="#F4E42A" />
+              <rect y="1.34" width="3" height="0.66" fill="#0E8A1E" />
+            </svg>
+            <span class="banks-bo-title banks-bo-title-text whitespace-nowrap"
+              >Bancos de Bolivia</span
+            >
+          </div>
 
-          <span class="absolute text-lg -top-1 -left-1 animate-float-slow"
-            >🪙</span
+          <div
+            class="banks-bo-logos flex flex-wrap lg:flex-nowrap items-center justify-center gap-2.5 lg:gap-3 mt-0.5 w-full"
           >
-          <span class="absolute text-base top-8 -left-2 animate-float-fast"
-            >✨</span
-          >
-          <span
-            class="absolute text-lg bottom-0 right-1 animate-float-slow delay-75"
-            >🪙</span
-          >
-          <span class="absolute text-sm -top-3 -left-3 animate-float-slow"
-            >🌟</span
-          >
-          <span
-            class="absolute text-sm top-16 -right-3 animate-float-fast delay-100"
-            >⚡</span
-          >
-          <span
-            class="absolute text-base bottom-4 -left-4 animate-float-slow delay-150"
-            >💎</span
-          >
-          <span
-            class="absolute text-sm -top-0 right-10 animate-float-fast delay-200"
-            >👑</span
-          >
+            <div
+              class="flex items-center justify-center px-3.5 py-1.5 hover:scale-105 transition-all duration-300 h-11 sm:h-12 animate-fade-in shrink-0"
+            >
+              <img
+                src="/img/banks/bo/logo-union-new.svg"
+                alt="Banco Unión"
+                class="h-7 sm:h-8 w-auto object-contain"
+              />
+            </div>
+            <div
+              class="flex items-center justify-center px-3 py-1.5 hover:scale-105 transition-all duration-300 h-11 sm:h-12 animate-fade-in shrink-0 rounded-xl border border-slate-200/80 bg-white"
+            >
+              <img
+                src="/img/banks/bo/logo-bnb-new.svg"
+                alt="BNB"
+                class="h-8.5 sm:h-9 w-auto object-contain"
+              />
+            </div>
+            <div
+              class="flex items-center justify-center px-3 py-1.5 hover:scale-105 transition-all duration-300 h-11 sm:h-12 animate-fade-in shrink-0 rounded-xl border border-slate-200/80 bg-white"
+            >
+              <img
+                src="/img/banks/bo/logo-mercantil-new.svg"
+                alt="Mercantil Santa Cruz"
+                class="banks-bo-mercantil h-8.5 sm:h-9 w-auto object-contain"
+              />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div
-      class="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20"
-    >
-      <button
-        (click)="activePromotionIndex.set(0)"
-        [class]="
-          activePromotionIndex() === 1
-            ? 'w-5 bg-cyan-400'
-            : 'w-1.5 bg-white/40'
-        "
-        class="h-1.5 rounded-full transition-all duration-300 border-none cursor-pointer"
-      ></button>
-      <button
-        (click)="activePromotionIndex.set(1)"
-        [class]="
-          activePromotionIndex() === 1
-            ? 'w-5 bg-cyan-400'
-            : 'w-1.5 bg-white/40'
-        "
-        class="h-1.5 rounded-full transition-all duration-300 border-none cursor-pointer"
-      ></button>
-    </div>
-  </div>
-</section>
+
+      
+      <div
+        class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 select-none transition-all duration-500"
+      >
+        <div
+          class="flex w-[200%] transition-transform duration-500 ease-out"
+          [style.transform]="'translateX(-' + activePromotionIndex() * 50 + '%)'
+          "
+        >
+          <div
+            class="w-1/2 shrink-0 bg-gradient-to-r from-[#1E0B36] via-[#0F0526] to-[#040C1A] text-white py-3 px-6 md:py-3 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 relative min-h-[110px]"
+          >
+            <div
+              class="absolute -right-10 -top-10 w-48 h-48 bg-purple-500/25 rounded-full blur-3xl pointer-events-none"
+            ></div>
+            <div
+              class="absolute -left-10 -bottom-10 w-48 h-48 bg-pink-500/10 rounded-full blur-3xl pointer-events-none"
+            ></div>
+
+            <div
+              class="flex-1 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 relative z-10 text-center md:text-left w-full"
+            >
+              <div class="space-y-1 md:max-w-[70%]">
+                <h3
+                  class="text-lg md:text-xl font-extrabold font-display leading-tight"
+                >
+                  ¡Refiere y Gana
+                  <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300"
+                    >S/. 15 en Efectivo</span
+                  >!
+                </h3>
+                <p
+                  class="text-xs md:text-[13px] text-slate-300 font-light leading-relaxed"
+                >
+                  Comparte tu código de referido. Cuando tu amigo haga su primer
+                  cambio, tú recibes S/. 15 de regalo y él obtiene una
+                  cotización preferencial en su operación. ¡Todos ganan!
+                </p>
+              </div>
+              <div class="shrink-0 flex justify-center md:justify-start">
+                <button
+                  class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white font-black px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition duration-300 active:scale-95 shadow-lg shadow-purple-500/20 border-none cursor-pointer whitespace-nowrap"
+                >
+                  Compartir Código
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="relative w-24 h-24 shrink-0 z-10 flex items-center justify-center"
+            >
+              <img
+                src="/mascota.png"
+                alt="Mascota Altok Promoción"
+                class="w-16 md:w-18 h-auto object-contain z-10 drop-shadow-[0_8px_16px_rgba(168,85,247,0.3)]"
+              />
+
+              <span class="absolute text-lg -top-1 -left-1 animate-float-slow"
+                >🎁</span
+              >
+              <span class="absolute text-lg top-6 -right-2 animate-float-fast"
+                >💵</span
+              >
+              <span
+                class="absolute text-base bottom-1 -left-3 animate-float-slow delay-75"
+                >🪙</span
+              >
+              <span class="absolute text-sm -top-3 right-4 animate-float-fast"
+                >✨</span
+              >
+              <span
+                class="absolute text-sm bottom-3 -right-1 animate-float-slow delay-100"
+                >⚡</span
+              >
+              <span
+                class="absolute text-lg top-16 -left-4 animate-float-fast delay-150"
+                >🎉</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="w-1/2 shrink-0 bg-gradient-to-r from-[#041D34] via-[#021323] to-[#040C1A] text-white py-3 px-6 md:py-3 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 relative min-h-[110px]"
+          >
+            <div
+              class="absolute -right-10 -top-10 w-48 h-48 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"
+            ></div>
+            <div
+              class="absolute -left-10 -bottom-10 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"
+            ></div>
+
+            <div
+              class="flex-1 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 relative z-10 text-center md:text-left w-full"
+            >
+              <div class="space-y-1 md:max-w-[70%]">
+                <h3
+                  class="text-lg md:text-xl font-extrabold font-display leading-tight"
+                >
+                  ¡Tasa Preferencial en tu
+                  <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-[#21F0D2] to-[#12D6EB]"
+                    >Primer Cambio</span
+                  >!
+                </h3>
+                <p
+                  class="text-xs md:text-[13px] text-slate-300 font-light leading-relaxed"
+                >
+                  Haz tu primer cambio usando el cupón
+                  <strong
+                    class="text-white bg-cyan-500/30 px-2 py-0.5 rounded border border-cyan-400/20"
+                    >ALTOK100</strong
+                  >
+                  y accede automáticamente al tipo de cambio preferencial.
+                  ¡Cotiza ya!
+                </p>
+              </div>
+              <div class="shrink-0 flex justify-center md:justify-start">
+                <button
+                  class="bg-gradient-to-r from-[#21F0D2] to-[#12D6EB] hover:from-cyan-400 hover:to-cyan-300 text-[#04142E] font-black px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition duration-300 active:scale-95 shadow-lg shadow-cyan-500/20 border-none cursor-pointer whitespace-nowrap"
+                >
+                  Cambiar Ahora
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="relative w-24 h-24 shrink-0 z-10 flex items-center justify-center"
+            >
+              <img
+                src="/altok-logo.png"
+                alt="Logo Altok Promoción"
+                class="w-16 md:w-18 h-auto object-contain z-10 drop-shadow-[0_8px_16px_rgba(6,182,212,0.3)] rounded-lg"
+              />
+
+              <span class="absolute text-lg -top-1 right-1 animate-float-slow"
+                >🪙</span
+              >
+              <span class="absolute text-base top-8 -left-2 animate-float-fast"
+                >✨</span
+              >
+              <span
+                class="absolute text-lg bottom-0 right-1 animate-float-slow delay-75"
+                >🪙</span
+              >
+              <span class="absolute text-sm -top-3 -left-3 animate-float-slow"
+                >🌟</span
+              >
+              <span
+                class="absolute text-sm top-16 -right-3 animate-float-fast delay-100"
+                >⚡</span
+              >
+              <span
+                class="absolute text-base bottom-4 -left-4 animate-float-slow delay-150"
+                >💎</span
+              >
+              <span
+                class="absolute text-sm -top-0 right-10 animate-float-fast delay-200"
+                >👑</span
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20"
+        >
+          <button
+            (click)="activePromotionIndex.set(0)"
+            [class]="
+              activePromotionIndex() === 1
+                ? 'w-5 bg-cyan-400'
+                : 'w-1.5 bg-white/40'
+            "
+            class="h-1.5 rounded-full transition-all duration-300 border-none cursor-pointer"
+          ></button>
+          <button
+            (click)="activePromotionIndex.set(1)"
+            [class]="
+              activePromotionIndex() === 1
+                ? 'w-5 bg-cyan-400'
+                : 'w-1.5 bg-white/40'
+            "
+            class="h-1.5 rounded-full transition-all duration-300 border-none cursor-pointer"
+          ></button>
+        </div>
+      </div>
+    </section>
