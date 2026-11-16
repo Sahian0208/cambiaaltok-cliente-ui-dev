@@ -1,3 +1,192 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+// ==========================================
+// FULL STEPPER (FOR TRANSFER FLOW)
+// ==========================================
+.stepper-full-container {
+  background-color: #ffffff;
+  border: 1px solid #e6ecf2;
+  border-radius: 1.25rem;
+  padding: 1.15rem 1.25rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  width: 100%;
+  font-family: 'Gotham', 'Montserrat', 'Plus Jakarta Sans', sans-serif;
+  transition: all 0.2s ease;
+
+  @media (max-width: 640px) {
+    padding: 0.95rem 0.75rem;
+    border-radius: 1.1rem;
+  }
+}
+
+.stepper-top-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.step-badge-pill {
+  background-color: #d1fae5;
+  color: #065f46;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+.stepper-track-fill-bg {
+  flex: 1;
+  height: 8px;
+  background-color: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.stepper-track-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+  border-radius: 9999px;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-percentage {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #002b37;
+  min-width: 32px;
+  text-align: right;
+}
+
+// 5 Tabs Grid
+.stepper-tabs-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.5rem;
+
+  @media (max-width: 640px) {
+    gap: 0.35rem;
+  }
+}
+
+.step-tab-btn {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.85rem;
+  padding: 0.65rem 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  text-align: center;
+  transition: all 0.2s ease;
+
+  @media (max-width: 640px) {
+    padding: 0.5rem 0.2rem;
+    border-radius: 0.7rem;
+    gap: 0.25rem;
+  }
+
+  .tab-icon-wrap {
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media (max-width: 640px) {
+      font-size: 1rem;
+    }
+  }
+
+  .tab-label {
+    font-size: 0.725rem;
+    line-height: 1.15;
+    white-space: nowrap;
+
+    @media (max-width: 640px) {
+      font-size: 0.65rem;
+      letter-spacing: -0.02em;
+    }
+
+    @media (max-width: 380px) {
+      font-size: 0.6rem;
+    }
+  }
+
+  // Active state
+  &.active {
+    background-color: #e6f9f2;
+    border-color: #70e4ba;
+    box-shadow: 0 2px 8px rgba(112, 228, 186, 0.25);
+
+    .tab-icon-wrap {
+      color: #059669;
+    }
+
+    .tab-label {
+      color: #002b37;
+      font-weight: 800;
+    }
+  }
+
+  // Completed state
+  &.completed {
+    background-color: #f0fdf4;
+    border-color: #bbf7d0;
+
+    .tab-icon-wrap {
+      color: #10b981;
+    }
+
+    .tab-label {
+      color: #065f46;
+      font-weight: 600;
+    }
+  }
+
+  // Pending state
+  &.pending {
+    background-color: #ffffff;
+    border-color: #f1f5f9;
+
+    .tab-icon-wrap {
+      color: #94a3b8;
+    }
+
+    .tab-label {
+      color: #64748b;
+      font-weight: 500;
+    }
+  }
+
+  // Denied state
+  &.denied {
+    border-color: #fee2e2;
+
+    .tab-icon-wrap {
+      color: #f87171;
+    }
+
+    .tab-label {
+      color: #ef4444;
+    }
+  }
+}
+
+// ==========================================
+// COMPACT STEPPER (ORIGINAL TRACK FOR CARDS)
+// ==========================================
 .custom-stepper {
   width: 100%;
   padding: 0.5rem 0 0;
@@ -60,79 +249,56 @@
   flex: 1 1 0;
   height: 2px;
   background-color: #e2e8f0;
-  margin: 0 0.25rem 1.25rem;
+  transition: background-color 0.3s ease;
   z-index: 1;
-  transition: background-color 0.25s ease;
 
   :host-context(.dark-mode) &,
   .dark-mode & {
-    background-color: #193946;
+    background-color: #1a3c4c;
   }
 
   &.filled {
-    background-color: #70e4ba;
+    background-color: #10b981;
   }
 }
 
-// Completed step
 .step-item.completed {
   .step-circle {
-    background-color: #e8f9f4;
-    border-color: #70e4ba;
-    color: #00394b;
-
-    :host-context(.dark-mode) &,
-    .dark-mode & {
-      background-color: #113441;
-      border-color: #70e4ba;
-      color: #70e4ba;
-    }
+    background-color: #10b981;
+    border-color: #10b981;
+    color: #ffffff;
   }
 
   .step-label {
-    color: #00394b;
-
-    :host-context(.dark-mode) &,
-    .dark-mode & {
-      color: #cbd5e1;
-    }
+    color: #059669;
+    font-weight: 600;
   }
 }
 
-// Active step
 .step-item.active {
   .step-circle {
-    background-color: #f59e0b;
-    border-color: #f59e0b;
-    color: #ffffff;
-    box-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+    background-color: #ffffff;
+    border-color: #10b981;
+    color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 
     :host-context(.dark-mode) &,
     .dark-mode & {
-      background-color: #f59e0b;
-      border-color: #f59e0b;
-      color: #ffffff;
-      box-shadow: 0 0 12px rgba(245, 158, 11, 0.5);
+      background-color: #0b1f28;
+      border-color: #70e4ba;
+      color: #70e4ba;
+      box-shadow: 0 0 0 3px rgba(112, 228, 186, 0.2);
     }
   }
 
   .step-label {
-    color: #f59e0b;
+    color: #00394b;
     font-weight: 700;
 
     :host-context(.dark-mode) &,
     .dark-mode & {
-      color: #fcd34d;
+      color: #ffffff;
     }
-  }
-}
-
-// Denied state
-.stepper-denied {
-  .step-circle {
-    background-color: #ef4444 !important;
-    border-color: #ef4444 !important;
-    color: #ffffff !important;
   }
 }
 
@@ -142,18 +308,82 @@
   justify-content: center;
   gap: 0.5rem;
   margin-top: 0.75rem;
-  padding: 0.45rem 0.75rem;
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 0.65rem;
-  color: #ef4444;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #fee2e2;
+  color: #dc2626;
+  font-size: 0.8rem;
   font-weight: 600;
-  font-size: 0.75rem;
+}
 
-  :host-context(.dark-mode) &,
-  .dark-mode & {
-    background-color: rgba(239, 68, 68, 0.15);
-    border-color: rgba(239, 68, 68, 0.3);
-    color: #fca5a5;
+// ==========================================
+// DARK MODE FOR FULL STEPPER
+// ==========================================
+:host-context(.dark-mode),
+.dark-mode {
+  .stepper-full-container {
+    background-color: #0b1e26;
+    border-color: #13303d;
+  }
+
+  .step-badge-pill {
+    background-color: #0f3542;
+    color: #70e4ba;
+  }
+
+  .stepper-track-fill-bg {
+    background-color: #13303d;
+  }
+
+  .step-percentage {
+    color: #ffffff;
+  }
+
+  .step-tab-btn {
+    background-color: #081921;
+    border-color: #13303d;
+
+    .tab-label {
+      color: #8ea5b1;
+    }
+
+    &.active {
+      background-color: #0f3542;
+      border-color: #70e4ba;
+
+      .tab-icon-wrap {
+        color: #70e4ba;
+      }
+
+      .tab-label {
+        color: #ffffff;
+      }
+    }
+
+    &.completed {
+      background-color: #082820;
+      border-color: #104239;
+
+      .tab-icon-wrap {
+        color: #70e4ba;
+      }
+
+      .tab-label {
+        color: #70e4ba;
+      }
+    }
+
+    &.pending {
+      background-color: #081921;
+      border-color: #13303d;
+
+      .tab-icon-wrap {
+        color: #475569;
+      }
+
+      .tab-label {
+        color: #64748b;
+      }
+    }
   }
 }

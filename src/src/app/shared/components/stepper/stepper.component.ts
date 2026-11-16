@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 export class StepperComponent implements OnChanges {
   @Input() currentStep: number = 1;
   @Input() status?: string;
+  @Input() variant: 'compact' | 'full' = 'compact';
 
   isDenied: boolean = false;
 
@@ -21,6 +22,20 @@ export class StepperComponent implements OnChanges {
     'Transferencia',
     'Finalizado',
   ];
+
+  readonly stepIcons: string[] = [
+    'pi pi-file-edit',
+    'pi pi-wallet',
+    'pi pi-shield',
+    'pi pi-arrows-h',
+    'pi pi-check-circle',
+  ];
+
+  get progressPercentage(): number {
+    if (this.isDenied) return 0;
+    const step = Math.min(Math.max(this.currentStep, 1), 5);
+    return step * 20;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['currentStep']) {

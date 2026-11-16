@@ -1,30 +1,55 @@
 <div class="transfer-wrapper">
   <!-- Page Header -->
-  <div class="transfer-header">
-    <button class="back-btn" (click)="goToDashboard()">
-      <i class="pi pi-arrow-left"></i>
-    </button>
-    <div>
-      <h2 class="transfer-title">
-        @if (!isExistingTransaction) {
-          Nueva Transferencia
-        } @else {
-          Detalle de Transferencia
-        }
-      </h2>
-      <p class="transfer-subtitle">
-        @if (!isExistingTransaction) {
-          Envía y convierte dinero entre Bolivia y Perú de forma segura
-        } @else {
-          Seguimiento de tu operación
-        }
-      </p>
+  <div class="transfer-top-header">
+    <div class="header-left-group">
+      <button class="back-btn-pill" (click)="goToDashboard()" title="Volver al dashboard">
+        <i class="pi pi-arrow-left"></i>
+      </button>
+      <div class="header-send-icon-wrap">
+        <i class="pi pi-send"></i>
+      </div>
+      <div class="header-title-column">
+        <h1 class="transfer-main-title">
+          @if (!isExistingTransaction) {
+            Nueva Transferencia
+          } @else {
+            Detalle de Transferencia
+          }
+        </h1>
+        <p class="transfer-main-subtitle">
+          @if (!isExistingTransaction) {
+            Envía y convierte dinero entre Bolivia y Perú de forma segura.
+          } @else {
+            Seguimiento de tu operación
+          }
+        </p>
+      </div>
+    </div>
+
+    <!-- Country Flag Exchange Pill on top right -->
+    <div class="country-exchange-pill">
+      <div class="flag-circle-bob" title="Bolivia">
+        <svg viewBox="0 0 3 2" class="flag-svg">
+          <rect width="3" height="2" fill="#007a33" />
+          <rect width="3" height="1.33" fill="#fcd116" />
+          <rect width="3" height="0.67" fill="#d52b1e" />
+        </svg>
+      </div>
+      <div class="exchange-arrows-circle">
+        <i class="pi pi-sync"></i>
+      </div>
+      <div class="flag-circle-pen" title="Perú">
+        <svg viewBox="0 0 3 2" class="flag-svg">
+          <rect width="3" height="2" fill="#d52b1e" />
+          <rect x="1" width="1" height="2" fill="#ffffff" />
+        </svg>
+      </div>
     </div>
   </div>
 
   <!-- Stepper visual -->
   <div class="stepper-wrapper">
-    <app-stepper [currentStep]="currentStep"></app-stepper>
+    <app-stepper [currentStep]="currentStep" variant="full"></app-stepper>
   </div>
 
   <!-- Loading spinner -->
@@ -45,7 +70,7 @@
         </div>
         <div class="step-info-content">
           <h3 class="step-info-title">Paso 1: Registro de Operación</h3>
-          <p class="step-info-desc">Completa los datos de tu transferencia. Selecciona el monto, las cuentas y sube el QR de tu cuenta destino.</p>
+          <p class="step-info-desc">Completa los datos de tu transferencia, selecciona el monto y las cuentas correspondientes.</p>
         </div>
       </div>
 
@@ -211,9 +236,12 @@
               <div class="coupon-section">
                 @if (!appliedCoupon) {
                   @if (!showCouponInput) {
-                    <button type="button" class="coupon-toggle" (click)="toggleCouponInput()">
-                      <i class="pi pi-gift"></i>
-                      <span>Tengo un cupón</span>
+                    <button type="button" class="btn-coupon-pill-toggle" (click)="toggleCouponInput()">
+                      <div class="coupon-pill-left">
+                        <i class="pi pi-gift"></i>
+                        <span>Tengo un cupón</span>
+                      </div>
+                      <i class="pi pi-chevron-right coupon-pill-arrow"></i>
                     </button>
                   } @else {
                     <div class="coupon-input-group">
@@ -279,17 +307,17 @@
           </app-accounts-selection>
 
           <!-- Submit button -->
-          <div class="form-submit">
-            <p-button
+          <div class="form-submit-clean">
+            <button
               type="submit"
-              label="Registrar Operación"
-              icon="pi pi-send"
-              [disabled]="transferForm.invalid"
-              severity="primary"
-              styleClass="submit-btn">
-            </p-button>
-            <p class="form-submit-hint">
-              <i class="pi pi-shield"></i> Tu información está protegida
+              class="btn-submit-operation-green"
+              [disabled]="transferForm.invalid">
+              <i class="pi pi-send"></i>
+              <span>Registrar Operación</span>
+            </button>
+            <p class="form-submit-security-note">
+              <i class="pi pi-shield"></i>
+              <span>Tu información está protegida</span>
             </p>
           </div>
         </form>
@@ -316,7 +344,7 @@
         <div class="content-card">
           <div class="content-card-header">
             <i class="pi pi-building"></i>
-            <h4>Cuenta de depósito CambiaAltok</h4>
+            <h4>Cuenta de depósito Fazilito</h4>
           </div>
           <p class="content-card-desc">Realiza tu depósito a esta cuenta. Si tiene QR, puedes escanearlo con tu app bancaria.</p>
           @if (intermediaryAccount) {

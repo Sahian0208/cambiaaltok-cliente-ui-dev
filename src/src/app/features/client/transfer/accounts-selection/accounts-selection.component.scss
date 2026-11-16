@@ -1,442 +1,358 @@
-@use '../../../../../assets/styles/variables' as *;
-
 :host {
   display: block;
+  width: 100%;
 }
 
-// ========================================
-// Form Section (mirrors parent styles)
-// ========================================
-.form-section {
-  background: $color-surface;
-  border-radius: 12px;
-  border: 1px solid $color-border;
+.form-section-clean {
+  background-color: #ffffff;
+  border: 1px solid #e6ecf2;
+  border-radius: 1.25rem;
   padding: 1.5rem;
-  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+
+  @media (max-width: 640px) {
+    padding: 1.25rem 1rem;
+    border-radius: 1.15rem;
+  }
 }
 
 .form-section-header {
   display: flex;
   align-items: flex-start;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
+  gap: 0.85rem;
 }
 
 .form-section-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: $color-primary;
-  color: white;
-  font-size: 0.8rem;
-  font-weight: 600;
+  background-color: #10b981;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  margin-top: 0.15rem;
 }
 
-.form-section-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: $color-text;
-  margin: 0;
-}
-
-.form-section-hint {
-  font-size: 0.8rem;
-  color: $color-text-secondary;
-  margin: 0.15rem 0 0;
-}
-
-// ========================================
-// Form Fields
-// ========================================
-.form-fields-row {
-  display: flex;
-  gap: 1rem;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-
-  &--grow {
-    flex: 1;
-  }
-}
-
-.field-label {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: $color-text;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.field-label-icon {
-  font-size: 0.85rem;
-  color: $color-primary;
-}
-
-.field-error {
-  font-size: 0.75rem;
-  color: $color-error;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.add-account-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: none;
-  border: none;
-  color: $color-primary;
-  font-size: 0.8rem;
-  font-weight: 500;
-  cursor: pointer;
-  padding: 0.35rem 0;
-  transition: color 0.2s;
-
-  &:hover {
-    color: $color-primary-light;
-  }
-}
-
-// ========================================
-// Destination Bank Info Card
-// ========================================
-.destination-info-card {
-  background: #f0f7ff;
-  border: 1px solid #d0e3f7;
-  border-radius: 12px;
-  padding: 1.25rem;
-  margin-top: 1rem;
-}
-
-.destination-info-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid #d0e3f7;
-}
-
-.bank-identity {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.bank-logo {
-  width: auto;
-  height: 40px;
-  object-fit: contain;
-  border-radius: 6px;
-}
-
-.bank-details {
+.header-text-wrap {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
 }
 
-.bank-name {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: $color-text;
-}
+.form-section-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #002b37;
+  letter-spacing: -0.01em;
+  margin: 0;
 
-.bank-country {
-  font-size: 0.8rem;
-  color: $color-text-secondary;
-}
-
-// .destination-info-body {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 1rem;
-// }
-
-.destination-info-body {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  align-items: center;
-}
-
-.holder-info {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  min-width: 0;
-}
-
-.holder-label {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.75rem;
-  color: $color-text-secondary;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.holder-name {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: $color-text;
-  min-width: 0;
-}
-
-.holder-name svg {
-  width: 20px;
-  height: 13px;
-  min-width: 20px;
-  max-width: 20px;
-  flex: 0 0 20px;
-  display: block;
-}
-
-// ========================================
-// Payment Method Variants
-// ========================================
-.payment-method {
-  margin-top: 0.25rem;
-}
-
-.payment-method-message {
-  font-size: 0.8rem;
-  color: $color-text-secondary;
-  margin: 0.5rem 0 0;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-
-  i {
-    color: $color-primary;
+  @media (max-width: 640px) {
+    font-size: 1.05rem;
   }
 }
 
-// QR variant
-.payment-method-standard {
-  .standard-display {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    color: #000000;
-    background: $color-surface;
-    border: 1px dashed $color-primary;
-    border-radius: 8px;
-    padding: 1rem;
-    text-align: center;
-  }
+.form-section-hint {
+  font-size: 0.825rem;
+  color: #64748b;
+  margin: 0;
 
-  .qr-icon {
-    font-size: 2rem;
-    color: $color-primary;
-  }
-
-  .qr-value {
-    font-size: 0.9rem;
-    color: $color-text;
-    word-break: break-all;
+  @media (max-width: 640px) {
+    font-size: 0.775rem;
   }
 }
 
-// Botón de importar/actualizar QR, reutilizado en la variante QR y en cuentas estándar bolivianas
-.qr-edit-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  border: 1px solid $color-primary;
-  background: $color-surface;
-  color: $color-primary;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.4rem 0.9rem;
-  cursor: pointer;
-  transition: background 0.2s;
-
-  &:hover {
-    background: rgba($color-primary, 0.08);
-  }
-
-  &:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-  }
-}
-
-.qr-edit-hidden-input {
-  display: none;
-}
-
-.qr-add-section {
-  margin-top: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.qr-add-hint {
-  font-size: 0.75rem;
-  color: $color-text-secondary;
-  line-height: 1.4;
-}
-
-// Yape variant
-.payment-method-yape {
-  .yape-display {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: $color-surface;
-    border: 1px solid #6b21a8;
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-  }
-}
-
-
-// ========================================
-// Responsive
-// ========================================
-@media (max-width: 576px) {
-  .form-section {
-    padding: 1rem;
-  }
-
-  .destination-info-card {
-    padding: 1rem;
-  }
-
-  .bank-logo {
-    height: 32px;
-  }
-
-  .holder-name {
-    font-size: 0.95rem;
-  }
-}
-
-// ========================================
-// QR Modal
-// ========================================
-.qr-modal-content {
-  padding: 1.25rem;
+.accounts-selection-content {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  margin-top: 1.25rem;
 }
 
-.qr-modal-info {
+.account-field-block {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 1rem;
-  background: #f8fafc;
-  border-radius: 10px;
-  border: 1px solid $color-border;
+  gap: 0.45rem;
 }
 
-.qr-modal-field {
+.account-label-bar {
   display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
-}
-
-.qr-modal-label {
-  font-size: 0.7rem;
-  color: $color-text-secondary;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-.qr-modal-value {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: $color-text;
-
-  &--mono {
-    font-family: 'Courier New', monospace;
-    letter-spacing: 0.5px;
-  }
-}
-
-.qr-modal-qr-box {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1.5rem;
-  background: #f0f9ff;
-  border: 2px dashed #93c5fd;
-  border-radius: 12px;
-  text-align: center;
+  gap: 0.65rem;
 }
 
-.qr-modal-qr-icon {
+.account-icon-pill {
+  width: 26px;
+  height: 26px;
+  border-radius: 0.55rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: white;
-  border: 1px solid $color-border;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+
+  &--source {
+    background-color: #e0f2fe;
+    color: #0284c7;
+  }
+
+  &--dest {
+    background-color: #dcfce7;
+    color: #16a34a;
+  }
+}
+
+.account-field-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #002b37;
+  letter-spacing: -0.01em;
+}
+
+.select-wrapper {
+  width: 100%;
+}
+
+.add-account-link-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: #059669;
+  font-size: 0.775rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.2rem 0;
+  transition: color 0.2s ease;
 
   i {
-    font-size: 1.5rem;
-    color: $color-primary;
+    font-size: 0.8rem;
+  }
+
+  &:hover {
+    color: #047857;
+    text-decoration: underline;
   }
 }
 
-.qr-modal-qr-value {
-  font-size: 0.85rem;
+.field-error-msg {
+  font-size: 0.725rem;
+  color: #ef4444;
   font-weight: 600;
-  color: $color-text;
-  word-break: break-all;
-  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
-.qr-modal-image-container {
+// Custom select chips
+.selected-acc-chip {
   display: flex;
-  justify-content: center;
-  padding: 1rem;
-  background: white;
-  border-radius: 10px;
-  border: 1px solid $color-border;
+  align-items: center;
+  gap: 0.65rem;
 }
 
-.qr-modal-image {
-  max-width: 280px;
-  max-height: 280px;
-  object-fit: contain;
-  border-radius: 6px;
+.acc-bank-bold {
+  font-weight: 700;
+  color: #002b37;
 }
 
-.qr-modal-actions {
+.acc-num-tag {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-family: monospace;
+}
+
+.dropdown-acc-item {
   display: flex;
-  justify-content: center;
-  padding: 0.75rem 1.25rem;
-  border-top: 1px solid $color-border;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.25rem 0;
 }
 
+.acc-item-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.acc-item-bank {
+  font-weight: 700;
+  color: #002b37;
+  font-size: 0.85rem;
+}
+
+.acc-item-currency {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #059669;
+  background-color: #d1fae5;
+  padding: 0.15rem 0.45rem;
+  border-radius: 9999px;
+}
+
+.acc-item-sub {
+  font-size: 0.775rem;
+  color: #64748b;
+}
+
+// Destination Preview Card
+.destination-preview-card {
+  margin-top: 1.25rem;
+  background-color: #f0fdf9;
+  border: 1px solid #a7f3d0;
+  border-radius: 1.15rem;
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.dest-preview-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: #065f46;
+
+  i {
+    font-size: 0.95rem;
+    color: #10b981;
+  }
+}
+
+.dest-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+}
+
+.dest-data-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.dest-data-label {
+  font-size: 0.725rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.dest-data-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #002b37;
+}
+
+// ==========================================
+// PrimeNG Select Overrides
+// ==========================================
+:host ::ng-deep {
+  .p-select {
+    width: 100%;
+    border-radius: 0.85rem;
+    border: 1px solid #e2e8f0;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+
+    .p-select-label {
+      padding: 0.65rem 1rem;
+      font-size: 0.85rem;
+      color: #002b37;
+    }
+
+    &:not(.p-disabled):hover {
+      border-color: #cbd5e1;
+    }
+
+    &:not(.p-disabled).p-focus {
+      border-color: #70e4ba;
+      box-shadow: 0 0 0 2px rgba(112, 228, 186, 0.25);
+    }
+  }
+}
+
+// ==========================================
+// Dark Mode Overrides
+// ==========================================
+:host-context(.dark-mode),
+.dark-mode {
+  .form-section-clean {
+    background-color: #0b1e26;
+    border-color: #13303d;
+  }
+
+  .form-section-title {
+    color: #ffffff;
+  }
+
+  .form-section-hint {
+    color: #8ea5b1;
+  }
+
+  .account-field-title {
+    color: #ffffff;
+  }
+
+  .add-account-link-btn {
+    color: #70e4ba;
+
+    &:hover {
+      color: #a7f3d0;
+    }
+  }
+
+  .acc-bank-bold {
+    color: #ffffff;
+  }
+
+  .acc-num-tag {
+    color: #8ea5b1;
+  }
+
+  .destination-preview-card {
+    background-color: #092621;
+    border-color: #104239;
+  }
+
+  .dest-preview-header {
+    color: #70e4ba;
+  }
+
+  .dest-data-label {
+    color: #8ea5b1;
+  }
+
+  .dest-data-value {
+    color: #ffffff;
+  }
+
+  :host ::ng-deep {
+    .p-select {
+      background-color: #081921;
+      border-color: #13303d;
+
+      .p-select-label {
+        color: #ffffff;
+      }
+
+      &:not(.p-disabled).p-focus {
+        border-color: #70e4ba;
+        box-shadow: 0 0 0 2px rgba(112, 228, 186, 0.25);
+      }
+    }
+  }
+}
