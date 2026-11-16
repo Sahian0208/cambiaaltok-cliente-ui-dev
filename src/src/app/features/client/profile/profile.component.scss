@@ -28,6 +28,10 @@
   letter-spacing: -0.02em;
   margin: 0 0 0.35rem;
   line-height: 1.2;
+
+  @media (max-width: 640px) {
+    font-size: 1.5rem;
+  }
 }
 
 .profile-main-subtitle {
@@ -35,6 +39,11 @@
   color: #64748b;
   margin: 0;
   font-weight: 400;
+
+  @media (max-width: 640px) {
+    font-size: 0.825rem;
+    line-height: 1.4;
+  }
 }
 
 // ========================================================
@@ -47,6 +56,11 @@
   padding: 1.75rem 2rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
   transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+
+  @media (max-width: 640px) {
+    padding: 1.25rem 1rem;
+    border-radius: 1rem;
+  }
 }
 
 // ========================================================
@@ -59,6 +73,41 @@
   margin-bottom: 1.75rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #f1f5f9;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.85rem;
+
+    .card-header-left {
+      width: 100%;
+      gap: 0.75rem;
+    }
+
+    .header-icon-circle {
+      width: 2.35rem;
+      height: 2.35rem;
+      font-size: 1.05rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      white-space: nowrap;
+    }
+
+    .card-subtitle {
+      font-size: 0.775rem;
+      line-height: 1.35;
+    }
+
+    .header-badge-pill {
+      align-self: flex-start;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.75rem;
+    }
+  }
 }
 
 .card-header-left {
@@ -124,6 +173,33 @@
   align-items: center;
   gap: 1.5rem;
   margin-bottom: 1.75rem;
+
+  @media (max-width: 640px) {
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+
+    .avatar-wrapper {
+      width: 4.25rem;
+      height: 4.25rem;
+    }
+
+    .avatar-buttons {
+      flex: 1;
+      min-width: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+
+      .btn-action-mint,
+      .btn-action-blue,
+      .btn-action-save {
+        width: 100%;
+        justify-content: center;
+        padding: 0.5rem 0.85rem;
+        font-size: 0.8rem;
+      }
+    }
+  }
 }
 
 .avatar-wrapper {
@@ -407,6 +483,22 @@
     border-color: #5ce0b0;
     background-color: #f0fdf9;
   }
+
+  @media (max-width: 520px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.25rem 1rem;
+    gap: 1rem;
+
+    .dropzone-controls {
+      align-items: center;
+    }
+
+    .dropzone-btn-group {
+      justify-content: center;
+    }
+  }
 }
 
 // ID Card Illustrations
@@ -655,6 +747,18 @@
   gap: 0.85rem;
   margin-top: 0.5rem;
   padding-bottom: 2rem;
+
+  @media (max-width: 640px) {
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+
+    .btn-cancel-profile,
+    .btn-save-profile {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+  }
 }
 
 .btn-cancel-profile {
