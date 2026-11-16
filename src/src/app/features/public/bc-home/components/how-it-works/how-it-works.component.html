@@ -211,76 +211,58 @@
     </svg>
   </div>
 
-  <div class="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="relative z-10 mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
     
-    <!-- Encabezado Principal de Beneficios -->
+    <!-- Encabezado Principal de Beneficios (Exacto a maqueta) -->
     <div
       shared-view-port="animate-soft-rise"
       hiddenClasses="opacity-0"
       [delay]="80"
-      class="mx-auto max-w-3xl text-center mb-16"
+      class="text-left mb-8 sm:mb-10"
     >
-      <div class="relative inline-block">
-        <!-- Destellos decorativos superior izquierdo (3 marcas mint) -->
-        <div class="absolute -top-5 -left-8 text-[#33bb9c]">
-          <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-            <line x1="16" y1="2" x2="16" y2="9"/>
-            <line x1="26" y1="6" x2="20" y2="12"/>
-            <line x1="6" y1="6" x2="12" y2="12"/>
-          </svg>
-        </div>
+      <!-- Eyebrow Tag -->
+      <span class="text-[#18a796] text-xs sm:text-sm font-extrabold tracking-widest uppercase block mb-2">
+        BENEFICIOS FAZILITO
+      </span>
 
-        <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-[#00394b] font-display">
-          Cambia <span class="text-[#18a796]">fácil.</span><br />
-          Cambia <span class="text-[#18a796]">seguro.</span>
-        </h2>
+      <!-- Main Title -->
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] text-[#00394b] font-display">
+        Cambia <span class="text-[#33bb9c]">fácil.</span><br />
+        Cambia <span class="text-[#33bb9c]">seguro.</span>
+      </h2>
 
-        <!-- Trazo / Píldora redondeada inferior debajo de seguro -->
-        <div class="mx-auto mt-2 h-2 w-32 sm:w-40 rounded-full bg-[#33bb9c]"></div>
-      </div>
+      <!-- Trazo / Píldora redondeada inferior debajo de Cambia -->
+      <div class="w-16 sm:w-20 h-1.5 sm:h-2 rounded-full bg-[#33bb9c] mt-2 sm:mt-2.5 mb-2.5 sm:mb-3"></div>
 
-      <div class="flex items-center justify-center gap-2 mt-5">
-        <span class="text-2xl sm:text-3xl font-black text-[#00394b] font-display">¿Por qué cambiar con</span>
-        <img src="/fazilito-logo.png" alt="fazilito" class="h-7 sm:h-8 w-auto object-contain inline-block" />
-        <span class="text-2xl sm:text-3xl font-black text-[#00394b] font-display">?</span>
-      </div>
-
-      <p class="mt-2.5 text-sm sm:text-base leading-relaxed text-slate-600 max-w-xl mx-auto font-normal">
-        Descubre los beneficios que hacen tus operaciones más cómodas, rápidas y seguras.
+      <!-- Subtitle -->
+      <p class="text-sm sm:text-base lg:text-lg text-slate-600 font-normal leading-relaxed">
+        Tres ventajas para tu próximo cambio.
       </p>
     </div>
 
-    <!-- 3 Tarjetas de Beneficios (Móvil: 2 arriba y 1 centrado abajo; Tablet y PC: 3 en línea horizontal) -->
-    <div class="grid grid-cols-12 md:grid-cols-3 gap-3.5 sm:gap-5 md:gap-6 lg:gap-7 items-stretch max-w-6xl mx-auto">
+    <!-- 3 Tarjetas de Beneficios (Exacto a maqueta móvil y responsivo) -->
+    <div class="flex flex-col gap-4 sm:gap-5">
 
       <!-- Beneficio 1: Alertas de tipo de cambio -->
-      <div class="col-span-6 md:col-span-1 relative bg-gradient-to-br from-white via-white to-[#f0fdfa]/70 rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 md:p-5 lg:p-7 border border-slate-100/90 shadow-xl shadow-[#00394b]/5 flex flex-col lg:flex-row items-center justify-between gap-2.5 sm:gap-3 lg:gap-4 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+      <div class="relative bg-white rounded-[26px] sm:rounded-[32px] p-5 sm:p-7 border border-slate-100/90 shadow-lg shadow-[#00394b]/5 flex flex-row items-center justify-between gap-3 sm:gap-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 overflow-hidden group">
         <!-- Glow suave detrás de la ilustración -->
-        <div class="pointer-events-none absolute -right-6 -bottom-6 w-32 lg:w-44 h-32 lg:h-44 rounded-full bg-[#18a796]/10 blur-2xl"></div>
+        <div class="pointer-events-none absolute -right-6 -bottom-6 w-36 h-36 rounded-full bg-[#18a796]/10 blur-2xl"></div>
 
-        <!-- Columna Izquierda: Icono + Título + Línea + Texto -->
-        <div class="flex-1 min-w-0 text-left z-10 w-full">
-          <!-- Icono Cuadrado Menta -->
-          <div class="w-8 h-8 rounded-xl sm:w-10 sm:h-10 lg:w-11 lg:h-11 bg-[#e6f7f5] text-[#18a796] flex items-center justify-center mb-2 sm:mb-3 shadow-xs">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-              <polyline points="17 6 23 6 23 12"></polyline>
-            </svg>
-          </div>
-
-          <h3 class="text-sm sm:text-base md:text-lg lg:text-xl font-black text-[#00394b] font-display leading-tight mb-1 sm:mb-2">
-            Alertas de<br />tipo de cambio
+        <!-- Columna Izquierda: Título + Línea + Texto -->
+        <div class="flex-1 min-w-0 text-left z-10">
+          <h3 class="text-xl sm:text-2xl lg:text-[26px] font-black text-[#00394b] font-display leading-tight">
+            Alertas de tipo<br />de cambio
           </h3>
           <!-- Barra pequeña turquesa -->
-          <div class="w-6 h-0.5 sm:w-8 sm:h-1 bg-[#18a796] rounded-full mb-1.5 sm:mb-2.5"></div>
+          <div class="w-8 h-1 bg-[#18a796] rounded-full mt-1.5 mb-2.5"></div>
 
-          <p class="text-[10px] sm:text-xs md:text-xs lg:text-[13px] leading-tight sm:leading-relaxed text-slate-600 font-normal">
-            Te avisamos cuando el tipo de cambio llegue al valor que buscas. Activa tu alerta y mantente informado al instante.
+          <p class="text-xs sm:text-sm lg:text-[15px] leading-relaxed text-slate-600 font-normal">
+            Te avisamos cuando el cambio llegue al valor que buscas.
           </p>
         </div>
 
         <!-- Columna Derecha: Ilustración 3D Oficial en Podio -->
-        <div class="w-20 sm:w-28 md:w-28 lg:w-40 shrink-0 flex items-center justify-center mt-2 lg:mt-0 z-10">
+        <div class="w-36 sm:w-44 md:w-52 shrink-0 flex items-center justify-center -mr-2 sm:mr-0 z-10">
           <img
             src="/benefit-alerts.png"
             alt="Alertas de tipo de cambio"
@@ -290,65 +272,53 @@
       </div>
 
       <!-- Beneficio 2: TC Preferencial -->
-      <div class="col-span-6 md:col-span-1 relative bg-gradient-to-br from-white via-white to-[#f0fdfa]/70 rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 md:p-5 lg:p-7 border border-slate-100/90 shadow-xl shadow-[#00394b]/5 flex flex-col lg:flex-row items-center justify-between gap-2.5 sm:gap-3 lg:gap-4 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+      <div class="relative bg-white rounded-[26px] sm:rounded-[32px] p-5 sm:p-7 border border-slate-100/90 shadow-lg shadow-[#00394b]/5 flex flex-row items-center justify-between gap-3 sm:gap-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 overflow-hidden group">
         <!-- Glow suave detrás de la ilustración -->
-        <div class="pointer-events-none absolute -right-6 -bottom-6 w-32 lg:w-44 h-32 lg:h-44 rounded-full bg-[#18a796]/10 blur-2xl"></div>
+        <div class="pointer-events-none absolute -right-6 -bottom-6 w-36 h-36 rounded-full bg-[#18a796]/10 blur-2xl"></div>
 
-        <!-- Columna Izquierda: Icono + Título + Línea + Texto -->
-        <div class="flex-1 min-w-0 text-left z-10 w-full">
-          <!-- Icono Cuadrado Menta Porcentaje -->
-          <div class="w-8 h-8 rounded-xl sm:w-10 sm:h-10 lg:w-11 lg:h-11 bg-[#e6f7f5] text-[#18a796] flex items-center justify-center mb-2 sm:mb-3 shadow-xs font-black text-base sm:text-lg lg:text-xl">
-            %
-          </div>
-
-          <h3 class="text-sm sm:text-base md:text-lg lg:text-xl font-black text-[#00394b] font-display leading-tight mb-1 sm:mb-2">
-            TC<br />Preferencial
+        <!-- Columna Izquierda: Título + Línea + Texto -->
+        <div class="flex-1 min-w-0 text-left z-10">
+          <h3 class="text-xl sm:text-2xl lg:text-[26px] font-black text-[#00394b] font-display leading-tight">
+            Tipo de cambio<br />preferencial
           </h3>
           <!-- Barra pequeña turquesa -->
-          <div class="w-6 h-0.5 sm:w-8 sm:h-1 bg-[#18a796] rounded-full mb-1.5 sm:mb-2.5"></div>
+          <div class="w-8 h-1 bg-[#18a796] rounded-full mt-1.5 mb-2.5"></div>
 
-          <p class="text-[10px] sm:text-xs md:text-xs lg:text-[13px] leading-tight sm:leading-relaxed text-slate-600 font-normal">
-            Obtén un <strong>tipo de cambio preferencial</strong> para montos mayores y operaciones especiales.
+          <p class="text-xs sm:text-sm lg:text-[15px] leading-relaxed text-slate-600 font-normal">
+            Accede a una tasa especial para montos mayores.
           </p>
         </div>
 
         <!-- Columna Derecha: Ilustración 3D Oficial en Podio -->
-        <div class="w-20 sm:w-28 md:w-28 lg:w-40 shrink-0 flex items-center justify-center mt-2 lg:mt-0 z-10">
+        <div class="w-36 sm:w-44 md:w-52 shrink-0 flex items-center justify-center -mr-2 sm:mr-0 z-10">
           <img
             src="/benefit-preferential.png"
-            alt="Tipo de Cambio Preferencial"
+            alt="Tipo de cambio preferencial"
             class="w-full h-auto object-contain drop-shadow-md group-hover:scale-105 transition-transform duration-300"
           />
         </div>
       </div>
 
-      <!-- Beneficio 3: Atención por WhatsApp (Móvil: Centrado abajo; Tablet/PC: 3er columna en la misma fila) -->
-      <div class="col-span-6 col-start-4 md:col-span-1 md:col-start-auto relative bg-gradient-to-br from-white via-white to-[#f0fdfa]/70 rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 md:p-5 lg:p-7 border border-slate-100/90 shadow-xl shadow-[#00394b]/5 flex flex-col lg:flex-row items-center justify-between gap-2.5 sm:gap-3 lg:gap-4 hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 overflow-hidden group">
+      <!-- Beneficio 3: Atención por WhatsApp -->
+      <div class="relative bg-white rounded-[26px] sm:rounded-[32px] p-5 sm:p-7 border border-slate-100/90 shadow-lg shadow-[#00394b]/5 flex flex-row items-center justify-between gap-3 sm:gap-6 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 overflow-hidden group">
         <!-- Glow suave detrás de la ilustración -->
-        <div class="pointer-events-none absolute -right-6 -bottom-6 w-32 lg:w-44 h-32 lg:h-44 rounded-full bg-[#18a796]/10 blur-2xl"></div>
+        <div class="pointer-events-none absolute -right-6 -bottom-6 w-36 h-36 rounded-full bg-[#18a796]/10 blur-2xl"></div>
 
-        <!-- Columna Izquierda: Icono + Título + Línea + Texto -->
-        <div class="flex-1 min-w-0 text-left z-10 w-full">
-          <!-- Icono Cuadrado Menta WhatsApp -->
-          <div class="w-8 h-8 rounded-xl sm:w-10 sm:h-10 lg:w-11 lg:h-11 bg-[#e6f7f5] text-[#25D366] flex items-center justify-center mb-2 sm:mb-3 shadow-xs">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24">
-              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-            </svg>
-          </div>
-
-          <h3 class="text-sm sm:text-base md:text-lg lg:text-xl font-black text-[#00394b] font-display leading-tight mb-1 sm:mb-2">
-            Atención<br />por WhatsApp
+        <!-- Columna Izquierda: Título + Línea + Texto -->
+        <div class="flex-1 min-w-0 text-left z-10">
+          <h3 class="text-xl sm:text-2xl lg:text-[26px] font-black text-[#00394b] font-display leading-tight">
+            Atención por<br />WhatsApp
           </h3>
           <!-- Barra pequeña turquesa -->
-          <div class="w-6 h-0.5 sm:w-8 sm:h-1 bg-[#18a796] rounded-full mb-1.5 sm:mb-2.5"></div>
+          <div class="w-8 h-1 bg-[#18a796] rounded-full mt-1.5 mb-2.5"></div>
 
-          <p class="text-[10px] sm:text-xs md:text-xs lg:text-[13px] leading-tight sm:leading-relaxed text-slate-600 font-normal">
-            Resolvemos tus dudas y te acompañamos en cada paso por WhatsApp, de forma rápida y personalizada.
+          <p class="text-xs sm:text-sm lg:text-[15px] leading-relaxed text-slate-600 font-normal">
+            Te ayudamos en cada paso de tu operación.
           </p>
         </div>
 
         <!-- Columna Derecha: Ilustración 3D Oficial en Podio -->
-        <div class="w-20 sm:w-28 md:w-28 lg:w-40 shrink-0 flex items-center justify-center mt-2 lg:mt-0 z-10">
+        <div class="w-36 sm:w-44 md:w-52 shrink-0 flex items-center justify-center -mr-2 sm:mr-0 z-10">
           <img
             src="/benefit-whatsapp.png"
             alt="Atención por WhatsApp"
