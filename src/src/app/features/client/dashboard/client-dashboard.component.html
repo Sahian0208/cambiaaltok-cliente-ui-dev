@@ -6,7 +6,7 @@
       <p class="welcome-subtitle">Resumen de tus operaciones de cambio</p>
     </div>
     <button class="new-transfer-action-btn" (click)="goToDetail('new')">
-      <i class="pi pi-plus"></i>
+      <i class="pi pi-send"></i>
       <span>Nueva transferencia</span>
     </button>
   </div>
@@ -20,7 +20,7 @@
       </div>
       <div class="kpi-content">
         <span class="kpi-number">{{ activeTransactions().length }}</span>
-        <span class="kpi-label">Operaciones activas</span>
+        <span class="kpi-label">Operaciones<span class="space-desktop"> </span><br class="br-mobile" />activas</span>
       </div>
       <i class="pi pi-angle-right kpi-arrow"></i>
     </div>
@@ -40,11 +40,11 @@
     <!-- Card 3: Operaciones Totales -->
     <div class="kpi-card" (click)="selectedStatus.set('all')">
       <div class="kpi-icon-wrap kpi-icon-wrap--total">
-        <i class="pi pi-bars"></i>
+        <i class="pi pi-clone"></i>
       </div>
       <div class="kpi-content">
         <span class="kpi-number">{{ transactions().length }}</span>
-        <span class="kpi-label">Operaciones totales</span>
+        <span class="kpi-label">Operaciones<span class="space-desktop"> </span><br class="br-mobile" />totales</span>
       </div>
       <i class="pi pi-angle-right kpi-arrow"></i>
     </div>
@@ -162,8 +162,8 @@
         </div>
 
         <!-- Download CSV Button -->
-        <button class="export-icon-btn" (click)="exportCsv()" title="Descargar reporte CSV">
-          <i class="pi pi-download"></i>
+        <button class="export-icon-btn" (click)="exportCsv()" title="Descargar reporte">
+          <i class="pi pi-calendar"></i>
         </button>
       </div>
     </div>
@@ -236,10 +236,30 @@
             </tr>
           } @empty {
             <tr>
-              <td colspan="6" class="text-center py-10">
+              <td colspan="6" class="empty-table-cell">
                 <div class="empty-state-wrap">
-                  <i class="pi pi-inbox text-3xl text-slate-400"></i>
-                  <p class="text-sm font-semibold text-slate-500 mt-2">No se encontraron operaciones registradas.</p>
+                  <div class="empty-illustration">
+                    <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <!-- 3 Accent spark rays -->
+                      <path d="M47 11L49 7" stroke="#0ea5e9" stroke-width="2.2" stroke-linecap="round"/>
+                      <path d="M53 14L57 12" stroke="#0ea5e9" stroke-width="2.2" stroke-linecap="round"/>
+                      <path d="M50 19L54 20" stroke="#0ea5e9" stroke-width="2.2" stroke-linecap="round"/>
+                      
+                      <!-- Document container -->
+                      <rect x="16" y="13" width="31" height="40" rx="5" stroke="#0284c7" stroke-width="2.2" fill="#f8fafc"/>
+                      
+                      <!-- Document text lines -->
+                      <line x1="22" y1="22" x2="35" y2="22" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round"/>
+                      <line x1="22" y1="28" x2="39" y2="28" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round"/>
+                      <line x1="22" y1="34" x2="31" y2="34" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round"/>
+                      
+                      <!-- Magnifying glass -->
+                      <circle cx="39" cy="42" r="9" stroke="#0284c7" stroke-width="2.2" fill="#ffffff"/>
+                      <line x1="46" y1="48" x2="54" y2="56" stroke="#0284c7" stroke-width="2.6" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="empty-title">No se encontraron operaciones registradas.</h3>
+                  <p class="empty-subtitle">Realiza tu primera transferencia y aparecerá aquí.</p>
                 </div>
               </td>
             </tr>
