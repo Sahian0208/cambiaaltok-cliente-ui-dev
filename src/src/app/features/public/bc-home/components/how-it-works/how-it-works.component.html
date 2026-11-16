@@ -88,34 +88,27 @@
       </p>
     </div>
 
-    <!-- 3 Pasos con tarjetas e ilustraciones -->
-    <div class="relative mx-auto max-w-5xl">
+    <!-- 3 Pasos con tarjetas e ilustraciones (2 arriba, 1 centrado abajo) -->
+    <div class="relative mx-auto max-w-4xl">
 
-      <!-- Flechas curvas conectoras para pantallas medianas/grandes -->
-      <div class="hidden md:block absolute top-[120px] left-0 right-0 w-full pointer-events-none z-0">
-        <!-- Flecha 1 a 2 -->
-        <svg class="absolute left-[27%] top-0 w-24 h-12 text-[#18a796]" viewBox="0 0 100 40" fill="none">
-          <path d="M 5 30 Q 50 -10 90 20" stroke="#18a796" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round"/>
-          <polygon points="90,14 96,22 86,24" fill="#18a796" />
-        </svg>
-
-        <!-- Flecha 2 a 3 -->
-        <svg class="absolute left-[61%] top-0 w-24 h-12 text-[#18a796]" viewBox="0 0 100 40" fill="none">
-          <path d="M 5 30 Q 50 -10 90 20" stroke="#18a796" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round"/>
-          <polygon points="90,14 96,22 86,24" fill="#18a796" />
+      <!-- Flecha curva conectora entre Paso 1 y Paso 2 para pantallas medianas/grandes -->
+      <div class="hidden md:block absolute top-[110px] left-1/2 -translate-x-1/2 w-28 h-12 pointer-events-none z-20">
+        <svg class="w-full h-full text-[#18a796]" viewBox="0 0 100 40" fill="none">
+          <path d="M 10 22 Q 50 6 88 22" stroke="#18a796" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round"/>
+          <polygon points="88,16 96,22 88,28" fill="#18a796" />
         </svg>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6 lg:gap-8 items-stretch relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 items-stretch relative z-10">
 
         <!-- PASO 1: Cotiza -->
-        <div class="flex flex-col items-center flex-1">
+        <div class="md:col-span-6 flex flex-col items-center flex-1">
           <!-- Ilustración superior Oficial 3D -->
-          <div class="relative w-full h-60 sm:h-64 flex items-center justify-center pb-4">
+          <div class="relative w-full h-52 sm:h-60 flex items-center justify-center pb-3">
             <img
               src="/how-it-works-step1.png"
               alt="Paso 1: Cotiza en fazilito"
-              class="w-56 sm:w-64 h-auto object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm"
+              class="w-52 sm:w-60 h-auto object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm"
             />
           </div>
 
@@ -136,13 +129,13 @@
         </div>
 
         <!-- PASO 2: Transfiere -->
-        <div class="flex flex-col items-center flex-1">
+        <div class="md:col-span-6 flex flex-col items-center flex-1">
           <!-- Ilustración superior Oficial 3D -->
-          <div class="relative w-full h-60 sm:h-64 flex items-center justify-center pb-4">
+          <div class="relative w-full h-52 sm:h-60 flex items-center justify-center pb-3">
             <img
               src="/how-it-works-step2.png"
               alt="Paso 2: Transfiere a fazilito"
-              class="w-56 sm:w-64 h-auto object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm"
+              class="w-52 sm:w-60 h-auto object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm"
             />
           </div>
 
@@ -162,14 +155,14 @@
           </div>
         </div>
 
-        <!-- PASO 3: Recibe -->
-        <div class="flex flex-col items-center flex-1">
+        <!-- PASO 3: Recibe (Centrado abajo) -->
+        <div class="md:col-span-6 md:col-start-4 flex flex-col items-center flex-1">
           <!-- Ilustración superior Oficial 3D -->
-          <div class="relative w-full h-60 sm:h-64 flex items-center justify-center pb-4">
+          <div class="relative w-full h-52 sm:h-60 flex items-center justify-center pb-3">
             <img
               src="/how-it-works-step3.png"
               alt="Paso 3: Recibe tu cambio con fazilito"
-              class="w-56 sm:w-64 h-auto object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm"
+              class="w-52 sm:w-60 h-auto object-contain hover:scale-105 transition-transform duration-300 drop-shadow-sm"
             />
           </div>
 
@@ -368,12 +361,12 @@
 
   <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-3xl space-y-4 text-center">
-      <h2 class="text-2xl font-black leading-tight text-white sm:text-3xl lg:text-4xl font-display">
+      <h2 class="text-lg sm:text-xl md:text-2xl lg:text-[26px] font-black leading-snug text-white font-display">
         Números que inspiran
         <span class="bg-gradient-to-r from-[#33bb9c] to-[#18a796] bg-clip-text text-transparent">confianza</span>
         al momento de cambiar bolivianos y soles
       </h2>
-      <p class="mx-auto max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">
+      <p class="mx-auto max-w-xl text-xs sm:text-sm leading-relaxed text-slate-300 font-normal">
         Nuestra trayectoria e innovación en el mercado cambiario nos respaldan como la plataforma digital preferida por miles de personas y empresas entre Bolivia y Perú.
       </p>
     </div>
