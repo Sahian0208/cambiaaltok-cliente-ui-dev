@@ -184,15 +184,12 @@
         <tbody>
           @for (tx of paginatedTransactions(); track tx.id) {
             <tr (click)="goToDetail(tx.id)" class="cursor-pointer">
-              <!-- Fecha -->
               <td>
                 <div class="date-cell">
                   <span class="date-day">{{ tx.createdAt | date:'dd/MM/yyyy' }}</span>
                   <span class="date-hour">{{ tx.createdAt | date:'HH:mm' }}</span>
                 </div>
               </td>
-
-              <!-- Envías -->
               <td>
                 <div class="amount-cell">
                   <span class="amount-text">
@@ -202,8 +199,6 @@
                   <app-national-flag [country]="tx.sourceCurrency" size="w-3.5"></app-national-flag>
                 </div>
               </td>
-
-              <!-- Recibes -->
               <td>
                 <div class="amount-cell">
                   <span class="amount-text">
@@ -213,21 +208,15 @@
                   <app-national-flag [country]="tx.destinationCurrency" size="w-3.5"></app-national-flag>
                 </div>
               </td>
-
-              <!-- Estado -->
               <td>
                 <div class="status-pill {{ getStatusBadgeClass(tx.status) }}">
                   <i [class]="getStatusIcon(tx.status)"></i>
                   <span>{{ getStatusLabel(tx.status) }}</span>
                 </div>
               </td>
-
-              <!-- Banco Destino -->
               <td>
                 <span class="bank-name-text">{{ getDestinationBankName(tx) }}</span>
               </td>
-
-              <!-- Detalle -->
               <td class="text-center" (click)="$event.stopPropagation(); goToDetail(tx.id)">
                 <button class="view-detail-btn" title="Ver detalle de operación">
                   <i class="pi pi-eye"></i>

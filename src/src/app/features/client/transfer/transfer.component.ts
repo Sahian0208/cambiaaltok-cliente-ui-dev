@@ -365,7 +365,6 @@ export class TransferComponent implements OnInit, OnDestroy {
         error: (err) => {          
           this.loading = false;
           this.notificationService.error('Error', err.error.messages[0]);
-          //this.notificationService.error('Error', 'No se pudo crear la transferencia.');
         },
       })
     );

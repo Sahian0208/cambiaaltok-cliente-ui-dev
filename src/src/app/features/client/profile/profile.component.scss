@@ -13,10 +13,6 @@
   font-family: 'Gotham', 'Montserrat', 'Plus Jakarta Sans', sans-serif;
   transition: all 0.25s ease;
 }
-
-// ========================================================
-// Main Page Header
-// ========================================================
 .profile-header {
   margin-bottom: 0.25rem;
 }
@@ -45,10 +41,6 @@
     line-height: 1.4;
   }
 }
-
-// ========================================================
-// Fazilito Card Base
-// ========================================================
 .fazilito-card {
   background-color: #ffffff;
   border: 1px solid #e5eaf0;
@@ -62,10 +54,6 @@
     border-radius: 1rem;
   }
 }
-
-// ========================================================
-// Card Header Bar
-// ========================================================
 .card-header-bar {
   display: flex;
   align-items: center;
@@ -164,10 +152,6 @@
     font-size: 0.8rem;
   }
 }
-
-// ========================================================
-// Avatar + Actions Row
-// ========================================================
 .avatar-actions-row {
   display: flex;
   align-items: center;
@@ -342,10 +326,6 @@
 .hidden-file-input {
   display: none;
 }
-
-// ========================================================
-// Form Grid
-// ========================================================
 .fazilito-form-grid {
   display: flex;
   flex-direction: column;
@@ -440,10 +420,6 @@
     box-shadow: 0 0 0 2px rgba(112, 228, 186, 0.25);
   }
 }
-
-// ========================================================
-// Upload Dropzones (Card 2)
-// ========================================================
 .upload-dual-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -710,10 +686,6 @@
   color: #94a3b8;
   margin: 0.5rem 0 0;
 }
-
-// ========================================================
-// Info Alert Bar
-// ========================================================
 .info-alert-bar {
   display: flex;
   align-items: center;
@@ -736,10 +708,6 @@
   font-weight: 500;
   color: #047857;
 }
-
-// ========================================================
-// Bottom Action Buttons (Cancelar & Guardar)
-// ========================================================
 .profile-bottom-actions {
   display: flex;
   align-items: center;
@@ -805,10 +773,6 @@
     cursor: not-allowed;
   }
 }
-
-// ========================================================
-// Camera Overlay & Dialog
-// ========================================================
 .camera-overlay {
   position: fixed;
   inset: 0;
@@ -886,10 +850,6 @@
   background-color: #f8fafc;
   border-top: 1px solid #e5eaf0;
 }
-
-// ========================================================
-// DARK MODE STYLES
-// ========================================================
 .profile-page.dark-mode,
 :host-context(.dark-mode) .profile-page {
   .profile-main-title {

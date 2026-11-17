@@ -1,8 +1,4 @@
 <div class="inicio-page" [class.dark-mode]="themeService.isDarkMode()" [class.dark]="themeService.isDarkMode()">
-
-  <!-- ======================================================== -->
-  <!-- 1. TOP HEADER BAR                                        -->
-  <!-- ======================================================== -->
   <header class="inicio-top-bar">
     <div class="top-bar-left">
       <div class="title-with-divider">
@@ -22,15 +18,12 @@
     </div>
 
     <div class="top-bar-right">
-      <!-- Koinks indicator -->
       <div class="koinks-indicator" (click)="goToCupones()" title="Ver mis Koinks y cupones">
         <span class="koinks-text">Tienes <strong>{{ userKoinks() }} Koinks</strong></span>
         <span class="gold-coin-mini">K</span>
       </div>
 
       <span class="bar-divider">|</span>
-
-      <!-- User pill -->
       <div class="user-pill-inline" routerLink="/cliente/perfil" title="Mi perfil">
         <div class="user-avatar-mini">
           <i class="pi pi-user"></i>
@@ -40,10 +33,6 @@
       </div>
     </div>
   </header>
-
-  <!-- ======================================================== -->
-  <!-- 2. PROMOTIONAL BANNER: ¡Gana CUPONES!                    -->
-  <!-- ======================================================== -->
   <section class="promo-banner">
     <div class="banner-top-content">
       <!-- Left: Tilted Mint Ticket & Floating Koinks -->
@@ -94,15 +83,8 @@
       </button>
     </div>
   </section>
-
-  <!-- ======================================================== -->
-  <!-- 3. MAIN CONTENT: 2 COLUMNS (CALCULATOR & INFO CARDS)     -->
-  <!-- ======================================================== -->
   <div class="inicio-main-grid">
-
-    <!-- ====================================================== -->
     <!-- LEFT COLUMN: THE EXCHANGE CALCULATOR                   -->
-    <!-- ====================================================== -->
     <div class="calculator-card">
       
       <!-- Top Rate Tabs: Compra / Venta -->
@@ -349,10 +331,7 @@
 
       </div>
     </div>
-
-    <!-- ====================================================== -->
     <!-- RIGHT COLUMN: KOINKS & BANK CARDS                      -->
-    <!-- ====================================================== -->
     <div class="right-info-column">
 
       <!-- Card 1: ¡Tienes 2106 Koinks! -->
@@ -420,36 +399,25 @@
             <!-- Bank Logos Grid (Peru) -->
             @if (selectedBankCountry() === 'peru') {
               <div class="bank-logos-grid">
-                <!-- BCP -->
                 <div class="bank-logo-item bcp-item">
                   <span class="bcp-chevron">&gt;</span>
                   <span class="bcp-brand">BCP</span>
                   <span class="bcp-chevron">&gt;</span>
                 </div>
-
-                <!-- Interbank -->
                 <div class="bank-logo-item interbank-item">
                   <span class="ibk-square"></span>
                   <span class="ibk-brand">Interbank</span>
                 </div>
-
-                <!-- BBVA -->
                 <div class="bank-logo-item bbva-item">
                   <span class="bbva-brand">BBVA</span>
                 </div>
-
-                <!-- BanBif -->
                 <div class="bank-logo-item banbif-item">
                   <span class="banbif-brand">BanBif</span>
                 </div>
-
-                <!-- Scotiabank -->
                 <div class="bank-logo-item scotia-item">
                   <span class="scotia-flame">🔥</span>
                   <span class="scotia-brand">Scotiabank</span>
                 </div>
-
-                <!-- Banco Pichincha -->
                 <div class="bank-logo-item pichincha-item">
                   <span class="pichincha-square"></span>
                   <span class="pichincha-brand">BANCO PICHINCHA</span>
@@ -458,33 +426,22 @@
             } @else {
               <!-- Bank Logos Grid (Bolivia) -->
               <div class="bank-logos-grid">
-                <!-- Banco Unión -->
                 <div class="bank-logo-item union-item">
                   <span class="union-icon">U</span>
                   <span class="union-brand">Banco Unión</span>
                 </div>
-
-                <!-- BNB -->
                 <div class="bank-logo-item bnb-item">
                   <span class="bnb-brand">BNB</span>
                 </div>
-
-                <!-- Banco Mercantil Santa Cruz -->
                 <div class="bank-logo-item mercantil-item">
                   <span class="mercantil-brand">Mercantil Santa Cruz</span>
                 </div>
-
-                <!-- Banco BISA -->
                 <div class="bank-logo-item bisa-item">
                   <span class="bisa-brand">BISA</span>
                 </div>
-
-                <!-- Banco Ganadero -->
                 <div class="bank-logo-item ganadero-item">
                   <span class="ganadero-brand">Banco Ganadero</span>
                 </div>
-
-                <!-- Banco Económico -->
                 <div class="bank-logo-item economico-item">
                   <span class="economico-brand">Banco Económico</span>
                 </div>

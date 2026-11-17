@@ -11,10 +11,6 @@
   gap: 1.5rem;
   font-family: 'Gotham', 'Montserrat', 'Plus Jakarta Sans', sans-serif;
 }
-
-// ==========================================
-// Header
-// ==========================================
 .my-coupon-header {
   display: flex;
   align-items: center;
@@ -64,10 +60,6 @@
     font-size: 0.825rem;
   }
 }
-
-// ==========================================
-// Grid Layout (Desktop 2-col, Mobile 1-col)
-// ==========================================
 .coupon-page-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 380px;
@@ -93,10 +85,6 @@
   gap: 1.25rem;
   width: 100%;
 }
-
-// ==========================================
-// How it works card ("¿Cómo funciona?")
-// ==========================================
 .my-coupon-info-card {
   background-color: #fffdf0;
   border: 1.5px solid #fef08a;
@@ -159,10 +147,6 @@
   flex-shrink: 0;
   margin-top: 0.1rem;
 }
-
-// ==========================================
-// Desktop Perks Card
-// ==========================================
 .coupon-desktop-perks-card {
   background-color: #ffffff;
   border: 1px solid #e6ecf2;
@@ -222,10 +206,6 @@
     }
   }
 }
-
-// ==========================================
-// Dark Mode Styles
-// ==========================================
 .my-coupon-page.dark-mode,
 :host-context(.dark-mode) .my-coupon-page {
   .my-coupon-header-icon {

@@ -411,8 +411,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         },
       });
 
-      //this.naturalPerson = updatedNaturalPerson;
-
     }
     setTimeout(() => {
       this.saving = false;

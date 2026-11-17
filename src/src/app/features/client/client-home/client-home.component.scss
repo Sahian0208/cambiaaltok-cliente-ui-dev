@@ -23,10 +23,6 @@
     gap: 0.95rem;
   }
 }
-
-// ========================================================
-// 1. TOP HEADER BAR
-// ========================================================
 .inicio-top-bar {
   display: flex;
   align-items: center;
@@ -241,10 +237,6 @@
   font-size: 0.6rem;
   color: #94a3b8;
 }
-
-// ========================================================
-// 2. PROMOTIONAL BANNER: ¡Gana CUPONES!
-// ========================================================
 .promo-banner {
   background: linear-gradient(135deg, #093c4a 0%, #062b36 50%, #021a22 100%);
   border-radius: 1.25rem;
@@ -567,10 +559,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 }
-
-// ========================================================
-// 3. MAIN 2-COLUMN GRID (RESPONSIVE)
-// ========================================================
 .inicio-main-grid {
   display: grid;
   grid-template-columns: 1fr 1.05fr;
@@ -587,10 +575,6 @@
     gap: 1rem;
   }
 }
-
-// ========================================================
-// LEFT COLUMN: CALCULATOR CARD
-// ========================================================
 .calculator-card {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
@@ -1219,10 +1203,6 @@
     padding: 0.85rem;
   }
 }
-
-// ========================================================
-// RIGHT COLUMN: KOINKS & BANK CARDS
-// ========================================================
 .right-info-column {
   display: flex;
   flex-direction: column;
@@ -1781,10 +1761,6 @@
     margin: 0;
   }
 }
-
-// ========================================================
-// 4. DARK MODE STYLES
-// ========================================================
 .inicio-page.dark-mode,
 :host-context(.dark-mode) .inicio-page {
   color: #ffffff;

@@ -1,8 +1,4 @@
 @use '../../../../assets/styles/variables' as *;
-
-// ========================================
-// New Modern Header (Matching Screenshot)
-// ========================================
 .transfer-top-header {
   display: flex;
   align-items: center;
@@ -121,10 +117,6 @@
   align-items: center;
   justify-content: center;
 }
-
-// ========================================
-// Section 1 Card & Inputs
-// ========================================
 .form-section-clean {
   background-color: #ffffff;
   border: 1px solid #e6ecf2;
@@ -358,10 +350,6 @@
 :host {
   display: block;
 }
-
-// ========================================
-// Wrapper
-// ========================================
 .transfer-wrapper {
   max-width: 1400px;
   width: 100%;
@@ -371,10 +359,6 @@
   gap: 1.25rem;
   overflow-x: hidden;
 }
-
-// ========================================
-// Header
-// ========================================
 .transfer-header {
   display: flex;
   align-items: center;
@@ -415,20 +399,12 @@
   color: $color-text-secondary;
   margin: 0.125rem 0 0;
 }
-
-// ========================================
-// Stepper wrapper
-// ========================================
 .stepper-wrapper {
   background: white;
   border-radius: 12px;
   border: 1px solid $color-border;
   padding: 0.75rem 1rem;
 }
-
-// ========================================
-// Loading
-// ========================================
 .loading-state {
   display: flex;
   flex-direction: column;
@@ -442,10 +418,6 @@
   font-size: 0.85rem;
   color: $color-text-secondary;
 }
-
-// ========================================
-// Step Content
-// ========================================
 .step-content {
   display: flex;
   flex-direction: column;
@@ -463,10 +435,6 @@
     transform: translateY(0);
   }
 }
-
-// ========================================
-// Step Info Card
-// ========================================
 .step-info-card {
   display: flex;
   align-items: flex-start;
@@ -548,10 +516,6 @@
   margin: 0.25rem 0 0;
   line-height: 1.4;
 }
-
-// ========================================
-// Alert Card
-// ========================================
 .alert-card {
   display: flex;
   align-items: flex-start;
@@ -604,19 +568,11 @@
     background: $color-primary-light;
   }
 }
-
-// ========================================
-// Transfer Form
-// ========================================
 .transfer-form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
-
-// ========================================
-// Form Section
-// ========================================
 .form-section {
   background: white;
   border: 1px solid $color-border;
@@ -659,10 +615,6 @@
   color: $color-text-secondary;
   margin: 0.125rem 0 0;
 }
-
-// ========================================
-// Form Fields
-// ========================================
 .form-fields-row {
   display: flex;
   gap: 0.75rem;
@@ -707,10 +659,6 @@
     font-size: 0.65rem;
   }
 }
-
-// ========================================
-// Conversion Card
-// ========================================
 .conversion-card {
   background: #f0f9ff;
   border: 1px solid #bae6fd;
@@ -787,10 +735,6 @@
     font-size: 0.75rem;
   }
 }
-
-// ========================================
-// Form Submit
-// ========================================
 .form-submit {
   display: flex;
   flex-direction: column;
@@ -810,10 +754,6 @@
     color: $color-success;
   }
 }
-
-// ========================================
-// Content Card (Step 2, 5)
-// ========================================
 .content-card {
   background: white;
   border: 1px solid $color-border;
@@ -904,10 +844,6 @@
   object-fit: contain;
   border-radius: 6px;
 }
-
-// ========================================
-// Summary Card
-// ========================================
 .summary-card {
   background: #f8fafc;
   border: 1px solid $color-border;
@@ -984,10 +920,6 @@
     color: $color-text-secondary;
   }
 }
-
-// ========================================
-// Waiting State (Steps 3, 4)
-// ========================================
 .waiting-state {
   display: flex;
   flex-direction: column;
@@ -1064,10 +996,6 @@
     text-align: left;
   }
 }
-
-// ========================================
-// Success State (Step 5)
-// ========================================
 .success-state {
   display: flex;
   flex-direction: column;
@@ -1104,10 +1032,6 @@
   color: $color-text-secondary;
   margin: 0;
 }
-
-// ========================================
-// Denied State
-// ========================================
 .denied-state {
   display: flex;
   flex-direction: column;
@@ -1160,10 +1084,6 @@
   color: $color-text;
   margin: 0.25rem 0 0;
 }
-
-// ========================================
-// Step Actions
-// ========================================
 .step-actions {
   display: flex;
   justify-content: flex-start;
@@ -1174,10 +1094,6 @@
     justify-content: center;
   }
 }
-
-// ========================================
-// Coupon Section
-// ========================================
 .coupon-section {
   margin-top: 0.25rem;
 }
@@ -1353,10 +1269,6 @@
     font-size: 0.7rem;
   }
 }
-
-// ========================================
-// Conversion Breakdown (with coupon)
-// ========================================
 .conversion-breakdown {
   display: flex;
   flex-direction: column;
@@ -1392,10 +1304,6 @@
     margin-top: 0.25rem;
   }
 }
-
-// ========================================
-// PrimeNG Overrides
-// ========================================
 :host ::ng-deep {
   .p-inputnumber,
   .p-select {
@@ -1411,12 +1319,6 @@
     padding: 0 !important;
   }
 }
-
-// ========================================
-
-// ========================================
-// Dialog Styles
-// ========================================
 .dialog-content {
   padding: 1.25rem;
 }
@@ -1540,10 +1442,6 @@
   padding: 0.75rem 1.25rem;
   border-top: 1px solid $color-border;
 }
-
-// ========================================
-// Responsive: Mobile-first adjustments
-// ========================================
 @media (max-width: 480px) {
   .transfer-wrapper {
     gap: 1rem;
@@ -1601,10 +1499,6 @@
     }
   }
 }
-
-// ========================================
-// Calculator Read-Only View (from home)
-// ========================================
 .calculator-readonly {
   background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%);
   border: 1px solid #bbf7d0;
