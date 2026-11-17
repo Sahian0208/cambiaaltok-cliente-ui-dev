@@ -441,187 +441,265 @@
 
       
       <div
-        class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 select-none transition-all duration-500"
+        class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 select-none transition-all duration-500 font-gotham"
+        (touchstart)="onTouchStart($event)"
+        (touchend)="onTouchEnd($event)"
       >
         <div
-          class="flex w-[200%] transition-transform duration-500 ease-out"
-          [style.transform]="'translateX(-' + activePromotionIndex() * 50 + '%)'
-          "
+          class="flex w-[400%] transition-transform duration-500 ease-out"
+          [style.transform]="'translateX(-' + activePromotionIndex() * 25 + '%)'"
         >
+          <!-- SLIDE 1: CLIENTE FRECUENTE -->
           <div
-            class="w-1/2 shrink-0 bg-gradient-to-r from-[#1E0B36] via-[#0F0526] to-[#040C1A] text-white py-3 px-6 md:py-3 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 relative min-h-[110px]"
+            class="w-1/4 shrink-0 bg-gradient-to-r from-[#021f24] via-[#053238] to-[#011417] text-white py-5 px-5 sm:py-6 sm:px-8 md:px-12 flex items-center justify-between gap-4 md:gap-8 relative min-h-[145px] sm:min-h-[160px] overflow-hidden"
           >
-            <div
-              class="absolute -right-10 -top-10 w-48 h-48 bg-purple-500/25 rounded-full blur-3xl pointer-events-none"
-            ></div>
-            <div
-              class="absolute -left-10 -bottom-10 w-48 h-48 bg-pink-500/10 rounded-full blur-3xl pointer-events-none"
-            ></div>
+            <div class="absolute -right-8 -top-8 w-56 h-56 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-8 -bottom-8 w-48 h-48 bg-teal-500/15 rounded-full blur-3xl pointer-events-none"></div>
+            <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20 text-[#34d399]" preserveAspectRatio="none" viewBox="0 0 800 200">
+              <path d="M -50 150 C 200 80 400 200 650 100 C 750 60 850 120 900 80" stroke="currentColor" stroke-width="1.5" fill="none" />
+              <path d="M -50 180 C 250 120 450 220 700 130 C 780 100 850 140 900 110" stroke="currentColor" stroke-width="1" fill="none" />
+            </svg>
 
-            <div
-              class="flex-1 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 relative z-10 text-center md:text-left w-full"
-            >
-              <div class="space-y-1 md:max-w-[70%]">
-                <h3
-                  class="text-lg md:text-xl font-extrabold font-display leading-tight"
-                >
-                  ¡Refiere y Gana
-                  <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300"
-                    >S/. 15 en Efectivo</span
-                  >!
-                </h3>
-                <p
-                  class="text-xs md:text-[13px] text-slate-300 font-light leading-relaxed"
-                >
-                  Comparte tu código de referido. Cuando tu amigo haga su primer
-                  cambio, tú recibes S/. 15 de regalo y él obtiene una
-                  cotización preferencial en su operación. ¡Todos ganan!
-                </p>
-              </div>
-              <div class="shrink-0 flex justify-center md:justify-start">
+            <div class="flex-1 relative z-10 text-left max-w-[72%] sm:max-w-[76%] md:max-w-[70%]">
+              <span class="inline-block text-[10px] sm:text-xs font-black uppercase tracking-wider text-[#34d399] mb-1">
+                CLIENTE FRECUENTE
+              </span>
+              <h3 class="text-base sm:text-xl md:text-2xl lg:text-[1.65rem] font-extrabold leading-tight tracking-tight mb-1">
+                Tu confianza tiene <span class="text-[#34d399]">beneficios.</span>
+              </h3>
+              <p class="text-[11px] sm:text-xs md:text-sm text-slate-200/90 font-normal leading-snug line-clamp-2 sm:line-clamp-none mb-3 sm:mb-3.5">
+                Accede a una tasa preferencial al completar las operaciones requeridas.
+              </p>
+              <div>
                 <button
-                  class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white font-black px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition duration-300 active:scale-95 shadow-lg shadow-purple-500/20 border-none cursor-pointer whitespace-nowrap"
+                  type="button"
+                  (click)="scrollToCalculator()"
+                  class="bg-gradient-to-r from-[#a7f3d0] to-[#6ee7b7] hover:from-[#86efac] hover:to-[#34d399] text-[#002b37] font-black text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-1.5 cursor-pointer border-none"
                 >
-                  Compartir Código
+                  <span>Ver mis beneficios</span>
+                  <i class="pi pi-arrow-right text-[10px] sm:text-xs"></i>
                 </button>
               </div>
             </div>
 
-            <div
-              class="relative w-24 h-24 shrink-0 z-10 flex items-center justify-center"
-            >
-              <img
-                src="/mascota.png"
-                alt="Mascota Altok Promoción"
-                class="w-16 md:w-18 h-auto object-contain z-10 drop-shadow-[0_8px_16px_rgba(168,85,247,0.3)]"
-              />
-
-              <span class="absolute text-lg -top-1 -left-1 animate-float-slow"
-                >🎁</span
-              >
-              <span class="absolute text-lg top-6 -right-2 animate-float-fast"
-                >💵</span
-              >
-              <span
-                class="absolute text-base bottom-1 -left-3 animate-float-slow delay-75"
-                >🪙</span
-              >
-              <span class="absolute text-sm -top-3 right-4 animate-float-fast"
-                >✨</span
-              >
-              <span
-                class="absolute text-sm bottom-3 -right-1 animate-float-slow delay-100"
-                >⚡</span
-              >
-              <span
-                class="absolute text-lg top-16 -left-4 animate-float-fast delay-150"
-                >🎉</span
-              >
+            <div class="relative z-10 shrink-0 flex items-center justify-center pr-1 sm:pr-4">
+              <svg class="w-20 h-20 sm:w-26 sm:h-26 md:w-30 md:h-30 drop-shadow-[0_0_16px_rgba(52,211,153,0.4)]" viewBox="0 0 100 100" fill="none">
+                <line x1="84" y1="14" x2="90" y2="8" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="90" y1="22" x2="98" y2="20" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="80" y1="10" x2="78" y2="4" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" />
+                <g transform="rotate(-8 50 50)">
+                  <rect x="12" y="24" width="76" height="50" rx="8" stroke="#6ee7b7" stroke-width="3" fill="#042e33" fill-opacity="0.45" />
+                  <line x1="12" y1="36" x2="88" y2="36" stroke="#6ee7b7" stroke-width="2" opacity="0.6" />
+                  <path d="M 72 45 L 74 49 L 78 50 L 75 53 L 76 57 L 72 55 L 68 57 L 69 53 L 66 50 L 70 49 Z" fill="none" stroke="#34d399" stroke-width="2" stroke-linejoin="round" />
+                  <path d="M 22 55 L 26 59 L 34 51" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <line x1="38" y1="55" x2="56" y2="55" stroke="#6ee7b7" stroke-width="2.5" stroke-linecap="round" />
+                  <path d="M 22 65 L 26 69 L 34 61" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <line x1="38" y1="65" x2="56" y2="65" stroke="#6ee7b7" stroke-width="2.5" stroke-linecap="round" />
+                </g>
+              </svg>
             </div>
           </div>
 
+          <!-- SLIDE 2: MONTOS MAYORES -->
           <div
-            class="w-1/2 shrink-0 bg-gradient-to-r from-[#041D34] via-[#021323] to-[#040C1A] text-white py-3 px-6 md:py-3 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 relative min-h-[110px]"
+            class="w-1/4 shrink-0 bg-gradient-to-r from-[#03152e] via-[#07264a] to-[#020b18] text-white py-5 px-5 sm:py-6 sm:px-8 md:px-12 flex items-center justify-between gap-4 md:gap-8 relative min-h-[145px] sm:min-h-[160px] overflow-hidden"
           >
-            <div
-              class="absolute -right-10 -top-10 w-48 h-48 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"
-            ></div>
-            <div
-              class="absolute -left-10 -bottom-10 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"
-            ></div>
+            <div class="absolute -right-8 -top-8 w-56 h-56 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-8 -bottom-8 w-48 h-48 bg-blue-500/15 rounded-full blur-3xl pointer-events-none"></div>
+            <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20 text-[#38bdf8]" preserveAspectRatio="none" viewBox="0 0 800 200">
+              <path d="M -50 150 C 200 80 400 200 650 100 C 750 60 850 120 900 80" stroke="currentColor" stroke-width="1.5" fill="none" />
+              <path d="M -50 180 C 250 120 450 220 700 130 C 780 100 850 140 900 110" stroke="currentColor" stroke-width="1" fill="none" />
+            </svg>
 
-            <div
-              class="flex-1 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6 relative z-10 text-center md:text-left w-full"
-            >
-              <div class="space-y-1 md:max-w-[70%]">
-                <h3
-                  class="text-lg md:text-xl font-extrabold font-display leading-tight"
-                >
-                  ¡Tasa Preferencial en tu
-                  <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-[#21F0D2] to-[#12D6EB]"
-                    >Primer Cambio</span
-                  >!
-                </h3>
-                <p
-                  class="text-xs md:text-[13px] text-slate-300 font-light leading-relaxed"
-                >
-                  Haz tu primer cambio usando el cupón
-                  <strong
-                    class="text-white bg-cyan-500/30 px-2 py-0.5 rounded border border-cyan-400/20"
-                    >ALTOK100</strong
-                  >
-                  y accede automáticamente al tipo de cambio preferencial.
-                  ¡Cotiza ya!
-                </p>
-              </div>
-              <div class="shrink-0 flex justify-center md:justify-start">
+            <div class="flex-1 relative z-10 text-left max-w-[72%] sm:max-w-[76%] md:max-w-[70%]">
+              <span class="inline-block text-[10px] sm:text-xs font-black uppercase tracking-wider text-[#38bdf8] mb-1">
+                MONTOS MAYORES
+              </span>
+              <h3 class="text-base sm:text-xl md:text-2xl lg:text-[1.65rem] font-extrabold leading-tight tracking-tight mb-1">
+                ¿Cambias un monto mayor? <span class="block sm:inline">Tenemos una tasa para ti.</span>
+              </h3>
+              <p class="text-[11px] sm:text-xs md:text-sm text-slate-200/90 font-normal leading-snug line-clamp-2 sm:line-clamp-none mb-3 sm:mb-3.5">
+                Accede a una cotización preferencial desde el monto mínimo de la promoción.
+              </p>
+              <div>
                 <button
-                  class="bg-gradient-to-r from-[#21F0D2] to-[#12D6EB] hover:from-cyan-400 hover:to-cyan-300 text-[#04142E] font-black px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition duration-300 active:scale-95 shadow-lg shadow-cyan-500/20 border-none cursor-pointer whitespace-nowrap"
+                  type="button"
+                  (click)="openWhatsApp('Hola,%20deseo%20solicitar%20una%20cotizaci%C3%B3n%20para%20un%20monto%20mayor')"
+                  class="bg-gradient-to-r from-[#bae6fd] to-[#7dd3fc] hover:from-[#7dd3fc] hover:to-[#38bdf8] text-[#002b37] font-black text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-1.5 cursor-pointer border-none"
                 >
-                  Cambiar Ahora
+                  <span>Solicitar cotización</span>
+                  <i class="pi pi-arrow-right text-[10px] sm:text-xs"></i>
                 </button>
               </div>
             </div>
 
-            <div
-              class="relative w-24 h-24 shrink-0 z-10 flex items-center justify-center"
-            >
-              <img
-                src="/altok-logo.png"
-                alt="Logo Altok Promoción"
-                class="w-16 md:w-18 h-auto object-contain z-10 drop-shadow-[0_8px_16px_rgba(6,182,212,0.3)] rounded-lg"
-              />
+            <div class="relative z-10 shrink-0 flex items-center justify-center pr-1 sm:pr-4">
+              <svg class="w-20 h-20 sm:w-26 sm:h-26 md:w-30 md:h-30 drop-shadow-[0_0_16px_rgba(56,189,248,0.4)]" viewBox="0 0 100 100" fill="none">
+                <line x1="84" y1="12" x2="90" y2="6" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="90" y1="20" x2="98" y2="18" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="80" y1="8" x2="78" y2="2" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" />
+                <ellipse cx="32" cy="42" rx="14" ry="5" stroke="#38bdf8" stroke-width="2.5" fill="#052144" fill-opacity="0.5" />
+                <path d="M 18 42 V 50 C 18 53 24 55 32 55 C 40 55 46 53 46 50 V 42" stroke="#38bdf8" stroke-width="2.5" />
+                <path d="M 18 50 V 58 C 18 61 24 63 32 63 C 40 63 46 61 46 58 V 50" stroke="#38bdf8" stroke-width="2.5" />
+                <path d="M 18 58 V 66 C 18 69 24 71 32 71 C 40 71 46 69 46 66 V 58" stroke="#38bdf8" stroke-width="2.5" />
+                <ellipse cx="68" cy="34" rx="14" ry="5" stroke="#7dd3fc" stroke-width="2.5" fill="#052144" fill-opacity="0.5" />
+                <path d="M 54 34 V 42 C 54 45 60 47 68 47 C 76 47 82 45 82 42 V 34" stroke="#7dd3fc" stroke-width="2.5" />
+                <path d="M 54 42 V 50 C 54 53 60 55 68 55 C 76 55 82 53 82 50 V 42" stroke="#7dd3fc" stroke-width="2.5" />
+                <path d="M 54 50 V 58 C 54 61 60 63 68 63 C 76 63 82 61 82 58 V 50" stroke="#7dd3fc" stroke-width="2.5" />
+                <path d="M 54 58 V 66 C 54 69 60 71 68 71 C 76 71 82 69 82 66 V 58" stroke="#7dd3fc" stroke-width="2.5" />
+                <path d="M 32 30 C 40 20 60 20 66 24" stroke="#bae6fd" stroke-width="2.5" stroke-linecap="round" />
+                <path d="M 64 20 L 68 25 L 61 26" stroke="#bae6fd" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M 68 78 C 60 86 40 86 34 82" stroke="#bae6fd" stroke-width="2.5" stroke-linecap="round" />
+                <path d="M 36 86 L 32 81 L 39 80" stroke="#bae6fd" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
 
-              <span class="absolute text-lg -top-1 right-1 animate-float-slow"
-                >🪙</span
-              >
-              <span class="absolute text-base top-8 -left-2 animate-float-fast"
-                >✨</span
-              >
-              <span
-                class="absolute text-lg bottom-0 right-1 animate-float-slow delay-75"
-                >🪙</span
-              >
-              <span class="absolute text-sm -top-3 -left-3 animate-float-slow"
-                >🌟</span
-              >
-              <span
-                class="absolute text-sm top-16 -right-3 animate-float-fast delay-100"
-                >⚡</span
-              >
-              <span
-                class="absolute text-base bottom-4 -left-4 animate-float-slow delay-150"
-                >💎</span
-              >
-              <span
-                class="absolute text-sm -top-0 right-10 animate-float-fast delay-200"
-                >👑</span
-              >
+          <!-- SLIDE 3: BENEFICIO COMPARTIDO -->
+          <div
+            class="w-1/4 shrink-0 bg-gradient-to-r from-[#1c0c2e] via-[#2d1544] to-[#12051f] text-white py-5 px-5 sm:py-6 sm:px-8 md:px-12 flex items-center justify-between gap-4 md:gap-8 relative min-h-[145px] sm:min-h-[160px] overflow-hidden"
+          >
+            <div class="absolute -right-8 -top-8 w-56 h-56 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-8 -bottom-8 w-48 h-48 bg-purple-500/15 rounded-full blur-3xl pointer-events-none"></div>
+            <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20 text-[#f472b6]" preserveAspectRatio="none" viewBox="0 0 800 200">
+              <path d="M -50 150 C 200 80 400 200 650 100 C 750 60 850 120 900 80" stroke="currentColor" stroke-width="1.5" fill="none" />
+              <path d="M -50 180 C 250 120 450 220 700 130 C 780 100 850 140 900 110" stroke="currentColor" stroke-width="1" fill="none" />
+            </svg>
+
+            <div class="flex-1 relative z-10 text-left max-w-[72%] sm:max-w-[76%] md:max-w-[70%]">
+              <span class="inline-block text-[10px] sm:text-xs font-black uppercase tracking-wider text-[#f472b6] mb-1">
+                BENEFICIO COMPARTIDO
+              </span>
+              <h3 class="text-base sm:text-xl md:text-2xl lg:text-[1.65rem] font-extrabold leading-tight tracking-tight mb-1">
+                Invita, cambia y <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#fb7185] to-[#f97316]">gana.</span>
+              </h3>
+              <p class="text-[11px] sm:text-xs md:text-sm text-slate-200/90 font-normal leading-snug line-clamp-2 sm:line-clamp-none mb-3 sm:mb-3.5">
+                Tu amigo realiza su primer cambio: tú recibes S/ 15 y él accede a una tasa preferencial.
+              </p>
+              <div>
+                <button
+                  type="button"
+                  (click)="shareCode('FAZILITO15')"
+                  class="bg-gradient-to-r from-[#fbcfe8] to-[#fed7aa] hover:from-[#f472b6] hover:to-[#fb923c] text-[#1e0b36] font-black text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-md hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-1.5 cursor-pointer border-none"
+                >
+                  <span>Compartir mi código</span>
+                  <i class="pi pi-arrow-right text-[10px] sm:text-xs"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="relative z-10 shrink-0 flex items-center justify-center pr-1 sm:pr-4">
+              <svg class="w-20 h-20 sm:w-26 sm:h-26 md:w-30 md:h-30 drop-shadow-[0_0_16px_rgba(251,113,133,0.4)]" viewBox="0 0 100 100" fill="none">
+                <line x1="44" y1="12" x2="42" y2="6" stroke="#fb7185" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="50" y1="10" x2="50" y2="3" stroke="#fb7185" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="56" y1="12" x2="58" y2="6" stroke="#fb7185" stroke-width="2.5" stroke-linecap="round" />
+                <path d="M 28 48 C 36 34 64 34 72 48" stroke="#fbcfe8" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 3" />
+                <circle cx="22" cy="44" r="8" stroke="#f472b6" stroke-width="2.5" fill="#2c1345" fill-opacity="0.5" />
+                <path d="M 10 70 C 10 59 15 56 22 56 C 29 56 34 59 34 70" stroke="#f472b6" stroke-width="2.5" stroke-linecap="round" />
+                <circle cx="78" cy="44" r="8" stroke="#f472b6" stroke-width="2.5" fill="#2c1345" fill-opacity="0.5" />
+                <path d="M 66 70 C 66 59 71 56 78 56 C 85 56 90 59 90 70" stroke="#f472b6" stroke-width="2.5" stroke-linecap="round" />
+                <rect x="40" y="46" width="20" height="20" rx="3" stroke="#fed7aa" stroke-width="2.5" fill="#2c1345" fill-opacity="0.7" />
+                <line x1="50" y1="46" x2="50" y2="66" stroke="#fb7185" stroke-width="2" />
+                <line x1="40" y1="56" x2="60" y2="56" stroke="#fb7185" stroke-width="2" />
+                <path d="M 46 46 C 44 42 45 38 48 40 C 50 42 50 46 50 46" stroke="#fb7185" stroke-width="2" stroke-linecap="round" />
+                <path d="M 54 46 C 56 42 55 38 52 40 C 50 42 50 46 50 46" stroke="#fb7185" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- SLIDE 4: BENEFICIO DE BIENVENIDA -->
+          <div
+            class="w-1/4 shrink-0 bg-gradient-to-r from-[#99f6e4] via-[#a7f3d0] to-[#bbf7d0] text-[#002b37] py-5 px-5 sm:py-6 sm:px-8 md:px-12 flex items-center justify-between gap-4 md:gap-8 relative min-h-[145px] sm:min-h-[160px] overflow-hidden"
+          >
+            <div class="absolute -right-8 -top-8 w-56 h-56 bg-emerald-300/40 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-8 -bottom-8 w-48 h-48 bg-teal-300/30 rounded-full blur-3xl pointer-events-none"></div>
+            <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-25 text-[#004d40]" preserveAspectRatio="none" viewBox="0 0 800 200">
+              <path d="M -50 150 C 200 80 400 200 650 100 C 750 60 850 120 900 80" stroke="currentColor" stroke-width="1.5" fill="none" />
+              <path d="M -50 180 C 250 120 450 220 700 130 C 780 100 850 140 900 110" stroke="currentColor" stroke-width="1" fill="none" />
+            </svg>
+
+            <div class="flex-1 relative z-10 text-left max-w-[72%] sm:max-w-[76%] md:max-w-[70%]">
+              <span class="inline-block text-[10px] sm:text-xs font-black uppercase tracking-wider text-[#004d40] mb-1">
+                BENEFICIO DE BIENVENIDA
+              </span>
+              <h3 class="text-base sm:text-xl md:text-2xl lg:text-[1.65rem] font-extrabold leading-tight tracking-tight mb-1 text-[#002b37]">
+                Primera vez en Fazilito, primera ventaja.
+              </h3>
+              <p class="text-[11px] sm:text-xs md:text-sm text-[#00394b]/85 font-medium leading-snug line-clamp-2 sm:line-clamp-none mb-3 sm:mb-3.5">
+                Usa <strong class="font-black text-[#002b37]">ALTOK100</strong> y accede a una tasa preferencial en tu primera operación.
+              </p>
+              <div class="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  (click)="copyCoupon('ALTOK100')"
+                  class="bg-[#002b37] hover:bg-[#001f28] text-white font-black text-xs sm:text-sm px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full inline-flex items-center gap-1.5 shadow-md active:scale-95 transition-all cursor-pointer border-none"
+                  title="Copiar cupón ALTOK100"
+                >
+                  <span>{{ copiedCoupon() ? '¡Copiado!' : 'ALTOK100' }}</span>
+                  <i [class]="copiedCoupon() ? 'pi pi-check text-[#34d399]' : 'pi pi-copy text-xs'"></i>
+                </button>
+                <button
+                  type="button"
+                  (click)="scrollToCalculator()"
+                  class="bg-[#004d40] hover:bg-[#003930] text-white font-black text-xs sm:text-sm px-4 sm:px-5 py-2 sm:py-2.5 rounded-full inline-flex items-center gap-1.5 shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer border-none"
+                >
+                  <span>Cotizar mi primer cambio</span>
+                  <i class="pi pi-arrow-right text-[10px] sm:text-xs"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="relative z-10 shrink-0 flex items-center justify-center pr-1 sm:pr-4">
+              <svg class="w-20 h-20 sm:w-26 sm:h-26 md:w-30 md:h-30 drop-shadow-[0_0_16px_rgba(5,150,105,0.3)]" viewBox="0 0 100 100" fill="none">
+                <line x1="84" y1="14" x2="90" y2="8" stroke="#004d40" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="90" y1="22" x2="98" y2="20" stroke="#004d40" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="80" y1="10" x2="78" y2="4" stroke="#004d40" stroke-width="2.5" stroke-linecap="round" />
+                <g transform="rotate(-6 50 50)">
+                  <path
+                    d="M 16 32 C 16 30 18 28 20 28 H 80 C 82 28 84 30 84 32 V 46 C 80 46 76 50 76 54 C 76 58 80 62 84 62 V 76 C 84 78 82 80 80 80 H 20 C 18 80 16 78 16 76 V 62 C 20 62 24 58 24 54 C 24 50 20 46 16 46 Z"
+                    stroke="#004d40"
+                    stroke-width="3"
+                    stroke-linejoin="round"
+                    fill="#ffffff"
+                    fill-opacity="0.45"
+                  />
+                  <line x1="32" y1="30" x2="32" y2="78" stroke="#004d40" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="3 4" />
+                  <text x="58" y="62" font-family="'Gotham', 'Montserrat', sans-serif" font-size="28" font-weight="900" fill="#004d40" text-anchor="middle">%</text>
+                </g>
+              </svg>
             </div>
           </div>
         </div>
-        <div
-          class="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20"
-        >
+
+        <!-- 4 Carousel Dots Indicators -->
+        <div class="absolute bottom-2 sm:bottom-2.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20">
           <button
-            (click)="activePromotionIndex.set(0)"
-            [class]="
-              activePromotionIndex() === 1
-                ? 'w-5 bg-cyan-400'
-                : 'w-1.5 bg-white/40'
-            "
-            class="h-1.5 rounded-full transition-all duration-300 border-none cursor-pointer"
+            type="button"
+            (click)="setSlide(0)"
+            [class]="activePromotionIndex() === 0 ? 'w-6 bg-[#34d399]' : 'w-2 bg-white/40 hover:bg-white/70'"
+            class="h-1.5 rounded-full transition-all duration-300 border-none cursor-pointer p-0"
+            aria-label="Ir a promoción 1"
           ></button>
           <button
-            (click)="activePromotionIndex.set(1)"
-            [class]="
-              activePromotionIndex() === 1
-                ? 'w-5 bg-cyan-400'
-                : 'w-1.5 bg-white/40'
-            "
-            class="h-1.5 rounded-full transition-all duration-300 border-none cursor-pointer"
+            type="button"
+            (click)="setSlide(1)"
+            [class]="activePromotionIndex() === 1 ? 'w-6 bg-[#38bdf8]' : 'w-2 bg-white/40 hover:bg-white/70'"
+            class="h-1.5 rounded-full transition-all duration-300 border-none cursor-pointer p-0"
+            aria-label="Ir a promoción 2"
+          ></button>
+          <button
+            type="button"
+            (click)="setSlide(2)"
+            [class]="activePromotionIndex() === 2 ? 'w-6 bg-[#fb7185]' : 'w-2 bg-white/40 hover:bg-white/70'"
+            class="h-1.5 rounded-full transition-all duration-300 border-none cursor-pointer p-0"
+            aria-label="Ir a promoción 3"
+          ></button>
+          <button
+            type="button"
+            (click)="setSlide(3)"
+            [class]="activePromotionIndex() === 3 ? 'w-6 bg-[#004d40]' : 'w-2 bg-white/40 hover:bg-white/70'"
+            class="h-1.5 rounded-full transition-all duration-300 border-none cursor-pointer p-0"
+            aria-label="Ir a promoción 4"
           ></button>
         </div>
       </div>
