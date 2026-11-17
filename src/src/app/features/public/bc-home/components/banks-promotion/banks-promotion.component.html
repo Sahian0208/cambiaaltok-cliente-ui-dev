@@ -1,8 +1,137 @@
 <section      
       class="bank-promo-shell relative z-30 -mt-3 sm:-mt-5 lg:-mt-7 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 font-gotham"
     >
+            <!-- Mobile Only 30min Banks Card (< md) -->
+      <div class="block md:hidden bg-white rounded-3xl shadow-xl border border-slate-100 p-5 sm:p-6 w-full text-center relative z-20">
+        <!-- Top Title Header -->
+        <div class="flex items-center justify-center gap-2 mb-2">
+          <div class="h-[2px] w-8 sm:w-10 bg-[#34d399] rounded-full"></div>
+          <span class="text-[11px] sm:text-xs font-black tracking-wider text-[#002b37] uppercase text-center">
+            TRANSFERENCIAS EN TAN SOLO
+          </span>
+          <div class="h-[2px] w-8 sm:w-10 bg-[#34d399] rounded-full"></div>
+        </div>
+
+        <!-- Big 30min Timer Graphic -->
+        <div class="flex items-center justify-center gap-2 my-1">
+          <div class="relative w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center shrink-0 -mr-1">
+            <svg class="w-full h-full overflow-visible" viewBox="0 0 100 100" fill="none">
+              <defs>
+                <linearGradient id="landingTimerGradMobile" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#a7f3d0" />
+                  <stop offset="60%" stop-color="#34d399" />
+                  <stop offset="100%" stop-color="#10b981" />
+                </linearGradient>
+              </defs>
+              <path
+                d="M 28 82 A 38 38 0 1 1 82 28"
+                stroke="url(#landingTimerGradMobile)"
+                stroke-width="5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M 50 28 V 50 H 32"
+                stroke="#10b981"
+                stroke-width="5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <line x1="84" y1="16" x2="90" y2="10" stroke="#34d399" stroke-width="3" stroke-linecap="round" />
+              <line x1="90" y1="24" x2="98" y2="20" stroke="#34d399" stroke-width="3" stroke-linecap="round" />
+              <line x1="93" y1="34" x2="101" y2="34" stroke="#34d399" stroke-width="3" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="flex items-baseline tracking-tight">
+            <span class="text-[3.8rem] sm:text-[4.5rem] font-black text-[#002b37] leading-none">30</span>
+            <span class="text-[2.6rem] sm:text-[3rem] font-black text-[#00875a] ml-1 leading-none">min</span>
+          </div>
+        </div>
+
+        <!-- Subtitle -->
+        <div class="flex items-center justify-center gap-2 mb-4">
+          <div class="h-[1.5px] w-6 sm:w-8 bg-[#34d399] rounded-full"></div>
+          <span class="text-sm sm:text-base font-extrabold text-[#002b37]">Entre Perú y Bolivia</span>
+          <div class="h-[1.5px] w-6 sm:w-8 bg-[#34d399] rounded-full"></div>
+        </div>
+
+        <!-- Bancos de Perú -->
+        <div class="mb-3.5 text-left">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="inline-flex items-center justify-center w-5 h-5 rounded-full overflow-hidden shadow-xs border border-slate-200 shrink-0">
+              <svg class="w-full h-full" viewBox="0 0 3 2">
+                <rect width="1" height="2" fill="#d91414" />
+                <rect x="1" width="1" height="2" fill="#fff" />
+                <rect x="2" width="1" height="2" fill="#d91414" />
+              </svg>
+            </span>
+            <span class="text-[15px] font-extrabold text-[#002b37]">Bancos de Perú</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2 sm:gap-2.5">
+            <div class="bg-white border border-slate-200/90 rounded-xl h-13 flex items-center justify-center p-2 shadow-xs hover:border-slate-300 transition-colors">
+              <img src="/img/banks/pe/logo-bcp-new.svg" alt="BCP" class="max-h-6.5 max-w-[85%] object-contain" />
+            </div>
+            <div class="bg-white border border-slate-200/90 rounded-xl h-13 flex items-center justify-center p-2 shadow-xs hover:border-slate-300 transition-colors">
+              <img src="/img/banks/pe/logo-interbank-new.svg" alt="Interbank" class="max-h-5.5 max-w-[85%] object-contain" />
+            </div>
+            <div class="bg-white border border-slate-200/90 rounded-xl h-13 flex items-center justify-center p-2 shadow-xs hover:border-slate-300 transition-colors">
+              <img src="/img/banks/pe/logo-bbva-new.svg" alt="BBVA" class="max-h-5.5 max-w-[85%] object-contain" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="w-full h-px bg-slate-100 my-3.5"></div>
+
+        <!-- Bancos de Bolivia -->
+        <div class="mb-3.5 text-left">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="inline-flex items-center justify-center w-5 h-5 rounded-full overflow-hidden shadow-xs border border-slate-200 shrink-0">
+              <svg class="w-full h-full" viewBox="0 0 3 2">
+                <rect width="3" height="0.66" fill="#F42A2A" />
+                <rect y="0.66" width="3" height="0.68" fill="#F4E42A" />
+                <rect y="1.34" width="3" height="0.66" fill="#0E8A1E" />
+              </svg>
+            </span>
+            <span class="text-[15px] font-extrabold text-[#002b37]">Bancos de Bolivia</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2 sm:gap-2.5">
+            <div class="bg-white border border-slate-200/90 rounded-xl h-13 flex items-center justify-center p-2 shadow-xs hover:border-slate-300 transition-colors">
+              <img src="/img/banks/bo/logo-union-new.svg" alt="Banco Unión" class="max-h-7 max-w-[90%] object-contain" />
+            </div>
+            <div class="bg-white border border-slate-200/90 rounded-xl h-13 flex items-center justify-center p-2 shadow-xs hover:border-slate-300 transition-colors">
+              <img src="/img/banks/bo/logo-bnb-new.svg" alt="BNB" class="max-h-7 max-w-[90%] object-contain" />
+            </div>
+            <div class="bg-white border border-slate-200/90 rounded-xl h-13 flex items-center justify-center p-1.5 shadow-xs hover:border-slate-300 transition-colors overflow-hidden">
+              <img src="/img/banks/bo/logo-mercantil-new.svg" alt="Mercantil Santa Cruz" class="max-h-7 max-w-[95%] object-contain rounded-xs" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Callout Pill -->
+        <div class="mt-4 bg-[#e8f8f2] rounded-2xl p-3 sm:p-3.5 flex items-center gap-3 text-left">
+          <div class="text-[#005a4c] shrink-0 flex items-center justify-center">
+            <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18"/>
+              <path d="M3 10h18"/>
+              <path d="M5 6l7-3 7 3"/>
+              <path d="M4 10v11"/>
+              <path d="M20 10v11"/>
+              <path d="M8 14v4"/>
+              <path d="M12 14v4"/>
+              <path d="M16 14v4"/>
+            </svg>
+          </div>
+          <div class="h-8 w-[1.5px] bg-[#10b981]/30 shrink-0"></div>
+          <div class="flex flex-col">
+            <span class="text-sm sm:text-[15px] font-black text-[#002b37] leading-tight">Estos y más bancos</span>
+            <span class="text-xs text-slate-500 font-medium leading-tight mt-0.5">Consulta la disponibilidad de tu banco.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop / Tablet Version (md and up) -->
       <div
-        class="banks-strip bg-white rounded-2xl shadow-xl border border-slate-100 py-3.5 px-5 md:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-5 lg:gap-6 relative z-20"
+        class="banks-strip hidden md:flex bg-white rounded-2xl shadow-xl border border-slate-100 py-3.5 px-5 md:px-6 lg:px-8 flex-row items-center justify-between gap-4 md:gap-5 lg:gap-6 relative z-20"
       >
 
 
