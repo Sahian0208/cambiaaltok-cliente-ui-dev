@@ -84,6 +84,33 @@ export class ClientHomeComponent implements OnInit {
     return user ? `${user.firstName} ${user.lastName}` : 'Carlos Alberto Mamani';
   });
 
+  readonly clientCode = computed(() => {
+    const user = this.currentUser();
+    if (!user) return 'CLI-001';
+    if (user.id) {
+      if (user.id.toUpperCase().startsWith('CLI-')) return user.id.toUpperCase();
+      if (user.id.toLowerCase().startsWith('usr-')) return user.id.toLowerCase().replace('usr-', 'CLI-').toUpperCase();
+      return `CLI-${user.id.toUpperCase()}`;
+    }
+    return 'CLI-001';
+  });
+
+  readonly clientCodeCopied = signal<boolean>(false);
+
+  copyClientCode(): void {
+    const code = this.clientCode();
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(code).then(() => {
+        this.clientCodeCopied.set(true);
+        this.notificationService.success('Código copiado al portapapeles');
+        setTimeout(() => this.clientCodeCopied.set(false), 2500);
+      });
+    } else {
+      this.clientCodeCopied.set(true);
+      setTimeout(() => this.clientCodeCopied.set(false), 2500);
+    }
+  }
+
   // Dynamic Savings Calculation
   readonly estimatedSavings = computed(() => {
     const amt = this.amountFrom();

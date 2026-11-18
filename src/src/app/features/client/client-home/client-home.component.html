@@ -87,27 +87,103 @@
     <!-- LEFT COLUMN: THE EXCHANGE CALCULATOR                   -->
     <div class="calculator-card">
       
-      <!-- Top Rate Tabs: Compra / Venta -->
-      <div class="rate-tabs-header">
-        <button
-          type="button"
-          class="rate-tab-btn"
-          [class.active]="activeTab() === 'compra'"
-          (click)="setTab('compra')"
-        >
-          <span class="tab-label">Compra:</span>
-          <span class="tab-rate">{{ buyRate() | number:'1.3-3' }}</span>
-        </button>
+      <!-- Barra de Tipo de Cambio con Banderitas Dinámicas (Perú / Bolivia) y Compra / Venta -->
+      <div
+        (click)="onSwapCurrencies()"
+        class="mb-3.5 bg-[#0e2736] rounded-xl sm:rounded-2xl py-2 px-3 sm:px-4 text-white shadow-md border border-white/10 cursor-pointer hover:border-[#33bb9c]/40 transition-all duration-300 select-none group flex items-center justify-between gap-2.5 sm:gap-3"
+        title="Click para invertir monedas"
+      >
+        <!-- Banderas dinámicas con flecha indicadora -->
+        <div class="flex items-center gap-2 sm:gap-2.5 shrink-0 pl-0.5">
+          @if (currencyFrom().code === 'PEN' && currencyTo().code === 'BOB') {
+            <!-- Banderas: Perú -> Bolivia -->
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden shadow-xs shrink-0 flex border border-white/30 group-hover:scale-105 transition-transform" title="Perú">
+              <div class="w-1/3 h-full bg-[#D91023]"></div>
+              <div class="w-1/3 h-full bg-white"></div>
+              <div class="w-1/3 h-full bg-[#D91023]"></div>
+            </div>
 
-        <button
-          type="button"
-          class="rate-tab-btn"
-          [class.active]="activeTab() === 'venta'"
-          (click)="setTab('venta')"
-        >
-          <span class="tab-label">Venta:</span>
-          <span class="tab-rate">{{ sellRate() | number:'1.3-3' }}</span>
-        </button>
+            <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 text-slate-300 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden shadow-xs shrink-0 flex flex-col border border-white/30 group-hover:scale-105 transition-transform" title="Bolivia">
+              <div class="h-1/3 w-full bg-[#D91023]"></div>
+              <div class="h-1/3 w-full bg-[#FCD116]"></div>
+              <div class="h-1/3 w-full bg-[#00A651]"></div>
+            </div>
+          } @else if (currencyFrom().code === 'BOB' && currencyTo().code === 'PEN') {
+            <!-- Banderas: Bolivia -> Perú -->
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden shadow-xs shrink-0 flex flex-col border border-white/30 group-hover:scale-105 transition-transform" title="Bolivia">
+              <div class="h-1/3 w-full bg-[#D91023]"></div>
+              <div class="h-1/3 w-full bg-[#FCD116]"></div>
+              <div class="h-1/3 w-full bg-[#00A651]"></div>
+            </div>
+
+            <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 text-slate-300 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden shadow-xs shrink-0 flex border border-white/30 group-hover:scale-105 transition-transform" title="Perú">
+              <div class="w-1/3 h-full bg-[#D91023]"></div>
+              <div class="w-1/3 h-full bg-white"></div>
+              <div class="w-1/3 h-full bg-[#D91023]"></div>
+            </div>
+          } @else {
+            <!-- Par por defecto o con otras divisas -->
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden shadow-xs shrink-0 flex border border-white/30 group-hover:scale-105 transition-transform" [title]="currencyFrom().label">
+              @if (currencyFrom().code === 'PEN') {
+                <div class="w-1/3 h-full bg-[#D91023]"></div>
+                <div class="w-1/3 h-full bg-white"></div>
+                <div class="w-1/3 h-full bg-[#D91023]"></div>
+              } @else if (currencyFrom().code === 'BOB') {
+                <div class="flex flex-col w-full h-full">
+                  <div class="h-1/3 w-full bg-[#D91023]"></div>
+                  <div class="h-1/3 w-full bg-[#FCD116]"></div>
+                  <div class="h-1/3 w-full bg-[#00A651]"></div>
+                </div>
+              } @else {
+                <span class="w-full h-full flex items-center justify-center text-xs bg-slate-800">🇺🇸</span>
+              }
+            </div>
+
+            <svg class="w-4 h-4 sm:w-4.5 sm:h-4.5 text-slate-300 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden shadow-xs shrink-0 flex border border-white/30 group-hover:scale-105 transition-transform" [title]="currencyTo().label">
+              @if (currencyTo().code === 'BOB') {
+                <div class="flex flex-col w-full h-full">
+                  <div class="h-1/3 w-full bg-[#D91023]"></div>
+                  <div class="h-1/3 w-full bg-[#FCD116]"></div>
+                  <div class="h-1/3 w-full bg-[#00A651]"></div>
+                </div>
+              } @else if (currencyTo().code === 'PEN') {
+                <div class="w-1/3 h-full bg-[#D91023]"></div>
+                <div class="w-1/3 h-full bg-white"></div>
+                <div class="w-1/3 h-full bg-[#D91023]"></div>
+              } @else {
+                <span class="w-full h-full flex items-center justify-center text-xs bg-slate-800">🇺🇸</span>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Compra y Venta -->
+        <div class="flex items-center gap-4 sm:gap-6 text-left pr-0.5">
+          <div>
+            <span class="block text-[10px] sm:text-[11px] font-medium text-slate-300 leading-none mb-0.5 sm:mb-1">Compra</span>
+            <span class="block text-sm sm:text-lg font-black text-white leading-tight tracking-tight">
+              {{ buyRate() | number:'1.3-3' }}
+            </span>
+          </div>
+          <div>
+            <span class="block text-[10px] sm:text-[11px] font-medium text-slate-300 leading-none mb-0.5 sm:mb-1">Venta</span>
+            <span class="block text-sm sm:text-lg font-black text-white leading-tight tracking-tight">
+              {{ sellRate() | number:'1.3-3' }}
+            </span>
+          </div>
+        </div>
       </div>
 
       <!-- Calculator Body -->
@@ -328,6 +404,31 @@
         <button type="button" class="btn-iniciar-operacion" (click)="startOperation()">
           <span>INICIAR OPERACIÓN</span>
         </button>
+
+        <!-- Código de Cliente debajo de la calculadora -->
+        <div class="mt-4 pt-3.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-3 px-1">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div class="w-8 h-8 rounded-xl bg-[#18a796]/15 text-[#18a796] flex items-center justify-center shrink-0">
+              <i class="pi pi-id-card text-sm"></i>
+            </div>
+            <div class="min-w-0">
+              <span class="block text-[11px] font-semibold text-slate-500 dark:text-slate-400 leading-none mb-1">Tu Código de Cliente</span>
+              <span class="block text-sm sm:text-base font-black text-[#00394b] dark:text-white tracking-wider truncate">
+                {{ clientCode() }}
+              </span>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            (click)="copyClientCode()"
+            class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-[#18a796] bg-[#18a796]/10 hover:bg-[#18a796]/20 transition-all cursor-pointer active:scale-95"
+            [title]="clientCodeCopied() ? 'Código copiado' : 'Copiar código'"
+          >
+            <i [class]="clientCodeCopied() ? 'pi pi-check text-emerald-600' : 'pi pi-copy'"></i>
+            <span>{{ clientCodeCopied() ? 'Copiado' : 'Copiar' }}</span>
+          </button>
+        </div>
 
       </div>
     </div>
