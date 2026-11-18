@@ -1,19 +1,19 @@
 <div class="w-full font-gotham">
   <div
-    class="relative p-5 sm:p-6 w-full mx-auto bg-white/95 rounded-[32px] shadow-[0_20px_50px_rgba(0,57,75,0.12)] border border-slate-100/90 text-[#00394b] backdrop-blur-sm"
+    class="relative p-4 sm:p-6 w-full mx-auto bg-white/95 rounded-2xl sm:rounded-[32px] shadow-[0_20px_50px_rgba(0,57,75,0.12)] border border-slate-100/90 text-[#00394b] backdrop-blur-sm"
   >
     <!-- Top Header: Precio del cambio -->
-    <div class="flex items-center gap-3 mb-5">
-      <div class="w-10 h-10 rounded-2xl bg-[#18a796]/12 text-[#18a796] flex items-center justify-center shrink-0">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    <div class="flex items-center gap-2.5 sm:gap-3 mb-3.5 sm:mb-5">
+      <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-[#18a796]/12 text-[#18a796] flex items-center justify-center shrink-0">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
           <path d="M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zM16.2 13h2.8v6h-2.8z"/>
         </svg>
       </div>
       <div>
-        <h3 class="text-base sm:text-lg font-black text-[#00394b] leading-tight">
+        <h3 class="text-sm sm:text-lg font-black text-[#00394b] leading-tight">
           Precio del cambio
         </h3>
-        <p class="text-xs text-slate-400 font-medium">
+        <p class="text-[11px] sm:text-xs text-slate-400 font-medium">
           Actualizado hoy
         </p>
       </div>
@@ -22,7 +22,7 @@
     <!-- Single Active Exchange Rate Card -->
     <div
       (click)="onSwapClick()"
-      class="mb-3.5 bg-[#0e2736] rounded-2xl py-2 px-3 sm:py-2.5 sm:px-4 text-white shadow-md border border-white/10 cursor-pointer hover:border-[#33bb9c]/40 transition-all duration-300 select-none group flex items-center justify-between gap-3"
+      class="mb-3 bg-[#0e2736] rounded-xl sm:rounded-2xl py-1.5 px-2.5 sm:py-2.5 sm:px-4 text-white shadow-md border border-white/10 cursor-pointer hover:border-[#33bb9c]/40 transition-all duration-300 select-none group flex items-center justify-between gap-2.5 sm:gap-3"
       title="Click para cambiar dirección de cambio"
     >
       <!-- Banderas dinámicas con flecha indicadora (Reemplazo del texto anterior) -->
@@ -67,14 +67,14 @@
       <!-- Compra y Venta (al lado derecho de las banderas) -->
       <div class="flex items-center gap-4 sm:gap-6 text-left pr-0.5">
         <div>
-          <span class="block text-[11px] font-medium text-slate-300 leading-none mb-1">Compra</span>
-          <span class="block text-base sm:text-lg font-black text-white leading-tight tracking-tight">
+          <span class="block text-[10px] sm:text-[11px] font-medium text-slate-300 leading-none mb-0.5 sm:mb-1">Compra</span>
+          <span class="block text-sm sm:text-lg font-black text-white leading-tight tracking-tight">
             {{ (tipoCambio() === 'PEN_TO_BOB' ? solesABolivianosCompra() : bolivianosASolesCompra()) ? ((tipoCambio() === 'PEN_TO_BOB' ? solesABolivianosCompra() : bolivianosASolesCompra()) | number:'1.3-3') : '0.000' }}
           </span>
         </div>
         <div>
-          <span class="block text-[11px] font-medium text-slate-300 leading-none mb-1">Venta</span>
-          <span class="block text-base sm:text-lg font-black text-white leading-tight tracking-tight">
+          <span class="block text-[10px] sm:text-[11px] font-medium text-slate-300 leading-none mb-0.5 sm:mb-1">Venta</span>
+          <span class="block text-sm sm:text-lg font-black text-white leading-tight tracking-tight">
             {{ (tipoCambio() === 'PEN_TO_BOB' ? solesABolivianosVenta() : bolivianosASolesVenta()) ? ((tipoCambio() === 'PEN_TO_BOB' ? solesABolivianosVenta() : bolivianosASolesVenta()) | number:'1.3-3') : '0.000' }}
           </span>
         </div>
@@ -85,10 +85,10 @@
     <div class="space-y-3 relative">
       <!-- Input 1: Tú Envías -->
       <div
-        class="rounded-2xl border border-slate-200/90 bg-[#F8FAFC] p-3.5 sm:p-4 flex items-center justify-between transition-all focus-within:border-[#18a796] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#18a796]/15"
+        class="rounded-xl sm:rounded-2xl border border-slate-200/90 bg-[#F8FAFC] p-2.5 sm:p-4 flex items-center justify-between transition-all focus-within:border-[#18a796] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#18a796]/15"
       >
         <div class="flex-1 pr-3">
-          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">
+          <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">
             TÚ ENVÍAS
           </label>
           <input
@@ -98,7 +98,7 @@
             (ngModelChange)="onAmountInput($event)"
             (blur)="onAmountBlur()"
             (keydown)="onNumericKeyDown($event)"
-            class="w-full bg-transparent text-2xl sm:text-3xl font-black text-[#00394b] outline-none border-none p-0 focus:ring-0 placeholder-slate-300"
+            class="w-full bg-transparent text-xl sm:text-3xl font-black text-[#00394b] outline-none border-none p-0 focus:ring-0 placeholder-slate-300"
             placeholder="1,000"
           />
         </div>
@@ -112,7 +112,7 @@
               <div class="w-1/3 h-full bg-white"></div>
               <div class="w-1/3 h-full bg-[#D91023]"></div>
             </div>
-            <span class="text-sm font-black text-[#00394b]">PEN</span>
+            <span class="text-xs sm:text-sm font-black text-[#00394b]">PEN</span>
           } @else {
             <!-- Bolivia flag circle -->
             <div class="w-6 h-6 rounded-full overflow-hidden shadow-xs shrink-0 flex flex-col border border-slate-200">
@@ -120,7 +120,7 @@
               <div class="h-1/3 w-full bg-[#FCD116]"></div>
               <div class="h-1/3 w-full bg-[#00A651]"></div>
             </div>
-            <span class="text-sm font-black text-[#00394b]">BOB</span>
+            <span class="text-xs sm:text-sm font-black text-[#00394b]">BOB</span>
           }
           <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -133,11 +133,11 @@
         <button
           type="button"
           (click)="onSwapClick()"
-          class="w-10 h-10 rounded-full bg-white border border-slate-200 shadow-md text-[#00394b] hover:text-[#18a796] hover:bg-slate-50 flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95 transition-all duration-200"
+          class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white border border-slate-200 shadow-md text-[#00394b] hover:text-[#18a796] hover:bg-slate-50 flex items-center justify-center cursor-pointer hover:scale-110 active:scale-95 transition-all duration-200"
           title="Intercambiar moneda"
         >
           <svg
-            class="w-4 h-4"
+            class="w-3.5 h-3.5 sm:w-4 sm:h-4"
             fill="none"
             stroke="currentColor"
             stroke-width="2.5"
@@ -154,10 +154,10 @@
 
       <!-- Input 2: Tú Recibes -->
       <div
-        class="rounded-2xl border border-slate-200/90 bg-[#F8FAFC] p-3.5 sm:p-4 flex items-center justify-between transition-all focus-within:border-[#18a796] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#18a796]/15"
+        class="rounded-xl sm:rounded-2xl border border-slate-200/90 bg-[#F8FAFC] p-2.5 sm:p-4 flex items-center justify-between transition-all focus-within:border-[#18a796] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#18a796]/15"
       >
         <div class="flex-1 pr-3">
-          <label class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">
+          <label class="block text-[10px] sm:text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-0.5">
             TÚ RECIBES
           </label>
           <input
@@ -167,7 +167,7 @@
             (ngModelChange)="onDestinationInput($event)"
             (blur)="onDestinationBlur()"
             (keydown)="onNumericKeyDown($event)"
-            class="w-full bg-transparent text-2xl sm:text-3xl font-black text-[#00394b] outline-none border-none p-0 focus:ring-0 placeholder-slate-300"
+            class="w-full bg-transparent text-xl sm:text-3xl font-black text-[#00394b] outline-none border-none p-0 focus:ring-0 placeholder-slate-300"
             placeholder="2,545.00"
           />
         </div>
@@ -181,7 +181,7 @@
               <div class="h-1/3 w-full bg-[#FCD116]"></div>
               <div class="h-1/3 w-full bg-[#00A651]"></div>
             </div>
-            <span class="text-sm font-black text-[#00394b]">BOB</span>
+            <span class="text-xs sm:text-sm font-black text-[#00394b]">BOB</span>
           } @else {
             <!-- Peru flag circle -->
             <div class="w-6 h-6 rounded-full overflow-hidden shadow-xs shrink-0 flex border border-slate-200">
@@ -189,7 +189,7 @@
               <div class="w-1/3 h-full bg-white"></div>
               <div class="w-1/3 h-full bg-[#D91023]"></div>
             </div>
-            <span class="text-sm font-black text-[#00394b]">PEN</span>
+            <span class="text-xs sm:text-sm font-black text-[#00394b]">PEN</span>
           }
           <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -200,9 +200,9 @@
 
     <!-- Cupón de beneficio (Reemplazo según diseño solicitado) -->
     <div
-      class="mt-4 rounded-2xl bg-gradient-to-r from-[#00394b] via-[#00475e] to-[#002f3e] p-3.5 sm:p-4 text-white shadow-lg border border-white/10"
+      class="mt-3 sm:mt-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-[#00394b] via-[#00475e] to-[#002f3e] p-3 sm:p-4 text-white shadow-lg border border-white/10"
     >
-      <span class="block text-xs sm:text-[13px] font-bold text-white tracking-wide mb-2 leading-none">
+      <span class="block text-[11px] sm:text-[13px] font-bold text-white tracking-wide mb-1.5 sm:mb-2 leading-none">
         Cupón de beneficio
       </span>
 
@@ -213,13 +213,13 @@
           (ngModelChange)="onCouponCodeChange($event)"
           (keydown.enter)="applyCoupon()"
           placeholder="Ingresa tu cupón"
-          class="flex-1 bg-white rounded-xl px-3.5 py-2 text-xs sm:text-sm text-[#00394b] font-bold placeholder:text-slate-400 placeholder:font-normal outline-none border-none shadow-inner focus:ring-2 focus:ring-[#33bb9c]"
+          class="flex-1 bg-white rounded-lg sm:rounded-xl px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm text-[#00394b] font-bold placeholder:text-slate-400 placeholder:font-normal outline-none border-none shadow-inner focus:ring-2 focus:ring-[#33bb9c]"
         />
         <button
           type="button"
           (click)="applyCoupon()"
           [disabled]="isApplyingCoupon()"
-          class="bg-[#00A86B] hover:bg-[#00925d] text-white font-bold px-4 sm:px-5 py-2 rounded-xl text-xs sm:text-sm shrink-0 border-none cursor-pointer transition shadow-sm active:scale-95 disabled:opacity-50"
+          class="bg-[#00A86B] hover:bg-[#00925d] text-white font-bold px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm shrink-0 border-none cursor-pointer transition shadow-sm active:scale-95 disabled:opacity-50"
         >
           {{ isApplyingCoupon() ? '...' : 'Aplicar' }}
         </button>
@@ -238,7 +238,7 @@
         </div>
       }
 
-      <p class="text-[10px] sm:text-[11px] text-slate-300/90 leading-tight mt-2 mb-0 font-normal">
+      <p class="text-[9.5px] sm:text-[11px] text-slate-300/90 leading-tight mt-1.5 sm:mt-2 mb-0 font-normal">
         El cupón es de un solo uso. Su spread se valida y aplica al registrar la operación.
       </p>
     </div>
@@ -248,7 +248,7 @@
       <button
         (click)="startTransaction()"
         [disabled]="!canStartTransaction()"
-        class="w-full bg-gradient-to-r from-[#00394b] via-[#00475e] to-[#18a796] hover:from-[#002d3b] hover:to-[#148e80] text-white font-black py-4 px-6 rounded-2xl text-center text-sm sm:text-base tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-[#00394b]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all uppercase cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border-none active:scale-[0.99] font-gotham"
+        class="w-full bg-gradient-to-r from-[#00394b] via-[#00475e] to-[#18a796] hover:from-[#002d3b] hover:to-[#148e80] text-white font-black py-3 sm:py-4 px-4 sm:px-6 rounded-xl sm:rounded-2xl text-center text-xs sm:text-base tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-[#00394b]/20 hover:shadow-xl hover:-translate-y-0.5 transition-all uppercase cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border-none active:scale-[0.99] font-gotham"
       >
         <span>CAMBIAR AHORA</span>
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -258,7 +258,7 @@
     </div>
 
     <!-- Security Footer -->
-    <div class="mt-3.5 flex items-center justify-center gap-1.5 text-xs text-slate-500 font-medium">
+    <div class="mt-2.5 sm:mt-3.5 flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-slate-500 font-medium">
       <div class="w-4 h-4 rounded-full bg-[#18a796]/15 flex items-center justify-center text-[#18a796]">
         <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24">
           <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
